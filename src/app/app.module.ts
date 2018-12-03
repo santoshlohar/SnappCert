@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +15,6 @@ import { InstituteKycDetailsComponent } from './institute-kyc-details/institute-
 import { AuthorizedUsersComponent } from './authorized-users/authorized-users.component';
 import { AddAuthorizedUserComponent } from './add-authorized-user/add-authorized-user.component';
 import { AffliatedInstitutesComponent } from './affliated-institutes/affliated-institutes.component';
-import { AddAffliatedInstitutesComponent } from './add-affliated-institutes/add-affliated-institutes.component';
 import { AddAffliatedInstituteComponent } from './add-affliated-institute/add-affliated-institute.component';
 import { ViewCoursesComponent } from './view-courses/view-courses.component';
 import { AddCourseComponent } from './add-course/add-course.component';
@@ -39,7 +39,6 @@ import { UploadCertificateDataComponent } from './upload-certificate-data/upload
     AuthorizedUsersComponent,
     AddAuthorizedUserComponent,
     AffliatedInstitutesComponent,
-    AddAffliatedInstitutesComponent,
     AddAffliatedInstituteComponent,
     ViewCoursesComponent,
     AddCourseComponent,
@@ -52,7 +51,8 @@ import { UploadCertificateDataComponent } from './upload-certificate-data/upload
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
