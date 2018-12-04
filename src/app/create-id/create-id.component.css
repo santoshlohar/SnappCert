@@ -8,3 +8,7 @@
     border: 1px solid #BFBFBF;
     box-shadow: 5px 9px 15px #bfb9b9;
 }
+
+.modal-wrapper {
+    text-align: center;
+}

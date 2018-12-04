@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class CreateIdComponent implements OnInit {
 	createIdForm: any = {};
+	otpAuthForm: any = {};
 
 	constructor() { }
 
@@ -19,5 +20,10 @@ export class CreateIdComponent implements OnInit {
 		this.createIdForm.password = form.value.password;
 		this.createIdForm.confirmPassword = form.value.confirmPassword; 
 		console.log(this.createIdForm);
+	}
+
+	authDone(form : NgForm) {
+		this.otpAuthForm.otp = form.value.otpText;
+		console.log(this.otpAuthForm);
 	}
 }

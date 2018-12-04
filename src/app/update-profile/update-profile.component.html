@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="table-wrapper">
+        <div class="search-filter">
+            <button class="btn btn-info btn-sm search-btn" type="button">Search</button>
+            <input class="search-text" type="text" placeholder="Search...">
+        </div>
+        <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5">
+            <thead>
+                <tr>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="type">Institution Type</mfDefaultSorter>
+                    </th>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="id">Institution ID</mfDefaultSorter>
+                    </th>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="name">Institution Name</mfDefaultSorter>
+                    </th>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="requester">Requester Name</mfDefaultSorter>
+                    </th>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="kycAgent">KYC Agent</mfDefaultSorter>
+                    </th>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                    </th>
+                    <th style="width: 20%">
+                        <mfDefaultSorter by="review">Review</mfDefaultSorter>
+                    </th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let institute of mf.data">
+                    <td>{{institute.type}}</td>
+                    <td>{{institute.id}}</td>
+                    <td >{{institute.name}}</td>
+                    <td>{{institute.requester | uppercase}}</td>
+                    <td>{{institute.kycAgent}}</td>
+                    <td>{{institute.status}}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" [routerLink]="['/instituteKycDetails', institute.id]">Review</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="7">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div> 
+</div>
+ 
