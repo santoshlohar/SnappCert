@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./institute-kyc-details.component.css']
 })
 export class InstituteKycDetailsComponent implements OnInit {
+  private instituteData: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.instituteData = {
+      type: 'University',
+      id: '1',
+      name: 'Snapper',
+      requester: 'Sushmita',
+      kycAgent: 'ABC',
+      status: 'New'
+    }
   }
 
 }
