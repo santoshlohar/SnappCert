@@ -11,7 +11,14 @@ export class UpdateProfileComponent implements OnInit {
 
   ngOnInit() {
     this.data = [
-      { 'type': 'University', 'id' : '1', 'name': 'Snapper', 'requester': 'Sushmita', 'kycAgent': 'ABC', 'status': 'New'}
+      { 
+        'type': 'University', 
+        'id' : '1', 
+        'name': 'Snapper', 
+        'requester': 'Sushmita', 
+        'kycAgent': 'ABC', 
+        'status': 'New'
+      }
     ]
   }
 

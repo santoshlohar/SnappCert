@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataTableModule } from 'angular-6-datatable';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,38 +30,39 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    InstituteRegistrationComponent,
-    CreateIdComponent,
-    ForgotPasswordComponent,
-    UpdateProfileComponent,
-    UserLogComponent,
-    InstitutesKycComponent,
-    InstituteKycDetailsComponent,
-    AuthorizedUsersComponent,
-    AddAuthorizedUserComponent,
-    AffliatedInstitutesComponent,
-    AddAffliatedInstituteComponent,
-    ViewCoursesComponent,
-    AddCourseComponent,
-    ReviewBatchDataComponent,
-    UploadBatchDataComponent,
-    ReviewMarksheetDataComponent,
-    UploadMarksheetDataComponent,
-    ReviewCertificateDataComponent,
-    UploadCertificateDataComponent,
-    SidebarComponent,
-    HeaderComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    DataTableModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		LoginComponent,
+		InstituteRegistrationComponent,
+		CreateIdComponent,
+		ForgotPasswordComponent,
+		UpdateProfileComponent,
+		UserLogComponent,
+		InstitutesKycComponent,
+		InstituteKycDetailsComponent,
+		AuthorizedUsersComponent,
+		AddAuthorizedUserComponent,
+		AffliatedInstitutesComponent,
+		AddAffliatedInstituteComponent,
+		ViewCoursesComponent,
+		AddCourseComponent,
+		ReviewBatchDataComponent,
+		UploadBatchDataComponent,
+		ReviewMarksheetDataComponent,
+		UploadMarksheetDataComponent,
+		ReviewCertificateDataComponent,
+		UploadCertificateDataComponent,
+		SidebarComponent,
+		HeaderComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		DataTableModule,
+		AngularFontAwesomeModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
