@@ -1,0 +1,9 @@
+.container {
+    padding: 40px 1px;
+    max-width: 1170px;
+}
+
+.thead {
+    background-color: #40cce2;
+    color: #FFF;
+}

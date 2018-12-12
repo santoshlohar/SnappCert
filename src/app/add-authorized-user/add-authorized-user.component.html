@@ -1,3 +1,34 @@
-<p>
-  add-authorized-user works!
-</p>
+<div class="container">
+    <div class="profile-wrapper">
+        <form class="text-center border border-light p-5 form-height" (ngSubmit)="user(f)" #f="ngForm">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">
+                    <h3 class="panel-title">Add User</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="defaultProfileFormUserType">
+                        <label class="control-label float-left" for="userFormName">Name</label> 
+                        <input type="text" id="userFormName" ngModel name="userFormName" class="form-control mb-4" placeholder="User Name">
+                    </div>
+                    <div>
+                        <label class="control-label float-left" for="userFormEmail">Email ID</label> 
+                        <input type="text" id="userFormEmail" ngModel name="userFormEmail" class="form-control mb-4" placeholder="Email ID">
+                    </div>                    
+                    <div>
+                        <label class="control-label float-left" for="userFormPhone">Phone</label> 
+                        <input type="text" id="userFormPhone" ngModel name="userFormPhone" class="form-control mb-4" placeholder="Phone">
+                    </div>
+                    <div>
+                        <label class="control-label float-left" for="userFormRole">Role</label> 
+                        <select class="browser-default custom-select mb-4" id="userFormRole" ngModel name="userFormRole" aria-placeholder="Role">
+                            <option value="1" selected>Data Admin</option>
+                            <option value="2">Reviewer</option>
+                            <option value="3">Certifier</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-info" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>    

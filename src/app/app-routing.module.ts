@@ -21,6 +21,7 @@ import { ReviewMarksheetDataComponent } from './review-marksheet-data/review-mar
 import { UploadMarksheetDataComponent } from './upload-marksheet-data/upload-marksheet-data.component';
 import { ReviewCertificateDataComponent } from './review-certificate-data/review-certificate-data.component';
 import { UploadCertificateDataComponent } from './upload-certificate-data/upload-certificate-data.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   { path : 'login' , component : LoginComponent },
@@ -42,7 +43,8 @@ const routes: Routes = [
   { path : 'reviewMarksheetData', component : ReviewMarksheetDataComponent },
   { path : 'uploadMarksheetData', component : UploadMarksheetDataComponent },
   { path : 'reviewCertificateData', component : ReviewCertificateDataComponent },
-  { path : 'uploadCertificateData', component : UploadCertificateDataComponent }
+  { path : 'uploadCertificateData', component : UploadCertificateDataComponent },
+  { path : 'changePassword', component : ChangePasswordComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,21 @@
+.container {
+    padding: 40px 1px;
+    max-width: 1225px;
+}
+
+.thead {
+    background-color: #40cce2;
+    color: #FFF;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.bg-info {
+    background-color: #eee!important;
+    margin-bottom: 4%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 1%;
+}
