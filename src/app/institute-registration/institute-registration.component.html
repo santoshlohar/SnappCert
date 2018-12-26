@@ -1,0 +1,230 @@
+<!-- <div class="container">
+    <div class="addInst-wrapper">
+        <form class="text-center border border-light p-5" (ngSubmit)="addInst(f)" #f="ngForm">
+            <p class="h4 mb-4">Add Affliated Institute</p>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <label class="control-label float-left" for="addInstFormName">Name</label> 
+                    <input type="text" id="addInstFormName" class="form-control" ngModel name="addInstFormName" placeholder="">
+                </div>
+            </div>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <label class="control-label float-left" for="addInstFormDesignation">Designation</label> 
+                    <input type="text" id="addInstFormDesignation" class="form-control" ngModel name="addInstFormDesignation" placeholder="">
+                </div>
+                <div class="col">
+                    <label class="control-label float-left" for="addInstFormEmployeeID">Employee ID</label> 
+                    <input type="text" id="addInstFormEmployeeID" class="form-control" ngModel name="addInstFormEmployeeID" placeholder="">
+                </div>
+            </div>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <label class="control-label float-left" for="addInstFormEmailID">Email ID</label> 
+                    <input type="text" id="addInstFormEmailID" class="form-control" ngModel name="addInstFormEmailID" placeholder="">
+                </div>
+                <div class="col">
+                    <label class="control-label float-left" for="addInstFormPhoneNo">Phone No</label> 
+                    <input type="text" id="addInstFormPhoneNo" class="form-control" ngModel name="addInstFormPhoneNo" placeholder="">
+                </div>
+            </div>
+            <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
+        </form>
+    </div>
+</div> -->
+
+
+<div class="container">
+    <div class="panel panel-primary headeing">
+        <div class="panel panel-heading">
+            <h3 class="panel-title">Add Affliated Institue</h3>
+        </div>
+    </div>
+    <div class="addInst-wrapper">
+        <form class="text-center border border-light p-5 form-height" (ngSubmit)="addInst(f)" #f="ngForm">
+            <div class="panel panel-primary">
+                <p class="h4 mb-4 requester">Requester</p>    
+                <div class="panel-body">
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormName">Name</label> 
+                            <input type="text" id="addInstFormName" class="form-control" ngModel name="addInstFormName" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormDesignation">Designation</label> 
+                            <input type="text" id="addInstFormDesignation" class="form-control" ngModel name="addInstFormDesignation" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormEmployeeID">Employee ID</label> 
+                            <input type="text" id="addInstFormEmployeeID" class="form-control" ngModel name="addInstFormEmployeeID" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormEmailID">Email ID</label> 
+                            <input type="text" id="addInstFormEmailID" class="form-control" ngModel name="addInstFormEmailID" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormPhoneNo">Phone No</label> 
+                            <input type="text" id="addInstFormPhoneNo" class="form-control" ngModel name="addInstFormPhoneNo" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <p class="h4 mb-4 requester1">Institute Details</p>    
+                <div class="panel-body">
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormInstituteType">Institute Type</label> 
+                            <input type="text" id="addInstFormInstituteType" class="form-control" ngModel name="addInstFormInstituteType" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormInstituteID">Institute ID</label> 
+                            <input type="text" id="addInstFormInstituteID" class="form-control" ngModel name="addInstFormInstituteID" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormInstituteName">Institute Name</label> 
+                            <input type="text" id="addInstFormInstituteName" class="form-control" ngModel name="addInstFormInstituteName" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormRegistrationID">Registration ID</label> 
+                            <input type="text" id="addInstFormRegistrationID" class="form-control" ngModel name="addInstFormRegistrationID" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormDate">Date of Establishment</label> 
+                            <input type="text" id="addInstFormDate" class="form-control" ngModel name="addInstFormDate" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAddress">Address</label> 
+                            <input type="text" id="addInstFormAddress" class="form-control" ngModel name="addInstFormAddress" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAcademicHead">Academic Head</label> 
+                            <input type="text" id="addInstFormAcademicHead" class="form-control" ngModel name="addInstFormAcademicHead" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAcademicHeadEmail">Academic Head Email ID</label> 
+                            <input type="text" id="addInstFormAcademicHeadEmail" class="form-control" ngModel name="addInstFormAcademicHeadEmail" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAcademicHeadPhone">Academic Head Phone</label> 
+                            <input type="text" id="addInstFormAcademicHeadPhone" class="form-control" ngModel name="addInstFormAcademicHeadPhone" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAdministratorHead">Administrator Head</label> 
+                            <input type="text" id="addInstFormAdministratorHead" class="form-control" ngModel name="addInstFormAdministratorHead" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAdministratorHeadEmail">Administrator Head Email</label> 
+                            <input type="text" id="addInstFormAdministratorHeadEmail" class="form-control" ngModel name="addInstFormAdministratorHeadEmail" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAdministratorHeadPhone">Administrator Head Phone</label> 
+                            <input type="text" id="addInstFormAdministratorHeadPhone" class="form-control" ngModel name="addInstFormAdministratorHeadPhone" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormBoardLineNo">Board Line No.</label> 
+                            <input type="text" id="addInstFormBoardLineNo" class="form-control" ngModel name="addInstFormBoardLineNo" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormLocation">Location</label> 
+                            <input type="text" id="addInstFormLocation" class="form-control" ngModel name="addInstFormLocation" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormWebsite">Website</label> 
+                            <input type="text" id="addInstFormWebsite" class="form-control" ngModel name="addInstFormWebsite" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAffliatedToInstitute">Affliated To Institute</label> 
+                            <input type="text" id="addInstFormAffliatedToInstitute" class="form-control" ngModel name="addInstFormAffliatedToInstitute" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAffliatedToInstituteType">Affliated To Institute Type</label> 
+                            <input type="text" id="addInstFormAffliatedToInstituteType" class="form-control" ngModel name="addInstFormAffliatedToInstituteType" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormApprovedBy">Recognized/Approved By</label> 
+                            <input type="text" id="addInstFormApprovedBy" class="form-control" ngModel name="addInstFormApprovedBy" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormRegulatoryBody">Regulatory Body</label> 
+                            <input type="text" id="addInstFormRegulatoryBody" class="form-control" ngModel name="addInstFormRegulatoryBody" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <p class="h4 mb-4 requester1">Institute Admin 1</p>    
+                <div class="panel-body">
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAdminName1">Name</label> 
+                            <input type="text" id="addInstFormAdminName1" class="form-control" ngModel name="addInstFormAdminName1" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormPhone1">Phone</label> 
+                            <input type="text" id="addInstFormPhone1" class="form-control" ngModel name="addInstFormPhone1" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormEmailID1">Email ID</label> 
+                            <input type="text" id="addInstFormEmailID1" class="form-control" ngModel name="addInstFormEmailID1" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAdminEmployeeID1">Employee ID</label> 
+                            <input type="text" id="addInstFormAdminEmployeeID1" class="form-control" ngModel name="addInstFormAdminEmployeeID1" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <p class="h4 mb-4 requester1">Institute Admin 2</p>    
+                <div class="panel-body">
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAdminName2">Name</label> 
+                            <input type="text" id="addInstFormAdminName2" class="form-control" ngModel name="addInstFormAdminName2" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormPhone2">Phone</label> 
+                            <input type="text" id="addInstFormPhone2" class="form-control" ngModel name="addInstFormPhone2" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormEmailID2">Email ID</label> 
+                            <input type="text" id="addInstFormEmailID2" class="form-control" ngModel name="addInstFormEmailID2" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label class="control-label float-left" for="addInstFormAdminEmployeeID2">Employee ID</label> 
+                            <input type="text" id="addInstFormAdminEmployeeID2" class="form-control" ngModel name="addInstFormAdminEmployeeID2" placeholder="">
+                        </div>
+                    </div>
+                    <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>    

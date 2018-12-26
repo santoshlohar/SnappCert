@@ -1,3 +1,48 @@
-<p>
-  add-course works!
-</p>
+<div class="container">
+    <div class="addCourse-wrapper">
+        <form class="text-center border border-light p-5" (ngSubmit)="addCourse(f)" #f="ngForm">
+            <p class="h4 mb-4">Add Course</p>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <label class="control-label float-left" for="addCourseFormAffliatedInstituteId">Affliated Institute ID</label> 
+                    <input type="text" id="addCourseFormAffliatedInstituteId" class="form-control" ngModel name="addCourseFormAffliatedInstituteId" placeholder="">
+                </div>
+                <div class="col">
+                    <label class="control-label float-left" for="addCourseFormCourseId">Course ID</label> 
+                    <input type="text" id="addCourseFormCourseId" class="form-control" ngModel name="addCourseFormCourseId" placeholder="">
+                </div>
+            </div>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <label class="control-label float-left" for="addCourseFormCourseName">Course Name</label> 
+                    <input type="text" id="addCourseFormCourseName" class="form-control" ngModel name="addCourseFormCourseName" placeholder="">
+                </div>
+                <div class="col">
+                    <label class="control-label float-left" for="addCourseFormCourseDuration">Course Duration</label> 
+                    <input type="text" id="addCourseFormCourseDuration" class="form-control" ngModel name="addCourseFormCourseDuration" placeholder="">
+                </div>
+            </div>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <label class="control-label float-left" for="addCourseFormTermType">Term Type</label> 
+                    <select class="browser-default custom-select mb-4" id="addCourseFormTermType" ngModel name="addCourseFormTermType">
+                        <option value="1" selected>Semester</option>
+                        <option value="2">Annual</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label class="control-label float-left" for="addCourseFormNoTerms">No. of Terms</label> 
+                    <select class="browser-default custom-select mb-4" id="addCourseFormNoTerms" ngModel name="addCourseFormNoTerms">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-info my-4 btn-block" type="submit">Submit</button>
+        </form>
+    </div>
+</div>

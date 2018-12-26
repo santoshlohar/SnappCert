@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-institute-kyc-details',
@@ -6,19 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./institute-kyc-details.component.css']
 })
 export class InstituteKycDetailsComponent implements OnInit {
-  private instituteData: any;
-
+  kycForm: any = {};
   constructor() { }
 
   ngOnInit() {
-    this.instituteData = {
-      type: 'University',
-      id: '1',
-      name: 'Snapper',
-      requester: 'Sushmita',
-      kycAgent: 'ABC',
-      status: 'New'
-    }
   }
 
+  kyc(form: NgForm) {
+    this.kycForm.instituteType = form.value.instituteType;
+    this.kycForm.intituteId = form.value.intituteId;
+    this.kycForm.intituteName = form.value.intituteName;
+    this.kycForm.instituteReq = form.value.instituteReq;
+    this.kycForm.instituteKycAgent = form.value.instituteKycAgent;
+    this.kycForm.institutionStatus = form.value.institutionStatus;
+    console.log(this.kycForm);
+  }
+  
 }

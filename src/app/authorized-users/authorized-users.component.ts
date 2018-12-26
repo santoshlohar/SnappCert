@@ -1,26 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+declare var $;
 
 @Component({
 	selector: 'app-authorized-users',
 	templateUrl: './authorized-users.component.html',
 	styleUrls: ['./authorized-users.component.css']
 })
+
 export class AuthorizedUsersComponent implements OnInit {
-	private data : any; 
+	@ViewChild('dataTable') table: ElementRef;
+	dataTable: any;
+	dtOption: any;
 	constructor() { }
 
-	ngOnInit() {
-		this.data = [
-			{ 
-				'role': 'Data Admin', 
-				'name': 'Sushmita', 
-				'emailId': 'admin@gmail.com', 
-				'phone': '7839203844', 
-				'status': 'Active'
-			}
-		]
+	ngOnInit(): void {
+		this.dtOption = {
+			"paging": true,
+			"ordering": true,
+			"info": true
+		};
+		this.dataTable = $(this.table.nativeElement);
+		this.dataTable.DataTable(this.dtOption);
 	}
-
-
 
 }

@@ -1,27 +1,57 @@
 .container {
-    margin-top: 60px !important;
-    padding: 60px 45px;
+    padding: 18px 0px;
 }
 
-.table-wrapper {
-    
+.profile-wrapper {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #BFBFBF;
+    box-shadow: 5px 9px 15px #bfb9b9;
 }
 
-.search-filter {
-    float: right;
-    padding: 15px 35px;;
+.panel-primary>.panel-heading {
+    color: #FFF;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
 }
 
-.search-btn {
-    margin-right: 15px;
-    height: 35px;
-    padding: 1px 20px !important;
-    width: 90px;
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 
-.search-text {
-    height: 27px;
-    width: 290px;
-    padding: 1px 7px;
-    font-size: 14px;
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 20px;
+    color: inherit;
+} 
+
+.form-horizontal {
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-bottom: 15px;
+}
+
+.form-horizontal .control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: right;
+}
+
+#defaultProfileFormUserType {
+    margin-top: 12px;
+}
+
+.form-height {
+    height: 805px;
+}
+
+.btn {
+    margin-left: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: -12px;
 }

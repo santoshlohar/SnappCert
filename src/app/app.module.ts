@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataTableModule } from 'angular-6-datatable';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { ReactiveFormsModule } from '@angular/forms';
+//import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import { ReviewCertificateDataComponent } from './review-certificate-data/review
 import { UploadCertificateDataComponent } from './upload-certificate-data/upload-certificate-data.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
 	declarations: [
@@ -53,14 +55,16 @@ import { HeaderComponent } from './header/header.component';
 		ReviewCertificateDataComponent,
 		UploadCertificateDataComponent,
 		SidebarComponent,
-		HeaderComponent
+		HeaderComponent,
+		ChangePasswordComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
 		DataTableModule,
-		AngularFontAwesomeModule
+		ReactiveFormsModule
+		//AngularFontAwesomeModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
