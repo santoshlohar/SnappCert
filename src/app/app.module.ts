@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataTableModule } from 'angular-6-datatable';
 import { ReactiveFormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from './material-module';
+import {MatStepperModule} from '@angular/material';
+import {MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +35,8 @@ import { UploadCertificateDataComponent } from './upload-certificate-data/upload
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+
+import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 @NgModule({
 	declarations: [
@@ -63,10 +70,17 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 		AppRoutingModule,
 		FormsModule,
 		DataTableModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		BrowserAnimationsModule,
+		MaterialModule
 		//AngularFontAwesomeModule
 	],
-	providers: [],
+	providers: [
+		{
+			provide: STEPPER_GLOBAL_OPTIONS,
+			useValue: { showError: true }
+		}
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

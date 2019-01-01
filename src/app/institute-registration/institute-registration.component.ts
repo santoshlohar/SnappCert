@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-institute-registration',
@@ -9,9 +9,13 @@ import { NgForm } from '@angular/forms';
 
 export class InstituteRegistrationComponent implements OnInit {
   addInstForm: any = {};
-  constructor() { }
+  requesterFormGroup: FormGroup;
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.requesterFormGroup = this._formBuilder.group({
+      instituteCtrl: ['', Validators.required]
+    });
   }
   
   addInst(form: NgForm) {

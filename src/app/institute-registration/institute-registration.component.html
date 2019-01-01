@@ -1,9 +1,26 @@
+
 <div class="container">
-    <div class="row">
-        <section>
-            <div class="wizard">
-                
-            </div>
-        </section>
+    <div class="panel panel-primary headeing">
+        <div class="panel panel-heading">
+            <h3 class="panel-title">Add Affliated Institue</h3>
+        </div>
+    </div>
+    <div class="addInst-wrapper">
+        <mat-horizontal-stepper linear #stepper>
+            <mat-step [stepControl]="requesterFormGroup" errorMessage="Please fill requester form first.">
+                <form [formGroup]="requesterFormGroup" class="form-container">
+                    <ng-template matStepLabel>Fill requester details</ng-template>
+                    <mat-form-field>
+                        <input matInput placeholder="Name" 
+                        formControlName="instituteCtrl" 
+                        required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Designation"
+                        required>
+                    </mat-form-field>
+                </form>
+            </mat-step>
+        </mat-horizontal-stepper>
     </div>
 </div>
