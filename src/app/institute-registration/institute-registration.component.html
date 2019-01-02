@@ -2,23 +2,228 @@
 <div class="container">
     <div class="panel panel-primary headeing">
         <div class="panel panel-heading">
-            <h3 class="panel-title">Add Affliated Institue</h3>
+            <h3 class="panel-title">Add Affliated Institute</h3>
         </div>
     </div>
     <div class="addInst-wrapper">
         <mat-horizontal-stepper linear #stepper>
-            <mat-step [stepControl]="requesterFormGroup" errorMessage="Please fill requester form first.">
-                <form [formGroup]="requesterFormGroup" class="form-container">
-                    <ng-template matStepLabel>Fill requester details</ng-template>
-                    <mat-form-field>
-                        <input matInput placeholder="Name" 
-                        formControlName="instituteCtrl" 
-                        required>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input matInput placeholder="Designation"
-                        required>
-                    </mat-form-field>
+            <mat-step [stepControl]="requesterFormGroup">
+                <form [formGroup]="requesterFormGroup" 
+                (ngSubmit)="requesterDetailsSubmit(f)" 
+                #f="ngForm">
+                    <ng-template matStepLabel>Fill Requester details</ng-template>
+                    <div>
+                        <mat-form-field class="input-field">
+                            <input matInput
+                            class="form-control"
+                            type="text" 
+                            id="addReqName"
+                            placeholder="Name" 
+                            formControlName="requesterName" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput 
+                            class="form-control"
+                            id="addReqDesignation"
+                            placeholder="Designation"
+                            formControlName="requesterDesg"
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Employee ID"
+                            formControlName="employeeId"
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Email ID"
+                            formControlName="emailId"
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Phone Number"
+                            formControlName="phoneNo"
+                            required>
+                        </mat-form-field>
+                    </div>
+                    <div class="float-right">
+                        <button mat-button class="btn-next" matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="instituteFormGroup">
+                <form [formGroup]="instituteFormGroup" 
+                (ngSubmit)="instituteDetailsSubmit(f2)" 
+                #f2="ngForm">
+                    <ng-template matStepLabel>Fill Institute details</ng-template>
+                    <div>
+                        <mat-form-field class="input-field">
+                            <input matInput
+                            type="text"
+                            id="instName" 
+                            placeholder="Institue Type" 
+                            formControlName="instituteType" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput 
+                            type="number"
+                            placeholder="Institue ID" 
+                            formControlName="instituteId" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput 
+                            type="text"
+                            placeholder="Institue Name" 
+                            formControlName="instituteName" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput 
+                            placeholder="Registration ID" 
+                            formControlName="instituteRegId" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput 
+                            placeholder="Date of Establishment" 
+                            formControlName="instituteDOE" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Address" 
+                            formControlName="instituteAddress" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Academic Head" 
+                            formControlName="instituteAcedmicHead" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Academic Head Email ID" 
+                            formControlName="academiHeadEmailId" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Academic Head Phone" 
+                            formControlName="academiHeadPhoneNo" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Administrator Head" 
+                            formControlName="administratorHead" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Administrator Head Email" 
+                            formControlName="administratorHeadEmailId" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Administrator Head Phone" 
+                            formControlName="administratorHeadPhnNo" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Board Line No." 
+                            formControlName="boardLineNo" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Location" 
+                            formControlName="instituteLocation" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Website" 
+                            formControlName="instituteWebsite" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Affliated To Institute" 
+                            formControlName="AffiInstitute" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Affliated To Institute Type" 
+                            formControlName="AffiInstituteType" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Recognized/Approved By" 
+                            formControlName="approvedBy" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Regulatory Body" 
+                            formControlName="regulatoryBody" 
+                            required>
+                        </mat-form-field>
+                    </div>
+                    <div class="float-right">
+                        <button mat-raised-button class="btn-next" matStepperPrevious>Previous</button>
+                        <button mat-raised-button class="btn-next" matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="instAdmin1FormGroup">
+                <form [formGroup]="instAdmin1FormGroup">
+                    <ng-template matStepLabel>Fill Institute Admin 1 details</ng-template>
+                    <div>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Name"
+                            formControlName="instituteCtrl"
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Phone Number"
+                            formControlName="instituteCtrl"
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Email ID"
+                            formControlName="instituteCtrl"
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Employee ID"
+                            formControlName="instituteCtrl"
+                            required>
+                        </mat-form-field>
+                    </div>
+                    <div class="float-right">
+                        <button mat-raised-button class="btn-next" color="" matStepperPrevious>Previous</button>
+                        <button mat-raised-button class="btn-next" color="" matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="instAdmin2FormGroup">
+                <form [formGroup]="instAdmin2FormGroup">
+                    <ng-template matStepLabel>Fill Institute Admin 2 details</ng-template>
+                    <div>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Name"
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Phone Number"
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Email ID"
+                            required>
+                        </mat-form-field>
+                        <mat-form-field class="input-field">
+                            <input matInput placeholder="Employee ID"
+                            required>
+                        </mat-form-field>
+                    </div>
+                    <div class="float-right">
+                        <button mat-raised-button class="btn-next" matStepperPrevious>Previous</button>
+                        <button mat-raised-button class="btn-next">Done</button>
+                    </div>
                 </form>
             </mat-step>
         </mat-horizontal-stepper>
