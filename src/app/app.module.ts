@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {MaterialModule} from './material-module';
+import { MaterialModule } from './material-module';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataTableModule } from 'angular-6-datatable';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -68,7 +69,8 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 		DataTableModule,
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
-		MaterialModule
+		MaterialModule,
+		HttpClientModule
 		//AngularFontAwesomeModule
 	],
 	providers: [

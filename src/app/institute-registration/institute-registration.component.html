@@ -9,39 +9,46 @@
         <mat-horizontal-stepper linear #stepper>
             <mat-step [stepControl]="requesterFormGroup">
                 <form [formGroup]="requesterFormGroup" 
-                (ngSubmit)="requesterDetailsSubmit(f)" 
-                #f="ngForm">
+                (ngSubmit)="requesterDetailsSubmit(requesterForm)" 
+                #requesterForm="ngForm">
                     <ng-template matStepLabel>Fill Requester details</ng-template>
                     <div>
                         <mat-form-field class="input-field">
                             <input matInput
-                            class="form-control"
-                            type="text" 
                             id="addReqName"
+                            type="text"
                             placeholder="Name" 
                             formControlName="requesterName" 
                             required>
                         </mat-form-field>
                         <mat-form-field class="input-field">
                             <input matInput 
-                            class="form-control"
                             id="addReqDesignation"
+                            type="text"
                             placeholder="Designation"
                             formControlName="requesterDesg"
                             required>
                         </mat-form-field>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Employee ID"
+                            <input matInput 
+                            type="text"
+                            placeholder="Employee ID"
                             formControlName="employeeId"
                             required>
                         </mat-form-field>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Email ID"
+                            <input matInput 
+                            type="email"
+                            placeholder="Email ID"
                             formControlName="emailId"
                             required>
                         </mat-form-field>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Phone Number"
+                            <input matInput 
+                            type="text"
+                            pattern="[0-9]*"
+                            maxlength="10"
+                            placeholder="Phone Number"
                             formControlName="phoneNo"
                             required>
                         </mat-form-field>
@@ -53,8 +60,8 @@
             </mat-step>
             <mat-step [stepControl]="instituteFormGroup">
                 <form [formGroup]="instituteFormGroup" 
-                (ngSubmit)="instituteDetailsSubmit(f2)" 
-                #f2="ngForm">
+                (ngSubmit)="instituteDetailsSubmit(instituteForm)" 
+                #instituteForm="ngForm">
                     <ng-template matStepLabel>Fill Institute details</ng-template>
                     <div>
                         <mat-form-field class="input-field">
@@ -173,23 +180,33 @@
                     <ng-template matStepLabel>Fill Institute Admin 1 details</ng-template>
                     <div>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Name"
-                            formControlName="instituteCtrl"
+                            <input matInput
+                            type="text" 
+                            placeholder="Name"
+                            formControlName="admin1Name"
                             required>
                         </mat-form-field>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Phone Number"
-                            formControlName="instituteCtrl"
+                            <input matInput 
+                            type="number"
+                            maxlength="10"
+                            length="10"
+                            placeholder="Phone Number"
+                            formControlName="admin1PhnNo"
                             required>
                         </mat-form-field>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Email ID"
-                            formControlName="instituteCtrl"
+                            <input matInput 
+                            type="email"
+                            placeholder="Email ID"
+                            formControlName="admin1EmailId"
                             required>
                         </mat-form-field>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Employee ID"
-                            formControlName="instituteCtrl"
+                            <input matInput 
+                            type="text"
+                            placeholder="Employee ID"
+                            formControlName="admin1EmpId"
                             required>
                         </mat-form-field>
                     </div>
@@ -204,19 +221,32 @@
                     <ng-template matStepLabel>Fill Institute Admin 2 details</ng-template>
                     <div>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Name"
+                            <input matInput 
+                            type="text"
+                            placeholder="Name"
+                            formControlName="admin2Name"
                             required>
                         </mat-form-field>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Phone Number"
+                            <input matInput 
+                            type="number"
+                            min="10"
+                            placeholder="Phone Number"
+                            formControlName="admin2PhnNo"                            
                             required>
                         </mat-form-field>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Email ID"
+                            <input matInput 
+                            type="email"
+                            placeholder="Email ID"
+                            formControlName="admin2EmailId"
                             required>
                         </mat-form-field>
                         <mat-form-field class="input-field">
-                            <input matInput placeholder="Employee ID"
+                            <input matInput 
+                            type="text"
+                            placeholder="Employee ID"
+                            formControlName="admin2EmpId"
                             required>
                         </mat-form-field>
                     </div>
