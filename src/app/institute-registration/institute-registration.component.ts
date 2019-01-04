@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import 'rxjs';
+import { Observable, ObservableInput } from "rxjs";
+import { map } from "rxjs/operators";
 import { ApiService } from '../Services/api.service';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { Batch } from '../model/batch';
 
 @Component({
   selector: 'app-institute-registration',
@@ -50,7 +52,9 @@ export class InstituteRegistrationComponent implements OnInit {
 		regulatoryBody: ""
 	};
 
-	constructor(private _formBuilder: FormBuilder, private apiService: ApiService ) { }
+	constructor(private _formBuilder: FormBuilder, 
+		private apiService: ApiService, 
+		private http: HttpClient) { }
 
 	ngOnInit(): void {
 		this.requesterFormGroup = this._formBuilder.group({
@@ -139,15 +143,14 @@ export class InstituteRegistrationComponent implements OnInit {
 		this.requesterDetails.phoneNumber = form.value.phoneNo; 
 		this.requesterDetails.userType = "Institute Admin";
 		
-		console.log(this.requesterDetails);
-
 		if (this.requesterFormGroup.invalid) {
             return;
         }
-
-		this.apiService.post('/instituteUser', this.requesterDetails);
-
-		// this.http.post('http://localhost:3000/api/v1/instituteUser', this.requesterDetails);
+		
+		this.apiService.post('/instituteUser', this.requesterDetails)
+			.subscribe((response) => {
+				console.log(response);
+			});
 	}
 
 	instituteDetailsSubmit(form: NgForm) {
