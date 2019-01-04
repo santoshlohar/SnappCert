@@ -5,7 +5,6 @@ import 'rxjs';
 import { Observable, ObservableInput } from "rxjs";
 import { map } from "rxjs/operators";
 import { ApiService } from '../Services/api.service';
-import { Batch } from '../model/batch';
 
 @Component({
   selector: 'app-institute-registration',

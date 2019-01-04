@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { map, tap, catchError} from "rxjs/operators";
-import { Batch } from '../model/batch';
 
 @Injectable({
 	providedIn: 'root'
