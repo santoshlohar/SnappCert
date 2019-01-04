@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-affliated-institute',
@@ -9,9 +9,20 @@ import { NgForm } from '@angular/forms';
 
 export class AddAffliatedInstituteComponent implements OnInit {
   addInstForm: any = {};
-  constructor() { }
+  affliatedInsForm: FormGroup;
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.affliatedInsForm = this._formBuilder.group({
+      instituteId: ['', Validators.required],
+			affInstituteId: ['', Validators.required],
+			affInstituteName: ['', Validators.required],
+			affInstituteLoc: ['', Validators.required],
+      departmentId: ['', Validators.required],
+      dm1Name: ['', Validators.required],
+      dm1Email: ['', Validators.required],
+      dm1PhnNo: ['', Validators.required],      
+		});
   }
 
   addInst(form: NgForm) {

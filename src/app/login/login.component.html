@@ -1,9 +1,8 @@
-<div class="container">
+<!-- <div class="container">
 	<div class="login-wrapper">
 		<form class="text-center border border-light p-5" (ngSubmit)="login(f)" #f="ngForm">
 			<p class="h4 mb-4">Login</p>
 			
-			<!-- Email -->
 			<input 
 			type="email" 
 			id="defaultLoginFormEmail" 
@@ -12,7 +11,6 @@
 			ngModel
 			name="email">
 			
-			<!-- Password -->
 			<input 
 			type="password" 
 			id="defaultLoginFormPassword" 
@@ -23,7 +21,6 @@
 			
 			<div class="d-flex justify-content-around">
 				<div>
-					<!-- Remember me -->
 					<div class="custom-control custom-checkbox">
 						<input 
 						type="checkbox" 
@@ -35,14 +32,44 @@
 					</div>
 				</div>
 				<div>
-					<!-- Forgot password -->
 					<a routerLink="/forgotPassword">Forgot/Reset password</a>
 				</div>
 			</div>
 			
-			<!-- Sign in button -->
 			<button class="btn btn-info btn-block my-4" type="submit">Login</button>
 			
 		</form>
 	</div>
+</div> -->
+
+<div class="container">
+	<mat-card class="example-card">
+		<mat-card-header class="text-center card-head">
+			<mat-card-title>Login</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="card-cont">
+			<form class="example-form">
+				<table class="example-full-width" cellspacing="0">
+					<tr>
+						<td>
+							<mat-form-field class="example-full-width">
+							<input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+							</mat-form-field>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<mat-form-field class="example-full-width">
+							<input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+							</mat-form-field>
+						</td>
+					</tr>
+				</table>
+			</form>
+			<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button (click)="login()" class="btn-info">Login</button>
+		</mat-card-actions>
+	</mat-card>
 </div>

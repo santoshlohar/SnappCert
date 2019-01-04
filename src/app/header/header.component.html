@@ -1,4 +1,4 @@
-<header class="app-header">
+<!-- <header class="app-header">
 	<nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark navbar-custom">
 		<a class="navbar-brand txt-clr-white"><strong>Snapper Certificate</strong></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -19,4 +19,16 @@
 			</ul>
 		</div>
 	</nav>
-</header>
+</header> -->
+
+<mat-toolbar class="header-bar">
+	<mat-toolbar-row>
+		<!--  <span>HOME</span> -->
+		<span><a>Snapper Certificate</a></span>
+		<span class="spacer"></span>
+		<div class="float-right">
+				<a mat-button routerLink="/login">Login</a>
+				<a mat-button routerLink="/instituteRegistration"> Institute Registration</a>
+		</div>
+	</mat-toolbar-row>
+</mat-toolbar>

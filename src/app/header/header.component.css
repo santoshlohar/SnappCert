@@ -9,3 +9,16 @@
 .app-header {
     margin-bottom: 60px !important;
 }
+
+.header-bar {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+a:hover {
+    color: #fff !important;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
