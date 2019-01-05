@@ -60,7 +60,7 @@ export class InstituteRegistrationComponent implements OnInit {
 			requesterName: ['', Validators.required],
 			requesterDesg: ['', Validators.required],
 			employeeId: ['', Validators.required],
-			emailId: ['', Validators.required],
+			emailId: ['', [Validators.required, Validators.email]],
 			phoneNo: ['', Validators.required]
 		});
 		this.instituteFormGroup = this._formBuilder.group({
@@ -93,10 +93,14 @@ export class InstituteRegistrationComponent implements OnInit {
 		this.instAdmin2FormGroup = this._formBuilder.group({
 			admin2Name: ['', Validators.required],
 			admin2PhnNo: ['', Validators.required],
-			admin2EmailId: ['', Validators.required],
+			admin2EmailId: ['', [Validators.required, Validators.email]],
 			admin2EmpId: ['', Validators.required]
 		});
 	}
+
+	public hasError = (controlName: string, errorName: string) =>{
+        return this.requesterFormGroup.controls[controlName].hasError(errorName);
+    }
   
 	addInst(form: NgForm) {
 	this.addInstForm.addInstFormName = form.value.addInstFormName;
@@ -134,6 +138,8 @@ export class InstituteRegistrationComponent implements OnInit {
 	console.log(this.addInstForm);
 	}
 
+	
+
 	requesterDetailsSubmit(form: NgForm) {
 		this.requesterDetails.name = form.value.requesterName;
 		this.requesterDetails.designation = form.value.requesterDesg;
@@ -142,9 +148,9 @@ export class InstituteRegistrationComponent implements OnInit {
 		this.requesterDetails.phoneNumber = form.value.phoneNo; 
 		this.requesterDetails.userType = "SYSTEM_ADMIN";
 		
-		if (this.requesterFormGroup.invalid) {
-            return;
-        }
+		// if (this.requesterFormGroup.invalid) {
+        //     return;
+        // }
 		
 		this.apiService.post('/instituteUser', this.requesterDetails)
 			.subscribe((response) => {

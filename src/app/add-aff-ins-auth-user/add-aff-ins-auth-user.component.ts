@@ -18,9 +18,13 @@ export class AddAffInsAuthUserComponent implements OnInit {
             reviewer: ['', Validators.required],
             authorityTitle: ['', Validators.required],
             name: ['', Validators.required],
-            email: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
             phone: ['', Validators.required],      
         });
     }
 
+    public hasError = (controlName: string, errorName: string) =>{
+        return this.affInsAuthUsrForm.controls[controlName].hasError(errorName);
+    }
+     
 }
