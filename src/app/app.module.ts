@@ -34,6 +34,11 @@ import { HeaderComponent } from './header/header.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { AddInsAuthUserComponent } from './add-ins-auth-user/add-ins-auth-user.component';
+import { AddAffInsAuthUserComponent } from './add-aff-ins-auth-user/add-aff-ins-auth-user.component';
+import { AddAffInsCourseComponent } from './add-aff-ins-course/add-aff-ins-course.component';
+import { AddInsDeptComponent } from './add-ins-dept/add-ins-dept.component';
+import { AddGradeStructureComponent } from './add-grade-structure/add-grade-structure.component';
 
 @NgModule({
 	declarations: [
@@ -60,7 +65,12 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 		UploadCertificateDataComponent,
 		SidebarComponent,
 		HeaderComponent,
-		ChangePasswordComponent
+		ChangePasswordComponent,
+		AddInsAuthUserComponent,
+		AddAffInsAuthUserComponent,
+		AddAffInsCourseComponent,
+		AddInsDeptComponent,
+		AddGradeStructureComponent
 	],
 	imports: [
 		BrowserModule,

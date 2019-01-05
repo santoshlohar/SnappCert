@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="panel panel-primary headeing">
+      <div class="panel panel-heading">
+          <h3 class="panel-title">Add Affiliated Institute Course Data</h3>
+      </div>
+  </div>
+  <div class="addInst-wrapper">
+	<div class="example-container">
+		<form [formGroup]="affInsCourseForm" #courseForm="ngForm">
+			<div>
+				<p class="h6 mar-top">Affiliated Institute Course Data</p>
+				<mat-form-field class="input-field">
+					<input matInput 
+					placeholder="Institute ID" 
+					formControlName="instituteId"
+					required>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<input matInput 
+					placeholder="Affiliated Institute"
+					formControlName="affInstitute" 
+					required>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<input matInput 
+					placeholder="Department ID"
+					formControlName="departmentId" 
+					required>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<mat-select formControlName="courseType" placeholder="Course Type" required>
+						<mat-option value="school">School Board</mat-option>
+						<mat-option value="graduation">Graduation Degree</mat-option>
+						<mat-option value="Master">Master Degree</mat-option>
+						<mat-option value="doctorate">Doctorate</mat-option>
+						<mat-option value="diploma">Diploma</mat-option>
+						<mat-option value="certificateProgram">Certificate Program</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<input matInput 
+					placeholder="Course ID" 
+					formControlName="courseId"
+					required>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<input matInput
+					placeholder="Course Name" 
+					formControlName="courseName"
+					required>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<input matInput 
+					placeholder="Specialization" 
+					formControlName="specialization"
+					>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<input matInput 
+						placeholder="Certificate" 
+						formControlName="certificate"
+					>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<mat-select formControlName="certificatePrint" placeholder="Certificate Print" required>
+						<mat-option value="yes">Yes</mat-option>
+						<mat-option value="no">No</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<mat-select formControlName="gpaCalculated" placeholder="GPA Calculated" required>
+						<mat-option value="yes">Yes</mat-option>
+						<mat-option value="no">No</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<mat-select formControlName="subCredits" placeholder="Subject Credits" required>
+						<mat-option value="yes">Yes</mat-option>
+						<mat-option value="no">No</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<input matInput 
+					type="number"
+					placeholder="Course Duration" 
+					formControlName="courseDuration"
+					required>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<mat-select formControlName="durationUnit" placeholder="Duration Unit" required>
+						<mat-option value="month">Month</mat-option>
+						<mat-option value="year">Year</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<input matInput 
+					placeholder="Term Type" 
+					formControlName="termType"
+					>
+				</mat-form-field>
+				<mat-form-field class="input-field">
+					<input matInput 
+					placeholder="No. of Terms" 
+					formControlName="noOfTerms"
+					>
+				</mat-form-field>
+			</div>
+			<div class="action-btns">
+				<button mat-raised-button class="action-btn">Save</button>
+				<button mat-raised-button class="action-btn">Cancel</button>
+			</div>
+		</form>
+	</div>
+  </div>
+</div>

@@ -140,7 +140,7 @@ export class InstituteRegistrationComponent implements OnInit {
 		this.requesterDetails.employeeId = form.value.employeeId;
 		this.requesterDetails.emailId = form.value.emailId;
 		this.requesterDetails.phoneNumber = form.value.phoneNo; 
-		this.requesterDetails.userType = "Institute Admin";
+		this.requesterDetails.userType = "SYSTEM_ADMIN";
 		
 		if (this.requesterFormGroup.invalid) {
             return;

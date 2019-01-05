@@ -22,6 +22,11 @@ import { UploadMarksheetDataComponent } from './upload-marksheet-data/upload-mar
 import { ReviewCertificateDataComponent } from './review-certificate-data/review-certificate-data.component';
 import { UploadCertificateDataComponent } from './upload-certificate-data/upload-certificate-data.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AddInsAuthUserComponent } from './add-ins-auth-user/add-ins-auth-user.component';
+import { AddAffInsAuthUserComponent } from './add-aff-ins-auth-user/add-aff-ins-auth-user.component';
+import { AddAffInsCourseComponent } from './add-aff-ins-course/add-aff-ins-course.component';
+import { AddInsDeptComponent } from './add-ins-dept/add-ins-dept.component';
+import { AddGradeStructureComponent } from './add-grade-structure/add-grade-structure.component';
 
 const routes: Routes = [
   { path : 'login' , component : LoginComponent },
@@ -44,7 +49,12 @@ const routes: Routes = [
   { path : 'uploadMarksheetData', component : UploadMarksheetDataComponent },
   { path : 'reviewCertificateData', component : ReviewCertificateDataComponent },
   { path : 'uploadCertificateData', component : UploadCertificateDataComponent },
-  { path : 'changePassword', component : ChangePasswordComponent }
+  { path : 'changePassword', component : ChangePasswordComponent },
+  { path : 'addInsAuthUser', component : AddInsAuthUserComponent },
+  { path : 'addAffInsAuthUser', component : AddAffInsAuthUserComponent },
+  { path : 'addAffInsCourse', component : AddAffInsCourseComponent},
+  { path : 'addInsDept', component : AddInsDeptComponent},
+  { path : 'addGradeStructure', component : AddGradeStructureComponent}
 ];
 
 @NgModule({
