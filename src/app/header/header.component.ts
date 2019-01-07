@@ -15,12 +15,12 @@ export class HeaderComponent implements OnInit {
 
 	toggleSidebar() {
 		if(this.sidebar == false)
-        {
-               this.sidebar = true;
-        }
-        else{
-               this.sidebar = false;
-        } 
+		{
+			this.sidebar = true;
+		}
+		else{
+			this.sidebar = false;
+		} 
 	}
 
 }

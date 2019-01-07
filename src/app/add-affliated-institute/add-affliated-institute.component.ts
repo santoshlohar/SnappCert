@@ -21,7 +21,10 @@ export class AddAffliatedInstituteComponent implements OnInit {
       departmentId: ['', Validators.required],
       dm1Name: ['', Validators.required],
       dm1Email: ['', Validators.required],
-      dm1PhnNo: ['', Validators.required],      
+      dm1PhnNo: ['', Validators.required],
+      dm2Name: '',
+      dm2Email: '',
+      dm2Phone: '',      
 		});
   }
 

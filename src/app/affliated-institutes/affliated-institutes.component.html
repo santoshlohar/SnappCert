@@ -1,9 +1,15 @@
 <div class="container">
     <div class="affIns-container mat-elevation-z8">
-        <div>
-            <mat-form-field class="">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-            </mat-form-field>
+        <div class="outer-div">
+            <div class="inner-div">
+                <mat-form-field class="">
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+            </div>
+            <span class="spacer"></span>
+            <div class="inner-div aff-btn">
+                <a mat-button class="add-btn" routerLink="/addAffliatedInstitute">Add Aff. Institute</a>
+            </div>
         </div>
         <div>
             <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
