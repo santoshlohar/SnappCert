@@ -138,8 +138,6 @@ export class InstituteRegistrationComponent implements OnInit {
 	console.log(this.addInstForm);
 	}
 
-	
-
 	requesterDetailsSubmit(form: NgForm) {
 		this.requesterDetails.name = form.value.requesterName;
 		this.requesterDetails.designation = form.value.requesterDesg;

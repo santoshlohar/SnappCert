@@ -1,4 +1,4 @@
-.row{
+/* .row{
     margin-left:0px;
     margin-right:0px;
 }
@@ -141,4 +141,21 @@
         width: 150px;
         transition: all .4s ease 0s;
     }
+} */
+
+.sidebar-container {
+    width: 285px;
+    min-height: 600px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar {
+    padding: 20px;
 }

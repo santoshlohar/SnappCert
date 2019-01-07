@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { InstituteRegistrationComponent } from './institute-registration/institute-registration.component';
 import { CreateIdComponent } from './create-id/create-id.component';
@@ -29,6 +30,7 @@ import { AddInsDeptComponent } from './add-ins-dept/add-ins-dept.component';
 import { AddGradeStructureComponent } from './add-grade-structure/add-grade-structure.component';
 
 const routes: Routes = [
+  { path : '', component : DashboardComponent},
   { path : 'login' , component : LoginComponent },
   { path : 'instituteRegistration' , component : InstituteRegistrationComponent },
   { path : 'createId' , component : CreateIdComponent },

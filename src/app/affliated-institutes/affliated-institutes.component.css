@@ -3,19 +3,16 @@
     max-width: 1225px;
 }
 
-.thead {
-    background-color: #40cce2;
-    color: #FFF;
+.affIns-container {
+    height: 550px;
+    overflow: auto;
+    padding: 12px 24px;
 }
 
-.btn {
-    cursor: pointer;
+.filter-div {
+    float: right;
 }
 
-.bg-info {
-    background-color: #eee!important;
-    margin-bottom: 4%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    padding-right: 1%;
+table {
+    width: 100%;
 }

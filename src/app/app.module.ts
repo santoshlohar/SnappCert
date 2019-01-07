@@ -39,6 +39,8 @@ import { AddAffInsAuthUserComponent } from './add-aff-ins-auth-user/add-aff-ins-
 import { AddAffInsCourseComponent } from './add-aff-ins-course/add-aff-ins-course.component';
 import { AddInsDeptComponent } from './add-ins-dept/add-ins-dept.component';
 import { AddGradeStructureComponent } from './add-grade-structure/add-grade-structure.component';
+import { ApiService } from './Services/api.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
 	declarations: [
@@ -63,14 +65,15 @@ import { AddGradeStructureComponent } from './add-grade-structure/add-grade-stru
 		UploadMarksheetDataComponent,
 		ReviewCertificateDataComponent,
 		UploadCertificateDataComponent,
-		SidebarComponent,
 		HeaderComponent,
+		SidebarComponent,
 		ChangePasswordComponent,
 		AddInsAuthUserComponent,
 		AddAffInsAuthUserComponent,
 		AddAffInsCourseComponent,
 		AddInsDeptComponent,
-		AddGradeStructureComponent
+		AddGradeStructureComponent,
+		DashboardComponent
 	],
 	imports: [
 		BrowserModule,
@@ -84,10 +87,8 @@ import { AddGradeStructureComponent } from './add-grade-structure/add-grade-stru
 		//AngularFontAwesomeModule
 	],
 	providers: [
-		{
-			provide: STEPPER_GLOBAL_OPTIONS,
-			useValue: { showError: true }
-		}
+		{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } },
+		ApiService
 	],
 	bootstrap: [AppComponent]
 })

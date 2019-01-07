@@ -15,6 +15,10 @@
     color: #fff;
 }
 
+.main-heading {
+    cursor: pointer;
+}
+
 a:hover {
     color: #fff !important;
 }

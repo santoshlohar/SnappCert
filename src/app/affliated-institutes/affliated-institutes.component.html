@@ -1,143 +1,79 @@
 <div class="container">
-    <div class="bg-info clearfix">
-      <button class="btn  btn-error btn-error float-right">Add New User</button>
+    <div class="affIns-container mat-elevation-z8">
+        <div>
+            <mat-form-field class="">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="select">
+                    <mat-header-cell *matHeaderCellDef>
+                        <!-- <mat-checkbox (change)="$event ? masterToggle() : null"
+                                    [checked]="selection.hasValue() && isAllSelected()"
+                                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                        </mat-checkbox> -->
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation()"
+                                    (change)="$event ? selection.toggle(row) : null"
+                                    [checked]="selection.isSelected(row)">
+                        </mat-checkbox>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="position">
+                    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="instituteId">
+                    <mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.instituteId}} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="affiliatedInstitute">
+                    <mat-header-cell *matHeaderCellDef> Aff. Institute  </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.affiliatedInstitute}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="affInsName">
+                    <mat-header-cell *matHeaderCellDef> Aff. Institute Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.affInsName}} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="affInsLocation">
+                    <mat-header-cell *matHeaderCellDef> Aff. Institute Location </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.affInsLocation}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="deptId">
+                    <mat-header-cell *matHeaderCellDef> Department ID </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.deptId}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="dm1Name">
+                    <mat-header-cell *matHeaderCellDef> Data Manager 1 Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.dm1Name}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="dm1Email">
+                    <mat-header-cell *matHeaderCellDef> Data Manager 1 Email </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.dm1Email}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="dm1Phn">
+                    <mat-header-cell *matHeaderCellDef> Data Manager 1 Phone </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.dm1Phn}} </mat-cell>
+                </ng-container>
+                
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div> 
+        <div>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>  
     </div>
-    <table #dataTable class="display" style="width: 100%">
-        <thead class="thead">
-          <tr>
-            <th>Institue ID</th>
-            <th>Institue Name</th>
-            <th>Location</th>
-            <th>Term Score</th>
-            <th>Data Admin</th>
-            <th>Reviewer 1</th>
-            <th>Approver 1</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-              <td>1</td>
-              <td>Institue 1</td>
-              <td>Pune</td>
-              <td>6</td>
-              <td>Data Admin1</td>
-              <td>Reviewer1 1</td>
-              <td>Approver1 1</td>
-              <td>New</td>
-              <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-          </tr>
-          <tr>
-              <td>2</td>
-              <td>Institue 2</td>
-              <td>Pune</td>
-              <td>6</td>
-              <td>Data Admin2</td>
-              <td>Reviewer2 1</td>
-              <td>Approver2 1</td>
-              <td>New</td>
-              <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Institue 3</td>
-                <td>Pune</td>
-                <td>6</td>
-                <td>Data Admin3</td>
-                <td>Reviewer3 1</td>
-                <td>Approver3 1</td>
-                <td>New</td>
-                <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Institue 4</td>
-                <td>Pune</td>
-                <td>6</td>
-                <td>Data Admin4</td>
-                <td>Reviewer4 1</td>
-                <td>Approver4 1</td>
-                <td>New</td>
-                <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Institue 5</td>
-                <td>Pune</td>
-                <td>6</td>
-                <td>Data Admin5</td>
-                <td>Reviewer5 1</td>
-                <td>Approver5 1</td>
-                <td>New</td>
-                <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Institue 1</td>
-                <td>Pune</td>
-                <td>6</td>
-                <td>Data Admin6</td>
-                <td>Reviewer6 1</td>
-                <td>Approver6 1</td>
-                <td>New</td>
-                <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Institue 7</td>
-                <td>Pune</td>
-                <td>6</td>
-                <td>Data Admin7</td>
-                <td>Reviewer7 1</td>
-                <td>Approver7 1</td>
-                <td>New</td>
-                <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Institue 8</td>
-                <td>Pune</td>
-                <td>6</td>
-                <td>Data Admin8</td>
-                <td>Reviewer8 1</td>
-                <td>Approver8 1</td>
-                <td>New</td>
-                <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Institue 9</td>
-                <td>Pune</td>
-                <td>6</td>
-                <td>Data Admin9</td>
-                <td>Reviewer9 1</td>
-                <td>Approver9 1</td>
-                <td>New</td>
-                <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Institue 10</td>
-                <td>Pune</td>
-                <td>6</td>
-                <td>Data Admin10</td>
-                <td>Reviewer10 1</td>
-                <td>Approver10 1</td>
-                <td>New</td>
-                <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>Institue 11</td>
-                <td>Pune</td>
-                <td>6</td>
-                <td>Data Admin11</td>
-                <td>Reviewer11 1</td>
-                <td>Approver11 1</td>
-                <td>New</td>
-                <td><button class="btn  btn-error">Update</button>&nbsp;&nbsp;<button class="btn  btn-error">Active</button>&nbsp;&nbsp;<button class="btn  btn-error">Inactive</button></td>
-            </tr>
-        </tbody>
-      </table>
 </div>

@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+	selector: 'app-sidebar',
+	templateUrl: './sidebar.component.html',
+	styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+	
+	public sidebar: any;
+	constructor() { }
 
-  constructor() { }
+	ngOnInit() {
+	}
 
-  ngOnInit() {
-  }
+	// $("#menu-toggle").click(function(e) {
+	//     e.preventDefault();
+	//     $("#wrapper").toggleClass("active");
+	// });
 
-  // $("#menu-toggle").click(function(e) {
-  //     e.preventDefault();
-  //     $("#wrapper").toggleClass("active");
-  // });
-
-  sidebarToggle(e) {
-    console.log(e)
-  }
+	sidebarToggle(e) {
+		console.log(e)
+	}
 
 }
