@@ -30,6 +30,7 @@ import { AddGradeStructureComponent } from './add-grade-structure/add-grade-stru
 import { InstituteDepartmentsComponent } from './institute-departments/institute-departments.component';
 import { InsAuthUsersComponent } from './ins-auth-users/ins-auth-users.component';
 import { AffInsAuthUsersComponent } from './aff-ins-auth-users/aff-ins-auth-users.component';
+import { AffInsCourseDataComponent } from './aff-ins-course-data/aff-ins-course-data.component';
 
 const routes: Routes = [
   { path : '', component : DashboardComponent},
@@ -60,7 +61,9 @@ const routes: Routes = [
   { path : 'addGradeStructure', component : AddGradeStructureComponent},
   { path : 'viewInstituteDepartments', component : InstituteDepartmentsComponent},
   { path : 'viewInstituteAuthUsers', component : InsAuthUsersComponent},
-  { path : 'viewAffiliatedInstituteAuthUsers', component : AffInsAuthUsersComponent}
+  { path : 'viewAffiliatedInstituteAuthUsers', component : AffInsAuthUsersComponent},
+  { path : 'viewAffiliatedInstituteCourses', component : AffInsCourseDataComponent},
+
 ];
 
 @NgModule({

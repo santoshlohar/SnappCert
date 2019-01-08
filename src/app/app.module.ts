@@ -43,6 +43,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { InstituteDepartmentsComponent } from './institute-departments/institute-departments.component';
 import { InsAuthUsersComponent } from './ins-auth-users/ins-auth-users.component';
 import { AffInsAuthUsersComponent } from './aff-ins-auth-users/aff-ins-auth-users.component';
+import { AffInsCourseDataComponent } from './aff-ins-course-data/aff-ins-course-data.component';
 
 @NgModule({
 	declarations: [
@@ -77,7 +78,8 @@ import { AffInsAuthUsersComponent } from './aff-ins-auth-users/aff-ins-auth-user
 		DashboardComponent,
 		InstituteDepartmentsComponent,
 		InsAuthUsersComponent,
-		AffInsAuthUsersComponent
+		AffInsAuthUsersComponent,
+		AffInsCourseDataComponent
 	],
 	imports: [
 		BrowserModule,
