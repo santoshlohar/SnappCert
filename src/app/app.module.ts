@@ -17,7 +17,6 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
 import { UserLogComponent } from './user-log/user-log.component';
 import { InstitutesKycComponent } from './institutes-kyc/institutes-kyc.component';
 import { InstituteKycDetailsComponent } from './institute-kyc-details/institute-kyc-details.component';
-import { AuthorizedUsersComponent } from './authorized-users/authorized-users.component';
 import { AddAuthorizedUserComponent } from './add-authorized-user/add-authorized-user.component';
 import { AffliatedInstitutesComponent } from './affliated-institutes/affliated-institutes.component';
 import { AddAffliatedInstituteComponent } from './add-affliated-institute/add-affliated-institute.component';
@@ -41,6 +40,8 @@ import { AddInsDeptComponent } from './add-ins-dept/add-ins-dept.component';
 import { AddGradeStructureComponent } from './add-grade-structure/add-grade-structure.component';
 import { ApiService } from './Services/api.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { InstituteDepartmentsComponent } from './institute-departments/institute-departments.component';
+import { InsAuthUsersComponent } from './ins-auth-users/ins-auth-users.component';
 
 @NgModule({
 	declarations: [
@@ -53,7 +54,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 		UserLogComponent,
 		InstitutesKycComponent,
 		InstituteKycDetailsComponent,
-		AuthorizedUsersComponent,
 		AddAuthorizedUserComponent,
 		AffliatedInstitutesComponent,
 		AddAffliatedInstituteComponent,
@@ -73,7 +73,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 		AddAffInsCourseComponent,
 		AddInsDeptComponent,
 		AddGradeStructureComponent,
-		DashboardComponent
+		DashboardComponent,
+		InstituteDepartmentsComponent,
+		InsAuthUsersComponent
 	],
 	imports: [
 		BrowserModule,

@@ -11,7 +11,7 @@ declare var $;
 
 export class AffliatedInstitutesComponent implements OnInit {
 
-	displayedColumns = ['select', 'position', 'instituteId', 'affiliatedInstitute', 'affInsName', 'affInsLocation', 'deptId', 'dm1Name', 'dm1Email', 'dm1Phn'];
+	displayedColumns = ['position', 'instituteId', 'affiliatedInstitute', 'affInsName', 'affInsLocation', 'deptId', 'dm1Name', 'dm1Email', 'dm1Phn'];
 	dataSource = new MatTableDataSource<AffInstitutes>(ELEMENT_DATA);
 	selection = new SelectionModel<AffInstitutes>(true, []);
 

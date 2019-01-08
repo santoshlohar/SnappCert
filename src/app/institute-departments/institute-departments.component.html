@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="affIns-container mat-elevation-z8">
+		<div class="outer-div">
+			<div class="inner-div">
+				<mat-form-field class="">
+					<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+				</mat-form-field>
+			</div>
+			<span class="spacer"></span>
+			<div class="inner-div aff-btn">
+				<a mat-button class="add-btn" routerLink="/addInsDept">Add Institute Department</a>
+			</div>
+		</div>
+		<div>
+			<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+				<ng-container matColumnDef="position">
+					<mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+				</ng-container>
+				
+				<ng-container matColumnDef="instituteId">
+					<mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.instituteId}} </mat-cell>
+				</ng-container>
+				
+				<ng-container matColumnDef="deptId">
+					<mat-header-cell *matHeaderCellDef> Department ID  </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.deptId}} </mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="department">
+					<mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="dm1Name">
+					<mat-header-cell *matHeaderCellDef> Data Manager 1 Name </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.dm1Name}} </mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="dm1Email">
+					<mat-header-cell *matHeaderCellDef> Data Manager 1 Email </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.dm1Email}} </mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="dm1Phn">
+					<mat-header-cell *matHeaderCellDef> Data Manager 1 Phone </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.dm1Phn}} </mat-cell>
+				</ng-container>
+				
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+			</mat-table>
+		</div> 
+		<div>
+			<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+		</div>  
+	</div>
+</div>

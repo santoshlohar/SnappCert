@@ -10,7 +10,6 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
 import { UserLogComponent } from './user-log/user-log.component';
 import { InstitutesKycComponent } from './institutes-kyc/institutes-kyc.component';
 import { InstituteKycDetailsComponent } from './institute-kyc-details/institute-kyc-details.component';
-import { AuthorizedUsersComponent } from './authorized-users/authorized-users.component';
 import { AddAuthorizedUserComponent } from './add-authorized-user/add-authorized-user.component';
 import { AffliatedInstitutesComponent } from './affliated-institutes/affliated-institutes.component';
 import { AddAffliatedInstituteComponent } from './add-affliated-institute/add-affliated-institute.component';
@@ -28,6 +27,8 @@ import { AddAffInsAuthUserComponent } from './add-aff-ins-auth-user/add-aff-ins-
 import { AddAffInsCourseComponent } from './add-aff-ins-course/add-aff-ins-course.component';
 import { AddInsDeptComponent } from './add-ins-dept/add-ins-dept.component';
 import { AddGradeStructureComponent } from './add-grade-structure/add-grade-structure.component';
+import { InstituteDepartmentsComponent } from './institute-departments/institute-departments.component';
+import { InsAuthUsersComponent } from './ins-auth-users/ins-auth-users.component';
 
 const routes: Routes = [
   { path : '', component : DashboardComponent},
@@ -39,7 +40,6 @@ const routes: Routes = [
   { path : 'userLog' , component : UserLogComponent },
   { path : 'institutesKyc' , component : InstitutesKycComponent },
   { path : 'instituteKycDetails/:id' , component : InstituteKycDetailsComponent },
-  { path : 'authorizedUsers' , component : AuthorizedUsersComponent },
   { path : 'addAuthorizedUser' , component : AddAuthorizedUserComponent },
   { path : 'affliatedInstitutes' , component : AffliatedInstitutesComponent },
   { path : 'addAffliatedInstitute' , component : AddAffliatedInstituteComponent },
@@ -56,7 +56,9 @@ const routes: Routes = [
   { path : 'addAffInsAuthUser', component : AddAffInsAuthUserComponent },
   { path : 'addAffInsCourse', component : AddAffInsCourseComponent},
   { path : 'addInsDept', component : AddInsDeptComponent},
-  { path : 'addGradeStructure', component : AddGradeStructureComponent}
+  { path : 'addGradeStructure', component : AddGradeStructureComponent},
+  { path : 'viewInstituteDepartments', component : InstituteDepartmentsComponent},
+  { path : 'viewInstituteAuthUsers', component : InsAuthUsersComponent},
 ];
 
 @NgModule({
