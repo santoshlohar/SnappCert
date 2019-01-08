@@ -1,0 +1,69 @@
+<div class="container">
+	<div class="affIns-container mat-elevation-z8">
+		<div class="outer-div">
+			<div class="inner-div">
+				<mat-form-field class="">
+				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+				</mat-form-field>
+			</div>
+			<span class="spacer"></span>
+			<div class="inner-div aff-btn">
+				<a mat-button class="add-btn" routerLink="/addAffInsAuthUser">Add Aff. Institute Auth User</a>
+			</div>
+			</div>
+			<div>
+				<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+					<ng-container matColumnDef="position">
+					<mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="instituteId">
+					<mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.instituteId}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="deptId">
+					<mat-header-cell *matHeaderCellDef> Department ID  </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.deptId}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="affiliated">
+						<mat-header-cell *matHeaderCellDef> Affiliated </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.affiliated}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="reviewer">
+					<mat-header-cell *matHeaderCellDef> Reviewer/Certifier </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.reviewer}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="authorityTitle">
+					<mat-header-cell *matHeaderCellDef> Authority Title </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.authorityTitle}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="name">
+					<mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="email">
+					<mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="phone">
+					<mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
+					</ng-container>
+
+					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+				</mat-table>
+			</div> 
+		<div>
+			<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+		</div>  
+	</div>
+</div>  

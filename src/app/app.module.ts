@@ -42,6 +42,7 @@ import { ApiService } from './Services/api.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InstituteDepartmentsComponent } from './institute-departments/institute-departments.component';
 import { InsAuthUsersComponent } from './ins-auth-users/ins-auth-users.component';
+import { AffInsAuthUsersComponent } from './aff-ins-auth-users/aff-ins-auth-users.component';
 
 @NgModule({
 	declarations: [
@@ -75,7 +76,8 @@ import { InsAuthUsersComponent } from './ins-auth-users/ins-auth-users.component
 		AddGradeStructureComponent,
 		DashboardComponent,
 		InstituteDepartmentsComponent,
-		InsAuthUsersComponent
+		InsAuthUsersComponent,
+		AffInsAuthUsersComponent
 	],
 	imports: [
 		BrowserModule,
