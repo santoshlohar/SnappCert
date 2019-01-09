@@ -33,8 +33,8 @@ import { AffInsAuthUsersComponent } from './aff-ins-auth-users/aff-ins-auth-user
 import { AffInsCourseDataComponent } from './aff-ins-course-data/aff-ins-course-data.component';
 
 const routes: Routes = [
-  { path : '', component : DashboardComponent},
-  { path : 'login' , component : LoginComponent },
+  { path : '', component : LoginComponent},
+  // { path : 'login' , component : LoginComponent },
   { path : 'instituteRegistration' , component : InstituteRegistrationComponent },
   { path : 'createId' , component : CreateIdComponent },
   { path : 'forgotPassword' , component : ForgotPasswordComponent },

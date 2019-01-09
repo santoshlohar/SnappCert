@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
+import { ApiService } from './Services/api.service';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -38,12 +40,12 @@ import { AddAffInsAuthUserComponent } from './add-aff-ins-auth-user/add-aff-ins-
 import { AddAffInsCourseComponent } from './add-aff-ins-course/add-aff-ins-course.component';
 import { AddInsDeptComponent } from './add-ins-dept/add-ins-dept.component';
 import { AddGradeStructureComponent } from './add-grade-structure/add-grade-structure.component';
-import { ApiService } from './Services/api.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InstituteDepartmentsComponent } from './institute-departments/institute-departments.component';
 import { InsAuthUsersComponent } from './ins-auth-users/ins-auth-users.component';
 import { AffInsAuthUsersComponent } from './aff-ins-auth-users/aff-ins-auth-users.component';
 import { AffInsCourseDataComponent } from './aff-ins-course-data/aff-ins-course-data.component';
+
 
 @NgModule({
 	declarations: [
@@ -93,8 +95,8 @@ import { AffInsCourseDataComponent } from './aff-ins-course-data/aff-ins-course-
 		//AngularFontAwesomeModule
 	],
 	providers: [
-		{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } },
-		ApiService
+		ApiService,
+		{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }
 	],
 	bootstrap: [AppComponent]
 })
