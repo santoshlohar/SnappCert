@@ -46,7 +46,6 @@ import { InsAuthUsersComponent } from './ins-auth-users/ins-auth-users.component
 import { AffInsAuthUsersComponent } from './aff-ins-auth-users/aff-ins-auth-users.component';
 import { AffInsCourseDataComponent } from './aff-ins-course-data/aff-ins-course-data.component';
 
-
 @NgModule({
 	declarations: [
 		AppComponent,
