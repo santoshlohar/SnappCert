@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <table #dataTable class="display" style="width: 100%">
         <thead class="thead">
           <tr>
@@ -59,4 +59,81 @@
             </tr>
         </tbody>
       </table>
-</div>
+</div> -->
+<app-header></app-header>
+<div class="container">
+	<div class="affIns-container mat-elevation-z8">
+		<div class="outer-div">
+			<div class="inner-div">
+				<mat-form-field class="">
+				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+				</mat-form-field>
+			</div>
+			<!-- <span class="spacer"></span>
+			<div class="inner-div aff-btn">
+				<a mat-button class="add-btn" routerLink="/addAffInsAuthUser">Add Aff. Institute Auth User</a>
+			</div> -->
+			</div>
+			<div>
+				<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+					<ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="instituteType">
+                        <mat-header-cell *matHeaderCellDef> Institute Type </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.instituteType}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="instituteId">
+                        <mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.instituteId}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="instituteName">
+						<mat-header-cell *matHeaderCellDef> Institute Name </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.instituteName}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="location">
+                        <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.location}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="state">
+                        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="requestState">
+                        <mat-header-cell *matHeaderCellDef> Request State </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.requestState}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="kycAgent">
+                        <mat-header-cell *matHeaderCellDef> kyc Agent </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.kycAgent}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="requesterName">
+                        <mat-header-cell *matHeaderCellDef> Requester Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.requesterName}} </mat-cell>
+					</ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <button md-raised-button (click)="approveInstitute(row.instituteId)">Approve</button>
+                        </mat-cell>
+                    </ng-container>
+
+					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+				</mat-table>
+			</div> 
+		<div>
+			<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+		</div>  
+	</div>
+</div>  
