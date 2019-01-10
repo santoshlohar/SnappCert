@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
 import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { InstituteDepts } from '../model/institutes-depts';
+import { ApiService } from '../Services/api.service';
 
 @Component({
 	selector: 'app-institute-departments',
@@ -18,15 +19,24 @@ export class InstituteDepartmentsComponent implements OnInit {
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 
-	constructor() { }
+	constructor(private apiService: ApiService) { }
 
 	ngOnInit() {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
+		this.getDepartments();
 	}
 
 	applyFilter(filterValue: string) {
 		this.dataSource.filter = filterValue.trim().toLowerCase();
+	}
+
+	getDepartments() {
+		console.log("Get dept");
+		// this.apiService.get('')
+		// 	.subscribe((response) => {
+		// 		console.log(response);
+		// 	});
 	}
 
 }
