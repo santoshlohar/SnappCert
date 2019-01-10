@@ -1,3 +1,5 @@
+
+<app-header></app-header>
 <div class="container">
 	<div class="affIns-container mat-elevation-z8">
 		<div class="outer-div">
@@ -22,32 +24,22 @@
 					<mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
 					<mat-cell *matCellDef="let element"> {{element.instituteId}} </mat-cell>
 				</ng-container>
+
+				<ng-container matColumnDef="instituteName">
+					<mat-header-cell *matHeaderCellDef> Institute Name </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.instituteName}} </mat-cell>
+				</ng-container>
 				
 				<ng-container matColumnDef="deptId">
 					<mat-header-cell *matHeaderCellDef> Department ID  </mat-header-cell>
 					<mat-cell *matCellDef="let element"> {{element.deptId}} </mat-cell>
 				</ng-container>
 
-				<ng-container matColumnDef="department">
-					<mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+				<ng-container matColumnDef="deptName">
+					<mat-header-cell *matHeaderCellDef> Department Name </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.deptName}} </mat-cell>
 				</ng-container>
 
-				<ng-container matColumnDef="dm1Name">
-					<mat-header-cell *matHeaderCellDef> Data Manager 1 Name </mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.dm1Name}} </mat-cell>
-				</ng-container>
-
-				<ng-container matColumnDef="dm1Email">
-					<mat-header-cell *matHeaderCellDef> Data Manager 1 Email </mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.dm1Email}} </mat-cell>
-				</ng-container>
-
-				<ng-container matColumnDef="dm1Phn">
-					<mat-header-cell *matHeaderCellDef> Data Manager 1 Phone </mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.dm1Phn}} </mat-cell>
-				</ng-container>
-				
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 			</mat-table>

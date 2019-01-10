@@ -12,6 +12,7 @@ export class AuthGuardService implements CanActivate {
 	canActivate(route: ActivatedRouteSnapshot,
 				state: RouterStateSnapshot): Observable<boolean> {
 
-				return Observable;
+				// return Observable.to(true);
+				return;
 			}
 }

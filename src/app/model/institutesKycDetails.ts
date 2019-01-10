@@ -1,12 +1,11 @@
 export interface InsKycDetails {
-    position: number;
     instituteType: string;
-    instituteId: number;
+    instituteId: string;
     instituteName: string;
     location: string;
     state: string;
-    requestState: string;
-    kycAgent: string;
-    requesterName: string;
-    actions: string;
+    kycStatus: string;
+    kycAgentId: string;
+    academicHeadName: string;
+    _id: number;
 }  

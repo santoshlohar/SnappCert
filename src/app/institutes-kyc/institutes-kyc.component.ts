@@ -4,6 +4,7 @@ import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { ApiService } from '../Services/api.service';
 
 import { InsKycDetails } from '../model/institutesKycDetails';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-institutes-kyc',
@@ -13,21 +14,24 @@ import { InsKycDetails } from '../model/institutesKycDetails';
 
 export class InstitutesKycComponent implements OnInit {
 	displayedColumns = [
-	'position',
 	'instituteType', 
 	'instituteId',
 	'instituteName',
 	'location',
 	'state',
-	'requestState',
-	'kycAgent',
-	'requesterName',
-	'actions'
+	'kycStatus',
+	'kycAgentId',
+	'academicHeadName',
+	'_id'
 	];
 	//ELEMENT_DATA: InsKycDetails[];
 	approved: boolean = false; 
-	dataSource = new MatTableDataSource<InsKycDetails>(ELEMENT_DATA);
+	institutes: InsKycDetails[];
+	statusNew: boolean = false;
+	newInstitutes: InsKycDetails[] = [];
+	dataSource = new MatTableDataSource<InsKycDetails>(this.institutes);
 	selection = new SelectionModel<InsKycDetails>(true, []);
+	
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,27 +40,37 @@ export class InstitutesKycComponent implements OnInit {
 	ngOnInit(): void {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-		//this.getInstitutes();
+		this.getInstitutes();
 	}
 
-	// get institutes details from institutesDetails table
+	// get new institutes details from institutesDetails table
 	getInstitutes() {
 		var getInsUrl = '/institutes';
-		this.apiService.get('/institutes')
+		this.apiService.get(getInsUrl)
 			.subscribe((response) => {
-				console.log(response);
+				this.institutes = response.body.elements;
+				for(var i=0;i<this.institutes.length;i++) {
+					if(this.institutes[i].kycStatus == "NEW") {
+						this.statusNew = true;
+						this.newInstitutes.push(this.institutes[i]);
+						this.dataSource.data = this.newInstitutes;
+					}
+				}
 			});
 	}
 
 	approveInstitute(insId) {
 		console.log(insId);
-		this.apiService.post('', this.dataSource)
-			.subscribe((response) => {
-				console.log(response);
-			})
+		// this.apiService.post('', this.dataSource)
+		// 	.subscribe((response) => {
+		// 		console.log(response);
+		// 	})
 	}
 }
 
 const ELEMENT_DATA: InsKycDetails[] = [
-	{position: 1, instituteType: 'university', instituteId: 100 , instituteName: 'St.Stephen', location: 'Pune', state: 'Maharashtra', requestState: 'Pune', kycAgent: 'Sush', requesterName: 'Ms. Meggie',actions: '' }
+	
+		{ instituteType: 'university', instituteId: '' , instituteName: 'St.Stephen', location: 'Pune', state: 'Maharashtra', kycStatus: 'NEW', kycAgentId: 'Sush', academicHeadName: 'Ms. Meggie', _id: 1 },
+		{ instituteType: 'university', instituteId: '' , instituteName: 'St.Stephen', location: 'Pune', state: 'Maharashtra', kycStatus: 'NEW', kycAgentId: 'Sush', academicHeadName: 'Ms. Meggie', _id: 2  }
+
 ];
