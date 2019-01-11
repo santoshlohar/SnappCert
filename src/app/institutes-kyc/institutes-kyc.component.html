@@ -1,125 +1,65 @@
-<!-- <div class="container">
-    <table #dataTable class="display" style="width: 100%">
-        <thead class="thead">
-          <tr>
-            <th>Institution Type</th>
-            <th>Institution ID</th>
-            <th>Institution Name</th>
-            <th>Requester Name</th>
-            <th>KYC Agent</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Type</td>
-                <td>Inst1</td>
-                <td>Name</td>
-                <td>Neha</td>
-                <td>Agent</td>
-                <td>New</td>
-                <td><button class="btn btn-error">Details</button></td>
-            </tr>
-            <tr>
-                <td>Type</td>
-                <td>Inst2</td>
-                <td>Name</td>
-                <td>Neha</td>
-                <td>Agent</td>
-                <td>New</td>
-                <td><button class="btn btn-error">Details</button></td>
-            </tr>
-            <tr>
-                <td>Type</td>
-                <td>Inst3</td>
-                <td>Name</td>
-                <td>Neha</td>
-                <td>Agent</td>
-                <td>New</td>
-                <td><button class="btn btn-error">Details</button></td>
-            </tr>
-            <tr>
-                <td>Type</td>
-                <td>Inst4</td>
-                <td>Name</td>
-                <td>Neha</td>
-                <td>Agent</td>
-                <td>New</td>
-                <td><button class="btn btn-error">Details</button></td>
-            </tr>
-            <tr>
-                <td>Type</td>
-                <td>Inst5</td>
-                <td>Name</td>
-                <td>Neha</td>
-                <td>Agent</td>
-                <td>New</td>
-                <td><button class="btn btn-error">Details</button></td>
-            </tr>
-        </tbody>
-      </table>
-</div> -->
-<app-header></app-header>
+
+<!-- <app-header></app-header> -->
+
 <div class="container">
-	<div class="affIns-container mat-elevation-z8">
-		<div class="outer-div">
-			<div class="inner-div">
-				<mat-form-field class="">
-				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-				</mat-form-field>
-			</div>
-			<!-- <span class="spacer"></span>
-			<div class="inner-div aff-btn">
-				<a mat-button class="add-btn" routerLink="/addAffInsAuthUser">Add Aff. Institute Auth User</a>
-			</div> -->
-			</div>
-			<div>
-				<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-					<!-- <ng-container matColumnDef="position">
+    <div class="affIns-container mat-elevation-z8">
+        <div class="outer-div">
+            <div class="inner-div">
+                <mat-form-field class="">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+            </div>
+            <!-- <span class="spacer"></span>
+            <div class="inner-div aff-btn">
+                <a mat-button class="add-btn" routerLink="/addAffInsAuthUser">Add Aff. Institute Auth User</a>
+            </div> -->
+            </div>
+            <div>
+                <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <!-- <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-					</ng-container> -->
+                    </ng-container> -->
                     
-					<ng-container matColumnDef="instituteType">
+                    <ng-container matColumnDef="instituteType">
                         <mat-header-cell *matHeaderCellDef> Institute Type </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.instituteType}} </mat-cell>
-					</ng-container>
+                    </ng-container>
 
-					<ng-container matColumnDef="instituteId">
+                    <ng-container matColumnDef="instituteId">
                         <mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.instituteId}} </mat-cell>
-					</ng-container>
+                    </ng-container>
 
-					<ng-container matColumnDef="instituteName">
-						<mat-header-cell *matHeaderCellDef> Institute Name </mat-header-cell>
-						<mat-cell *matCellDef="let institute"> {{institute.instituteName}} </mat-cell>
-					</ng-container>
+                    <ng-container matColumnDef="instituteName">
+                        <mat-header-cell *matHeaderCellDef> Institute Name </mat-header-cell>
+                        <mat-cell *matCellDef="let institute"> {{institute.instituteName}} </mat-cell>
+                    </ng-container>
 
-					<ng-container matColumnDef="location">
+                    <ng-container matColumnDef="location">
                         <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.location}} </mat-cell>
-					</ng-container>
+                    </ng-container>
 
-					<ng-container matColumnDef="state">
+                    <ng-container matColumnDef="state">
                         <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.state}} </mat-cell>
-					</ng-container>
+                    </ng-container>
 
-					<ng-container matColumnDef="kycStatus">
+                    <ng-container matColumnDef="kycStatus">
                         <mat-header-cell *matHeaderCellDef> Request Status </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.kycStatus}} </mat-cell>
-					</ng-container>
+                    </ng-container>
 
-					<ng-container matColumnDef="kycAgentId">
+                    <ng-container matColumnDef="kycAgentId">
                         <mat-header-cell *matHeaderCellDef> kyc Agent </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.kycAgentId}} </mat-cell>
-					</ng-container>
+                    </ng-container>
 
-					<ng-container matColumnDef="academicHeadName">
+                    <ng-container matColumnDef="academicHeadName">
                         <mat-header-cell *matHeaderCellDef> Requester Name </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.academicHeadName}} </mat-cell>
-					</ng-container>
+                    </ng-container>
 
                     <ng-container matColumnDef="_id">
                         <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
@@ -128,12 +68,14 @@
                         </mat-cell>
                     </ng-container>
 
-					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-				</mat-table>
-			</div> 
-		<div>
-			<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-		</div>  
-	</div>
-</div>  
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div> 
+        <div>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>  
+    </div>
+</div> 
+    
+ 

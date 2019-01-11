@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { ApiService } from './Services/api.service';
+import { Globals } from './globals';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -95,6 +96,7 @@ import { AffInsCourseDataComponent } from './aff-ins-course-data/aff-ins-course-
 	],
 	providers: [
 		ApiService,
+		Globals,
 		{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }
 	],
 	bootstrap: [AppComponent]

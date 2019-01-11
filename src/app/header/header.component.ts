@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Globals } from '../globals';
 // import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
@@ -7,20 +9,18 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-	sidebar:  boolean;
-	constructor() { }
+	sidebar: boolean = false;
+	constructor(private router: Router, private globals: Globals) { }
 
 	ngOnInit() {
 	}
 
 	toggleSidebar() {
-		if(this.sidebar == false)
-		{
-			this.sidebar = true;
+		if(this.globals.isSidebar == false) {
+			this.globals.isSidebar = true;	
+		} else {
+			this.globals.isSidebar = false;
 		}
-		else{
-			this.sidebar = false;
-		} 
 	}
 
 }
