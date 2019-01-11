@@ -38,8 +38,9 @@ export class LoginComponent implements OnInit {
 				if( this.type == 'KYC_AGENT' ) {
 					this.router.navigate(['/','institutesKyc']);
 				} else if (this.type == 'INS_ADMIN') {
-					this.router.navigate(['/','viewInstituteDepartments']);
-					
+					this.router.navigate(['/','viewInstituteDepartments']);	
+				} else if (this.type == 'INS_DATA_MANAGER') {
+					this.router.navigate(['/','viewInstituteAuthUsers']);	
 				}
 			});
 	}

@@ -12,9 +12,14 @@
 }
 
 .innerbar-content {
-    padding: 15px 10px;
+    padding: 9px 10px;
 }
 
 .sidebar {
     padding: 20px;
+}
+
+.link-btn {
+    color: rgb(153, 140, 140);
+    text-decoration: none;
 }

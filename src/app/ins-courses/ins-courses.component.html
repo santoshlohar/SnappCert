@@ -1,0 +1,86 @@
+<div class="container">
+	<div class="affIns-container mat-elevation-z8">
+		<div class="outer-div">
+			<div class="inner-div">
+				<mat-form-field class="">
+				<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+				</mat-form-field>
+			</div>
+			<span class="spacer"></span>
+			<div class="inner-div aff-btn">
+				<a mat-button class="add-btn" routerLink="/addAffInsCourse">Add Aff. Institute Course</a>
+			</div>
+			</div>
+			<div>
+				<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+					<!-- <ng-container matColumnDef="position">
+						<mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+					</ng-container> -->
+
+					<ng-container matColumnDef="instituteId">
+						<mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.instituteId}} </mat-cell>
+					</ng-container>
+			
+					<ng-container matColumnDef="deptId">
+						<mat-header-cell *matHeaderCellDef> Department ID  </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.deptId}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="courseType">
+						<mat-header-cell *matHeaderCellDef> Course Type </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.courseType}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="courseId">
+						<mat-header-cell *matHeaderCellDef> Course ID </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.courseId}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="courseName">
+						<mat-header-cell *matHeaderCellDef> Course Name </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.courseName}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="specialization">
+						<mat-header-cell *matHeaderCellDef> Specialization </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.specialization}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="courseDuration">
+						<mat-header-cell *matHeaderCellDef> Course Duration </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.courseDuration}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="durationUnit">
+						<mat-header-cell *matHeaderCellDef> Duration Unit </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.durationUnit}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="termType">
+						<mat-header-cell *matHeaderCellDef> Term Type </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.termType}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="noOfTerms">
+						<mat-header-cell *matHeaderCellDef> No. Of Terms </mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.noOfTerms}} </mat-cell>
+					</ng-container>
+
+					<ng-container matColumnDef="_id">
+                        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <button md-raised-button (click)="approveInstitute(row.instituteId)">Approve</button>
+                        </mat-cell>
+                    </ng-container>
+
+					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+				</mat-table>
+			</div> 
+		<div>
+			<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+		</div>  
+	</div>
+</div>  
