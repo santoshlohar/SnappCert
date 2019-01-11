@@ -34,9 +34,8 @@ export class LoginComponent implements OnInit {
 				this.userData = response;
 				this.type = this.userData.userType;
 				localStorage.setItem('userType', this.type);
-				
+
 				if( this.type == 'KYC_AGENT' ) {
-					console.log("Kyc agent Login");
 					this.router.navigate(['/','institutesKyc']);
 				} else if (this.type == 'INS_ADMIN') {
 					this.router.navigate(['/','viewInstituteDepartments']);
