@@ -33,14 +33,14 @@ export class LoginComponent implements OnInit {
 			.subscribe((response: any) => {
 				this.userData = response;
 				this.type = this.userData.userType;
-
-				localStorage.setItem('user', this.userData);
-
+				localStorage.setItem('userType', this.type);
+				
 				if( this.type == 'KYC_AGENT' ) {
 					console.log("Kyc agent Login");
 					this.router.navigate(['/','institutesKyc']);
 				} else if (this.type == 'INS_ADMIN') {
 					this.router.navigate(['/','viewInstituteDepartments']);
+					
 				}
 			});
 	}

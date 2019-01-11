@@ -1,9 +1,9 @@
 <app-header></app-header>
-<div class="row main-body">
-    <div *ngIf="globals.isSidebar">
+<div class="main-body">
+    <div class="page-sidebar" *ngIf="globals.isSidebar">
         <app-sidebar></app-sidebar>
     </div>
-    <div>
+    <div class="page-content">
         <router-outlet></router-outlet>
     </div>
 </div>

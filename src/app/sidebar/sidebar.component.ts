@@ -8,15 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
 	
 	public sidebar: any;
+	userType: string;
 	constructor() { }
 
 	ngOnInit() {
+		this.userType = localStorage.getItem('userType');
 	}
-
-	// $("#menu-toggle").click(function(e) {
-	//     e.preventDefault();
-	//     $("#wrapper").toggleClass("active");
-	// });
 
 	sidebarToggle(e) {
 		console.log(e)

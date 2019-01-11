@@ -145,8 +145,8 @@
 
 .sidebar-container {
     width: 285px;
-    min-height: 600px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    min-height: 636px;
+    border: 1px solid rgba(0, 0, 0, 0.22);
 }
 
 .sidebar-content {
@@ -154,6 +154,10 @@
     height: 100%;
     align-items: center;
     justify-content: center;
+}
+
+.innerbar-content {
+    padding: 15px 10px;
 }
 
 .sidebar {
