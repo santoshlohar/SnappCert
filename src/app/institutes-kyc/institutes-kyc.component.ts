@@ -61,10 +61,27 @@ export class InstitutesKycComponent implements OnInit {
 
 	approveInstitute(insId) {
 		console.log(insId);
-		// this.apiService.post('', this.dataSource)
-		// 	.subscribe((response) => {
-		// 		console.log(response);
-		// 	})
+		var data = {
+				"status" : "NEW",
+				"createdBy" : "cr_by",
+				"updateddBy" : "up_by"
+		};
+		this.apiService.post('/actions' + insId, data )
+			.subscribe((response) => {
+				console.log(response);
+			})
+	}
+
+	actions(insId) {
+		var data = {
+			"status" : "REJECT",
+			"createdBy" : "cr_by",
+			"updateddBy" : "up_by"
+		};
+		this.apiService.post('/actions/' + insId, data )
+			.subscribe((response) => {
+				console.log(response);
+			});
 	}
 }
 
