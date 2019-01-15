@@ -65,3 +65,25 @@ table {
 .update {
     color: #1073f3;
 }
+
+.cell-head {
+    
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+} 
+
+.mat-header-cell {
+    display: block;
+    padding: 12px 16px;
+}
+
+.mat-cell {
+    width: 50px;
+    padding: 6px 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+}

@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
 import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { ApiService } from '../Services/api.service';
+import { FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 import { InsKycDetails } from '../model/institutesKycDetails';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 @Component({
   selector: 'app-institutes-kyc',
@@ -39,7 +40,8 @@ export class InstitutesKycComponent implements OnInit {
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
-	constructor(private apiService: ApiService) { }
+	constructor(private _formBuilder: FormBuilder,
+		private apiService: ApiService) { }
 
 	ngOnInit(): void {
 		this.dataSource.sort = this.sort;
@@ -76,8 +78,9 @@ export class InstitutesKycComponent implements OnInit {
 			})
 	}
 
-	actions(insId, status) {
+	actions(insId, status: string) {
 		this.statusChange.status = status;
+		console.log(this.statusChange);
 		this.apiService.post('/actions/' + insId, this.statusChange )
 			.subscribe((response) => {
 				console.log(response);
@@ -85,10 +88,12 @@ export class InstitutesKycComponent implements OnInit {
 			});
 	}
 
-	applyFilter(filterValue: string) {
+	applyFilter(filterValue: string, filterType: string) {
+		console.log(filterType);
 		this.dataSource.filter = filterValue.trim().toLowerCase();
 		this.dataSource.filter = filterValue;
 	}
+
 }
 
 const ELEMENT_DATA: InsKycDetails[] = [

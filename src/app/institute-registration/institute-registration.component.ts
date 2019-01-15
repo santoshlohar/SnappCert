@@ -14,6 +14,7 @@ import { ApiService } from '../Services/api.service';
 
 export class InstituteRegistrationComponent implements OnInit {
 	addInstForm: any = {};
+	instRequestForm: FormGroup;
 	requesterFormGroup: FormGroup;
 	instituteFormGroup: FormGroup;
 	instAdmin1FormGroup: FormGroup;
@@ -56,21 +57,60 @@ export class InstituteRegistrationComponent implements OnInit {
 		private http: HttpClient) { }
 
 	ngOnInit(): void {
-		this.requesterFormGroup = this._formBuilder.group({
+		// this.requesterFormGroup = this._formBuilder.group({
+		// 	requesterName: ['', Validators.required],
+		// 	requesterDesg: ['', Validators.required],
+		// 	employeeId: ['', Validators.required],
+		// 	emailId: ['', [Validators.required, Validators.email]],
+		// 	phoneNo: ['', Validators.required]
+		// });
+		// this.instituteFormGroup = this._formBuilder.group({
+		// 	instituteType: ['', Validators.required],
+		// 	instituteId: ['', Validators.required],
+		// 	instituteName: ['', Validators.required],
+		// 	instituteRegId: ['', Validators.required],
+		// 	instituteDOE: ['', Validators.required],
+		// 	instituteAddress: ['', Validators.required],
+		// 	instituteAcedmicHead: ['', Validators.required],
+		// 	academiHeadEmailId: ['', Validators.required],
+		// 	academiHeadPhoneNo: ['', Validators.required],
+		// 	administratorHead: ['', Validators.required],
+		// 	administratorHeadEmailId: ['', Validators.required],
+		// 	administratorHeadPhnNo: ['', Validators.required],
+		// 	boardLineNo: ['', Validators.required],
+		// 	instituteLocation: ['', Validators.required],
+		// 	instituteWebsite: ['', Validators.required],
+		// 	AffiInstitute: ['', Validators.required],
+		// 	AffiInstituteType: ['', Validators.required],
+		// 	approvedBy: ['', Validators.required],
+		// 	regulatoryBody: ['', Validators.required]
+		// });
+		// this.instAdmin1FormGroup = this._formBuilder.group({
+		// 	admin1Name: ['', Validators.required],
+		// 	admin1PhnNo: ['', Validators.required],
+		// 	admin1EmailId: ['', Validators.required],
+		// 	admin1EmpId: ['', Validators.required]
+		// });
+		// this.instAdmin2FormGroup = this._formBuilder.group({
+		// 	admin2Name: ['', Validators.required],
+		// 	admin2PhnNo: ['', Validators.required],
+		// 	admin2EmailId: ['', [Validators.required, Validators.email]],
+		// 	admin2EmpId: ['', Validators.required]
+		// });
+
+		this.instRequestForm = this._formBuilder.group({
 			requesterName: ['', Validators.required],
-			requesterDesg: ['', Validators.required],
-			employeeId: ['', Validators.required],
-			emailId: ['', [Validators.required, Validators.email]],
-			phoneNo: ['', Validators.required]
-		});
-		this.instituteFormGroup = this._formBuilder.group({
+			requesterEmail: ['', Validators.required],
+			requesterPhone: ['', Validators.required],
+
 			instituteType: ['', Validators.required],
 			instituteId: ['', Validators.required],
 			instituteName: ['', Validators.required],
 			instituteRegId: ['', Validators.required],
-			instituteDOE: ['', Validators.required],
-			instituteAddress: ['', Validators.required],
-			instituteAcedmicHead: ['', Validators.required],
+			doe: ['', Validators.required],
+			address1: ['', Validators.required],
+			state: ['', Validators.required],
+			academicHead: ['', Validators.required],
 			academiHeadEmailId: ['', Validators.required],
 			academiHeadPhoneNo: ['', Validators.required],
 			administratorHead: ['', Validators.required],
@@ -79,23 +119,15 @@ export class InstituteRegistrationComponent implements OnInit {
 			boardLineNo: ['', Validators.required],
 			instituteLocation: ['', Validators.required],
 			instituteWebsite: ['', Validators.required],
-			AffiInstitute: ['', Validators.required],
-			AffiInstituteType: ['', Validators.required],
+			AffiToInstitute: ['', Validators.required],
+			AffiToInstituteType: ['', Validators.required],
 			approvedBy: ['', Validators.required],
-			regulatoryBody: ['', Validators.required]
-		});
-		this.instAdmin1FormGroup = this._formBuilder.group({
-			admin1Name: ['', Validators.required],
-			admin1PhnNo: ['', Validators.required],
-			admin1EmailId: ['', Validators.required],
-			admin1EmpId: ['', Validators.required]
-		});
-		this.instAdmin2FormGroup = this._formBuilder.group({
-			admin2Name: ['', Validators.required],
-			admin2PhnNo: ['', Validators.required],
-			admin2EmailId: ['', [Validators.required, Validators.email]],
-			admin2EmpId: ['', Validators.required]
-		});
+			regulatoryBody: ['', Validators.required],
+
+			adminName: ['', Validators.required],
+			adminEmail: ['', Validators.required],
+			adminPhone: ['', Validators.required]
+		})
 	}
 
 	public hasError = (controlName: string, errorName: string) =>{

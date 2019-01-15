@@ -3,7 +3,7 @@
         <div class="outer-div">
             <div class="inner-div">
                 <mat-form-field class="">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                <input matInput (keyup)="applyFilter($event.target.value, filter)" placeholder="Filter">
                 </mat-form-field>
             </div>
             <!-- <span class="spacer"></span>
@@ -12,55 +12,107 @@
             </div> -->
             </div>
             <div>
-                <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <mat-table [dataSource]="dataSource" 
+                class="mat-elevation-z8"
+                >
                     <!-- <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
                     </ng-container> -->
                     
                     <ng-container matColumnDef="instituteType">
-                        <mat-header-cell *matHeaderCellDef> Institute Type
-                            <!-- <div>
+                        <mat-header-cell *matHeaderCellDef> 
+                            <div >Institute Type</div>
+                            <div>
                                 <mat-form-field>
-                                    <input matInput class="form-field" formControlName="positionFilter" placeholder="Postion Filter">
+                                    <input matInput (keyup)="applyFilter($event.target.value, instituteType)" placeholder="Institute Type">
                                 </mat-form-field>
-                            </div>     -->
+                            </div>     
                         </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.instituteType}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="instituteId">
-                        <mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>
+                            <div >Institute ID</div>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value, instituteId)" placeholder="Institute ID">
+                                </mat-form-field>
+                            </div>
+                        </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.instituteId}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="instituteName">
-                        <mat-header-cell *matHeaderCellDef> Institute Name </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> 
+                            <div >Institute Name</div>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value, instituteName)" placeholder="Institute Name">
+                                </mat-form-field>
+                            </div>
+                        </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.instituteName}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="location">
-                        <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> 
+                            <div >Location</div>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value, location)" placeholder="Location">
+                                </mat-form-field>
+                            </div>
+                        </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.location}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="state">
-                        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>  
+                            <div >State</div>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value, state)" placeholder="State">
+                                </mat-form-field>
+                            </div> 
+                        </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.state}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="kycStatus">
-                        <mat-header-cell *matHeaderCellDef> Request Status </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>  
+                            <div>Request Status</div>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value, kycStatus)" placeholder="Request Status">
+                                </mat-form-field>
+                            </div> 
+                        </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.kycStatus}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="kycAgentId">
-                        <mat-header-cell *matHeaderCellDef> kyc Agent </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>  
+                            <div>kyc Agent</div>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value,kycAgentId)" placeholder="kyc Agent">
+                                </mat-form-field>
+                            </div> 
+                        </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.kycAgentId}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="academicHeadName">
-                        <mat-header-cell *matHeaderCellDef> Requester Name </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> 
+                            <div> Requester Name</div>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value,'academicHeadName')" placeholder="Requester Name">
+                                </mat-form-field>
+                            </div> 
+                        </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.academicHeadName}} </mat-cell>
                     </ng-container>
 
@@ -70,9 +122,9 @@
                             <!-- <button md-raised-button (click)="approveInstitute(row.instituteId)">Approve</button>
                             <button md-raised-button (click)="actions(row.instituteId)">Approve</button> -->
 
-                            <mat-icon class="approve" (click)="actions(row.instituteId,approve)">check_circle</mat-icon>
-                            <mat-icon class="reject" (click)="actions(row.instituteId,reject)">highlight_off</mat-icon>
-                            <mat-icon class="hold" (click)="actions(row.instituteId,hold)">warning</mat-icon>
+                            <mat-icon class="approve" (click)="actions(row.instituteId,'APPROVE')">check_circle</mat-icon>
+                            <mat-icon class="reject" (click)="actions(row.instituteId,'REJECT')">highlight_off</mat-icon>
+                            <mat-icon class="hold" (click)="actions(row.instituteId,'HOLD')">warning</mat-icon>
                             <mat-icon class="update" >edit</mat-icon>
                         </mat-cell>
                     </ng-container>
