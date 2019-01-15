@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
 	<div class="form-wrapper">
 		<form class="text-center border border-light p-5 form-height" (ngSubmit)="kyc(f)" #f="ngForm">
 			<div class="panel panel-primary">
@@ -37,60 +37,178 @@
 			</div>
 		</form>
 	</div>
-</div>
-
-
-<!-- 
-<div class="container">
-	<div class="form-header">
-		<span><strong>Institute Registration Details</strong></span>
-	</div>
-	<div class="form-wrapper">
-		<form 
-		class="border border-light p-5" 
-		(ngSubmit)="updateInstituteDetails(f)" 
-		#f="ngForm">
-
-			<div class="d-flex row-mr form-group">
-				<div class="details-head"><strong>Institution Type:</strong></div>
-				<div class='details-text'>
-					<input class="detail-input form-control form-control-sm" type="text" [(ngModel)]="instituteData.type" name="instituteData.type">
-				</div>
-			</div>
-			<div class="d-flex row-mr">
-				<div class="details-head"><strong>Institution Id:</strong></div>
-				<div class='details-text'>
-					<input class="detail-input form-control form-control-sm" type="text" [(ngModel)]="instituteData.id" name="instituteData.id">
-				</div>
-			</div>
-			<div class="d-flex row-mr">
-				<div class="details-head"><strong>Institution Name:</strong></div>
-				<div class='details-text'>
-					<input class="detail-input form-control form-control-sm" type="text" [(ngModel)]="instituteData.name" name="instituteData.name">
-				</div>
-			</div>
-			<div class="d-flex row-mr">
-				<div class="details-head"><strong>Institution Requester:</strong></div>
-				<div class='details-text'>
-					<input class="detail-input form-control form-control-sm" type="text" [(ngModel)]="instituteData.requester" name="instituteData.requester">
-				</div>
-			</div>
-			<div class="d-flex row-mr">
-				<div class="details-head"><strong>Institution KYC Agent:</strong></div>
-				<div class='details-text'>
-					<input class="detail-input form-control form-control-sm" type="text" [(ngModel)]="instituteData.kycAgent" name="instituteData.kycAgent">
-				</div>
-			</div>
-			<div class="d-flex row-mr">
-				<div class="details-head"><strong>Institution Status:</strong></div>
-				<div class='details-text'>
-					<input class="detail-input form-control form-control-sm" type="text" [(ngModel)]="instituteData.status" name="instituteData.status">
-				</div>
-			</div>
-
-			<div class="row btn-row">
-				<button class="btn btn-success btn-sm save-btn">Save</button>
-			</div>
-		</form>		
-	</div>
 </div> -->
+
+<div class="container">
+	<div class="panel panel-primary headeing">
+		<div class="panel panel-heading">
+			<h3 class="panel-title">Update Institute Details</h3>
+		</div>
+	</div>
+	<div class="addInst-wrapper">
+		<div class="example-container">
+			<form [formGroup]="instituteDetailForm" #intDetails="ngForm">
+				<div>
+					<p class="h6 mar-top">Requester Details</p>
+					<mat-form-field class="input-field">
+						<input disabled matInput 
+						placeholder="Requester Name" 
+						formControlName="requesterName"
+						>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Requester Email" 
+						formControlName="requesterEmail"
+						>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Requester Phone" 
+						formControlName="requesterPhn"
+						>
+					</mat-form-field>
+				</div>
+				<div>
+					<p class="h6 mar-top">Update Institute</p>
+					<mat-form-field class="input-field">
+						<input disabled matInput 
+						placeholder="Institute Type" 
+						formControlName="instituteType"
+						>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Institute ID" 
+						formControlName="instituteId"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input disabled matInput 
+						placeholder="Institute Name" 
+						formControlName="instituteName"
+						>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Registration ID" 
+						formControlName="registrationId"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Date Of Establishment" 
+						formControlName="doe"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Address 1" 
+						formControlName="address1"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Address 2" 
+						formControlName="address2"
+						>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="State" 
+						formControlName="state"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="City" 
+						formControlName="city"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Administrator Head" 
+						formControlName="administratorHead"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Administrator Head Email ID" 
+						formControlName="administratorHeadEmail"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="BoardLine No." 
+						formControlName="boardlineNo"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Location" 
+						formControlName="location"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Website" 
+						formControlName="website"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Recogniser" 
+						formControlName="recogniser"
+						required>
+					</mat-form-field>
+				</div>
+				<div>
+					<p class="h6 mar-top">Institute Admin</p>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Admin Name" 
+						formControlName="adminName"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Admin Email" 
+						formControlName="adminEmail"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Admin Phone Number" 
+						formControlName="adminPhn"
+						required>
+					</mat-form-field>
+				</div>
+				<div>
+					<p class="h6 mar-top">KYC Agent</p>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="KYC Agent Name" 
+						formControlName="agentName"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="KYC Status" 
+						formControlName="kycStatus"
+						required>
+					</mat-form-field>
+				</div>
+				<div>
+					<p class="h6 mar-top">KYC Agent Comments</p>
+					<mat-form-field class="input-field comment-div">
+						<textarea matInput row="5" placeholder="Leave a comment"></textarea>
+					</mat-form-field>
+				</div>
+				<div class="action-btns text-center" >
+					<button mat-raised-button class="action-btn">Update</button>
+					<button mat-raised-button class="action-btn">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

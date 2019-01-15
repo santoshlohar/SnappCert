@@ -49,3 +49,19 @@ table {
 .aff-btn {
     padding: 15px 2px;
 }
+
+.approve {
+    color: green;
+}
+
+.reject {
+    color: red;
+}
+
+.hold {
+    color: #ffca00;
+}
+
+.update {
+    color: #1073f3;
+}

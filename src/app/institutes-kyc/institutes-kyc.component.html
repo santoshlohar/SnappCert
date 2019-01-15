@@ -19,7 +19,13 @@
                     </ng-container> -->
                     
                     <ng-container matColumnDef="instituteType">
-                        <mat-header-cell *matHeaderCellDef> Institute Type </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Institute Type
+                            <!-- <div>
+                                <mat-form-field>
+                                    <input matInput class="form-field" formControlName="positionFilter" placeholder="Postion Filter">
+                                </mat-form-field>
+                            </div>     -->
+                        </mat-header-cell>
                         <mat-cell *matCellDef="let institute"> {{institute.instituteType}} </mat-cell>
                     </ng-container>
 
@@ -61,8 +67,13 @@
                     <ng-container matColumnDef="_id">
                         <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <button md-raised-button (click)="approveInstitute(row.instituteId)">Approve</button>
-                            <!-- <button md-raised-button (click)="actions(row.instituteId)">Approve</button> -->
+                            <!-- <button md-raised-button (click)="approveInstitute(row.instituteId)">Approve</button>
+                            <button md-raised-button (click)="actions(row.instituteId)">Approve</button> -->
+
+                            <mat-icon class="approve" (click)="actions(row.instituteId,approve)">check_circle</mat-icon>
+                            <mat-icon class="reject" (click)="actions(row.instituteId,reject)">highlight_off</mat-icon>
+                            <mat-icon class="hold" (click)="actions(row.instituteId,hold)">warning</mat-icon>
+                            <mat-icon class="update" >edit</mat-icon>
                         </mat-cell>
                     </ng-container>
 

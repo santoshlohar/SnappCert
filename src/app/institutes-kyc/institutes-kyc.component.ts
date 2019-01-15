@@ -24,6 +24,11 @@ export class InstitutesKycComponent implements OnInit {
 	'academicHeadName',
 	'_id'
 	];
+	statusChange = {
+		"status": '',
+		"createdBy" : '',
+		"updateddBy" : ''
+	}
 	//ELEMENT_DATA: InsKycDetails[];
 	approved: boolean = false; 
 	institutes: InsKycDetails[];
@@ -31,7 +36,6 @@ export class InstitutesKycComponent implements OnInit {
 	newInstitutes: InsKycDetails[] = [];
 	dataSource = new MatTableDataSource<InsKycDetails>(this.institutes);
 	selection = new SelectionModel<InsKycDetails>(true, []);
-	
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -72,16 +76,18 @@ export class InstitutesKycComponent implements OnInit {
 			})
 	}
 
-	actions(insId) {
-		var data = {
-			"status" : "REJECT",
-			"createdBy" : "cr_by",
-			"updateddBy" : "up_by"
-		};
-		this.apiService.post('/actions/' + insId, data )
+	actions(insId, status) {
+		this.statusChange.status = status;
+		this.apiService.post('/actions/' + insId, this.statusChange )
 			.subscribe((response) => {
 				console.log(response);
+				this.getInstitutes();
 			});
+	}
+
+	applyFilter(filterValue: string) {
+		this.dataSource.filter = filterValue.trim().toLowerCase();
+		this.dataSource.filter = filterValue;
 	}
 }
 
