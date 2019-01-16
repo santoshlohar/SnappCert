@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	userLogin(form: NgForm) {
-		this.loginData.userName = form.value.userName;
+		this.loginData.emailId = form.value.emailId;
 		this.loginData.password = form.value.password;
 
 		this.url = "/authenticateUser";
@@ -32,12 +32,12 @@ export class LoginComponent implements OnInit {
 		this.apiService.post(this.url, this.loginData)
 			.subscribe((response: any) => {
 				this.userData = response;
-				this.type = this.userData.userType;
+				this.type = this.userData.UserType;
 				localStorage.setItem('userType', this.type);
 
 				if( this.type == 'KYC_AGENT' ) {
 					this.router.navigate(['/','institutesKyc']);
-				} else if (this.type == 'INS_ADMIN') {
+				} else if (this.type == 'INST_ADMIN') {
 					this.router.navigate(['/','viewInstituteDepartments']);	
 				} else if (this.type == 'INS_DATA_MANAGER') {
 					this.router.navigate(['/','viewInstituteAuthUsers']);	

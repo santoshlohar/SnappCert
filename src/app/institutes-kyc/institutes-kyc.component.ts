@@ -6,6 +6,7 @@ import { FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 import { InsKycDetails } from '../model/institutesKycDetails';
 import { Observable, from } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-institutes-kyc',
@@ -41,7 +42,8 @@ export class InstitutesKycComponent implements OnInit {
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	constructor(private _formBuilder: FormBuilder,
-		private apiService: ApiService) { }
+		private apiService: ApiService,
+		private router: Router) { }
 
 	ngOnInit(): void {
 		this.dataSource.sort = this.sort;
@@ -57,6 +59,7 @@ export class InstitutesKycComponent implements OnInit {
 				this.institutes = response.body.elements;
 				for(var i=0;i<this.institutes.length;i++) {
 					if(this.institutes[i].kycStatus == "NEW") {
+						console.log(this.institutes[i]);
 						this.statusNew = true;
 						this.newInstitutes.push(this.institutes[i]);
 						this.dataSource.data = this.newInstitutes;
@@ -92,6 +95,11 @@ export class InstitutesKycComponent implements OnInit {
 		console.log(filterType);
 		this.dataSource.filter = filterValue.trim().toLowerCase();
 		this.dataSource.filter = filterValue;
+	}
+
+	goToInstUpdate(instId) {
+		console.log("institute ID- "+ instId);
+		this.router.navigate(['instituteKycDetails/' + instId]);
 	}
 
 }

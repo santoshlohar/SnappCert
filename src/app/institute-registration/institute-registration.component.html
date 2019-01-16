@@ -276,7 +276,7 @@
     </div>
     <div class="addInst-wrapper">
         <div class="example-container">
-            <form [formGroup]="instRequestForm" #intReq="ngForm">
+            <form [formGroup]="instRequestForm" #intReq="ngForm" (ngSubmit)="registerInstitute(intReq)">
                 <div>
                     <p class="h6 mar-top">Requester</p>
                     <mat-form-field class="input-field">
@@ -285,20 +285,25 @@
                         placeholder="Requester Name"
                         formControlName="requesterName"
                         required>
+                        <mat-error *ngIf="hasError('requesterName', 'required')">Requester Name is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 
                         type="email"
                         placeholder="Requester Email"
                         formControlName="requesterEmail"
-                        required>
+                        required
+                        email>
+                        <mat-error *ngIf="hasError('requesterEmail', 'required')">Requester Name is required!</mat-error>
+                        <mat-error *ngIf="hasError('requesterEmail', 'email')">Please enter valid email!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 
-                        type="email"
+                        type="number"
                         placeholder="Requester Phone"
                         formControlName="requesterPhone"
                         required>
+                        <mat-error *ngIf="hasError('requesterPhone', 'required')">Phone Number is required!</mat-error>
                     </mat-form-field>
                 </div>
                 <div>
@@ -309,6 +314,7 @@
                         placeholder="Institue Type"
                         formControlName="instituteType"
                         required>
+                        <mat-error *ngIf="hasError('instituteType', 'required')">Institute Type is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 
@@ -316,6 +322,7 @@
                         placeholder="Institue ID"
                         formControlName="instituteId"
                         required>
+                        <mat-error *ngIf="hasError('instituteId', 'required')">Instittute ID is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 
@@ -323,6 +330,7 @@
                         placeholder="Institue Name"
                         formControlName="instituteName"
                         required>
+                        <mat-error *ngIf="hasError('instituteName', 'required')">Institute Name is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 
@@ -330,6 +338,7 @@
                         placeholder="Registration ID"
                         formControlName="instituteRegId"
                         required>
+                        <mat-error *ngIf="hasError('instituteRegId', 'required')">Institute Registration ID is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 
@@ -337,6 +346,7 @@
                         placeholder="Date Of Establishment"
                         formControlName="doe"
                         required>
+                        <mat-error *ngIf="hasError('doe', 'required')">Date Of Establisment is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 
@@ -344,6 +354,7 @@
                         placeholder="Address 1"
                         formControlName="address1"
                         required>
+                        <mat-error *ngIf="hasError('address1', 'required')">Address is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 
@@ -351,6 +362,7 @@
                         placeholder="State"
                         formControlName="state"
                         required>
+                        <mat-error *ngIf="hasError('state', 'required')">State is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 
@@ -358,6 +370,7 @@
                         placeholder="Academic Head"
                         formControlName="academicHead"
                         required>
+                        <mat-error *ngIf="hasError('academicHead', 'required')">Academic Head is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 
@@ -425,7 +438,7 @@
                     <mat-form-field class="input-field">
                         <input matInput 
                         type="text"
-                        placeholder="Affiliated To Instittute"
+                        placeholder="Affiliated To Instittute Type"
                         formControlName="AffiToInstituteType"
                         required>
                     </mat-form-field>
@@ -469,7 +482,7 @@
                     </mat-form-field>
                 </div>
                 <div class="action-btns text-center" >
-                    <button mat-raised-button class="action-btn">Save</button>
+                    <button mat-raised-button class="action-btn" type="submit">Save</button>
                     <button mat-raised-button class="action-btn">Cancel</button>
                 </div>
             </form>

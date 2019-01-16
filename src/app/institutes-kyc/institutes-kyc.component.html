@@ -122,10 +122,10 @@
                             <!-- <button md-raised-button (click)="approveInstitute(row.instituteId)">Approve</button>
                             <button md-raised-button (click)="actions(row.instituteId)">Approve</button> -->
 
-                            <mat-icon class="approve" (click)="actions(row.instituteId,'APPROVE')">check_circle</mat-icon>
-                            <mat-icon class="reject" (click)="actions(row.instituteId,'REJECT')">highlight_off</mat-icon>
-                            <mat-icon class="hold" (click)="actions(row.instituteId,'HOLD')">warning</mat-icon>
-                            <mat-icon class="update" >edit</mat-icon>
+                            <mat-icon class="approve icons" (click)="actions(row.instituteId,'APPROVE')">check_circle</mat-icon>
+                            <mat-icon class="reject icons" (click)="actions(row.instituteId,'REJECT')">highlight_off</mat-icon>
+                            <mat-icon class="hold icons" (click)="actions(row.instituteId,'HOLD')">warning</mat-icon>
+                            <mat-icon class="update icons" (click)="goToInstUpdate(row._id)">edit</mat-icon>
                         </mat-cell>
                     </ng-container>
 

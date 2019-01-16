@@ -51,6 +51,36 @@ export class InstituteRegistrationComponent implements OnInit {
 		approvedBy: "",
 		regulatoryBody: ""
 	};
+	institute = {
+		requesterName: '',
+		requesterEmail: '',
+		requesterPhone: '',
+
+		instituteType: '',
+		instituteId: '',
+		instituteName: '',
+		instituteRegId: '',
+		doe: '',
+		address1: '',
+		state: '',
+		academicHead: '',
+		academiHeadEmailId: '',
+		academiHeadPhoneNo: '',
+		administratorHead: '',
+		administratorHeadEmailId: '',
+		administratorHeadPhnNo: '',
+		boardLineNo: '',
+		instituteLocation: '',
+		instituteWebsite: '',
+		AffiToInstitute: '',
+		AffiToInstituteType: '',
+		approvedBy: '',
+		regulatoryBody: '',
+
+		adminName: '',
+		adminEmail: '',
+		adminPhone: ''
+	};
 
 	constructor(private _formBuilder: FormBuilder, 
 		private apiService: ApiService, 
@@ -100,7 +130,7 @@ export class InstituteRegistrationComponent implements OnInit {
 
 		this.instRequestForm = this._formBuilder.group({
 			requesterName: ['', Validators.required],
-			requesterEmail: ['', Validators.required],
+			requesterEmail: ['', Validators.required, Validators.email],
 			requesterPhone: ['', Validators.required],
 
 			instituteType: ['', Validators.required],
@@ -131,7 +161,7 @@ export class InstituteRegistrationComponent implements OnInit {
 	}
 
 	public hasError = (controlName: string, errorName: string) =>{
-        return this.requesterFormGroup.controls[controlName].hasError(errorName);
+        return this.instRequestForm.controls[controlName].hasError(errorName);
     }
   
 	addInst(form: NgForm) {
@@ -190,6 +220,14 @@ export class InstituteRegistrationComponent implements OnInit {
 
 	instituteDetailsSubmit(form: NgForm) {
 		console.log(form);
+	}
+
+	registerInstitute(form: NgForm) {
+		if (form.invalid) {
+			return;
+		}
+
+
 	}
 
 }

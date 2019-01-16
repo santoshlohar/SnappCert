@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../Services/api.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-institute-kyc-details',
@@ -8,35 +11,71 @@ import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class InstituteKycDetailsComponent implements OnInit {
 	kycForm: any = {};
+	instituteId = '';
+	apiUrl;
+	instituteData: {
+		requesterName: '',
+		requesteremailId: '',
+		requesterphoneNo: '',
+		instituteType: '',
+		instituteId: '';
+		instituteName: '',
+		registrationId: '',
+		establishmentDate: '',
+		address1: '',
+		address2: '',
+		state: '',
+		city: '',
+		administratorName: '',
+		administratorEmailId: '',
+		boardLineNumber: '',
+		location: '',
+		website: '',
+		recognizedBy: '',
+		InstAdminName: '',
+		InstAdminEmailId: '',
+		InstAdminPhoneNo: '',
+		kycAgentId: '',
+		kycStatus: ''
+	};
 
 	instituteDetailForm: FormGroup;
-	constructor(private _formBuilder: FormBuilder) { }
+	constructor(private _formBuilder: FormBuilder,
+		private apiService: ApiService,
+		private route: ActivatedRoute) { 
+			this.route.paramMap.subscribe(params => {
+				this.instituteId = params.get('id');
+			})
+		}
 
 	ngOnInit() {
+
+		this.getInstituteData();
 		this.instituteDetailForm = this._formBuilder.group({
-			requesterName: [{value: 'abc', disabled: true}],
-			requesterEmail: [{value: 'abc', disabled: true}],
-			requesterPhn: [{value: 'abc', disabled: true}],
-			instituteType: [{value: 'aaa', disabled: true}],
-			instituteId: ['', Validators.required],
-			instituteName : [{value: 'and', disabled: true}],
-			registrationId: ['', Validators.required],
-			doe: ['', Validators.required],
-			address1: ['', Validators.required],
-			address2: '',
-			state: ['', Validators.required],
-			city: ['', Validators.required],
-			administratorHead: ['', Validators.required],
-			administratorHeadEmail: ['', Validators.required],		
-			boardlineNo: ['', Validators.required],		
-			location: ['', Validators.required],		
-			website: ['', Validators.required],		
-			recogniser: ['', Validators.required],		
-			adminName: ['', Validators.required],		
-			adminEmail: ['', Validators.required],
-			adminPhn: ['', Validators.required],
-			agentName: ['', Validators.required],
-			kycStatus: ['', Validators.required]
+			requesterName: [{value:'', disabled: true}],
+			requesteremailId: new FormControl ({value: '', disabled: true}),
+			requesterphoneNo: [{value: '', disabled: true}],
+			instituteType: [{value: '', disabled: true}],
+			instituteId: [{value: ''}, Validators.required],
+			instituteName : [{value: '', disabled: true}],
+			registrationId: [{value: ''}, Validators.required],
+			establishmentDate: [{value: ''}, Validators.required],
+			address1: [{value: ''}, Validators.required],
+			address2: [{value: ''}],
+			state: [{value: ''}, Validators.required],
+			city: [{value: ''}, Validators.required],
+			administratorName: [{value: ''}, Validators.required],
+			administratorEmailId: [{value: ''}, Validators.required],		
+			boardLineNumber: [{value: ''}, Validators.required],		
+			location: [{value: ''}, Validators.required],		
+			website: [{value: ''}, Validators.required],		
+			recognizedBy: [{value: ''}, Validators.required],		
+			InstAdminName: [{value: ''}, Validators.required],		
+			InstAdminEmailId: [{value: ''}, Validators.required],
+			InstAdminPhoneNo: [{value: ''}, Validators.required],
+			kycAgentId: [{value: ''}, Validators.required],
+			kycStatus: [{value: ''}, Validators.required],
+			kycComments: [{value: ''}, Validators.required]
 		});
 	}
 
@@ -50,6 +89,17 @@ export class InstituteKycDetailsComponent implements OnInit {
 	console.log(this.kycForm);
 	}
 
-
+	getInstituteData() {
+		console.log("Single Institute - " + this.instituteId);
+		this.apiUrl = '/institutes/';
+		this.apiService.get(this.apiUrl + this.instituteId)
+			.pipe(
+				tap((institute: object) => {
+						this.instituteDetailForm.patchValue(institute["body"])
+					})
+			)
+			.subscribe((response)=> {}
+		);								
+	}
 
 }

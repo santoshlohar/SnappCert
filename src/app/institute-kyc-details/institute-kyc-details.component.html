@@ -59,13 +59,13 @@
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Requester Email" 
-						formControlName="requesterEmail"
+						formControlName="requesteremailId"
 						>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Requester Phone" 
-						formControlName="requesterPhn"
+						formControlName="requesterphoneNo"
 						>
 					</mat-form-field>
 				</div>
@@ -98,7 +98,7 @@
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Date Of Establishment" 
-						formControlName="doe"
+						formControlName="establishmentDate"
 						required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
@@ -128,19 +128,19 @@
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Administrator Head" 
-						formControlName="administratorHead"
+						formControlName="administratorName"
 						required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Administrator Head Email ID" 
-						formControlName="administratorHeadEmail"
+						formControlName="administratorEmailId"
 						required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="BoardLine No." 
-						formControlName="boardlineNo"
+						formControlName="boardLineNumber"
 						required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
@@ -158,7 +158,7 @@
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Recogniser" 
-						formControlName="recogniser"
+						formControlName="recognizedBy"
 						required>
 					</mat-form-field>
 				</div>
@@ -167,19 +167,19 @@
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Admin Name" 
-						formControlName="adminName"
+						formControlName="InstAdminName"
 						required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Admin Email" 
-						formControlName="adminEmail"
+						formControlName="InstAdminEmailId"
 						required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Admin Phone Number" 
-						formControlName="adminPhn"
+						formControlName="InstAdminPhoneNo"
 						required>
 					</mat-form-field>
 				</div>
@@ -188,7 +188,7 @@
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="KYC Agent Name" 
-						formControlName="agentName"
+						formControlName="kycAgentId"
 						required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
@@ -201,7 +201,10 @@
 				<div>
 					<p class="h6 mar-top">KYC Agent Comments</p>
 					<mat-form-field class="input-field comment-div">
-						<textarea matInput row="5" placeholder="Leave a comment"></textarea>
+						<textarea matInput 
+						row="5" 
+						placeholder="Leave a comment"
+						formControlName="kycComments" ></textarea>
 					</mat-form-field>
 				</div>
 				<div class="action-btns text-center" >

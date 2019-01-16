@@ -87,3 +87,7 @@ table {
     text-overflow: ellipsis;
     font-size: 13px;
 }
+
+.icons {
+    cursor: pointer;
+}
