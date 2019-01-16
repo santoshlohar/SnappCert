@@ -9,6 +9,7 @@ export class ApiService {
 
 	apiURL: string = 'http://localhost:3000/api/v1';
 	getData;
+	putData;
 
 	constructor(private http: HttpClient) { }
 
@@ -19,5 +20,10 @@ export class ApiService {
 	get(url) {
 		this.getData = this.http.get(this.apiURL + url, { observe: 'response'});
 		return this.getData;		
+	}
+
+	put(url, data) {
+		this.putData = this.http.put(this.apiURL + url, data);
+		return this.putData;
 	}
 }
