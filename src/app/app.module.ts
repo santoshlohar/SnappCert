@@ -47,6 +47,7 @@ import { InsAuthUsersComponent } from './ins-auth-users/ins-auth-users.component
 import { AffInsAuthUsersComponent } from './aff-ins-auth-users/aff-ins-auth-users.component';
 import { AffInsCourseDataComponent } from './aff-ins-course-data/aff-ins-course-data.component';
 import { InsCoursesComponent } from './ins-courses/ins-courses.component';
+import { EditInsDepartmentComponent } from './edit-ins-department/edit-ins-department.component';
 
 @NgModule({
 	declarations: [
@@ -83,7 +84,8 @@ import { InsCoursesComponent } from './ins-courses/ins-courses.component';
 		InsAuthUsersComponent,
 		AffInsAuthUsersComponent,
 		AffInsCourseDataComponent,
-		InsCoursesComponent
+		InsCoursesComponent,
+		EditInsDepartmentComponent
 	],
 	imports: [
 		BrowserModule,

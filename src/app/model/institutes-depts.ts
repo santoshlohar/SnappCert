@@ -4,4 +4,5 @@ export interface InstituteDepts {
     instituteName: string;
     deptId: string;
     deptName: string;
+    _id: string;
 }  

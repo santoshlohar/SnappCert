@@ -39,6 +39,10 @@ export class InstitutesKycComponent implements OnInit {
 	dataSource = new MatTableDataSource<InsKycDetails>(this.institutes);
 	selection = new SelectionModel<InsKycDetails>(true, []);
 
+	instituteTypeFilter = new FormControl();
+
+	filteredValues = {instituteType: ''};
+
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	constructor(private _formBuilder: FormBuilder,
@@ -49,6 +53,13 @@ export class InstitutesKycComponent implements OnInit {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.getInstitutes();
+
+		this.instituteTypeFilter.valueChanges.subscribe((instituteTypeFilterValue) => {
+			this.filteredValues['instituteType'] = instituteTypeFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.dataSource.filterPredicate = this.customFilterPredicate();
 	}
 
 	// get new institutes details from institutesDetails table
@@ -59,7 +70,6 @@ export class InstitutesKycComponent implements OnInit {
 				this.institutes = response.body.elements;
 				for(var i=0;i<this.institutes.length;i++) {
 					if(this.institutes[i].kycStatus == "NEW") {
-						console.log(this.institutes[i]);
 						this.statusNew = true;
 						this.newInstitutes.push(this.institutes[i]);
 						this.dataSource.data = this.newInstitutes;
@@ -93,8 +103,17 @@ export class InstitutesKycComponent implements OnInit {
 
 	applyFilter(filterValue: string, filterType: string) {
 		console.log(filterType);
-		this.dataSource.filter = filterValue.trim().toLowerCase();
-		this.dataSource.filter = filterValue;
+		console.log(this.dataSource.data);
+		// this.dataSource.filter = filterValue.trim().toLowerCase();
+		// this.dataSource.filter = filterValue;
+	}
+
+	customFilterPredicate() {
+		const myFilterPredicate = function(data:InsKycDetails, filter: string): boolean {
+			let searchString = JSON.parse(filter);
+			return data.instituteType.toString().trim().indexOf(searchString.instituteType) !== -1;
+		}
+		return myFilterPredicate;
 	}
 
 	goToInstUpdate(instId) {

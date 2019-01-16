@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ApiService } from '../Services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-ins-dept',
@@ -9,20 +11,45 @@ import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class AddInsDeptComponent implements OnInit {
 
 	insDeptForm: FormGroup;
-	constructor(private _formBuilder: FormBuilder) { }
-  
+	loggedInUser;
+	dept = {
+		Institution_ID: '',
+		department_ID: '',
+		department_Name: ''
+	};
+	url: string;
+
+	constructor(private _formBuilder: FormBuilder,
+				private apiService: ApiService,
+				private router: Router) { }
+
 	ngOnInit() {
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.insDeptForm = this._formBuilder.group({
-			instituteId: ['', Validators.required],
-			departmentId: ['', Validators.required],
-			department: ['', Validators.required],
-			dm1Name: ['', Validators.required],
-			dm1Email: ['', Validators.required],
-			dm1PhnNo: ['', Validators.required],
-			dm2Name: '',
-			dm2Email: '',
-			dm2PhnNo: '',      
+			Institution_ID: ['', Validators.required],
+			department_ID: ['', Validators.required],
+			department_Name: ['', Validators.required]
 		});
+		this.insDeptForm.controls.Institution_ID.setValue(this.loggedInUser.Institution_ID);
+	}
+
+	viewDepartments() {
+		console.log("")
+		this.router.navigate(['/','viewInstituteDepartments']);
+	}
+
+	addDept(deptData: NgForm) {
+		console.log(deptData);
+		this.url = '/department';
+
+		this.dept.Institution_ID = deptData.value.Institution_ID;
+		this.dept.department_ID = deptData.value.department_ID;
+		this.dept.department_Name = deptData.value.department_Name;
+
+		this.apiService.post(this.url,this.dept)
+			.subscribe((response) => {
+				this.viewDepartments();
+			});
 	}
 
 }

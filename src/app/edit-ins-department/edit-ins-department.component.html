@@ -6,9 +6,9 @@
 	</div>
 	<div class="addInst-wrapper">
 		<div class="example-container" linear>
-			<form [formGroup]="insDeptForm" #deptForm="ngForm" (ngSubmit)="addDept(deptForm)">
+			<form [formGroup]="insEditDeptForm" #deptEditForm="ngForm" (ngSubmit)="addDept(deptEditForm)">
 				<div>
-					<p class="h6 mar-top">Add Institute Department</p>
+					<p class="h6 mar-top">Update Institute Department</p>
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Institute ID" 

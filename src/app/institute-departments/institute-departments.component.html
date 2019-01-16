@@ -13,29 +13,31 @@
 		</div>
 		<div>
 			<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-				<ng-container matColumnDef="position">
+				<!-- <ng-container matColumnDef="position">
 					<mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
 					<mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-				</ng-container>
+				</ng-container> -->
 				
 				<ng-container matColumnDef="instituteId">
 					<mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.instituteId}} </mat-cell>
-				</ng-container>
-
-				<ng-container matColumnDef="instituteName">
-					<mat-header-cell *matHeaderCellDef> Institute Name </mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.instituteName}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.Institution_ID}} </mat-cell>
 				</ng-container>
 				
 				<ng-container matColumnDef="deptId">
 					<mat-header-cell *matHeaderCellDef> Department ID  </mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.deptId}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.department_ID}} </mat-cell>
 				</ng-container>
 
 				<ng-container matColumnDef="deptName">
 					<mat-header-cell *matHeaderCellDef> Department Name </mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.deptName}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.department_Name}} </mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="_id">
+					<mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+					<mat-cell *matCellDef="let row"> 
+						<mat-icon class="update icons" (click)="editDepartment(row._id)">edit</mat-icon>
+					</mat-cell>
 				</ng-container>
 
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

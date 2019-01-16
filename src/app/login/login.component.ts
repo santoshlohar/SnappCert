@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 			.subscribe((response: any) => {
 				this.userData = response;
 				this.type = this.userData.UserType;
-				localStorage.setItem('userType', this.type);
+				localStorage.setItem('user', JSON.stringify(this.userData));
 
 				if( this.type == 'KYC_AGENT' ) {
 					this.router.navigate(['/','institutesKyc']);
