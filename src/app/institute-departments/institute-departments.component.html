@@ -33,6 +33,11 @@
 					<mat-cell *matCellDef="let element"> {{element.department_Name}} </mat-cell>
 				</ng-container>
 
+				<ng-container matColumnDef="status">
+					<mat-header-cell *matHeaderCellDef> Department Status </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+				</ng-container>
+
 				<ng-container matColumnDef="_id">
 					<mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
 					<mat-cell *matCellDef="let row"> 

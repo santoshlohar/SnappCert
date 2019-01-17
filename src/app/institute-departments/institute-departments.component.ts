@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 
 export class InstituteDepartmentsComponent implements OnInit {
 
-	displayedColumns = ['instituteId', 'deptId', 'deptName', '_id'];
+	displayedColumns = ['instituteId', 'deptId', 'deptName', 'status' , '_id'];
 	url: string;
 	Departments: InstituteDepts[] = [];
 	dataSource = new MatTableDataSource<InstituteDepts>(this.Departments);
@@ -41,7 +41,7 @@ export class InstituteDepartmentsComponent implements OnInit {
 		this.url = '/departments';
 		this.apiService.get(this.url)
 			.subscribe((response) => {
-				console.log(response.body);
+				console.log(response);
 				this.Departments = response;
 				this.dataSource.data = this.Departments;
 			});
