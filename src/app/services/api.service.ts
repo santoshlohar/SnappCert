@@ -18,7 +18,7 @@ export class ApiService {
 	}
 
 	get(url) {
-		this.getData = this.http.get(this.apiURL + url, { observe: 'response'});
+		this.getData = this.http.get(this.apiURL + url);
 		return this.getData;		
 	}
 

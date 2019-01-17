@@ -42,7 +42,7 @@ export class InstituteDepartmentsComponent implements OnInit {
 		this.apiService.get(this.url)
 			.subscribe((response) => {
 				console.log(response.body);
-				this.Departments = response.body;
+				this.Departments = response;
 				this.dataSource.data = this.Departments;
 			});
 	}

@@ -98,7 +98,9 @@ export class InstituteKycDetailsComponent implements OnInit {
 						this.instituteDetailForm.patchValue(institute["body"])
 					})
 			)
-			.subscribe((response)=> {}
+			.subscribe((response)=> {
+				console.log(response);
+			}
 		);								
 	}
 

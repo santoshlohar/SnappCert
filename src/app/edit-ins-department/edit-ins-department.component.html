@@ -6,7 +6,7 @@
 	</div>
 	<div class="addInst-wrapper">
 		<div class="example-container" linear>
-			<form [formGroup]="insEditDeptForm" #deptEditForm="ngForm" (ngSubmit)="addDept(deptEditForm)">
+			<form [formGroup]="insEditDeptForm" #deptEditForm="ngForm" (ngSubmit)="updateDept(deptEditForm)">
 				<div>
 					<p class="h6 mar-top">Update Institute Department</p>
 					<mat-form-field class="input-field">
@@ -23,16 +23,18 @@
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput 
-						placeholder="Department" 
+						placeholder="Department Name" 
 						formControlName="department_Name"
 						required>
 					</mat-form-field>
 				</div>
 				<div class="action-btns text-center">
-					<button mat-raised-button class="action-btn">Save</button>
+					<button mat-raised-button class="action-btn" type="submit">Save</button>
 					<button mat-raised-button class="action-btn">Cancel</button>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+
+<router-outlet></router-outlet>
