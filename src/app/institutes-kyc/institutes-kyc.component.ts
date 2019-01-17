@@ -40,8 +40,24 @@ export class InstitutesKycComponent implements OnInit {
 	selection = new SelectionModel<InsKycDetails>(true, []);
 
 	instituteTypeFilter = new FormControl();
+	instituteIdFilter = new FormControl();
+	instituteNameFilter = new FormControl();
+	locationFilter = new FormControl();
+	stateFilter = new FormControl();
+	statusFilter = new FormControl();
+	kycAgentFilter = new FormControl();
+	academicHeadFilter = new FormControl();
 
-	filteredValues = {instituteType: ''};
+	filteredValues = {
+		instituteType: '',
+		instituteId: '',
+		instituteName: '',
+		location: '',
+		state: '', 
+		kycStatus:'',
+		kycAgentId: '',
+		academicHeadName: ''
+	};
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -53,13 +69,8 @@ export class InstitutesKycComponent implements OnInit {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.getInstitutes();
-
-		this.instituteTypeFilter.valueChanges.subscribe((instituteTypeFilterValue) => {
-			this.filteredValues['instituteType'] = instituteTypeFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
-
-		this.dataSource.filterPredicate = this.customFilterPredicate();
+		this.filterByColumn();
+		
 	}
 
 	// get new institutes details from institutesDetails table
@@ -108,10 +119,61 @@ export class InstitutesKycComponent implements OnInit {
 		// this.dataSource.filter = filterValue;
 	}
 
+	filterByColumn() {
+		this.instituteTypeFilter.valueChanges.subscribe((instituteTypeFilterValue) => {
+			this.filteredValues['instituteType'] = instituteTypeFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
+			this.filteredValues['instituteId'] = instituteIdFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.instituteNameFilter.valueChanges.subscribe((instituteNameFilterValue) => {
+			this.filteredValues['instituteName'] = instituteNameFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.locationFilter.valueChanges.subscribe((locationFilterValue) => {
+			this.filteredValues['location'] = locationFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.stateFilter.valueChanges.subscribe((stateFilterValue) => {
+			this.filteredValues['state'] = stateFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.statusFilter.valueChanges.subscribe((statusFilterValue) => {
+			this.filteredValues['kycStatus'] = statusFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.kycAgentFilter.valueChanges.subscribe((kycAgentFilterValue) => {
+			this.filteredValues['kycAgentId'] = kycAgentFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.academicHeadFilter.valueChanges.subscribe((academicHeadFilterValue) => {
+			this.filteredValues['academicHeadName'] = academicHeadFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.dataSource.filterPredicate = this.customFilterPredicate();
+	}
+
 	customFilterPredicate() {
 		const myFilterPredicate = function(data:InsKycDetails, filter: string): boolean {
 			let searchString = JSON.parse(filter);
-			return data.instituteType.toString().trim().indexOf(searchString.instituteType) !== -1;
+			return data.instituteType.toString().trim().toLowerCase().indexOf(searchString.instituteType) !== -1
+			&& data.instituteId.toString().trim().toLowerCase().indexOf(searchString.instituteId) !== -1
+			&& data.instituteName.toString().trim().toLowerCase().indexOf(searchString.instituteName) !== -1
+			&& data.location.toString().trim().toLowerCase().indexOf(searchString.location) !== -1
+			&& data.state.toString().trim().toLowerCase().indexOf(searchString.state) !== -1
+			&& data.kycStatus.toString().trim().toLowerCase().indexOf(searchString.kycStatus) !== -1
+			&& data.kycAgentId.toString().trim().toLowerCase().indexOf(searchString.kycAgentId) !== -1
+			&& data.academicHeadName.toString().trim().toLowerCase().indexOf(searchString.academicHeadName) !== -1;
 		}
 		return myFilterPredicate;
 	}

@@ -8,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
 	
 	public sidebar: any;
+	loggedInUser;
 	userType: string;
 	constructor() { }
 
 	ngOnInit() {
-		this.userType = localStorage.getItem('userType');
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.userType = this.loggedInUser.UserType;
+		console.log(this.loggedInUser);
 	}
 
 	sidebarToggle(e) {

@@ -54,15 +54,6 @@ export class InstituteDepartmentsComponent implements OnInit {
 
 }
 
-
-@Component({
-	selector: 'edit-department',
-	templateUrl: 'edit-department.html',
-  })
-  export class EditDepartment {
-	constructor() {}
-  }
-
 // const ELEMENT_DATA: InstituteDepts[] = [
 // 	{position: 1, instituteId: 'Hydrogen', instituteName: 'fhsdf', deptId: 'abc', deptName: 'H'},
 // 	{position: 2, instituteId: 'Hydrogen', instituteName: 'fhsdf', deptId: 'abc', deptName: 'H'},
