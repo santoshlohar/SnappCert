@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ApiService } from '../Services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-affliated-institute',
@@ -8,40 +10,57 @@ import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 
 export class AddAffliatedInstituteComponent implements OnInit {
-  addInstForm: any = {};
-  affliatedInsForm: FormGroup;
-  constructor(private _formBuilder: FormBuilder) { }
+	affInst: any = {
+		Institution_ID: '',
+		department_ID: '',
+		AfflInstitution_ID: '',
+		afflInstitute_Name: '',
+		afflInstitute_loc: ''
+	};
+	url;
+	loggedInUser;
+	affliatedInsForm: FormGroup;
+	constructor(private _formBuilder: FormBuilder,
+				private apiService: ApiService,
+				private router: Router) { }
 
-  ngOnInit() {
-    this.affliatedInsForm = this._formBuilder.group({
-      instituteId: ['', Validators.required],
+	ngOnInit() {
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.affliatedInsForm = this._formBuilder.group({
+			instituteId: ['', Validators.required],
+			departmentId: ['', Validators.required],
 			affInstituteId: ['', Validators.required],
 			affInstituteName: ['', Validators.required],
-			affInstituteLoc: ['', Validators.required],
-      departmentId: ['', Validators.required],
-      dm1Name: ['', Validators.required],
-      dm1Email: ['', Validators.required],
-      dm1PhnNo: ['', Validators.required],
-      dm2Name: '',
-      dm2Email: '',
-      dm2Phone: '',      
+			affInstituteLoc: ['', Validators.required]
 		});
-  }
+		this.affliatedInsForm.controls.instituteId.setValue(this.loggedInUser.Institution_ID);
+	}
 
-  addInst(form: NgForm) {
-    this.addInstForm.addInstFormAffliatedInstituteId = form.value.addInstFormAffliatedInstituteId;
-    this.addInstForm.addInstFormAffliatedInstituteName = form.value.addInstFormAffliatedInstituteName;
-    this.addInstForm.addInstFormAffliatedInstituteId = form.value.addInstFormAffliatedInstituteId;
-    this.addInstForm.addInstFormTeamScore = form.value.addInstFormTeamScore;
-    this.addInstForm.addInstFormCertificate = form.value.addInstFormCertificate;
-    this.addInstForm.addInstFormDataAdmin = form.value.addInstFormDataAdmin;
-    this.addInstForm.addInstFormReviewer1 = form.value.addInstFormReviewer1;
-    this.addInstForm.addInstFormReviewer2 = form.value.addInstFormReviewer2;
-    this.addInstForm.addInstFormReviewer3 = form.value.addInstFormReviewer3;
-    this.addInstForm.addInstFormApprover1 = form.value.addInstFormApprover1;
-    this.addInstForm.addInstFormApprover2 = form.value.addInstFormApprover2;
-    this.addInstForm.addInstFormApprover3 = form.value.addInstFormApprover3;
-    console.log(this.addInstForm);
-  }
+	addAffInst(affInstData: NgForm) {
+		console.log(affInstData);
+		if(affInstData.invalid) {
+			return;
+		} 
+		this.url = '/afflInstitute';
+
+		this.affInst.Institution_ID = affInstData.value.instituteId;
+		this.affInst.department_ID = affInstData.value.departmentId;
+		this.affInst.AfflInstitution_ID = affInstData.value.affInstituteId;
+		this.affInst.afflInstitute_Name = affInstData.value.affInstituteName;
+		this.affInst.afflInstitute_loc = affInstData.value.affInstituteLoc;
+
+		console.log(this.affInst);
+		this.viewAffInstitutes();
+		this.apiService.post(this.url, this.affInst)
+			.subscribe((response) => {
+				console.log(response);
+				this.viewAffInstitutes();
+			});
+	}
+
+	viewAffInstitutes() {
+		console.log("View Aff Inst");
+		this.router.navigate(['/affliatedInstitutes']);
+	}
 
 }

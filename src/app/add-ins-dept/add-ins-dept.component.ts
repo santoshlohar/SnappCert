@@ -34,12 +34,15 @@ export class AddInsDeptComponent implements OnInit {
 	}
 
 	viewDepartments() {
-		console.log("")
 		this.router.navigate(['/','viewInstituteDepartments']);
 	}
 
 	addDept(deptData: NgForm) {
 		console.log(deptData);
+
+		if(deptData.invalid) {
+			return;
+		}
 		this.url = '/department';
 
 		this.dept.Institution_ID = deptData.value.Institution_ID;

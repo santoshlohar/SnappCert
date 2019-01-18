@@ -13,51 +13,43 @@
         </div>
         <div>
             <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                <ng-container matColumnDef="position">
+                <!-- <ng-container matColumnDef="position">
                     <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-                </ng-container>
+                </ng-container> -->
                 
                 <ng-container matColumnDef="instituteId">
                     <mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.instituteId}} </mat-cell>
-                </ng-container>
-                
-                <ng-container matColumnDef="affiliatedInstitute">
-                    <mat-header-cell *matHeaderCellDef> Aff. Institute  </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.affiliatedInstitute}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="affInsName">
-                    <mat-header-cell *matHeaderCellDef> Aff. Institute Name </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.affInsName}} </mat-cell>
-                </ng-container>
-                
-                <ng-container matColumnDef="affInsLocation">
-                    <mat-header-cell *matHeaderCellDef> Aff. Institute Location </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.affInsLocation}} </mat-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Institution_ID}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="deptId">
                     <mat-header-cell *matHeaderCellDef> Department ID </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.deptId}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="dm1Name">
-                    <mat-header-cell *matHeaderCellDef> Data Manager 1 Name </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.dm1Name}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="dm1Email">
-                    <mat-header-cell *matHeaderCellDef> Data Manager 1 Email </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.dm1Email}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="dm1Phn">
-                    <mat-header-cell *matHeaderCellDef> Data Manager 1 Phone </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.dm1Phn}} </mat-cell>
+                    <mat-cell *matCellDef="let element"> {{element.department_ID}} </mat-cell>
                 </ng-container>
                 
+                <ng-container matColumnDef="affInstId">
+                    <mat-header-cell *matHeaderCellDef> Aff. Institute ID  </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.AfflInstitution_ID}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="affInsName">
+                    <mat-header-cell *matHeaderCellDef> Aff. Institute Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.afflInstitute_Name}} </mat-cell>
+                </ng-container>
+                
+                <ng-container matColumnDef="affInsLocation">
+                    <mat-header-cell *matHeaderCellDef> Aff. Institute Location </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.afflInstitute_loc}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> 
+                        <mat-icon class="update icons" (click)="goToUpdateDept(row._id)">edit</mat-icon>
+                    </mat-cell>
+                </ng-container>
+
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </mat-table>
