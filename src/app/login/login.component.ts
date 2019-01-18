@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import 'rxjs';
 import { ApiService} from '../Services/api.service';
 import { Router } from '@angular/router';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,9 @@ export class LoginComponent implements OnInit {
 	type: string;
 	@ViewChild('login') login;
 
-	constructor(private apiService: ApiService, private router: Router) { }
+	constructor(private apiService: ApiService, 
+				private router: Router,
+				private globals: Globals) { }
 
 	ngOnInit() {
 
@@ -34,6 +37,7 @@ export class LoginComponent implements OnInit {
 				this.userData = response;
 				this.type = this.userData.UserType;
 				localStorage.setItem('user', JSON.stringify(this.userData));
+				this.globals.isUserLoggedIn = true;
 
 				if( this.type == 'KYC_AGENT' ) {
 					this.router.navigate(['/','institutesKyc']);

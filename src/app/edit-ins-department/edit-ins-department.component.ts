@@ -19,7 +19,8 @@ export class EditInsDepartmentComponent implements OnInit {
 		_id: '',
 		Institution_ID: '',
 		department_ID: '',
-		department_Name: ''
+		department_Name: '',
+		status: ''
 	}; 
   
 	constructor(private _formBuilder: FormBuilder,
@@ -31,7 +32,8 @@ export class EditInsDepartmentComponent implements OnInit {
 		this.insEditDeptForm =  this._formBuilder.group({
 			Institution_ID: [{value: ''}, Validators.required],
 			department_ID: [{value: ''}, Validators.required],
-			department_Name: [{value: ''}, Validators.required] 
+			department_Name: [{value: ''}, Validators.required],
+			status: [{value: ''}, Validators.required]
 		});
 		this.deptID = this.route.snapshot.paramMap.get("deptId")
 		this.getDeptDetails();
@@ -60,10 +62,10 @@ export class EditInsDepartmentComponent implements OnInit {
 		this.updatedDept.Institution_ID = deptData.value.Institution_ID;
 		this.updatedDept.department_ID = deptData.value.department_ID;
 		this.updatedDept.department_Name = deptData.value.department_Name;
+		this.updatedDept.status = deptData.value.status;
 
 		this.apiService.put(this.apiUrl+this.deptID, this.updatedDept)
 			.subscribe((response) => {
-				console.log(response);
 				this.router.navigate(['/viewInstituteDepartments']);
 			});
 	}

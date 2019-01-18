@@ -23,4 +23,13 @@ export class HeaderComponent implements OnInit {
 		}
 	}
 
+	logout() {
+		console.log("logOut")
+		console.log(this.globals.isUserLoggedIn);
+		localStorage.removeItem('user');
+		this.globals.isUserLoggedIn = false;
+		this.globals.isSidebar = false;
+		this.router.navigate(['/']);
+	}
+
 }
