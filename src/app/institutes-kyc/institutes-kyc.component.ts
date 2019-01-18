@@ -78,7 +78,7 @@ export class InstitutesKycComponent implements OnInit {
 		var getInsUrl = '/institutes';
 		this.apiService.get(getInsUrl)
 			.subscribe((response) => {
-				this.institutes = response.body.elements;
+				this.institutes = response.elements;
 				for(var i=0;i<this.institutes.length;i++) {
 					if(this.institutes[i].kycStatus == "NEW") {
 						this.statusNew = true;
