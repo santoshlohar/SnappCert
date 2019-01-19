@@ -44,3 +44,7 @@ table {
 .aff-btn {
     padding: 15px 2px;
 }
+
+.icons {
+    cursor: pointer;
+}

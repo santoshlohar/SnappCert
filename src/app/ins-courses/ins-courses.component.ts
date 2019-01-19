@@ -10,6 +10,9 @@ import { InstitutesCourse } from '../model/institutes-courses';
 	styleUrls: ['./ins-courses.component.css']
 })
 export class InsCoursesComponent implements OnInit {
+
+	url;
+	courses: InstitutesCourse[] = [];
 	displayedColumns = [
 		'instituteId',
 		'deptId', 
@@ -21,10 +24,11 @@ export class InsCoursesComponent implements OnInit {
 		'durationUnit',
 		'termType',
 		'noOfTerms',
+		'status',
 		'_id'
 	];
 
-	dataSource = new MatTableDataSource<InstitutesCourse>(ELEMENT_DATA);
+	dataSource = new MatTableDataSource<InstitutesCourse>(this.courses);
 	selection = new SelectionModel<InstitutesCourse>(true, []);
 
 	@ViewChild(MatSort) sort: MatSort;
@@ -32,11 +36,27 @@ export class InsCoursesComponent implements OnInit {
 	constructor(private apiService: ApiService) { }
 
 	ngOnInit() {
+		this.getInsCourses();
+	}
+
+	getInsCourses() {
+		this.url = '/coursedata';
+
+		this.apiService.get(this.url)
+			.subscribe((response) => {
+				console.log(response);
+				this.courses = response;
+				this.dataSource.data = this.courses;
+			});
+	}
+
+	editCourse(id) {
+		console.log(id);
 	}
 
 };
 
 const ELEMENT_DATA: InstitutesCourse[] = [
-	{instituteId: '1', deptId: '1',courseType: 'semester',courseId:'001',courseName:'B.tech',specialization:'dhdfj',courseDuration:'4years',durationUnit:'4', termType:'semester',noOfTerms: 8,_id: 1 }
+	{instituteId: '1', deptId: '1',courseType: 'semester',courseId:'001',courseName:'B.tech',specialization:'dhdfj',courseDuration:'4years',durationUnit:'4', termType:'semester', noOfTerms: 8, _id: 1 }
 ]
 
