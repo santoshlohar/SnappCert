@@ -9,5 +9,6 @@ export interface InstituteCourse {
     durationUnit: string;
     termType: string;
     noOfTerms: number;
+    status: string;
     _id: number;
 }
