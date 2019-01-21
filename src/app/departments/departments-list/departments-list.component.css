@@ -1,0 +1,83 @@
+.container {
+    padding: 40px 1px;
+    max-width: 1225px;
+}
+
+.affIns-container {
+    height: 550px;
+    overflow: auto;
+    padding: 12px 24px;
+}
+
+.filter-div {
+    float: right;
+}
+
+.add-btn {
+    color: #fff;
+    background-color: darkgreen;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+table {
+    width: 100%;
+}
+
+.outer-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.inner-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.aff-btn {
+    padding: 15px 2px;
+}
+
+.approve {
+    color: green;
+}
+
+.reject {
+    color: red;
+}
+
+.hold {
+    color: #ffca00;
+}
+
+.update {
+    color: #1073f3;
+}
+
+.cell-head {
+    
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+} 
+
+.mat-header-cell {
+    display: block;
+    padding: 12px 16px;
+}
+
+.mat-cell {
+    width: 50px;
+    padding: 6px 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+}
+
+.icons {
+    cursor: pointer;
+}

@@ -1,0 +1,12 @@
+<mat-toolbar class="header-bar">
+	<mat-toolbar-row>
+		<span class="app-heading">Snapper Certificate</span>
+		<span class="spacer"></span>
+		<div class="float-right">
+			<a mat-button [routerLink]="['/login']" *ngIf="!loggedInUser">Login</a>
+			<a mat-button (click)="logout()" *ngIf="loggedInUser">Logout</a>
+			<a mat-button [routerLink]="['/registration']">Institute Registration</a>
+		</div>
+	</mat-toolbar-row>
+</mat-toolbar>
+

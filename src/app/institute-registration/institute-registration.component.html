@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<div class="container">
+	<div class="panel panel-primary headeing">
+		<div class="panel panel-heading">
+			<h3 class="panel-title">Register Institute</h3>
+		</div>
+	</div>
+	<div class="addInst-wrapper">
+		<div class="example-container">
+			<form [formGroup]="instRequestForm" #intReq="ngForm" (ngSubmit)="registerInstitute(intReq)">
+				<div>
+                    <p class="h6 mar-top">Requester</p>
+                    <mat-form-field class="input-field">
+                        <input matInput 
+                        type="text"
+                        placeholder="Requester Name"
+                        formControlName="requesterName"
+                        required>
+                        <mat-error *ngIf="hasError('requesterName', 'required')">Requester Name is required!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput 
+                        type="email"
+                        placeholder="Requester Email"
+                        formControlName="requesterEmail"
+                        required
+                        email>
+                        <mat-error *ngIf="hasError('requesterEmail', 'required')">Requester Name is required!</mat-error>
+                        <mat-error *ngIf="hasError('requesterEmail', 'email')">Please enter valid email!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput 
+                        type="number"
+                        placeholder="Requester Phone"
+                        formControlName="requesterPhone"
+                        required>
+                        <mat-error *ngIf="hasError('requesterPhone', 'required')">Phone Number is required!</mat-error>
+                    </mat-form-field>
+                </div>
+			</form>
+		</div>
+	</div>
+</div>

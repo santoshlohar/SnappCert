@@ -1,0 +1,11 @@
+.main-body {
+    display: flex;
+}
+
+.page-sidebar {
+    width: 285px;
+}
+
+.page-content {
+    flex: 1;
+}
