@@ -23,6 +23,8 @@ import { DepartmentsListComponent } from './departments/departments-list/departm
 import { DepartmentAddComponent } from './departments/department-add/department-add.component';
 import { AffInstituteAddComponent } from './affInstitutes/aff-institute-add/aff-institute-add.component';
 import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/aff-institute-list.component';
+import { CourseAddComponent } from './courses/course-add/course-add.component';
+import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +39,9 @@ import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/af
         DepartmentsListComponent,
         DepartmentAddComponent,
         AffInstituteAddComponent,
-        AffInstituteListComponent
+        AffInstituteListComponent,
+        CourseAddComponent,
+        CoursesListComponent
     ],
     imports: [
         BrowserModule,

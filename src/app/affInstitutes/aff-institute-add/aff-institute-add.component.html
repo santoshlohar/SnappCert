@@ -1,3 +1,50 @@
-<p>
-  aff-institute-add works!
-</p>
+<div class="container">
+    <div class="panel panel-primary headeing">
+        <div class="panel panel-heading">
+            <h3 class="panel-title">Add Affliated Institute</h3>
+        </div>
+    </div>
+    <div class="addInst-wrapper">
+        <div class="example-container" linear>
+            <form [formGroup]="affliatedInsForm" #affInsForm="ngForm" (ngSubmit)="addAffInst(affInsForm)">
+                <div>
+                    <p class="h6 mar-top">Affiliated Institute Details</p>
+                    <mat-form-field class="input-field">
+                        <input matInput 
+                        placeholder="Institute ID" 
+                        formControlName="instituteId"
+                        required>
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput 
+                        placeholder="Department ID" 
+                        formControlName="departmentId"
+                        required>
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput 
+                        placeholder="Affiliated Institute ID"
+                        formControlName="affInstituteId" 
+                        required>
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput 
+                        placeholder="Affiliated Institute Name"
+                        formControlName="affInstituteName" 
+                        required>
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput 
+                        placeholder="Affiliated Institute Location"
+                        formControlName="affInstituteLoc" 
+                        required>
+                    </mat-form-field>
+                </div>
+                <div class="action-btns text-center">
+                    <button mat-raised-button class="action-btn">Save</button>
+                    <button mat-raised-button class="action-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

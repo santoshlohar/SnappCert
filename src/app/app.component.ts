@@ -8,8 +8,12 @@ import { Globals } from './globals';
 })
 export class AppComponent {
   title = 'snapperCertificate';
-
+  userLogin;
   constructor( private globals: Globals) {
+  }
+
+  ngOnInit() {
+    this.userLogin = this.globals.isUserLoggedIn;
   }
 
 }
