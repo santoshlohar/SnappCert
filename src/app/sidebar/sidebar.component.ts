@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+	public sidebar: any;
+	loggedInUser;
+	userType: string;
+	constructor() { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.userType = this.loggedInUser.UserType;
+		console.log(this.userType);
+	}
 
+	sidebarToggle(e) {
+		console.log(e)
+	}
 }

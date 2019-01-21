@@ -12,7 +12,9 @@ export class HeaderComponent implements OnInit {
 	constructor(public globals: Globals) { }
 
 	ngOnInit() {
+		
 		this.loggedInUser = this.globals.isUserLoggedIn;
+		console.log(this.loggedInUser)
 	}
 
 	

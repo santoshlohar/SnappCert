@@ -20,6 +20,9 @@ import { InstituteRegistrationComponent } from './institute-registration/institu
 import { InstitutesListComponent } from './institutes/institutes-list/institutes-list.component';
 import { InstituteUpdateComponent } from './institutes/institute-update/institute-update.component';
 import { DepartmentsListComponent } from './departments/departments-list/departments-list.component';
+import { DepartmentAddComponent } from './departments/department-add/department-add.component';
+import { AffInstituteAddComponent } from './affInstitutes/aff-institute-add/aff-institute-add.component';
+import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/aff-institute-list.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +34,10 @@ import { DepartmentsListComponent } from './departments/departments-list/departm
         InstituteRegistrationComponent,
         InstitutesListComponent,
         InstituteUpdateComponent,
-        DepartmentsListComponent
+        DepartmentsListComponent,
+        DepartmentAddComponent,
+        AffInstituteAddComponent,
+        AffInstituteListComponent
     ],
     imports: [
         BrowserModule,

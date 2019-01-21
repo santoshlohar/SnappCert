@@ -1,3 +1,46 @@
-<p>
-  sidebar works!
-</p>
+<mat-sidenav-container class="sidebar-container">
+	<mat-sidenav-content>
+		<div *ngIf='userType == "KYC_AGENT"'>
+			<div class="innerbar-content">
+				<a class="link-btn" routerLink="/departments">Dashboard</a>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content">
+				<a class="link-btn" routerLink="/institutes">Institutes</a>
+			</div>
+			<mat-divider></mat-divider>
+			</div>
+			<div *ngIf='userType == "INST_ADMIN"'>
+			<div class="innerbar-content">
+				<a class="link-btn" routerLink="/departments">Dashboard</a>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content">
+				<a class="link-btn" routerLink="/departments">Institute Departments</a>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content">
+				<a class="link-btn" routerLink="/affliatedInstitutes">Affiliated Institutes</a>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content">
+				<a class="link-btn" routerLink="/viewInstituteAuthUsers">Institutes Authorized Users</a>
+			</div>
+			<mat-divider></mat-divider>
+		</div>
+		<div *ngIf='userType == "INS_DATA_MANAGER"'>
+			<div class="innerbar-content">
+				<a class="link-btn" routerLink="/viewInstituteDepartments">Dashboard</a>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content">
+				<a class="link-btn" routerLink="/viewInstituteAuthUsers">Institute Authorized Users</a>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content">
+				<a class="link-btn" routerLink="/viewInstituteCourse">Course Data</a>
+			</div>
+			<mat-divider></mat-divider>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>
