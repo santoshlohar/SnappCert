@@ -14,8 +14,8 @@ import { CoursesListComponent } from './courses/courses-list/courses-list.compon
 import { CourseAddComponent } from './courses/course-add/course-add.component';
 
 const routes: Routes =  [
-    { path: '', component: HomeComponent},
-    { path: 'login', component: LoginComponent},
+    // { path: '', component: LoginComponent},
+    { path: '', component: LoginComponent},
     { path: 'registration', component: InstituteRegistrationComponent},
     { path: 'institutes', component: InstitutesListComponent},
     { path: 'instituteUpdate/:instId', component: InstituteUpdateComponent },

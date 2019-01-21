@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="main-body">
-    <div class="page-sidebar" *ngIf="userLogin">
+    <div class="page-sidebar" *ngIf="globals.isUserLoggedIn">
         <app-sidebar></app-sidebar>
     </div>
     <div class="page-content">

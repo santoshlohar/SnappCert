@@ -9,8 +9,8 @@
 				<a class="link-btn" routerLink="/institutes">Institutes</a>
 			</div>
 			<mat-divider></mat-divider>
-			</div>
-			<div *ngIf='userType == "INST_ADMIN"'>
+		</div>
+		<div *ngIf='userType == "INST_ADMIN"'>
 			<div class="innerbar-content">
 				<a class="link-btn" routerLink="/departments">Dashboard</a>
 			</div>
@@ -30,15 +30,15 @@
 		</div>
 		<div *ngIf='userType == "INS_DATA_MANAGER"'>
 			<div class="innerbar-content">
-				<a class="link-btn" routerLink="/viewInstituteDepartments">Dashboard</a>
+				<a class="link-btn" routerLink="/">Dashboard</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<a class="link-btn" routerLink="/viewInstituteAuthUsers">Institute Authorized Users</a>
+				<a class="link-btn" routerLink="/">Institute Authorized Users</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<a class="link-btn" routerLink="/viewInstituteCourse">Course Data</a>
+				<a class="link-btn" routerLink="/courses">Course Data</a>
 			</div>
 			<mat-divider></mat-divider>
 		</div>

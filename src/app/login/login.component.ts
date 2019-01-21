@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 		this.apiService.post(this.url, this.loginData)
 			.subscribe((response: any) => {
 				this.userData = response;
-				this.type = this.userData.UserType;
+				this.type = this.userData.UserType;	
 				localStorage.setItem('user', JSON.stringify(this.userData));
 				this.globals.isUserLoggedIn = true;
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
 				} else if (this.type == 'INST_ADMIN') {
 					this.router.navigate(['/','departments']);	
 				} else if (this.type == 'INS_DATA_MANAGER') {
-					this.router.navigate(['/','viewInstituteAuthUsers']);	
+					this.router.navigate(['/','courses']);	
 				}
 			});
 	}
