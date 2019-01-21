@@ -62,8 +62,11 @@ html body {
 .flex-center {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-content: center;
+}
+
+.spacer {
+    flex: 1 1 auto;
 }
 
 .body-block {
@@ -94,13 +97,31 @@ html body {
     text-transform: uppercase;
     display: block;
     margin: 1% 0;
-    font-size: 155px;
+    font-size: 65px;
     font-weight: 700;
     font-family: Roboto;
     color: #fff;
 }
 
 .body-text {
-    font-size: 24px;
+    font-size: 20px;
+    padding: 1px 175px;
 }
 
+.header-block {
+    display: flex;
+} 
+
+.img-wrapper {
+    width: 145px;
+    padding: 0px 19px;
+}
+
+.btn-wrapper {
+    width: 100px;
+    padding: 1px 5px;
+}
+
+.login-btn {
+    border: 1px solid #fff;
+}
