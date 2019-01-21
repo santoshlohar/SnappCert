@@ -12,6 +12,8 @@ import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/af
 import { AffInstituteAddComponent } from './affInstitutes/aff-institute-add/aff-institute-add.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CourseAddComponent } from './courses/course-add/course-add.component';
+import { CerificatesDataListComponent } from './certificates/cerificates-data-list/cerificates-data-list.component';
+import { CerificatesUploadComponent } from './certificates/cerificates-upload/cerificates-upload.component';
 
 const routes: Routes =  [
     // { path: '', component: LoginComponent},
@@ -24,7 +26,9 @@ const routes: Routes =  [
 	{ path: 'affInstitutes', component: AffInstituteListComponent},
 	{ path: 'affInstituteAdd', component: AffInstituteAddComponent},
 	{ path: 'courses', component: CoursesListComponent},
-	{ path: 'courseAdd', component: CourseAddComponent}
+	{ path: 'courseAdd', component: CourseAddComponent},
+	{ path: 'certificates', component: CerificatesDataListComponent},
+	{ path: 'certificateUpload', component: CerificatesUploadComponent}
 
 ];
 

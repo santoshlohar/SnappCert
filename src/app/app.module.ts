@@ -25,6 +25,8 @@ import { AffInstituteAddComponent } from './affInstitutes/aff-institute-add/aff-
 import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/aff-institute-list.component';
 import { CourseAddComponent } from './courses/course-add/course-add.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
+import { CerificatesDataListComponent } from './certificates/cerificates-data-list/cerificates-data-list.component';
+import { CerificatesUploadComponent } from './certificates/cerificates-upload/cerificates-upload.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +43,9 @@ import { CoursesListComponent } from './courses/courses-list/courses-list.compon
         AffInstituteAddComponent,
         AffInstituteListComponent,
         CourseAddComponent,
-        CoursesListComponent
+        CoursesListComponent,
+        CerificatesDataListComponent,
+        CerificatesUploadComponent
     ],
     imports: [
         BrowserModule,
