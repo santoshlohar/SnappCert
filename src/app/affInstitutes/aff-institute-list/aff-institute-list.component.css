@@ -1,0 +1,41 @@
+.container {
+    padding: 40px 1px;
+    max-width: 1225px;
+}
+
+.affIns-container {
+    height: 550px;
+    overflow: auto;
+    padding: 12px 24px;
+}
+
+.filter-div {
+    float: right;
+}
+
+.add-btn {
+    color: #fff;
+    background-color: darkgreen;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+table {
+    width: 100%;
+}
+
+.outer-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.inner-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.aff-btn {
+    padding: 15px 2px;
+}

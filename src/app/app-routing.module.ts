@@ -9,6 +9,7 @@ import { InstituteUpdateComponent } from './institutes/institute-update/institut
 import { DepartmentsListComponent } from './departments/departments-list/departments-list.component';
 import { DepartmentAddComponent } from './departments/department-add/department-add.component';
 import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/aff-institute-list.component';
+import { AffInstituteAddComponent } from './affInstitutes/aff-institute-add/aff-institute-add.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -18,7 +19,8 @@ const routes: Routes =  [
     { path: 'instituteUpdate/:instId', component: InstituteUpdateComponent },
     { path: 'departments', component: DepartmentsListComponent },
     { path: 'departmentAdd', component: DepartmentAddComponent},
-	{ path: 'affInstitutes', component: AffInstituteListComponent}
+	{ path: 'affInstitutes', component: AffInstituteListComponent},
+	{ path: 'affInstituteAdd', component: AffInstituteAddComponent}
 ];
 
 @NgModule({
