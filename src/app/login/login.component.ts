@@ -47,27 +47,4 @@ export class LoginComponent implements OnInit {
 			})
 	};
 
-	// userLogin(form: NgForm) {
-	// 	this.loginData.emailId = form.value.emailId;
-	// 	this.loginData.password = form.value.password;
-
-	// 	this.url = "/authenticateUser";
-
-	// 	this.apiService.post(this.url, this.loginData)
-	// 		.subscribe((response: any) => {
-	// 			this.userData = response;
-	// 			this.type = this.userData.UserType;	
-	// 			localStorage.setItem('user', JSON.stringify(this.userData));
-	// 			this.globals.isUserLoggedIn = true;
-
-	// 			if( this.type == 'KYC_AGENT' ) {
-	// 				this.router.navigate(['/','institutes']);
-	// 			} else if (this.type == 'INST_ADMIN') {
-	// 				this.router.navigate(['/','departments']);	
-	// 			} else if (this.type == 'INS_DATA_MANAGER') {
-	// 				this.router.navigate(['/','courses']);	
-	// 			}
-	// 		});
-	// }
-
 }

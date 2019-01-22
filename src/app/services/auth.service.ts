@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { tap, map } from 'rxjs/operators';
+import { Globals } from '../globals';
+import { Router } from '@angular/router';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthService {
 
-	constructor(private apiService: ApiService) { }
+	constructor(private apiService: ApiService,
+				public globals: Globals,
+				private router: Router) { }
 
 	login(data) {
 		return this.apiService.post('/authenticateUser', data)
@@ -23,6 +27,8 @@ export class AuthService {
 	}
 
 	logout() {
-		
+		localStorage.removeItem('user');
+		this.globals.isUserLoggedIn = false;
+		this.router.navigate(['/login']);
 	}
 }
