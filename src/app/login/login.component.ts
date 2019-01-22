@@ -4,6 +4,7 @@ import 'rxjs';
 import { ApiService} from '../services/api.service';
 import { Router } from '@angular/router';
 import { Globals } from '../globals';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,26 +16,25 @@ export class LoginComponent implements OnInit {
 	url: string;
 	userData: any;
 	type: string;
-	@ViewChild('login') login;
+	
 
 	constructor(private apiService: ApiService, 
 		private router: Router,
-		public globals: Globals) { }
+		public globals: Globals,
+		private authService: AuthService) { }
 
 	ngOnInit() {
 	}
 
-	userLogin(form: NgForm) {
+	userLogin(form) {
 		this.loginData.emailId = form.value.emailId;
 		this.loginData.password = form.value.password;
-
-		this.url = "/authenticateUser";
-
-		this.apiService.post(this.url, this.loginData)
-			.subscribe((response: any) => {
+		 
+		this.authService.login(this.loginData)
+			.subscribe((response) => {
+				console.log(response);
 				this.userData = response;
-				this.type = this.userData.UserType;	
-				localStorage.setItem('user', JSON.stringify(this.userData));
+	 			this.type = this.userData.UserType;
 				this.globals.isUserLoggedIn = true;
 
 				if( this.type == 'KYC_AGENT' ) {
@@ -44,7 +44,30 @@ export class LoginComponent implements OnInit {
 				} else if (this.type == 'INS_DATA_MANAGER') {
 					this.router.navigate(['/','courses']);	
 				}
-			});
-	}
+			})
+	};
+
+	// userLogin(form: NgForm) {
+	// 	this.loginData.emailId = form.value.emailId;
+	// 	this.loginData.password = form.value.password;
+
+	// 	this.url = "/authenticateUser";
+
+	// 	this.apiService.post(this.url, this.loginData)
+	// 		.subscribe((response: any) => {
+	// 			this.userData = response;
+	// 			this.type = this.userData.UserType;	
+	// 			localStorage.setItem('user', JSON.stringify(this.userData));
+	// 			this.globals.isUserLoggedIn = true;
+
+	// 			if( this.type == 'KYC_AGENT' ) {
+	// 				this.router.navigate(['/','institutes']);
+	// 			} else if (this.type == 'INST_ADMIN') {
+	// 				this.router.navigate(['/','departments']);	
+	// 			} else if (this.type == 'INS_DATA_MANAGER') {
+	// 				this.router.navigate(['/','courses']);	
+	// 			}
+	// 		});
+	// }
 
 }

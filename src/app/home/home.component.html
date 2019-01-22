@@ -7,7 +7,7 @@
             <div class="spacer"></div>
             <div class="login-btn-wrapper">
                 <div class="login-btn">
-                    <span class="btn-text">
+                    <span class="btn-text" (click)="gotoLogin()">
                         <strong>Sign In</strong>
                     </span>
                 </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="reg-btn-wrapper text-center">
                 <div class="reg-btn">
-                    <span><strong>Institute Registration</strong> </span>
+                    <span routerLink="/registration"><strong>Institute Registration</strong> </span>
                 </div>
             </div>
         </div>
@@ -41,3 +41,5 @@
         </div>
     </div>
 </div>
+
+<router-outlet></router-outlet>

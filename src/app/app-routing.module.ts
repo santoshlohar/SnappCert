@@ -16,8 +16,8 @@ import { CerificatesDataListComponent } from './certificates/cerificates-data-li
 import { CerificatesUploadComponent } from './certificates/cerificates-upload/cerificates-upload.component';
 
 const routes: Routes =  [
-    { path: 'home', component: HomeComponent},
-    { path: '', component: LoginComponent},
+    { path: '', component: HomeComponent},
+    { path: 'login', component: LoginComponent},
     { path: 'registration', component: InstituteRegistrationComponent},
     { path: 'institutes', component: InstitutesListComponent},
     { path: 'instituteUpdate/:instId', component: InstituteUpdateComponent },
