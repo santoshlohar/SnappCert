@@ -27,6 +27,7 @@ import { CourseAddComponent } from './courses/course-add/course-add.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CerificatesDataListComponent } from './certificates/cerificates-data-list/cerificates-data-list.component';
 import { CerificatesUploadComponent } from './certificates/cerificates-upload/cerificates-upload.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
     declarations: [
@@ -57,6 +58,7 @@ import { CerificatesUploadComponent } from './certificates/cerificates-upload/ce
 		HttpClientModule
     ],
     providers: [
+        AuthService,
 		ApiService,
 		Globals,
 		{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }

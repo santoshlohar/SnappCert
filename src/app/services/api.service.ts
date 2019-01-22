@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { map, tap, catchError} from "rxjs/operators";
+import { AuthService } from './auth.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,7 +14,10 @@ export class ApiService {
 	getData;
 	putData;
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient,
+				private authService: AuthService) {
+					
+				}
 
 	post(url, data) {
 		//console.log(this.httpOptions);
@@ -22,7 +26,7 @@ export class ApiService {
 
 	get(url) {
 		//console.log(headers)
-		this.getData = this.http.get(this.apiURL + url);
+		this.getData = this.http.get(this.apiURL + url, this.httpOptions);
 		return this.getData;		
 	}
 
@@ -31,20 +35,11 @@ export class ApiService {
 		return this.putData;
 	}
 
-	getAccessToken() {
-		this.user = localStorage.getItem('user');
-		if(this.user.token){
-			var accessToken = this.user.token;
-			return accessToken;
-		}
-		return false;
-	}
-
-	// httpOptions: object = {
-	// 	headers: new HttpHeaders({
-	// 		'Content-Type': 'application/json',
-	// 		'Authorization': this.getAccessToken()
-	// 	})
-	// };
+	httpOptions: object = {
+		headers: new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': this.authService.getAccessToken()
+		})
+	};
 	
 }
