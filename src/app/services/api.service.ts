@@ -20,12 +20,10 @@ export class ApiService {
 				}
 
 	post(url, data) {
-		//console.log(this.httpOptions);
 		return this.http.post(this.apiURL + url, data);
 	}
 
 	get(url) {
-		//console.log(headers)
 		this.getData = this.http.get(this.apiURL + url, this.httpOptions);
 		return this.getData;		
 	}

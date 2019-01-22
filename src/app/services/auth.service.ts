@@ -36,7 +36,6 @@ export class AuthService {
 		this.user = JSON.parse(localStorage.getItem('user'));
 		if(this.user.token){
 			var accessToken = this.user.token;
-			console.log(accessToken);
 			return accessToken;
 		}
 		return false;

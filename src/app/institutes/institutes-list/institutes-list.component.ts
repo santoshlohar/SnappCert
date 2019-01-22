@@ -72,8 +72,6 @@ export class InstitutesListComponent implements OnInit {
 
 	getInstitutes() {
 		var getInsUrl = '/institutes';
-		// var headers = this.apiService.httpOptions;
-		// console.log(headers);
 		this.apiService.get(getInsUrl)
 			.subscribe((response) => {
 				this.institutes = response.elements;
@@ -148,7 +146,6 @@ export class InstitutesListComponent implements OnInit {
 	}
 
 	goToInstUpdate(instId) {
-		console.log("institute ID- "+ instId);
 		this.router.navigate(['instituteUpdate/' + instId]);
 	}
 
