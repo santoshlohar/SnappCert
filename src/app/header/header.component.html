@@ -5,8 +5,7 @@
 		<div class="float-right">
 			<a mat-button [routerLink]="['/login']" *ngIf="!globals.isUserLoggedIn">Login</a>
 			<a mat-button (click)="logout()" *ngIf="globals.isUserLoggedIn">Logout</a>
-			<a mat-button [routerLink]="['/registration']">Institute Registration</a>
+			<a mat-button [routerLink]="['/registration']" hidden>Institute Registration</a>
 		</div>
 	</mat-toolbar-row>
 </mat-toolbar>
-

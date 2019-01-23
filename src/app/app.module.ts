@@ -25,7 +25,7 @@ import { AffInstituteAddComponent } from './affInstitutes/aff-institute-add/aff-
 import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/aff-institute-list.component';
 import { CourseAddComponent } from './courses/course-add/course-add.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
-import { CerificatesDataListComponent } from './certificates/cerificates-data-list/cerificates-data-list.component';
+import { CertificateUploadListComponent } from './certificates/certificate-upload-list/certificate-upload-list.component';
 import { CerificatesUploadComponent } from './certificates/cerificates-upload/cerificates-upload.component';
 import { AuthService } from './services/auth.service';
 
@@ -45,8 +45,9 @@ import { AuthService } from './services/auth.service';
         AffInstituteListComponent,
         CourseAddComponent,
         CoursesListComponent,
-        CerificatesDataListComponent,
+        CertificateUploadListComponent,
         CerificatesUploadComponent
+        
     ],
     imports: [
         BrowserModule,
