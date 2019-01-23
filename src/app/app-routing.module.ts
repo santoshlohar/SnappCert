@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from './services/auth-guard';
+
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { InstituteRegistrationComponent } from './institute-registration/institute-registration.component';
 import { InstitutesListComponent } from './institutes/institutes-list/institutes-list.component';
@@ -19,17 +22,17 @@ const routes: Routes =  [
     { path: '', component: HomeComponent},
     { path: 'login', component: LoginComponent},
     { path: 'registration', component: InstituteRegistrationComponent},
-    { path: 'institutes', component: InstitutesListComponent},
+    { path: 'institutes', component: InstitutesListComponent, canActivate: [AuthGuard]},
     { path: 'instituteUpdate/:instId', component: InstituteUpdateComponent },
     { path: 'departments', component: DepartmentsListComponent },
     { path: 'departmentAdd', component: DepartmentAddComponent},
 	{ path: 'affInstitutes', component: AffInstituteListComponent},
 	{ path: 'affInstituteAdd', component: AffInstituteAddComponent},
-	{ path: 'courses', component: CoursesListComponent},
+	{ path: 'courses', component: CoursesListComponent, canActivate: [AuthGuard]},
     { path: 'courseAdd', component: CourseAddComponent},
     { path: 'certificateUploadList', component: CertificateUploadListComponent},
-	{ path: 'certificateUpload', component: CerificatesUploadComponent}
-
+	{ path: 'certificateUpload', component: CerificatesUploadComponent},
+    { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

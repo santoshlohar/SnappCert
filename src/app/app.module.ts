@@ -5,13 +5,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-import { ApiService } from './services/api.service';
+
 import { Globals } from './globals';
+
+import { ApiService } from './services/api.service';
+import { AuthService } from './services/auth.service';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeComponent } from './home/home.component';
@@ -27,11 +33,11 @@ import { CourseAddComponent } from './courses/course-add/course-add.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CertificateUploadListComponent } from './certificates/certificate-upload-list/certificate-upload-list.component';
 import { CerificatesUploadComponent } from './certificates/cerificates-upload/cerificates-upload.component';
-import { AuthService } from './services/auth.service';
 
 @NgModule({
     declarations: [
         AppComponent,
+        PageNotFoundComponent,
         HeaderComponent,
         SidebarComponent,
         HomeComponent,

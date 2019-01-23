@@ -20,12 +20,9 @@ export class LoginComponent implements OnInit {
 
 	constructor(private router: Router,
 		public globals: Globals,
-		private authService: AuthService) {
-			console.log(this.globals.isUserLoggedIn);
-		 }
+		private authService: AuthService) {}
 
 	ngOnInit() {
-		console.log(this.globals.isUserLoggedIn);
 	}
 
 	userLogin(form: NgForm) {
@@ -35,8 +32,7 @@ export class LoginComponent implements OnInit {
 		this.authService.login(this.loginData)
 			.subscribe((response) => {
 				this.userData = response;
-	 			this.type = this.userData.UserType;
-				this.globals.isUserLoggedIn = true;
+				this.type = this.userData.UserType;
 
 				if( this.type == 'KYC_AGENT' ) {
 					this.router.navigate(['/','institutes']);
@@ -45,7 +41,11 @@ export class LoginComponent implements OnInit {
 				} else if (this.type == 'INS_DATA_MANAGER') {
 					this.router.navigate(['/','courses']);	
 				}
-			})
+			},
+			(error) => {
+				console.log(error);
+			}
+			)
 	};
 
 }

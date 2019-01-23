@@ -41,4 +41,14 @@ export class AuthService {
 		return false;
 	}
 
+	isAuthenticated(): boolean {
+		this.user = JSON.parse(localStorage.getItem('user'));
+
+		if(this.user.token){
+			this.globals.isUserLoggedIn = true;
+			return true;
+		}
+		return false;
+	}
+
 }
