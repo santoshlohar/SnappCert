@@ -85,7 +85,6 @@ export class InstituteUpdateComponent implements OnInit {
 		this.apiService.get(this.apiUrl + this.instituteId)
 			.pipe(
 				tap((institute: object) => {
-					console.log(institute);
 						this.instituteDetailForm.patchValue(institute)
 					})
 			)

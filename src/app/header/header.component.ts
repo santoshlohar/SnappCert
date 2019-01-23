@@ -17,8 +17,13 @@ export class HeaderComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	gotoLogin() {
+		this.router.navigate(['/login']);
+	}
+
 	logout() {
 		this.authService.logout();
+		this.router.navigate(['/login']);
 	}
 
 }

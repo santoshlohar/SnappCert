@@ -18,21 +18,22 @@ export class LoginComponent implements OnInit {
 	type: string;
 	
 
-	constructor(private apiService: ApiService, 
-		private router: Router,
+	constructor(private router: Router,
 		public globals: Globals,
-		private authService: AuthService) { }
+		private authService: AuthService) {
+			console.log(this.globals.isUserLoggedIn);
+		 }
 
 	ngOnInit() {
+		console.log(this.globals.isUserLoggedIn);
 	}
 
-	userLogin(form) {
+	userLogin(form: NgForm) {
 		this.loginData.emailId = form.value.emailId;
 		this.loginData.password = form.value.password;
 		 
 		this.authService.login(this.loginData)
 			.subscribe((response) => {
-				console.log(response);
 				this.userData = response;
 	 			this.type = this.userData.UserType;
 				this.globals.isUserLoggedIn = true;

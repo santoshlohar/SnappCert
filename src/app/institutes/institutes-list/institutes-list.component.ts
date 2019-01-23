@@ -5,6 +5,7 @@ import { ApiService } from '../../services/api.service';
 import { FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { InstituteDetails } from '../../modals/institute-details';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-institutes-list',
@@ -59,9 +60,11 @@ export class InstitutesListComponent implements OnInit {
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
+
 	constructor(private _formBuilder: FormBuilder,
 		private apiService: ApiService,
-		private router: Router) { }
+		private router: Router,
+		private authService: AuthService) { }
 
 	ngOnInit() {
 		this.dataSource.sort = this.sort;

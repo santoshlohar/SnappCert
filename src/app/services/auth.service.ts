@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { tap, map } from 'rxjs/operators';
 import { Globals } from '../globals';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
 	providedIn: 'root'
@@ -40,4 +40,5 @@ export class AuthService {
 		}
 		return false;
 	}
+
 }

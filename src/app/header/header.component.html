@@ -3,7 +3,7 @@
 		<span class="app-heading">Snapper Certificate</span>
 		<span class="spacer"></span>
 		<div class="float-right">
-			<a mat-button [routerLink]="['/']" *ngIf="!globals.isUserLoggedIn">Login</a>
+			<a mat-button [routerLink]="['/login']" *ngIf="!globals.isUserLoggedIn">Login</a>
 			<a mat-button (click)="logout()" *ngIf="globals.isUserLoggedIn">Logout</a>
 			<a mat-button [routerLink]="['/registration']">Institute Registration</a>
 		</div>
