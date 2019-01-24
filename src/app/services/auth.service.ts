@@ -20,6 +20,7 @@ export class AuthService {
 						map((user) => {
 							if(user && user['token']) {
 								localStorage.setItem('user', JSON.stringify(user));
+								this.globals.isUserLoggedIn = true;
 							}
 							return user;	
 						})
