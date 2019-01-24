@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm } from '@angular/forms';
-import 'rxjs';
-import { ApiService} from '../services/api.service';
-import { Router } from '@angular/router';
-import { Globals } from '../globals';
-import { AuthService } from '../services/auth.service';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -12,40 +13,19 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-	loginData: any = {};
-	url: string;
-	userData: any;
-	type: string;
-	
 
-	constructor(private router: Router,
-		public globals: Globals,
-		private authService: AuthService) {}
+	constructor(public dialogRef: MatDialogRef<LoginComponent>,
+				@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
 	ngOnInit() {
 	}
 
-	userLogin(form: NgForm) {
-		this.loginData.emailId = form.value.emailId;
-		this.loginData.password = form.value.password;
-		 
-		this.authService.login(this.loginData)
-			.subscribe((response) => {
-				this.userData = response;
-				this.type = this.userData.UserType;
+	onNoClick(): void {
+		this.dialogRef.close();
+	}
 
-				if( this.type == 'KYC_AGENT' ) {
-					this.router.navigate(['/','institutes']);
-				} else if (this.type == 'INST_ADMIN') {
-					this.router.navigate(['/','departments']);	
-				} else if (this.type == 'INS_DATA_MANAGER') {
-					this.router.navigate(['/','courses']);	
-				}
-			},
-			(error) => {
-				console.log(error);
-			}
-			)
-	};
+	login(form: NgForm) {
+		console.log(form);
+	}
 
 }

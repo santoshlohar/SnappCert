@@ -1,42 +1,61 @@
-<div class="container">
-	<mat-card class="example-card">
-		<mat-card-header class="text-center card-head">
-			<mat-card-title>Login</mat-card-title>
-		</mat-card-header>
-		<mat-card-content class="card-cont">
-			<form class="example-form" (ngSubmit)="userLogin(login)" #login="ngForm">
-				<table class="example-full-width" cellspacing="0">
-				<tr>
-					<td>
-					<mat-form-field class="example-full-width">
-					<input 
-						matInput 
-						placeholder="Email ID" 
-						[(ngModel)]="emailId" 
-						name="emailId" 
-						required>
-					</mat-form-field>
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<mat-form-field class="example-full-width">
-					<input matInput 
-						placeholder="Password" 
-						[(ngModel)]="password" 
-						type="password" 
-						name="password" 
-						required>
-					</mat-form-field>
-					</td>
-				</tr>
-				</table>
-				<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-				<mat-card-actions>
-				<button mat-raised-button class="btn-info" type="submit">Login</button>
-				</mat-card-actions>
-			</form>
-		</mat-card-content>
-	</mat-card>
-  </div>
+<!-- <h1 mat-dialog-title class="text-center"> Login </h1>
+<div mat-dialog-content>
+		<form class="example-form" (ngSubmit)="userLogin(login)" #login="ngForm">
+			<table class="example-full-width" cellspacing="0">
+			<tr>
+				<td>
+				<mat-form-field class="example-full-width">
+				<input 
+					matInput 
+					placeholder="Email ID" 
+					[(ngModel)]="emailId" 
+					name="emailId" 
+					required>
+				</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<mat-form-field class="example-full-width">
+				<input matInput 
+					placeholder="Password" 
+					[(ngModel)]="password" 
+					type="password" 
+					name="password" 
+					required>
+				</mat-form-field>
+				</td>
+			</tr>
+			</table>
+			<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+			<div mat-dialog-actions>
+				<button mat-button type="submit">Login</button>
+				<button mat-button cdkFocusInitial>Ok</button>
+			</div>
+		</form>
+</div> -->
+
+
+<h2 mat-dialog-title>{{description}}</h2>
+
+<mat-dialog-content [formGroup]="form" (ngSubmit)="login(loginForm)" #loginForm="ngForm">
   
+    <mat-form-field>
+        <input matInput
+                placeholder="Email ID"
+               formControlName="emailId">
+	</mat-form-field>
+	
+	<mat-form-field>
+		<input matInput
+				placeholder="Password"
+				formControlName="password">
+	</mat-form-field>
+    
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+	<button class="mat-raised-button mat-primary" type="submit">Login</button>
+	<button class="mat-raised-button">Close</button>
+</mat-dialog-actions>
