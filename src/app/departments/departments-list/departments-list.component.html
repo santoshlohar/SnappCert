@@ -19,24 +19,51 @@
 				</ng-container> -->
 				
 				<ng-container matColumnDef="instituteId">
-					<mat-header-cell *matHeaderCellDef> Institute ID </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef> 
+						<div>Institute ID </div>
+						<div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="Institute ID">
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> {{element.Institution_ID}} </mat-cell>
 				</ng-container>
 				
 				<ng-container matColumnDef="deptId">
-					<mat-header-cell *matHeaderCellDef> Department ID  </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>  
+						<div>Department ID </div>
+						<div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="departmentIdFilter" placeholder="Department ID">
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> {{element.department_ID}} </mat-cell>
 				</ng-container>
 
 				<ng-container matColumnDef="deptName">
-					<mat-header-cell *matHeaderCellDef> Department Name </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>
+						<div>Department Name </div>
+						<div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="departmentNameFilter" placeholder="Department Name">
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> {{element.department_Name}} </mat-cell>
 				</ng-container>
 
 				<ng-container matColumnDef="status">
-					<mat-header-cell *matHeaderCellDef> Department Status </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>
+						<div>Department Status </div>
+						<div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="departmentStatusFilter" placeholder="Department Status">
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> 
-						<!-- {{element.status}} -->
 						<mat-form-field floatLabel="never">
 							<input matInput placeholder="Status" [value]="element.status" [(ngModel)]="element.status">
 						</mat-form-field>	
