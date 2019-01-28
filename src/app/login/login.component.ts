@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
 	type: string;
 
 	constructor(public dialogRef: MatDialogRef<LoginComponent>,
-				
 				private formBuilder: FormBuilder,
 				private authService: AuthService,
 				private router: Router) {}
