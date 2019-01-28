@@ -123,11 +123,11 @@ html body {
 }
 
 .login-btn {
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
     border-radius: 12px;
     width: 110px;
     height: 40px;
-    padding: 4px 26px;
+    padding: 7px 28px;
 }
 
 .btn-text {
@@ -135,15 +135,15 @@ html body {
 }
 
 .reg-btn-wrapper {
-    width: 195px;
-    padding: 2% 42%;
+    width: 100%;
 }
 
 .reg-btn {
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
     border-radius: 12px;
     width: 216px;
-    height: 45px;
-    padding: 7px 26px;
+    height: 43px;
+    margin: 12px auto;
+    padding: 8px 28px;
     text-shadow: none;
 }
