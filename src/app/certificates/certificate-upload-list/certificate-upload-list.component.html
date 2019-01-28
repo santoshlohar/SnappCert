@@ -1,3 +1,93 @@
-<p>
-  certificate-upload-list works!
-</p>
+<div class="container">
+  <div class="certupload-container mat-elevation-z8">
+    <div class="outer-div">
+      <div class="inner-div">
+        <mat-form-field class="">
+          <input matInput (keyup)="applyfilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+      <span class="spacer"></span>
+    </div>
+    <div>
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="instituteId">
+          <mat-header-cell *matHeaderCellDef> Institute ID</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Institute_ID}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="affiliatedInstituteId">
+          <mat-header-cell *matHeaderCellDef> Affiliated Institute ID</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Affiliated_Institute_ID}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="courseId">
+          <mat-header-cell *matHeaderCellDef> Course ID</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Course_ID}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="batchId">
+          <mat-header-cell *matHeaderCellDef> Batch ID</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Batch_ID}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="studentId">
+          <mat-header-cell *matHeaderCellDef> Student ID</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Student_ID}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="certificateId">
+          <mat-header-cell *matHeaderCellDef> Certificate ID</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Certificate_ID}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="specialization">
+          <mat-header-cell *matHeaderCellDef> Specialization</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Specialization}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="scoreEarned">
+          <mat-header-cell *matHeaderCellDef> Score Earned</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Score_Earned}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="totalScore">
+          <mat-header-cell *matHeaderCellDef> Total Score</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Total_Score}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="cgpa">
+          <mat-header-cell *matHeaderCellDef> CGPA</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.CGPA}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="creditsEarned">
+          <mat-header-cell *matHeaderCellDef> creditsEarned</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Credits_Earned}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="completionDate">
+          <mat-header-cell *matHeaderCellDef> Completion Date</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Completion_Date}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="transactionStatus">
+          <mat-header-cell *matHeaderCellDef> Transaction Status</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Transaction_Status}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="failureReason">
+          <mat-header-cell *matHeaderCellDef> Failure Reason</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Failure_Reason}} </mat-cell>
+        </ng-container>
+      <ng-container matColumnDef="transactionMachine">
+        <mat-header-cell *matHeaderCellDef> Transaction Machine</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Transaction_Machine}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="transactionDate">
+        <mat-header-cell *matHeaderCellDef> Transaction Date</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Transaction_Date}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="transactionTime">
+        <mat-header-cell *matHeaderCellDef> Transaction Time</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Transaction_Time}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="transactionUser">
+        <mat-header-cell *matHeaderCellDef> Transaction User</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Transaction_User}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+    <div>
+      <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>
