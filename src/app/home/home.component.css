@@ -71,7 +71,7 @@ html body {
 
 .body-block {
     color: #fff;
-    text-shadow: #343a40 2px 2px;
+    /* text-shadow: #343a40 2px 2px; */
     min-width: 100%;
     min-height: 12em;
     position: relative;
@@ -94,9 +94,9 @@ html body {
 }
 
 #body-heading {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     display: block;
-    margin: 1% 0;
+    padding: 1px 122px;
     font-size: 65px;
     font-weight: 700;
     font-family: Roboto;
@@ -105,7 +105,7 @@ html body {
 
 .body-text {
     font-size: 20px;
-    padding: 1px 175px;
+    padding: 1px 150px;
 }
 
 .header-block {
