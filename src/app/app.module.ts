@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { Globals } from './globals';
 
 import { ApiService } from './services/api.service';
@@ -62,7 +61,7 @@ import { CerificatesUploadComponent } from './certificates/cerificates-upload/ce
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		MaterialModule,
-		HttpClientModule
+        HttpClientModule
     ],
     providers: [
         AuthService,

@@ -30,8 +30,8 @@ const routes: Routes =  [
 	{ path: 'affInstituteAdd', component: AffInstituteAddComponent},
 	{ path: 'courses', component: CoursesListComponent, canActivate: [AuthGuard]},
     { path: 'courseAdd', component: CourseAddComponent},
-    { path: 'certificateUploadList', component: CertificateUploadListComponent},
-	{ path: 'certificateUpload', component: CerificatesUploadComponent},
+    { path: 'certificateUploadList', component: CertificateUploadListComponent, canActivate: [AuthGuard]},
+	{ path: 'certificateUpload', component: CerificatesUploadComponent, canActivate: [AuthGuard]},
     { path: '**', component: PageNotFoundComponent}
 ];
 
