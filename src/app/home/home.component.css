@@ -59,6 +59,15 @@ html body {
     opacity: 85%;
 }
 
+.text-block {
+    background-color: #0a0a0a3b;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .flex-center {
     display: flex;
     flex-direction: column;
@@ -131,7 +140,7 @@ html body {
 }
 
 .btn-text {
-    color: #fff;
+    color: #444444;
 }
 
 .reg-btn-wrapper {
