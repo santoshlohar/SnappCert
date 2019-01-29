@@ -1,9 +1,11 @@
 <div class="container">
-	<div class="">
-		<label for="singleFile">Upload file</label>
+	<div class="upload-btn-wrapper">
+		<!-- <label for="singleFile">Upload file</label>
 		<input id="singleFile" name="singleFile" type="file" 
-			(change)="uploadCertificate($event.target.files)"/>
-		<br>
+			(change)="uploadCertificate($event.target.files, $event.target.name)"/>
+		<br> -->
+		<button class="btn">Upload a file</button>
+		<input type="file" name="excelFile" (change)="uploadCertificate($event.target.files, $event.target.name)"/>
 		<!-- <mat-icon> attach_file</mat-icon> -->
 	</div>
 	<div>
