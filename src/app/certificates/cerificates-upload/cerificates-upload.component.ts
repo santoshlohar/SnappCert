@@ -19,16 +19,27 @@ export class CerificatesUploadComponent implements OnInit {
 
 	httpOptions = {
 		headers: new HttpHeaders({
-			'enctype':"multipart/form-data"
+			'Content-Type':"multipart/form-data"
 		})
 	};
 
-	uploadCertificate(files) {
+	uploadCertificate(files, filename) {
 		console.log(files[0]);
+		var form = new FormData();
 		this.url = "http://localhost:3000/api/v1/certificates/fileupload";
-		this.data = files[0].name;
+		// this.data = files[0];
+		// console.log(this.data);
 
-		this.http.post(this.url, this.data, this.httpOptions )
+		this.data = {
+			file: files[0],
+			name: 'excelFile'
+		}
+
+		//form.append('upload[]',files[0], files[0].name)
+		form.append('excelFile', files[0])
+
+		console.log(form);
+		this.http.post(this.url, form )
 			.subscribe((response) => {
 				console.log(response);
 			});
