@@ -15,6 +15,7 @@
 .add-btn {
     color: #fff;
     background-color: darkgreen;
+    margin: 2px 4px;
 }
 
 .spacer {
@@ -77,4 +78,8 @@ mat-column-position, mat-column-position {
 
 .mat-table-sticky:last-child {
     border-left: 1px solid #e0e0e0;
+}
+
+.mat-header-btns {
+    padding: 1px 5px;
 }

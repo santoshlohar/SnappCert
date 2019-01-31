@@ -1,11 +1,11 @@
 export class InstituteDetails {
-    instituteType: string;
-    instituteId: string;
-    instituteName: string;
-    location: string;
-    state: string;
-    kycStatus: string;
-    kycAgentId: string;
-    academicHeadName: string;
-    _id: number;
+    instituteType: String;
+    instituteId: String;
+    instituteName: String;
+    location: String;
+    state: String;
+    kycStatus: String;
+    kycAgentId: String;
+    academicHeadName: String;
+    _id: Number;
 }

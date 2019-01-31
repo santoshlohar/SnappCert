@@ -1,14 +1,14 @@
 export interface InstituteCourse {
-    instituteId: string;
-    deptId: string;
-    courseType: string;
-    courseId: string;
-    courseName: string;
-    specialization: string;
-    courseDuration: string;
-    durationUnit: string;
-    termType: string;
-    noOfTerms: number;
-    status: string;
-    _id: number;
+    instituteId: String;
+    deptId: String;
+    courseType: String;
+    courseId: String;
+    courseName: String;
+    specialization: String;
+    courseDuration: String;
+    durationUnit: String;
+    termType: String;
+    noOfTerms: Number;
+    status: String;
+    _id: Number;
 }
