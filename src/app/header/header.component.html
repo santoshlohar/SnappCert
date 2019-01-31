@@ -1,4 +1,4 @@
-<mat-toolbar class="header-bar">
+<!-- <mat-toolbar class="header-bar">
 	<mat-toolbar-row>
 		<span class="app-heading">Snapper Certificate</span>
 		<span class="spacer"></span>
@@ -7,5 +7,19 @@
 			<a mat-button (click)="logout()" *ngIf="globals.isUserLoggedIn">Logout</a>
 			<a mat-button [routerLink]="['/registration']" hidden>Institute Registration</a>
 		</div>
+	</mat-toolbar-row>
+</mat-toolbar> -->
+
+<mat-toolbar class="header-bar logo-background">
+	<mat-toolbar-row>
+		<div class="head-wrapper">
+			<img src="../../assets/icons/cropped_logo.png" class="snap_logo" alt="">
+			<span class="app-heading">Snapper Certificate</span>
+		</div>
+		<div class="spacer"></div>
+		<div class="float-right">
+			<a mat-button [routerLink]="['/login']" *ngIf="!globals.isUserLoggedIn">Login</a>
+			<a mat-button (click)="logout()" *ngIf="globals.isUserLoggedIn">Logout</a>
+		</div>	
 	</mat-toolbar-row>
 </mat-toolbar>
