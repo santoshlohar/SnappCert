@@ -5,6 +5,10 @@
     min-height: 657px;
 }
 
+.body-background {
+    background-color: #f7f4f4;
+}
+
 .page-sidebar {
     width: 220px;
 }

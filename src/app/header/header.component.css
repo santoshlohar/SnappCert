@@ -14,10 +14,30 @@
 .header-bar {
     color: #fff;
     height: 50px;
+    position: relative;
 }
 
 .head-wrapper {
 
+}
+
+.parallelogram {
+    width: 300px;
+    height: 64px;
+    transform: skew(50deg);
+    background: #f7f4f4;
+    margin-left: 50px;
+    padding: 25px 40px;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.page-heading {
+    color: #444444;
+    z-index: 5;
+    position: absolute;
+    transform: skew(-50deg);
 }
 
 .spacer {
@@ -28,4 +48,13 @@
     width: 35px;
     height: 35px;
     margin-right: 12px;
+}
+
+mat-divider {
+    border-top-color: #E2BE40;
+    width: 40%; 
+    border-top-width: 3px;
+    transform: skew(-50deg);
+    margin-left: 19px;
+    border-radius: 5px;
 }
