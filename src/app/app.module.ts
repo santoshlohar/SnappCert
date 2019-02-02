@@ -32,6 +32,9 @@ import { CourseAddComponent } from './courses/course-add/course-add.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CertificateUploadListComponent } from './certificates/certificate-upload-list/certificate-upload-list.component';
 import { CerificatesUploadComponent } from './certificates/cerificates-upload/cerificates-upload.component';
+import { PwdGenerateComponent } from './pwd-generate/pwd-generate.component';
+import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
+import { NotifyOtpComponent } from './dialog-boxes/notify-otp.component';
 
 @NgModule({
     declarations: [
@@ -51,8 +54,10 @@ import { CerificatesUploadComponent } from './certificates/cerificates-upload/ce
         CourseAddComponent,
         CoursesListComponent,
         CertificateUploadListComponent,
-        CerificatesUploadComponent
-        
+        CerificatesUploadComponent,
+        PwdGenerateComponent,
+        VerifyOtpComponent,
+        NotifyOtpComponent 
     ],
     imports: [
         BrowserModule,
