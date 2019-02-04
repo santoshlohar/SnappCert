@@ -2,9 +2,9 @@
 	<div class="certupload-container mat-elevation-z8">
 		<div class="outer-div">
 			<div class="inner-div">
-				<mat-form-field class="">
+				<!-- <mat-form-field class="">
 					<input matInput (keyup)="applyfilter($event.target.value)" placeholder="Filter">
-				</mat-form-field>
+				</mat-form-field> -->
 			</div>
 			<span class="spacer"></span>
 			<div class="inner-div aff-btn">
@@ -30,59 +30,115 @@
 			<mat-table [dataSource]="dataSource" class="mat-table-item mat-elevation-z8">
 				<ng-container matColumnDef="instituteId">
 					<mat-header-cell *matHeaderCellDef> Institute ID</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.instituteID}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.instituteID" [(ngModel)]="element.instituteID">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="affiliatedInstituteId">
 					<mat-header-cell *matHeaderCellDef> Affiliated Institute ID</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.afflInstituteID}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.afflInstituteID" [(ngModel)]="element.afflInstituteID">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="courseId">
 					<mat-header-cell *matHeaderCellDef> Course ID</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.courseID}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.courseID" [(ngModel)]="element.courseID">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="batchId">
 					<mat-header-cell *matHeaderCellDef> Batch ID</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.batchID}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.batchID" [(ngModel)]="element.batchID">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="studentId">
 					<mat-header-cell *matHeaderCellDef> Student ID</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.studentID}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.studentID" [(ngModel)]="element.studentID">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="certificateId">
 					<mat-header-cell *matHeaderCellDef> Certificate ID</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.certificateID}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.certificateID" [(ngModel)]="element.certificateID">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="specialization">
 					<mat-header-cell *matHeaderCellDef> Specialization</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Specialization}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.Specialization" [(ngModel)]="element.Specialization">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="scoreEarned">
 					<mat-header-cell *matHeaderCellDef> Score Earned</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.scoreEarned}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.scoreEarned" [(ngModel)]="element.scoreEarned">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="totalScore">
 					<mat-header-cell *matHeaderCellDef> Total Score</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.totalScore}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.totalScore" [(ngModel)]="element.totalScore">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="cgpa">
-					<mat-header-cell *matHeaderCellDef> CGPA</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.CGPA}} </mat-cell>
+					<mat-header-cell *matHeaderCellDef> CGPA </mat-header-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.CGPA" [(ngModel)]="element.CGPA">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="creditsEarned">
 					<mat-header-cell *matHeaderCellDef> creditsEarned</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.creditsEarned}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.creditsEarned" [(ngModel)]="element.creditsEarned">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="completionDate">
 					<mat-header-cell *matHeaderCellDef> Completion Date</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.completionDate}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.completionDate" [(ngModel)]="element.completionDate">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="transactionStatus">
 					<mat-header-cell *matHeaderCellDef> Transaction Status</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.transactionStatus}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.transactionStatus" [(ngModel)]="element.transactionStatus">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="failureReason">
 					<mat-header-cell *matHeaderCellDef> Failure Reason</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.failureReason}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-form-field floatLabel="never">
+							<input matInput [value]="element.failureReason" [(ngModel)]="element.failureReason">
+						</mat-form-field>
+					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="transactionMachine">
 					<mat-header-cell *matHeaderCellDef> Transaction Machine</mat-header-cell>

@@ -35,8 +35,16 @@ export class VerifyOtpComponent implements OnInit {
 	ngOnInit() {
 		this.loginEmail = this.route.snapshot.queryParamMap.get('user');
 		this.bsecret = this.route.snapshot.queryParamMap.get('secret');
+
+		if(this.loginEmail) {
+			this.saveNotifyUser();
+		}
 		this.sendOtp();
 		// this.openDialog();
+	}
+
+	saveNotifyUser() {
+		localStorage.setItem('notify_user', this.loginEmail);
 	}
 
 	verify(form: NgForm) {
@@ -48,14 +56,16 @@ export class VerifyOtpComponent implements OnInit {
 		this.url = "http://localhost:3000/api/v1/verifytotp";
 		console.log(this.tokenDetails)
 		this.http.post(this.url, this.tokenDetails)
-			.pipe(
-				map((response: any) => response.json())
-			)
+			// .pipe(
+			// 	map((response: any) => response.json())
+			// )
 			.subscribe((response: any) => {
-				console.log(response.data);
-				// if(response)
-				// this.router.navigate(['/generatePassword'])
-			})
+				console.log(response.message);
+				if(response.message == 'Success') {
+					this.router.navigate(['/generatePassword'])
+				} 
+				
+			});
 	};
 
 	sendOtp() {
@@ -65,7 +75,7 @@ export class VerifyOtpComponent implements OnInit {
 		this.http.post(this.url, this.data)
 			.subscribe((response: any) => {
 				this.bsecret = response.data.bsecret;
-			})
+			});
 	};
 
 	openDialog(): void {
@@ -77,5 +87,5 @@ export class VerifyOtpComponent implements OnInit {
 		dialogRef.afterClosed().subscribe(result => {
 			console.log('The dialog was closed');
 		});
-	}
+	};
 }
