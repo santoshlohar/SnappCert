@@ -1,4 +1,5 @@
 export interface UploadedCertificates {
+    position: number;
     instituteID: String;
     afflInstituteID: String;
     courseID: String;

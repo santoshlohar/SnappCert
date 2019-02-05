@@ -12,9 +12,10 @@ import { UploadedCertificates } from 'src/app/modals/uploaded_certificate';
 })
 export class CertificateUploadListComponent implements OnInit {
 	
-	displayedColumns = ['instituteId', 'affiliatedInstituteId', 'courseId', 'batchId', 'studentId', 'certificateId', 'specialization', 'scoreEarned', 'totalScore', 'cgpa', 'creditsEarned', 'completionDate', 'transactionStatus', 'failureReason', 'transactionMachine', 'transactionDate', 'transactionTime', 'transactionUser'];
+	displayedColumns = ['select', 'instituteId', 'affiliatedInstituteId', 'courseId', 'batchId', 'studentId', 'certificateId', 'specialization', 'scoreEarned', 'totalScore', 'cgpa', 'creditsEarned', 'completionDate', 'transactionStatus', 'failureReason', 'transactionMachine', 'transactionDate', 'transactionTime', 'transactionUser'];
 	url: string;
 	certificatesData = [];
+	selectedCertificates = [];
 
 	dataSource = new MatTableDataSource<UploadedCertificates>(this.certificatesData);
 	selection = new SelectionModel<UploadedCertificates>(true, []);
@@ -32,20 +33,43 @@ export class CertificateUploadListComponent implements OnInit {
 		this.getCertificatesList();
 	}
 
+	isAllSelected() {
+		const numSelected = this.selection.selected.length;
+		const numRows = this.dataSource.data.length;
+		return numSelected === numRows;
+	}
+
+	masterToggle() {
+		this.isAllSelected() ? 
+			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+	}
+
 	getCertificatesList() {
 		this.url = '/temp/certificates';
-
+		
 		this.apiService.get(this.url)
 			.subscribe(response => {
 				this.certificatesData = response;
-				console.log(this.certificatesData);
 				this.dataSource.data = this.certificatesData;
+				for(var i=0; i<this.dataSource.data.length; i++) {
+					this.dataSource.data[i].position = i;
+				}
 			})
 	}
 
 	processData() {
-		console.log("process");
-		
+		console.log(this.selection.selected);
+		this.selectedCertificates = this.selection.selected;
+		this.url = "/certificate";
+		console.log(this.selectedCertificates);
+		if(this.selectedCertificates.length) {
+			this.apiService.post(this.url, this.selectedCertificates)
+				.subscribe((response) => {
+					console.log(response);
+				})
+		} else {
+			alert("please select atleast one certificate data to process!");
+		}
 	}
 }
 
