@@ -25,23 +25,26 @@ export class PwdGenerateComponent implements OnInit {
 		// this.bsecret = this.route.snapshot.queryParamMap.get('secret');
 		// console.log(this.loginEmail);
 		// console.log(this.bsecret);
+		this.userData = JSON.parse(localStorage.getItem('verify_user'));
+		console.log(this.userData);
 	};
 
 	generatePwd(form: NgForm) {
-		console.log(form)
 		if(form.invalid) {
 			return false;
 		}
-	
-		this.passwordDetails.password = form.value.password;
-		this.passwordDetails.confirmPassword = form.value.confirmPassword;
+		var data = {
+			emailId : this.userData.emailId,
+			password: form.value.password
+		};
+		this.url = "http://localhost:3000/api/v1/generatepassword";
 
-		console.log(this.passwordDetails);
-		this.url = "http://localhost:3000/api/v1/totp";
-
-		this.http.post(this.url, this.passwordDetails)
-			.subscribe(response => {
+		this.http.post(this.url, data)
+			.subscribe((response: any) => {
 				console.log(response);
+				if(response.message == 'success') {
+
+				}
 			})
 	};
 

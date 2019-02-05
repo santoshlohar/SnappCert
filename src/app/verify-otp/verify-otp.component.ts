@@ -20,7 +20,16 @@ export class VerifyOtpComponent implements OnInit {
 		emailId: ''
 	};
 	data = {
-		emailId: ''	
+		emailId: ''
+	}
+	verify_user = {
+		emailId: '',
+		userType: '',
+		userName: '',
+		institutionId: '',
+		departmentId: '',
+		affliatedInstituteId: '',
+		activated: ''
 	}
 	temp: Object = {
 	};
@@ -35,16 +44,12 @@ export class VerifyOtpComponent implements OnInit {
 	ngOnInit() {
 		this.loginEmail = this.route.snapshot.queryParamMap.get('user');
 		this.bsecret = this.route.snapshot.queryParamMap.get('secret');
-
-		if(this.loginEmail) {
-			this.saveNotifyUser();
-		}
 		this.sendOtp();
 		// this.openDialog();
 	}
 
-	saveNotifyUser() {
-		localStorage.setItem('notify_user', this.loginEmail);
+	saveVerifyUser(user) {
+		localStorage.setItem('verify_user', user);
 	}
 
 	verify(form: NgForm) {
@@ -54,16 +59,22 @@ export class VerifyOtpComponent implements OnInit {
 		this.tokenDetails.emailId = this.loginEmail;
 
 		this.url = "http://localhost:3000/api/v1/verifytotp";
-		console.log(this.tokenDetails)
 		this.http.post(this.url, this.tokenDetails)
-			// .pipe(
-			// 	map((response: any) => response.json())
-			// )
 			.subscribe((response: any) => {
-				console.log(response.message);
-				if(response.message == 'Success') {
+				console.log(response);
+				if(response.message == 'success') {
+					this.verify_user.emailId = response.data.emailId;
+					this.verify_user.userType = response.data.UserType;
+					this.verify_user.userName = response.data.UserName;
+					this.verify_user.institutionId = response.data.Institution_ID;
+					this.verify_user.departmentId = response.data.Department_ID;
+					this.verify_user.affliatedInstituteId = response.data.Affliated_Institute_ID;
+					this.verify_user.activated = response.data.activated;
+					this.saveVerifyUser(JSON.stringify(this.verify_user));
 					this.router.navigate(['/generatePassword'])
-				} 
+				} else {
+					console.log(response.message)
+				}
 				
 			});
 	};
