@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from '../services/auth.service';
+import { UserRolesService } from '../services/user-roles.service';
 
 @Component({
   selector: 'app-pwd-generate',
@@ -12,19 +13,21 @@ import { ActivatedRoute } from "@angular/router";
 export class PwdGenerateComponent implements OnInit {
 	url;
 	userData;
+	userType;
 	passwordDetails = {
 		password: '',
 		confirmPassword: ''
 	};
 
 	constructor(private http: HttpClient,
-				private route: ActivatedRoute) {}
+				private route: ActivatedRoute,
+				private router: Router,
+				private authService: AuthService,
+				private userRolesService: UserRolesService) {}
 
 	ngOnInit() {
 		// this.loginEmail = this.route.snapshot.queryParamMap.get('user');
 		// this.bsecret = this.route.snapshot.queryParamMap.get('secret');
-		// console.log(this.loginEmail);
-		// console.log(this.bsecret);
 		this.userData = JSON.parse(localStorage.getItem('verify_user'));
 		console.log(this.userData);
 	};
@@ -41,11 +44,14 @@ export class PwdGenerateComponent implements OnInit {
 
 		this.http.post(this.url, data)
 			.subscribe((response: any) => {
-				console.log(response);
 				if(response.message == 'success') {
-
+					this.authService.login(data)
+						.subscribe((response: any) => {
+							this.userType = response.UserType;
+							this.userRolesService.renderScreen(this.userType);
+							localStorage.removeItem('verify_user')
+						})
 				}
 			})
 	};
-
 }
