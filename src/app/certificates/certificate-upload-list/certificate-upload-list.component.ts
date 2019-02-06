@@ -12,7 +12,28 @@ import { UploadedCertificates } from 'src/app/modals/uploaded_certificate';
 })
 export class CertificateUploadListComponent implements OnInit {
 	
-	displayedColumns = ['select', 'instituteId', 'affiliatedInstituteId', 'courseId', 'batchId', 'studentId', 'certificateId', 'specialization', 'scoreEarned', 'totalScore', 'cgpa', 'creditsEarned', 'completionDate', 'transactionStatus', 'failureReason', 'transactionMachine', 'transactionDate', 'transactionTime', 'transactionUser'];
+	displayedColumns = [
+		'select',
+		'actionsColumn',
+		'instituteId',
+		'affiliatedInstituteId',
+		'courseId',
+		'batchId',
+		'studentId',
+		'certificateId',
+		'specialization',
+		'scoreEarned',
+		'totalScore',
+		'cgpa',
+		'creditsEarned',
+		'completionDate',
+		'transactionStatus',
+		'failureReason',
+		'transactionMachine',
+		'transactionDate',
+		'transactionTime',
+		'transactionUser'
+	];
 	url: string;
 	certificatesData = [];
 	selectedCertificates = [];
