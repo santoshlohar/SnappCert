@@ -14,7 +14,6 @@ export class CertificateUploadListComponent implements OnInit {
 	
 	displayedColumns = [
 		'select',
-		'actionsColumn',
 		'instituteId',
 		'affiliatedInstituteId',
 		'courseId',
