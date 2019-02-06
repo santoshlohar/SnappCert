@@ -2,7 +2,8 @@
 	<mat-sidenav-content>
 		<div *ngIf='userType == "KYC_AGENT"'>
 			<div class="innerbar-content">
-				<a class="link-btn" routerLink="/departments">Dashboard</a>
+				<i class="material-icons">
+				<a class="link-btn" routerLink="/departments">Dashboard</a></i>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
@@ -12,7 +13,8 @@
 		</div>
 		<div *ngIf='userType == "INST_ADMIN"'>
 			<div class="innerbar-content">
-				<a class="link-btn" routerLink="/departments">Dashboard</a>
+				<img class="sidebaricon" src="/assets/icons/dashboard.png" alt="dashboard" /><br />
+				<a class="link-btn sidebarbtn" routerLink="/departments">Dashboard</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">

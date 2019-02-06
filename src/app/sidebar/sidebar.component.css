@@ -2,6 +2,15 @@
     width: 220px;
     min-height: 636px;
     border: 1px solid rgba(0, 0, 0, 0.22);
+    background-color: #38464f
+}
+
+.sidebaricon {
+    margin-left: 38%;
+}
+
+.sidebarbtn {
+    margin-left: 28%;
 }
 
 .sidebar-content {
@@ -20,6 +29,6 @@
 }
 
 .link-btn {
-    color: rgb(153, 140, 140);
+    color: rgb(247, 244, 244);
     text-decoration: none;
 }
