@@ -1,4 +1,4 @@
-export interface UploadedCertificates {
+export class UploadedCertificates {
     position: number;
     instituteID: String;
     afflInstituteID: String;

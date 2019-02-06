@@ -9,7 +9,8 @@ import { Globals } from './globals';
 
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
-
+import { ValidatorService } from 'angular4-material-table';
+import { CertificateValidatorService } from './certificates/certificate-validator.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -71,7 +72,8 @@ import { NotifyOtpComponent } from './dialog-boxes/notify-otp.component';
     providers: [
         AuthService,
 		ApiService,
-		Globals,
+        Globals,
+        { provide: ValidatorService, useClass: CertificateValidatorService },
 		{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }
 	],
 	bootstrap: [AppComponent]
