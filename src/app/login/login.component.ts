@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 
 
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
 	constructor(public dialogRef: MatDialogRef<LoginComponent>,
 				private formBuilder: FormBuilder,
 				private authService: AuthService,
-				private router: Router) {}
+				private router: Router,
+				private dialog: MatDialog) {}
 
 	ngOnInit() {
 		this.userLogin = this.formBuilder.group({
@@ -62,6 +64,17 @@ export class LoginComponent implements OnInit {
 
 	close() {
 		this.dialogRef.close();
+	}
+
+	goToForgotPassword() {
+		this.close();
+		const dialogRef = this.dialog.open( ForgotPasswordComponent, {
+			width: '350px',
+			height: '385px'
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			console.log('The dialog was closed');
+		});
 	}
 
 }

@@ -20,10 +20,12 @@ import { CertificateUploadListComponent } from './certificates/certificate-uploa
 import { CerificatesUploadComponent } from './certificates/cerificates-upload/cerificates-upload.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
     { path: 'login', component: LoginComponent},
+    { path: 'forgotPassword', component: ForgotPasswordComponent},
     { path: 'registration', component: InstituteRegistrationComponent},
     { path: 'generatePassword', component: PwdGenerateComponent},
     { path: 'verifyOtp', component: VerifyOtpComponent},
