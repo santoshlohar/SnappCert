@@ -41,6 +41,16 @@ mat-table {
     padding: 15px 2px;
 }
 
+.table-wrapper {
+    width: 1079px;
+    height: inherit;
+    overflow: auto;
+}
+
+ng-container{
+    width: 80px;
+}
+
 .mat-form-field {
     font-size: 14px;
     width: 100%;
@@ -52,7 +62,7 @@ mat-table {
 }
 
 .mat-cell {
-    width: 50px;
+    width: 100px !important;
     padding: 6px 14px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -68,6 +78,23 @@ mat-column-star {
     padding-right: 8px;
 }
 
+mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+    padding: none;
+}
+
 mat-column-position, mat-column-position {
     padding-left: 8px;
+}
+
+.mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky:last-child {
+    border-left: 1px solid #e0e0e0;
+}
+
+.mat-header-btns {
+    padding: 1px 5px;
 }
