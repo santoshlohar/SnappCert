@@ -16,6 +16,7 @@ export class UserRolesService {
 		kycAgent: 'KYC_AGENT',
 		insAdmin: 'INST_ADMIN',
 		insDataMgr: 'INS_DATA_MANAGER',
+		affInsDataMgr: 'AFF_INS_DATA_MANAGER',
 		dataReviewer: 'DATA_REVIEWER',
 		dataApprover: 'DATA_APPROVER',
 		dataCertifier: 'DATA_CERTIFIER',
