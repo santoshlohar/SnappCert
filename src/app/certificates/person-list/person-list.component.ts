@@ -21,9 +21,9 @@ export class PersonListComponent implements OnInit {
 	age = new FormControl();
 
 	
-	personListChange = new EventEmitter<Person[]>();
+	@Output() personListChange = new EventEmitter<Person[]>();
 
-	dataSource = new TableDataSource<Person[]>(Element_Data);
+	dataSource = new TableDataSource<Person>(Element_Data);
 
 	constructor(private personValidator: ValidatorService,
 		private fb: FormBuilder) { 
@@ -39,7 +39,7 @@ export class PersonListComponent implements OnInit {
 		console.log(this.dataSource);
 		// this.dataSource = new TableDataSource<any>(this.personList, Person, this.personValidator);
 
-		// this.dataSource.datasourceSubject.subscribe(personList => this.personListChange.emit(personList));
+		this.dataSource.datasourceSubject.subscribe(personList => this.personListChange.emit(personList));
 	}
 
 	// addData() {
@@ -51,7 +51,6 @@ export class PersonListComponent implements OnInit {
 
 const Element_Data: Person[] = [
 	
-	{ name: 'Mark', age: 15 },
-	{ name: 'Brad', age: 50 },
+	{ name: 'Mark', age: 15 }
 
 ]
