@@ -51,10 +51,10 @@ ng-container{
     width: 80px;
 }
 
-.mat-form-field {
+/* .mat-form-field {
     font-size: 14px;
     width: 100%;
-}
+} */
 
 .mat-header-cell {
     display: block;
@@ -97,4 +97,31 @@ mat-column-position, mat-column-position {
 
 .mat-header-btns {
     padding: 1px 5px;
+}
+
+.mat-form-field-infix {
+    padding: 0 !important;
+    border-top-width: 0 !important;
+    border-top-style: solid !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0 !important;
+}
+
+.material-icons {
+    font-size: 18px !important;
+    font-weight: 600;
+}
+
+.mat-row {
+    height: 50px !important;
+}
+
+.clr-blue {
+    color: #3666f5;
+}
+
+.icon {
+    cursor: pointer;
 }

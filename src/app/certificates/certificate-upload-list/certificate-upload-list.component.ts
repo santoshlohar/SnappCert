@@ -37,6 +37,7 @@ export class CertificateUploadListComponent implements OnInit {
 	url: string;
 	certificatesData = [];
 	selectedCertificates = [];
+	editing: boolean = false;
 
 	dataSource = new MatTableDataSource<UploadedCertificates>(this.certificatesData);
 	selection = new SelectionModel<UploadedCertificates>(true, []);
@@ -74,6 +75,7 @@ export class CertificateUploadListComponent implements OnInit {
 				this.dataSource.data = this.certificatesData;
 				for(var i=0; i<this.dataSource.data.length; i++) {
 					this.dataSource.data[i].position = i;
+					this.dataSource.data[i].editing = false;
 				}
 			})
 	}
@@ -90,6 +92,20 @@ export class CertificateUploadListComponent implements OnInit {
 				})
 		} else {
 			alert("please select atleast one certificate data to process!");
+		}
+	}
+
+	edit(row) {
+		var tableData = this.dataSource.data;
+		for(var i=0;i<tableData.length;i++) {
+			if(row._id == tableData[i]._id) {
+				if(tableData[i].editing == false) {
+					this.dataSource.data[i].editing = true;
+				} else {
+					this.dataSource.data[i].editing = false;
+				}
+				break;
+			}
 		}
 	}
 }

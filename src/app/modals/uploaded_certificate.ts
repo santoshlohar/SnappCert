@@ -18,4 +18,6 @@ export class UploadedCertificates {
     transactionDate: String;
     transactionTime: String;
     transactionUser: String;
+    editing: Boolean;
+    _id: Number;
 }
