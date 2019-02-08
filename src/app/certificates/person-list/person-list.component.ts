@@ -38,8 +38,8 @@ export class PersonListComponent implements OnInit {
 	ngOnInit() {
 		console.log(this.dataSource);
 		// this.dataSource = new TableDataSource<any>(this.personList, Person, this.personValidator);
-
-		this.dataSource.datasourceSubject.subscribe(personList => this.personListChange.emit(personList));
+		//this.dataSource = new TableDataSource<any>(Element_Data, Person, this.personValidator);
+		//this.dataSource.datasourceSubject.subscribe(personList => this.personListChange.emit(personList));
 	}
 
 	// addData() {
