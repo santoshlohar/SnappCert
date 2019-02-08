@@ -81,10 +81,8 @@ export class CertificateUploadListComponent implements OnInit {
 	}
 
 	processData() {
-		console.log(this.selection.selected);
 		this.selectedCertificates = this.selection.selected;
 		this.url = "/multicertificate";
-		console.log(this.selectedCertificates);
 		if(this.selectedCertificates.length) {
 			this.apiService.post(this.url, this.selectedCertificates)
 				.subscribe((response) => {
@@ -108,6 +106,10 @@ export class CertificateUploadListComponent implements OnInit {
 			}
 		}
 	}
+
+	// public hasError = (controlName: string, errorName: string) =>{
+    //     return this.instRequestForm.controls[controlName].hasError(errorName);
+    // }
 }
 
 // const certificate_data:  UploadedCertificates[] = [

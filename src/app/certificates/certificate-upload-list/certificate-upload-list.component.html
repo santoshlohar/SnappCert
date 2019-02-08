@@ -27,7 +27,9 @@
 			</div>
 		</div>
 		<div class="table-wrapper">
-			<mat-table [dataSource]="dataSource" class="mat-table-item mat-elevation-z8">
+			<mat-table 
+			[dataSource]="dataSource" 
+			class="mat-table-item mat-elevation-z8">
 				<ng-container matColumnDef="select" sticky>
 					<mat-header-cell *matHeaderCellDef>
 						<mat-checkbox (change)="$event ? masterToggle() : null"
@@ -65,6 +67,7 @@
 						<span *ngIf="!element.editing"> {{element.instituteID}} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.instituteID" [(ngModel)]="element.instituteID">
+							<mat-error></mat-error>
 						</mat-form-field>
 					</mat-cell>
 				</ng-container>

@@ -36,7 +36,6 @@ import { CerificatesUploadComponent } from './certificates/cerificates-upload/ce
 import { PwdGenerateComponent } from './pwd-generate/pwd-generate.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { NotifyOtpComponent } from './dialog-boxes/notify-otp.component';
-import { PersonListComponent } from './certificates/person-list/person-list.component';
 
 @NgModule({
     declarations: [
@@ -59,8 +58,7 @@ import { PersonListComponent } from './certificates/person-list/person-list.comp
         CerificatesUploadComponent,
         PwdGenerateComponent,
         VerifyOtpComponent,
-        NotifyOtpComponent,
-        PersonListComponent 
+        NotifyOtpComponent
     ],
     imports: [
         BrowserModule,
