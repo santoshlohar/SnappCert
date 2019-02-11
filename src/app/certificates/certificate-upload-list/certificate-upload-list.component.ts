@@ -3,7 +3,10 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort, MatTableDataSource, MatPaginator, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { UploadedCertificates } from 'src/app/modals/uploaded_certificate';
+import { UploadedCertificate } from '../../modals/uploaded_certificate';
+import { ValidatedCertificate } from '../../modals/validated_certificate';
+import { isNumber, isString } from 'util';
+import { map } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-certificate-upload-list',
@@ -38,9 +41,11 @@ export class CertificateUploadListComponent implements OnInit {
 	certificatesData = [];
 	selectedCertificates = [];
 	editing: boolean = false;
+	highlight: boolean;
 
-	dataSource = new MatTableDataSource<UploadedCertificates>(this.certificatesData);
-	selection = new SelectionModel<UploadedCertificates>(true, []);
+	dataSource = new MatTableDataSource<UploadedCertificate>();
+	//newCertificates = new MatTableDataSource<ValidatedCertificate>(this.certificatesData);
+	selection = new SelectionModel<UploadedCertificate>(true, []);
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -53,7 +58,13 @@ export class CertificateUploadListComponent implements OnInit {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.getCertificatesList();
+		
 	}
+
+	// highlight(element: UploadedCertificate) {
+	// 	console.log(element)
+	// 	element.highlighted = !element.highlighted;
+	// }
 
 	isAllSelected() {
 		const numSelected = this.selection.selected.length;
@@ -70,14 +81,25 @@ export class CertificateUploadListComponent implements OnInit {
 		this.url = '/temp/certificates';
 		
 		this.apiService.get(this.url)
-			.subscribe(response => {
-				this.certificatesData = response;
-				this.dataSource.data = this.certificatesData;
+			.pipe(
+				map((response: UploadedCertificate[]) => {
+					console.log(response)
+
+					this.dataSource.data = response;
+					this.certificatesData = this.dataSource.data;
+					return this.certificatesData;
+				})
+			)
+			.subscribe((response) => {
+				console.log(response)
 				for(var i=0; i<this.dataSource.data.length; i++) {
 					this.dataSource.data[i].position = i;
 					this.dataSource.data[i].editing = false;
 				}
-			})
+			},
+			(error)=> {
+				console.log(error)
+			});
 	}
 
 	processData() {
@@ -99,11 +121,25 @@ export class CertificateUploadListComponent implements OnInit {
 			if(row._id == tableData[i]._id) {
 				if(tableData[i].editing == false) {
 					this.dataSource.data[i].editing = true;
+					if( (this.dataSource.data[i].instituteID) && typeof(this.dataSource.data[i].instituteID) == "number" ){
+						this.highlight = false;
+					} else {
+						this.highlight = true;
+					}
+					return this.dataSource.data[i]
 				} else {
 					this.dataSource.data[i].editing = false;
 				}
 				break;
 			}
+		}
+	}
+
+	ValidatedCertificate(data) {
+		console.log(data)
+		var tableData = this.dataSource.data;
+		if(data.instituteID == '') {
+			this.highlight = true;
 		}
 	}
 

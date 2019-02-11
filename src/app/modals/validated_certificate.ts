@@ -1,16 +1,16 @@
-export class UploadedCertificate {
+export class ValidatedCertificate {
     position: number;
-    instituteID: String;
+    instituteID: Number;
     afflInstituteID: String;
     courseID: String;
     batchID: String;
     studentID: String;
-    certificateID: String;
+    certificateID: Number;
     Specialization: String;
-    scoreEarned: String;
-    totalScore: String;
-    CGPA: String;
-    creditsEarned: String;
+    scoreEarned: Number;
+    totalScore: Number;
+    CGPA: Number;
+    creditsEarned: Number;
     completionDate: String;
     transactionStatus: String;
     failureReason: String;
@@ -19,6 +19,5 @@ export class UploadedCertificate {
     transactionTime: String;
     transactionUser: String;
     editing: Boolean;
-    highlighted?: boolean;
     _id: Number;
 }
