@@ -11,7 +11,7 @@ export class ValidatedCertificate {
     totalScore: Number;
     CGPA: Number;
     creditsEarned: Number;
-    completionDate: String;
+    completionDate: Date;
     transactionStatus: String;
     failureReason: String;
     transactionMachine: String;

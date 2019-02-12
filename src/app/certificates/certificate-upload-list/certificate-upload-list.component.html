@@ -58,13 +58,15 @@
 						*ngIf="element.editing"
 						matTooltip="Check">check</mat-icon>
 						<mat-icon class="clr-blue icon"
-						matTooltip="Close">close</mat-icon>
+						(click)="delete(element._id)"
+						matTooltip="Delete">delete_outline</mat-icon>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="instituteId">
 					<mat-header-cell *matHeaderCellDef> Institute ID</mat-header-cell>
 					<mat-cell *matCellDef="let element" 
-						[ngClass]="{'highlight': (!element.instituteID )}">
+						[ngClass]="{'highlight': !(element.instituteID ) || (element.instituteID == null), 
+						'has-error':isError}">
 						<span *ngIf="!element.editing"> {{element.instituteID}} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.instituteID" [(ngModel)]="element.instituteID">
