@@ -2,7 +2,7 @@ mat-dialog-content {
     min-height: 245px !important;
     height: 240px;
     overflow: unset;
-    margin-top: 10%;
+    /* margin-top: 10%; */
     margin-left: -5%;
 }
 

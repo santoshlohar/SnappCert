@@ -69,6 +69,14 @@
 			</mat-form-field>
 		</div>
 	</div>
+	<div class="input-row">
+		<div class="icon-wrap">
+			<input style="zoom: 1.5;" type="checkbox" name="remember" value="0"> 
+		</div>
+		<div>
+			<p style="margin-top: 20%;">Remember Me</p>
+		</div>
+	</div>
 </mat-dialog-content>
 
 <mat-dialog-actions class="text-center">
@@ -76,6 +84,6 @@
 		<button mat-raised-button style="width: 40%; border-radius: 10px;" class="logo-background" (click)="login(loginForm)">Login</button>
 	</div>
 	<div>
-		<a (click)="goToForgotPassword()" class="forgotpass"> Forgot Password </a>
+		<a (click)="goToForgotPassword()" class="forgotpass"> Forgot Your Password? </a>
 	</div>
 </mat-dialog-actions>
