@@ -131,6 +131,13 @@ mat-column-position, mat-column-position {
 }
 
 .highlight {
-    background-color: red;
+    /* background-color: red; */
+    border: 1px solid red;
     height: inherit;
+}
+
+.fa-exclamation-circle {
+    /* color: red; */
+    border: 1px solid red;
+    font-size: 20px;
 }

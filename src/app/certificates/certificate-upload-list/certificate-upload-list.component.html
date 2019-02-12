@@ -9,6 +9,7 @@
 			<span class="spacer"></span>
 			<div class="inner-div aff-btn">
 				<div class="mat-header-btns">
+					<a mat-button class="add-btn" (click)="DeleteCertificates()">Delete Certificate</a>
 					<a mat-button class="add-btn" (click)="processData()">Process</a>
 					<a mat-button class="add-btn" routerLink="/certificateUpload">Upload certificate</a>
 				</div>
@@ -172,7 +173,8 @@
 				<ng-container matColumnDef="completionDate">
 					<mat-header-cell *matHeaderCellDef> Completion Date</mat-header-cell>
 					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.completionDate) }">
+					[ngClass]="{'highlight': !(element.completionDate) ||  (element.completionDate == null),
+								'has-error': (element._id)}">
 						<span *ngIf="!element.editing"> {{element.completionDate}} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.completionDate" [(ngModel)]="element.completionDate">
@@ -182,10 +184,7 @@
 				<ng-container matColumnDef="transactionStatus">
 					<mat-header-cell *matHeaderCellDef> Transaction Status</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span *ngIf="!element.editing"> {{element.transactionStatus}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.transactionStatus" [(ngModel)]="element.transactionStatus">
-						</mat-form-field>
+						<span> {{element.transactionStatus}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="failureReason">

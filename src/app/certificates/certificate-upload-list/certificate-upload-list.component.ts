@@ -40,6 +40,7 @@ export class CertificateUploadListComponent implements OnInit {
 	];
 	url: string;
 	certificatesData = [];
+	newCertificates = [];
 	selectedCertificates = [];
 	editing: boolean = false;
 	highlight: boolean;
@@ -83,19 +84,26 @@ export class CertificateUploadListComponent implements OnInit {
 		this.url = '/temp/certificates';
 		
 		this.apiService.get(this.url)
-			.pipe(
-				map((response: ValidatedCertificate[]) => {
-					this.dataSource.data = response;
-					this.certificatesData = this.dataSource.data;
-					return this.certificatesData;
-				})
-			)
+			// .pipe(
+			// 	map((response: ValidatedCertificate[]) => {
+			// 		this.dataSource.data = response;
+			// 		this.certificatesData = this.dataSource.data;
+			// 		return this.certificatesData;
+			// 	})
+			// )
 			.subscribe((response: ValidatedCertificate[]) => {
 				
-				for(var i=0; i<this.dataSource.data.length; i++) {
-					this.dataSource.data[i].position = i;
-					this.dataSource.data[i].editing = false;
-					//this.ValidatedCertificate(this.dataSource.data[i]);
+				this.certificatesData = response;
+				for(var i=0; i<this.certificatesData.length; i++) {
+					this.certificatesData[i].position = i;
+					this.certificatesData[i].editing = false;
+					
+					if(this.certificatesData[i].transactionStatus == 'New') {
+						this.newCertificates.push(this.certificatesData[i]);
+						this.dataSource.data = this.newCertificates;
+						console.log(this.dataSource.data);
+					}
+					//this.validatedCertificate(this.dataSource.data[i]);
 				}
 			},
 			(error)=> {
@@ -105,16 +113,29 @@ export class CertificateUploadListComponent implements OnInit {
 
 	processData() {
 		this.selectedCertificates = this.selection.selected;
-		
-		this.url = "/multicertificate";
+		this.url = "/updatemultitempcertificate";
+		console.log(this.dataSource)
+		console.log(this.selection)
 		if(this.selectedCertificates.length) {
 			this.apiService.post(this.url, this.selectedCertificates)
 				.subscribe((response) => {
 					console.log(response);
-				})
+				},
+				(error)=> {
+					console.log(error)
+				});
 		} else {
 			alert("please select atleast one certificate data to process!");
 		}
+		// this.url = "/multicertificate";
+		// if(this.selectedCertificates.length) {
+		// 	this.apiService.post(this.url, this.selectedCertificates)
+		// 		.subscribe((response) => {
+		// 			console.log(response);
+		// 		});
+		// } else {
+		// 	alert("please select atleast one certificate data to process!");
+		// }
 	};
 
 	edit(row) {
@@ -142,12 +163,18 @@ export class CertificateUploadListComponent implements OnInit {
 			});
 	};
 
-	ValidatedCertificate(data) {
+	deleteCertificates(){
+		console.log("delete multiple records.")
+	}
+
+	validatedCertificate(data) {
 		if(typeof(data.instituteID) == 'string') {
 			
 		}
 		
 	};
+
+	
 
 	// public hasError = (controlName: string, errorName: string) =>{
     //     return this.instRequestForm.controls[controlName].hasError(errorName);
