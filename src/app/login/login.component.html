@@ -37,7 +37,7 @@
 
 
 <div mat-dialog-title class="text-center logo-color dialog-header">
-	<b> Login </b>
+	<b> Sign In </b>
 </div>
 
 <mat-dialog-content [formGroup]="userLogin" #loginForm="ngForm">  
@@ -73,10 +73,9 @@
 
 <mat-dialog-actions class="text-center">
 	<div class="action-btns">
-		<button mat-raised-button class="logo-background" (click)="login(loginForm)">Login</button>
-		<button mat-raised-button (click)="onNoClick()">Close</button>
+		<button mat-raised-button style="width: 40%; border-radius: 10px;" class="logo-background" (click)="login(loginForm)">Login</button>
 	</div>
 	<div>
-		<a (click)="goToForgotPassword()"> Forgot Password </a>
+		<a (click)="goToForgotPassword()" class="forgotpass"> Forgot Password </a>
 	</div>
 </mat-dialog-actions>

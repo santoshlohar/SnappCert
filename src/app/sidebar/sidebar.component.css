@@ -2,15 +2,7 @@
     width: 220px;
     min-height: 636px;
     border: 1px solid rgba(0, 0, 0, 0.22);
-    background-color: #38464f
-}
-
-.sidebaricon {
-    margin-left: 38%;
-}
-
-.sidebarbtn {
-    margin-left: 28%;
+    background-color: #38464f;
 }
 
 .sidebar-content {
@@ -20,8 +12,24 @@
     justify-content: center;
 }
 
+.sidebar-img {
+    margin-left: 37%;
+}
+
+#img-dashboard {
+    margin-left: 26%;
+}
+
+#img-depart {
+    margin-left: 11%;
+}
+
+#img-aff {
+    margin-left: 16%;
+}
+
 .innerbar-content {
-    padding: 9px 10px;
+    padding: 18px 10px;
 }
 
 .sidebar {
@@ -29,6 +37,6 @@
 }
 
 .link-btn {
-    color: rgb(247, 244, 244);
+    color: #FFF;
     text-decoration: none;
 }

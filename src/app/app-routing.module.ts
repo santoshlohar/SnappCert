@@ -31,7 +31,7 @@ const routes: Routes =  [
     { path: 'verifyOtp', component: VerifyOtpComponent},
     { path: 'institutes', component: InstitutesListComponent, canActivate: [AuthGuard]},
     { path: 'instituteUpdate/:instId', component: InstituteUpdateComponent },
-    { path: 'departments', component: DepartmentsListComponent },
+    { path: 'departments', component: DepartmentsListComponent, canActivate: [AuthGuard] },
     { path: 'departmentAdd', component: DepartmentAddComponent},
 	{ path: 'affInstitutes', component: AffInstituteListComponent},
 	{ path: 'affInstituteAdd', component: AffInstituteAddComponent},
