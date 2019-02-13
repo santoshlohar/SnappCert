@@ -21,6 +21,7 @@ import { CerificatesUploadComponent } from './certificates/cerificates-upload/ce
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -29,10 +30,11 @@ const routes: Routes =  [
     { path: 'registration', component: InstituteRegistrationComponent},
     { path: 'generatePassword', component: PwdGenerateComponent},
     { path: 'verifyOtp', component: VerifyOtpComponent},
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
     { path: 'institutes', component: InstitutesListComponent, canActivate: [AuthGuard]},
     { path: 'instituteUpdate/:instId', component: InstituteUpdateComponent },
-    { path: 'departments', component: DepartmentsListComponent, canActivate: [AuthGuard] },
-    { path: 'departmentAdd', component: DepartmentAddComponent},
+    { path: 'departments', component: DepartmentsListComponent, canActivate: [AuthGuard]},
+    { path: 'departmentAdd', component: DepartmentAddComponent, canActivate: [AuthGuard]},
 	{ path: 'affInstitutes', component: AffInstituteListComponent},
 	{ path: 'affInstituteAdd', component: AffInstituteAddComponent},
 	{ path: 'courses', component: CoursesListComponent, canActivate: [AuthGuard]},

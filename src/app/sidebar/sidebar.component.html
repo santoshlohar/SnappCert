@@ -12,6 +12,9 @@
 		</div>
 		<div *ngIf='userType == "INST_ADMIN"'>
 			<div class="innerbar-content">
+				<a class="link-btn" routerLink="/dashboard">Dashboard</a>
+			</div>
+			<div class="innerbar-content">
 				<a class="link-btn" routerLink="/departments">Dashboard</a>
 			</div>
 			<mat-divider></mat-divider>
@@ -30,7 +33,7 @@
 		</div>
 		<div *ngIf='userType == "INS_DATA_MANAGER"'>
 			<div class="innerbar-content">
-				<a class="link-btn" routerLink="/">Dashboard</a>
+				<a class="link-btn" routerLink="/dashboard">Dashboard</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
