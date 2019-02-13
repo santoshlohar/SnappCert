@@ -97,11 +97,9 @@ export class CertificateUploadListComponent implements OnInit {
 				for(var i=0; i<this.certificatesData.length; i++) {
 					this.certificatesData[i].position = i;
 					this.certificatesData[i].editing = false;
-					
-					if(this.certificatesData[i].transactionStatus == 'New') {
+					if(this.certificatesData[i].transactionStatus == 'NEW') {
 						this.newCertificates.push(this.certificatesData[i]);
 						this.dataSource.data = this.newCertificates;
-						console.log(this.dataSource.data);
 					}
 					//this.validatedCertificate(this.dataSource.data[i]);
 				}
@@ -113,9 +111,8 @@ export class CertificateUploadListComponent implements OnInit {
 
 	processData() {
 		this.selectedCertificates = this.selection.selected;
+		this.validatedCertificates(this.selectedCertificates)
 		this.url = "/updatemultitempcertificate";
-		console.log(this.dataSource)
-		console.log(this.selection)
 		if(this.selectedCertificates.length) {
 			this.apiService.post(this.url, this.selectedCertificates)
 				.subscribe((response) => {
@@ -127,15 +124,6 @@ export class CertificateUploadListComponent implements OnInit {
 		} else {
 			alert("please select atleast one certificate data to process!");
 		}
-		// this.url = "/multicertificate";
-		// if(this.selectedCertificates.length) {
-		// 	this.apiService.post(this.url, this.selectedCertificates)
-		// 		.subscribe((response) => {
-		// 			console.log(response);
-		// 		});
-		// } else {
-		// 	alert("please select atleast one certificate data to process!");
-		// }
 	};
 
 	edit(row) {
@@ -167,10 +155,9 @@ export class CertificateUploadListComponent implements OnInit {
 		console.log("delete multiple records.")
 	}
 
-	validatedCertificate(data) {
-		if(typeof(data.instituteID) == 'string') {
-			
-		}
+	validatedCertificates(certificates) {
+		
+		console.log(certificates);
 		
 	};
 
