@@ -136,7 +136,7 @@
 				<ng-container matColumnDef="scoreEarned">
 					<mat-header-cell *matHeaderCellDef> Score Earned</mat-header-cell>
 					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': (element.scoreErnError)}">
+					[ngClass]="{'highlight': (element.scrErcErr)}">
 						<span *ngIf="!element.editing"> {{element.scoreEarned}} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.scoreEarned" [(ngModel)]="element.scoreEarned">

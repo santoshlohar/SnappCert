@@ -47,9 +47,9 @@ export class CertificateUploadListComponent implements OnInit {
 	certificate;
 	intError: boolean;
 
-	dataSource = new MatTableDataSource<UploadedCertificate>();
+	dataSource = new MatTableDataSource<any>();
 	//newCertificates = new MatTableDataSource<ValidatedCertificate>(this.certificatesData);
-	selection = new SelectionModel<UploadedCertificate>(true, []);
+	selection = new SelectionModel<any>(true, []);
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -100,6 +100,10 @@ export class CertificateUploadListComponent implements OnInit {
 					this.certificatesData[i].editing = false;
 
 					if(this.certificatesData[i].transactionStatus == 'New') {
+
+						if(isNaN(this.certificatesData[i].scoreEarned)) {
+							this.certificatesData[i].scrErcErr = true;
+						}
 					
 						this.newCertificates.push(this.certificatesData[i]);
 						this.dataSource.data = this.newCertificates;
@@ -136,14 +140,34 @@ export class CertificateUploadListComponent implements OnInit {
 	};
 
 	edit(row) {
-		var tableData = this.dataSource.data;
-		for(var i=0;i<this.dataSource.data.length;i++) {
-			if(row._id == this.dataSource.data[i]._id) {
+		var tableData = this.newCertificates;
+		for(var i=0;i<tableData.length;i++) {
+			if(row._id == tableData[i]._id) {
 				if(tableData[i].editing == false) {
-					this.dataSource.data[i].editing = true;
+					tableData[i].editing = true;
 				} else {
-					this.dataSource.data[i].editing = false;
+					tableData[i].editing = false;
 				}
+				
+				if(tableData[i].scrErcErr == true) {
+					if(isString(tableData[i].scoreEarned)) {
+						tableData[i].scoreEarned = Number(tableData[i].scoreEarned);
+						tableData[i].scrErcErr = false;
+					}
+				} else {
+					if(isNaN(tableData[i].scoreEarned)) {
+						tableData[i].scrErcErr = true;
+					}
+				}
+				this.dataSource.data = tableData;
+				console.log(this.dataSource.data)
+				// this.dataSource.data = tableData;
+				// console.log(this.dataSource);
+				// if(tableData[i].editing == false) {
+				// 	tableData[i].editing = true;
+				// } else {
+				// 	tableData[i].editing = false;
+				// }				
 			}
 		}
 	};
