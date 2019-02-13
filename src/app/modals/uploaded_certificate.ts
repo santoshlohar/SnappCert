@@ -20,5 +20,7 @@ export class UploadedCertificate {
     transactionUser: String;
     editing: Boolean;
     highlighted?: boolean;
+    totalScoreError: Boolean;
+    scoreErnError: Boolean;
     _id: Number;
 }

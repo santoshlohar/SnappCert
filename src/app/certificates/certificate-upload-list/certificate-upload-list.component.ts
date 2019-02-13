@@ -44,11 +44,12 @@ export class CertificateUploadListComponent implements OnInit {
 	selectedCertificates = [];
 	editing: boolean = false;
 	highlight: boolean;
-	isError: boolean;
+	certificate;
+	intError: boolean;
 
-	dataSource = new MatTableDataSource<ValidatedCertificate>();
+	dataSource = new MatTableDataSource<UploadedCertificate>();
 	//newCertificates = new MatTableDataSource<ValidatedCertificate>(this.certificatesData);
-	selection = new SelectionModel<ValidatedCertificate>(true, []);
+	selection = new SelectionModel<UploadedCertificate>(true, []);
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -91,15 +92,19 @@ export class CertificateUploadListComponent implements OnInit {
 			// 		return this.certificatesData;
 			// 	})
 			// )
-			.subscribe((response: ValidatedCertificate[]) => {
+			.subscribe((response: UploadedCertificate[]) => {
 				
 				this.certificatesData = response;
 				for(var i=0; i<this.certificatesData.length; i++) {
 					this.certificatesData[i].position = i;
 					this.certificatesData[i].editing = false;
-					if(this.certificatesData[i].transactionStatus == 'NEW') {
+
+					if(this.certificatesData[i].transactionStatus == 'New') {
+					
 						this.newCertificates.push(this.certificatesData[i]);
 						this.dataSource.data = this.newCertificates;
+						console.log(this.dataSource.data)
+						
 					}
 					//this.validatedCertificate(this.dataSource.data[i]);
 				}
@@ -111,12 +116,16 @@ export class CertificateUploadListComponent implements OnInit {
 
 	processData() {
 		this.selectedCertificates = this.selection.selected;
-		this.validatedCertificates(this.selectedCertificates)
+		
 		this.url = "/updatemultitempcertificate";
 		if(this.selectedCertificates.length) {
+			//this.validatedCertificates(this.selectedCertificates);
 			this.apiService.post(this.url, this.selectedCertificates)
-				.subscribe((response) => {
+				.subscribe((response: any) => {
 					console.log(response);
+					if(response.message == 'success') {
+						this.goToFinalTable();
+					}
 				},
 				(error)=> {
 					console.log(error)
@@ -128,14 +137,13 @@ export class CertificateUploadListComponent implements OnInit {
 
 	edit(row) {
 		var tableData = this.dataSource.data;
-		for(var i=0;i<tableData.length;i++) {
-			if(row._id == tableData[i]._id) {
+		for(var i=0;i<this.dataSource.data.length;i++) {
+			if(row._id == this.dataSource.data[i]._id) {
 				if(tableData[i].editing == false) {
 					this.dataSource.data[i].editing = true;
 				} else {
 					this.dataSource.data[i].editing = false;
 				}
-				break;
 			}
 		}
 	};
@@ -152,16 +160,50 @@ export class CertificateUploadListComponent implements OnInit {
 	};
 
 	deleteCertificates(){
+		this.selectedCertificates = this.selection.selected;
 		console.log("delete multiple records.")
+		this.url = "/deltempcertificates";
+		if(this.selectedCertificates.length) {
+			//this.validatedCertificates(this.selectedCertificates);
+			this.apiService.post(this.url, this.selectedCertificates)
+				.subscribe((response: any) => {
+					console.log(response);
+				},
+				(error)=> {
+					console.log(error)
+				});
+		} else {
+			alert("please select atleast one certificate data to delete!");
+		}
 	}
 
 	validatedCertificates(certificates) {
 		
-		console.log(certificates);
+		for(var i=0; i<certificates.length; i++) {
+			var certificate = certificates[i];
+			console.log(certificate);
+
+			if(!certificate.instituteID || !certificate.afflInstituteID || !certificate.courseID
+				|| !certificate.batchID || !certificate.studentID || !certificate.certificateID
+				|| !certificate.completionDate) {
+					alert("Please solve the errors before process the certificates data!");
+					return false;
+			} else if( typeof(certificate.instituteID == 'string')) {
+				this.intError = true;
+				
+			}
+		}
 		
 	};
 
-	
+	goToFinalTable() {
+		this.url = '/pushcerttemp2final';
+
+		this.apiService.post(this.url, {} )
+			.subscribe((response) => {
+				console.log(response);
+			});
+	}
 
 	// public hasError = (controlName: string, errorName: string) =>{
     //     return this.instRequestForm.controls[controlName].hasError(errorName);

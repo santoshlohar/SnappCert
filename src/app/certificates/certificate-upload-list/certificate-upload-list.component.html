@@ -9,7 +9,7 @@
 			<span class="spacer"></span>
 			<div class="inner-div aff-btn">
 				<div class="mat-header-btns">
-					<a mat-button class="add-btn" (click)="DeleteCertificates()">Delete Certificate</a>
+					<a mat-button class="add-btn" (click)="deleteCertificates()">Delete Certificate</a>
 					<a mat-button class="add-btn" (click)="processData()">Process</a>
 					<a mat-button class="add-btn" routerLink="/certificateUpload">Upload certificate</a>
 				</div>
@@ -66,8 +66,7 @@
 				<ng-container matColumnDef="instituteId">
 					<mat-header-cell *matHeaderCellDef> Institute ID</mat-header-cell>
 					<mat-cell *matCellDef="let element" 
-						[ngClass]="{'highlight': !(element.instituteID ) || (element.instituteID == null), 
-						'has-error':isError}">
+						[ngClass]="{'highlight': !(element.instituteID) || element.instError}">
 						<span *ngIf="!element.editing"> {{element.instituteID}} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.instituteID" [(ngModel)]="element.instituteID">
@@ -136,7 +135,8 @@
 				</ng-container>
 				<ng-container matColumnDef="scoreEarned">
 					<mat-header-cell *matHeaderCellDef> Score Earned</mat-header-cell>
-					<mat-cell *matCellDef="let element">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': (element.scoreErnError)}">
 						<span *ngIf="!element.editing"> {{element.scoreEarned}} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.scoreEarned" [(ngModel)]="element.scoreEarned">
@@ -145,7 +145,8 @@
 				</ng-container>
 				<ng-container matColumnDef="totalScore">
 					<mat-header-cell *matHeaderCellDef> Total Score</mat-header-cell>
-					<mat-cell *matCellDef="let element">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': element.totalScoreError}">
 						<span *ngIf="!element.editing"> {{element.totalScore}} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.totalScore" [(ngModel)]="element.totalScore">
@@ -163,7 +164,8 @@
 				</ng-container>
 				<ng-container matColumnDef="creditsEarned">
 					<mat-header-cell *matHeaderCellDef> creditsEarned</mat-header-cell>
-					<mat-cell *matCellDef="let element">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': (element.creditsError)}">
 						<span *ngIf="!element.editing"> {{element.creditsEarned}} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.creditsEarned" [(ngModel)]="element.creditsEarned">

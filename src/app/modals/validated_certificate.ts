@@ -1,6 +1,6 @@
 export class ValidatedCertificate {
     position: number;
-    instituteID: Number;
+    instituteID: String;
     afflInstituteID: String;
     courseID: String;
     batchID: String;
@@ -19,5 +19,6 @@ export class ValidatedCertificate {
     transactionTime: String;
     transactionUser: String;
     editing: Boolean;
+    totalScoreError: Boolean;
     _id: Number;
 }
