@@ -8,7 +8,12 @@
 		<div class="example-container" linear>
 			<form [formGroup]="insDeptForm" #deptForm="ngForm" (ngSubmit)="addDept(deptForm)">
 				<div>
-					<p class="h6 mar-top">Add Institute Department</p>
+					<!-- <p class="h6 mar-top">Add Institute Department</p> -->
+					<div style="width: 100%; height: 20px; border-bottom: 1px solid #6c757d; text-align: center; margin-bottom: 3%;">
+						<span style="font-size: 21px; background-color: #F3F5F6; color: #989898; font-weight: 500; padding: 0 50px;">
+							Department details
+						</span>
+					</div>
 					<mat-form-field class="input-field">
 						<input matInput 
 						placeholder="Institute ID" 
@@ -29,7 +34,7 @@
 					</mat-form-field>
 				</div>
 				<div class="action-btns text-center">
-					<button mat-raised-button class="action-btn">Save</button>
+					<button mat-raised-button class="action-btn">Add</button>
 					<button mat-raised-button class="action-btn">Cancel</button>
 				</div>
 			</form>
