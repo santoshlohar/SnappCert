@@ -38,6 +38,8 @@ import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { NotifyOtpComponent } from './dialog-boxes/notify-otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UsersListComponent } from './users/users-list/users-list.component';
+import { UserAddComponent } from './users/user-add/user-add.component';
 
 @NgModule({
     declarations: [
@@ -62,7 +64,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         VerifyOtpComponent,
         NotifyOtpComponent,
         ForgotPasswordComponent,
-        DashboardComponent 
+        DashboardComponent,
+        UsersListComponent,
+        UserAddComponent 
     ],
     imports: [
         BrowserModule,
