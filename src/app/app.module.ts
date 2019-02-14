@@ -60,7 +60,7 @@ import { NotifyOtpComponent } from './dialog-boxes/notify-otp.component';
         VerifyOtpComponent,
         NotifyOtpComponent,
         ForgotPasswordComponent,
-        DashboardComponent
+        DashboardComponent 
     ],
     imports: [
         BrowserModule,
