@@ -9,6 +9,7 @@
 			<span class="spacer"></span>
 			<div class="inner-div aff-btn">
 				<div class="mat-header-btns">
+					<a mat-button class="add-btn" (click)="deleteCertificates()">Delete Certificate</a>
 					<a mat-button class="add-btn" (click)="processData()">Process</a>
 					<a mat-button class="add-btn" routerLink="/certificateUpload">Upload certificate</a>
 				</div>
@@ -26,52 +27,99 @@
 				</mat-form-field> -->
 			</div>
 		</div>
-		<div>
-			<mat-table [dataSource]="dataSource" class="mat-table-item mat-elevation-z8">
+		<div class="table-wrapper">
+			<mat-table 
+			[dataSource]="dataSource" 
+			class="mat-table-item mat-elevation-z8">
+				<ng-container matColumnDef="select" sticky>
+					<mat-header-cell *matHeaderCellDef>
+						<mat-checkbox (change)="$event ? masterToggle() : null"
+						[checked]="selection.hasValue() && isAllSelected() == true"
+						[indeterminate]="selection.hasValue() && !isAllSelected()">
+						</mat-checkbox>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let row"> 
+						<mat-checkbox (click)="$event.stopPropagation()"
+						(change)="$event ? selection.toggle(row) : null"
+						[checked]="selection.isSelected(row) == true">
+						</mat-checkbox>
+					</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="actions" sticky>
+					<mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+					<mat-cell *matCellDef="let element">
+						<mat-icon 
+						class="clr-blue icon"  
+						(click)="edit(element)"
+						*ngIf="!element.editing"
+						matTooltip="Edit">edit</mat-icon>
+						<mat-icon
+						class="clr-blue icon"
+						(click)="edit(element)" 
+						*ngIf="element.editing"
+						matTooltip="Check">check</mat-icon>
+						<mat-icon class="clr-blue icon"
+						(click)="delete(element._id)"
+						matTooltip="Delete">delete_outline</mat-icon>
+					</mat-cell>
+				</ng-container>
 				<ng-container matColumnDef="instituteId">
 					<mat-header-cell *matHeaderCellDef> Institute ID</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+					<mat-cell *matCellDef="let element" 
+						[ngClass]="{'highlight': !(element.instituteID) || element.instError}">
+						<span *ngIf="!element.editing"> {{element.instituteID}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.instituteID" [(ngModel)]="element.instituteID">
+							<mat-error>Required</mat-error>
 						</mat-form-field>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="affiliatedInstituteId">
 					<mat-header-cell *matHeaderCellDef> Affiliated Institute ID</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': !(element.afflInstituteID)}">
+						<span *ngIf="!element.editing"> {{element.afflInstituteID}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.afflInstituteID" [(ngModel)]="element.afflInstituteID">
 						</mat-form-field>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="courseId">
 					<mat-header-cell *matHeaderCellDef> Course ID</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': !(element.courseID)}">
+						<span *ngIf="!element.editing"> {{element.courseID}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.courseID" [(ngModel)]="element.courseID">
 						</mat-form-field>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="batchId">
 					<mat-header-cell *matHeaderCellDef> Batch ID</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': !(element.batchID)}">
+						<span *ngIf="!element.editing"> {{element.batchID}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.batchID" [(ngModel)]="element.batchID">
 						</mat-form-field>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="studentId">
 					<mat-header-cell *matHeaderCellDef> Student ID</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': !(element.studentID)}">
+						<span *ngIf="!element.editing"> {{element.studentID}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.studentID" [(ngModel)]="element.studentID">
 						</mat-form-field>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="certificateId">
 					<mat-header-cell *matHeaderCellDef> Certificate ID</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': !(element.certificateID)}">
+						<span *ngIf="!element.editing"> {{element.certificateID}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.certificateID" [(ngModel)]="element.certificateID">
 						</mat-form-field>
 					</mat-cell>
@@ -79,23 +127,28 @@
 				<ng-container matColumnDef="specialization">
 					<mat-header-cell *matHeaderCellDef> Specialization</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+						<span *ngIf="!element.editing"> {{element.Specialization}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.Specialization" [(ngModel)]="element.Specialization">
 						</mat-form-field>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="scoreEarned">
 					<mat-header-cell *matHeaderCellDef> Score Earned</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': (element.scrErnErr)}">
+						<span *ngIf="!element.editing"> {{element.scoreEarned}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.scoreEarned" [(ngModel)]="element.scoreEarned">
 						</mat-form-field>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="totalScore">
 					<mat-header-cell *matHeaderCellDef> Total Score</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': element.totalScrErr}">
+						<span *ngIf="!element.editing"> {{element.totalScore}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.totalScore" [(ngModel)]="element.totalScore">
 						</mat-form-field>
 					</mat-cell>
@@ -103,23 +156,29 @@
 				<ng-container matColumnDef="cgpa">
 					<mat-header-cell *matHeaderCellDef> CGPA </mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+						<span *ngIf="!element.editing"> {{element.CGPA}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.CGPA" [(ngModel)]="element.CGPA">
 						</mat-form-field>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="creditsEarned">
 					<mat-header-cell *matHeaderCellDef> creditsEarned</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': (element.creditsError)}">
+						<span *ngIf="!element.editing"> {{element.creditsEarned}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.creditsEarned" [(ngModel)]="element.creditsEarned">
 						</mat-form-field>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="completionDate">
 					<mat-header-cell *matHeaderCellDef> Completion Date</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+					<mat-cell *matCellDef="let element"
+					[ngClass]="{'highlight': !(element.completionDate) ||  (element.completionDate == null),
+								'has-error': (element._id)}">
+						<span *ngIf="!element.editing"> {{element.completionDate}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.completionDate" [(ngModel)]="element.completionDate">
 						</mat-form-field>
 					</mat-cell>
@@ -127,15 +186,14 @@
 				<ng-container matColumnDef="transactionStatus">
 					<mat-header-cell *matHeaderCellDef> Transaction Status</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
-							<input matInput [value]="element.transactionStatus" [(ngModel)]="element.transactionStatus">
-						</mat-form-field>
+						<span> {{element.transactionStatus}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="failureReason">
 					<mat-header-cell *matHeaderCellDef> Failure Reason</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<mat-form-field floatLabel="never">
+						<span *ngIf="!element.editing"> {{element.failureReason}} </span>
+						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.failureReason" [(ngModel)]="element.failureReason">
 						</mat-form-field>
 					</mat-cell>
@@ -159,6 +217,8 @@
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 			</mat-table>
+
+			<!-- <app-person-list></app-person-list> -->
 		</div>
 		<div>
 			<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>

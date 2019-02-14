@@ -41,10 +41,20 @@ mat-table {
     padding: 15px 2px;
 }
 
-.mat-form-field {
+.table-wrapper {
+    width: 1079px;
+    height: inherit;
+    overflow: auto;
+}
+
+ng-container{
+    width: 80px;
+}
+
+/* .mat-form-field {
     font-size: 14px;
     width: 100%;
-}
+} */
 
 .mat-header-cell {
     display: block;
@@ -52,11 +62,13 @@ mat-table {
 }
 
 .mat-cell {
-    width: 50px;
-    padding: 6px 14px;
+    width: 100px !important;
+    padding: 0px 9px;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 13px;
+    font-size: 12px;
+    min-height: 49px;
+    height: 49px !important;
 }
 
 .icons {
@@ -66,6 +78,12 @@ mat-table {
 mat-column-star {
     width: 20px;
     padding-right: 8px;
+}
+
+mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+    padding: none;
+    min-height: 50px;
 }
 
 mat-column-position, mat-column-position {
@@ -82,4 +100,44 @@ mat-column-position, mat-column-position {
 
 .mat-header-btns {
     padding: 1px 5px;
+}
+
+.mat-form-field-infix {
+    padding: 0 !important;
+    border-top-width: 0 !important;
+    border-top-style: solid !important;
+    width: 0 !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0 !important;
+}
+
+.material-icons {
+    font-size: 18px !important;
+    font-weight: 600;
+}
+
+.mat-row {
+    height: 50px !important;
+}
+
+.clr-blue {
+    color: #3666f5;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.highlight {
+    /* background-color: red; */
+    border: 1px solid red;
+    height: inherit;
+}
+
+.fa-exclamation-circle {
+    /* color: red; */
+    border: 1px solid red;
+    font-size: 20px;
 }

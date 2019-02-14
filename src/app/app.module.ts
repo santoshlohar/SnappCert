@@ -4,12 +4,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { Globals } from './globals';
 
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
-
+import { ValidatorService } from 'angular4-material-table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -70,13 +71,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		MaterialModule,
-        HttpClientModule
+        HttpClientModule,
+        AngularFontAwesomeModule 
     ],
     providers: [
         AuthService,
 		ApiService,
-		Globals,
-		{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }
+        Globals,
+        {   
+            provide: STEPPER_GLOBAL_OPTIONS, 
+            useValue: { showError: true } 
+        }
 	],
 	bootstrap: [AppComponent]
 })
