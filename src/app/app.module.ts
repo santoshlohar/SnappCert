@@ -58,7 +58,9 @@ import { NotifyOtpComponent } from './dialog-boxes/notify-otp.component';
         CerificatesUploadComponent,
         PwdGenerateComponent,
         VerifyOtpComponent,
-        NotifyOtpComponent
+        NotifyOtpComponent,
+        ForgotPasswordComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
