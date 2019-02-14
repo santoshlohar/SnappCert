@@ -134,6 +134,8 @@ export class CertificateUploadListComponent implements OnInit {
 				},
 				(error)=> {
 					console.log(error)
+					var message = error.error.message;
+					alert(message)
 				});
 		} else {
 			alert("please select atleast one certificate data to process!");
