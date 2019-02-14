@@ -2,31 +2,46 @@ mat-dialog-content {
     min-height: 245px !important;
     height: 240px;
     overflow: unset;
+    /* margin-top: 10%; */
+    margin-left: -5%;
 }
 
 mat-dialog-actions {
     display: block !important;
+    margin-top: -28%;
 }
 
 .dialog-header {
-    font-size: 30px; 
+    font-size: 42px;
+    margin-left: -50%;
+    margin-top: 8%;
+    font-weight: 400;
 }
 
 .action-btns {
     margin: 4px 0;
+    margin-bottom: 6%;
 }
 
 .input-row {
     display: flex;
     height: 45px;
     width: 100%;
+    margin-top: 4%;
 }
 
 .icon-wrap {
     width: 34px;
     height: 28px;
+    margin-top: 8%;
 }
 
 mat-form-field-infix {
     border-top: 0 !important;
+}
+
+.forgotpass {
+  color: red !important;
+  background-color: transparent;
+  text-decoration: underline !important;
 }
