@@ -44,5 +44,4 @@ export class PwdGenerateComponent implements OnInit {
 				console.log(response);
 			})
 	};
-
 }
