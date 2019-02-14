@@ -136,7 +136,7 @@
 				<ng-container matColumnDef="scoreEarned">
 					<mat-header-cell *matHeaderCellDef> Score Earned</mat-header-cell>
 					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': (element.scrErcErr)}">
+					[ngClass]="{'highlight': (element.scrErnErr)}">
 						<span *ngIf="!element.editing"> {{element.scoreEarned}} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.scoreEarned" [(ngModel)]="element.scoreEarned">
@@ -146,7 +146,7 @@
 				<ng-container matColumnDef="totalScore">
 					<mat-header-cell *matHeaderCellDef> Total Score</mat-header-cell>
 					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': element.totalScoreError}">
+					[ngClass]="{'highlight': element.totalScrErr}">
 						<span *ngIf="!element.editing"> {{element.totalScore}} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.editing">
 							<input matInput [value]="element.totalScore" [(ngModel)]="element.totalScore">

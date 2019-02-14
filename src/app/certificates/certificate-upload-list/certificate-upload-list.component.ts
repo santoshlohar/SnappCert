@@ -85,13 +85,6 @@ export class CertificateUploadListComponent implements OnInit {
 		this.url = '/temp/certificates';
 		
 		this.apiService.get(this.url)
-			// .pipe(
-			// 	map((response: ValidatedCertificate[]) => {
-			// 		this.dataSource.data = response;
-			// 		this.certificatesData = this.dataSource.data;
-			// 		return this.certificatesData;
-			// 	})
-			// )
 			.subscribe((response: UploadedCertificate[]) => {
 				
 				this.certificatesData = response;
@@ -102,7 +95,15 @@ export class CertificateUploadListComponent implements OnInit {
 					if(this.certificatesData[i].transactionStatus == 'New') {
 
 						if(isNaN(this.certificatesData[i].scoreEarned)) {
-							this.certificatesData[i].scrErcErr = true;
+							this.certificatesData[i].scrErnErr = true;
+						}
+
+						if(isNaN(this.certificatesData[i].totalScore)) {
+							this.certificatesData[i].totalScrErr = true;
+						}
+
+						if(isNaN(this.certificatesData[i].creditsEarned)) {
+							this.certificatesData[i].creditsError = true;
 						}
 					
 						this.newCertificates.push(this.certificatesData[i]);
@@ -148,26 +149,40 @@ export class CertificateUploadListComponent implements OnInit {
 				} else {
 					tableData[i].editing = false;
 				}
-				
-				if(tableData[i].scrErcErr == true) {
+				if(tableData[i].scrErnErr == true) {
 					if(isString(tableData[i].scoreEarned)) {
 						tableData[i].scoreEarned = Number(tableData[i].scoreEarned);
-						tableData[i].scrErcErr = false;
+						tableData[i].scrErnErr = false;
 					}
 				} else {
 					if(isNaN(tableData[i].scoreEarned)) {
-						tableData[i].scrErcErr = true;
+						tableData[i].scrErnErr = true;
 					}
 				}
-				this.dataSource.data = tableData;
-				console.log(this.dataSource.data)
-				// this.dataSource.data = tableData;
-				// console.log(this.dataSource);
-				// if(tableData[i].editing == false) {
-				// 	tableData[i].editing = true;
-				// } else {
-				// 	tableData[i].editing = false;
-				// }				
+
+				if(tableData[i].totalScrErr == true) {
+					if(isString(tableData[i].totalScore)) {
+						tableData[i].totalScore = Number(tableData[i].totalScore);
+						tableData[i].totalScrErr = false;
+					}
+				} else {
+					if(isNaN(tableData[i].totalScore)) {
+						tableData[i].totalScrErr = true;
+					}
+				}
+
+				if(tableData[i].creditsError == true) {
+					if(isString(tableData[i].creditsEarned)) {
+						tableData[i].creditsEarned = Number(tableData[i].creditsEarned);
+						tableData[i].creditsError = false;
+					}
+				} else {
+					if(isNaN(tableData[i].creditsEarned)) {
+						tableData[i].creditsError = true;
+					}
+				}
+				
+				this.dataSource.data = tableData;			
 			}
 		}
 	};
