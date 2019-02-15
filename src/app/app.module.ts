@@ -10,7 +10,6 @@ import { Globals } from './globals';
 
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
-import { ValidatorService } from 'angular4-material-table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
