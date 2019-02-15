@@ -2,56 +2,57 @@
 	<mat-sidenav-content>
 		<div *ngIf='userType == "KYC_AGENT"'>
 			<div class="innerbar-content">
-				<img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /> <br />
+				<a href="/dashboard"><img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /></a>
+				 <!-- <br /> -->
 				<a class="link-btn" id="img-dashboard" routerLink="/dashboard">Dashboard</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /> <br />
+				<a href="/institutes"><img class="sidebar-img" src="./assets/icons/institute_w.png" alt="institutes" /> </a>
 				<a class="link-btn" id="img-aff" routerLink="/institutes">Institutes</a>
 			</div>
 			<mat-divider></mat-divider>
 		</div>
 		<div *ngIf='userType == "INST_ADMIN"'>
 			<div class="innerbar-content">
-				<img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /> <br />
+				<a href="/dashboard"><img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /></a>
 				<a class="link-btn" id="img-dashboard" routerLink="/dashboard">Dashboard</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<img class="sidebar-img" src="./assets/icons/department.png" alt="Department" /> <br />
+				<a href="/departments"><img class="sidebar-img" src="./assets/icons/department_w.png" alt="Department" /> </a> <br />
 				<a class="link-btn" id="img-depart" routerLink="/departments">Institute Departments</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<img class="sidebar-img" src="./assets/icons/aff_insti.png" alt="Institute" /> <br />
+				<a href="/affInstitutes"><img class="sidebar-img" src="./assets/icons/institute_w.png" alt="affinstitutes" /> </a><br />
 				<a class="link-btn" id="img-aff" routerLink="/affInstitutes">Affiliated Institutes</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<img class="sidebar-img" src="./assets/icons/auth_user.png" alt="Users" /> <br />
+				<a href="/users"><img class="sidebar-img" src="./assets/icons/user_w.png" alt="Users" /> </a> <br />
 				<a class="link-btn" routerLink="/users">Institutes Authorized Users</a>
 			</div>
 			<mat-divider></mat-divider>
 		</div>
 		<div *ngIf='userType == "INS_DATA_MANAGER"'>
 			<div class="innerbar-content">
-				<img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /> <br />
+				<a href="/dashboard"><img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /> </a>
 				<a class="link-btn" id="img-dashboard" routerLink="/dashboard">Dashboard</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<img class="sidebar-img" src="./assets/icons/auth_user.png" alt="Users" /> <br />
+				<a href="/"><img class="sidebar-img" src="./assets/icons/user_w.png" alt="Users" /> </a>
 				<a class="link-btn" routerLink="/">Institute Authorized Users</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<img class="sidebar-img" src="./assets/icons/auth_user.png" alt="Users" /> <br />
+				<a href="/courses"><img class="sidebar-img" src="./assets/icons/user_w.png" alt="Courses" /> </a>
 				<a class="link-btn" routerLink="/courses">Course Data</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<img class="sidebar-img" src="./assets/icons/auth_user.png" alt="Users" /> <br />
+				<a href="/certificateUploadList"><img class="sidebar-img" src="./assets/icons/user_w.png" alt="Users" /> </a>
 				<a class="link-btn" routerLink="/certificateUploadList">Certificates Data</a>
 			</div>
 			<mat-divider></mat-divider>
