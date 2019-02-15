@@ -3,11 +3,12 @@
 }
 
 .addInst-wrapper {
-    width: 100%;
+    width: 85%;
     height: 100%;
     border: 1px solid #BFBFBF;
     border-radius: 12px;
     box-shadow: 5px 5px 15px 6px #bfb9b9;
+    margin-left: 7%;
 }
 
 .panel-primary>.panel-heading {
