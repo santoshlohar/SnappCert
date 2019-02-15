@@ -2,20 +2,20 @@
 	<mat-sidenav-content>
 		<div *ngIf='userType == "KYC_AGENT"'>
 			<div class="innerbar-content">
-				<a href="/dashboard"><img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /></a>
+				<a href="/dashboard"><img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /></a><br />
 				 <!-- <br /> -->
 				<a class="link-btn" id="img-dashboard" routerLink="/dashboard">Dashboard</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<a href="/institutes"><img class="sidebar-img" src="./assets/icons/institute_w.png" alt="institutes" /> </a>
+				<a href="/institutes"><img class="sidebar-img" src="./assets/icons/institute_w.png" alt="institutes" /> </a><br />
 				<a class="link-btn" id="img-aff" routerLink="/institutes">Institutes</a>
 			</div>
 			<mat-divider></mat-divider>
 		</div>
 		<div *ngIf='userType == "INST_ADMIN"'>
 			<div class="innerbar-content">
-				<a href="/dashboard"><img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /></a>
+				<a href="/dashboard"><img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /></a><br />
 				<a class="link-btn" id="img-dashboard" routerLink="/dashboard">Dashboard</a>
 			</div>
 			<mat-divider></mat-divider>
@@ -37,22 +37,22 @@
 		</div>
 		<div *ngIf='userType == "INS_DATA_MANAGER"'>
 			<div class="innerbar-content">
-				<a href="/dashboard"><img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /> </a>
+				<a href="/dashboard"><img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /> </a><br />
 				<a class="link-btn" id="img-dashboard" routerLink="/dashboard">Dashboard</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<a href="/"><img class="sidebar-img" src="./assets/icons/user_w.png" alt="Users" /> </a>
+				<a href="/"><img class="sidebar-img" src="./assets/icons/user_w.png" alt="Users" /> </a><br />
 				<a class="link-btn" routerLink="/">Institute Authorized Users</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<a href="/courses"><img class="sidebar-img" src="./assets/icons/user_w.png" alt="Courses" /> </a>
+				<a href="/courses"><img class="sidebar-img" src="./assets/icons/user_w.png" alt="Courses" /> </a><br />
 				<a class="link-btn" routerLink="/courses">Course Data</a>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content">
-				<a href="/certificateUploadList"><img class="sidebar-img" src="./assets/icons/user_w.png" alt="Users" /> </a>
+				<a href="/certificateUploadList"><img class="sidebar-img" src="./assets/icons/user_w.png" alt="Users" /> </a><br />
 				<a class="link-btn" routerLink="/certificateUploadList">Certificates Data</a>
 			</div>
 			<mat-divider></mat-divider>
