@@ -130,12 +130,15 @@ export class CertificateUploadListComponent implements OnInit {
 					console.log(response);
 					if(response.message == 'success') {
 						this.goToFinalTable();
+					} else {
+						return false;
 					}
 				},
 				(error)=> {
 					console.log(error)
 					var message = error.error.message;
-					alert(message)
+					alert(message);
+					return false;
 				});
 		} else {
 			alert("please select atleast one certificate data to process!");
@@ -238,12 +241,23 @@ export class CertificateUploadListComponent implements OnInit {
 	};
 
 	goToFinalTable() {
+		this.selectedCertificates = this.selection.selected;
+
 		this.url = '/pushcerttemp2final';
 
-		this.apiService.post(this.url, {} )
-			.subscribe((response) => {
-				console.log(response);
-			});
+		if(this.selectedCertificates.length) {
+			//this.validatedCertificates(this.selectedCertificates);
+			this.apiService.post(this.url, this.selectedCertificates)
+				.subscribe((response) => {
+					console.log(response);
+				},
+				(error)=> {
+					console.log(error)
+				}
+			);
+		} else {
+			alert("please select atleast one certificate data to delete!");
+		}
 	}
 
 	// public hasError = (controlName: string, errorName: string) =>{
