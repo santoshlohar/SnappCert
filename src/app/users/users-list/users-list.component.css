@@ -1,0 +1,78 @@
+.container {
+    padding: 24px 40px;
+    display: flex;
+}
+
+.wrapper {
+    padding: 8px 11px;
+    width: 100%;
+    height: 100%;
+}
+
+.heading {
+    text-align: center;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.head-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-text {
+    color: #444444;
+}
+
+.add-btn {
+    width: 100px;
+    border-radius: 6px;
+}
+
+.list-container {
+    margin: 5px 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px 25px;
+}
+
+.list-wrapper {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #BFBFBF;
+    border-radius: 12px;
+    box-shadow: 5px 5px 15px 6px #bfb9b9;
+}
+
+mat-header-row {
+    border-top-left-radius: 11px !important;
+    border-top-right-radius: 11px !important;
+}
+
+mat-row {
+    border-bottom-left-radius: 11px !important;
+    border-bottom-right-radius: 11px !important;
+}
+
+mat-header-cell {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 1px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-cell {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 1px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell-div {
+    overflow: inherit !important;
+}

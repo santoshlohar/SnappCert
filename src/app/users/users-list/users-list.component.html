@@ -1,3 +1,146 @@
-<p>
-  users-list works!
-</p>
+<div class="container">
+	<div class="wrapper">
+		<div class="panel panel-primary heading">
+			<div class="head-btn">
+				<div class="logo-background add-btn">
+					<a mat-button class="add-btn btn-text " routerLink="/userAdd">Add User</a>
+				</div>
+			</div>
+		</div>
+		<div class="list-container">
+			<mat-table [dataSource]="dataSource" class="mat-elevation-z8 list-wrapper">
+				<ng-container matColumnDef="userType">
+					<mat-header-cell *matHeaderCellDef> 
+						<div> User Type</div>
+						<!-- <div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+							</mat-form-field>
+						</div> -->
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> 
+						<div class="cell-div">
+							{{element.userType}} 
+						</div>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="instituteId">
+					<mat-header-cell *matHeaderCellDef> 
+						<div> Institute ID</div>
+						<!-- <div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+							</mat-form-field>
+						</div> -->
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> 
+						<div class="cell-div">
+							{{element.instituteID}}  
+						</div>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="departmentId">
+					<mat-header-cell *matHeaderCellDef> 
+						<div> Department ID </div>
+						<!-- <div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+							</mat-form-field>
+						</div> -->
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> 
+						<div class="cell-div">
+							{{element.departmentId}} 
+						</div>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="affInstituteId">
+					<mat-header-cell *matHeaderCellDef> 
+						<div> Aff. Institute ID </div>
+						<!-- <div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+							</mat-form-field>
+						</div> -->
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> 
+						<div class="cell-div">
+							{{element.afflInstituteID}} 
+						</div>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="username">
+					<mat-header-cell *matHeaderCellDef> 
+						<div> Name </div>
+						<!-- <div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+							</mat-form-field>
+						</div> -->
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> 
+						<div class="cell-div">
+							{{element.username}} 
+						</div>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="emailId">
+					<mat-header-cell *matHeaderCellDef> 
+						<div> Email </div>
+						<!-- <div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+							</mat-form-field>
+						</div> -->
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> 
+						<div class="cell-div">
+							{{element.emailId}} 
+						</div>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="phone">
+					<mat-header-cell *matHeaderCellDef> 
+						<div> Phone No. </div>
+						<!-- <div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+							</mat-form-field>
+						</div> -->
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> 
+						<div class="cell-div">
+							{{element.phone}} 
+						</div>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="_id">
+					<mat-header-cell *matHeaderCellDef> 
+						<div> Actions </div>
+						<!-- <div>
+							<mat-form-field>
+								<input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+							</mat-form-field>
+						</div> -->
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> 
+						<div class="cell-div">
+							{{element._id}} 
+						</div>
+					</mat-cell>
+					<mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
+				</ng-container>
+
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+			</mat-table>
+		</div>
+	</div>
+</div>

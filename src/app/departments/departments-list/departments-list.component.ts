@@ -14,7 +14,7 @@ import { FormControl } from '@angular/forms';
 })
 export class DepartmentsListComponent implements OnInit {
 
-  displayedColumns = ['instituteId', 'deptId', 'deptName', 'status' , '_id'];
+  	displayedColumns = ['instituteId', 'deptId', 'deptName', 'status' , '_id'];
 	url: string;
 	Departments: InstituteDepts[] = [];
 	dataSource = new MatTableDataSource<InstituteDepts>(this.Departments);
