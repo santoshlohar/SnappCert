@@ -47,11 +47,12 @@ export class UsersListComponent implements OnInit {
 				if(response.message == 'success') {
 					this.authUsers = response.data;
 					this.dataSource.data = this.authUsers;
-					console.log(this.authUsers);
 				}
 			},
 			(error) => {
 				console.log(error);
+				alert(error.error.message);
+				return false;
 			})
 	}
 
