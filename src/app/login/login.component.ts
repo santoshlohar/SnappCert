@@ -4,8 +4,7 @@ import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
-
-
+import { UserRolesService } from '../services/user-roles.service';
 
 @Component({
 	selector: 'app-login',
@@ -24,7 +23,8 @@ export class LoginComponent implements OnInit {
 				private formBuilder: FormBuilder,
 				private authService: AuthService,
 				private router: Router,
-				private dialog: MatDialog) {}
+				private dialog: MatDialog,
+				private roleService: UserRolesService) {}
 
 	ngOnInit() {
 		this.userLogin = this.formBuilder.group({
@@ -45,21 +45,13 @@ export class LoginComponent implements OnInit {
 			.subscribe((response) => {
 				this.userData = response;
 				this.type = this.userData.UserType;
-
-				if( this.type == 'KYC_AGENT' ) {
-					this.router.navigate(['/','institutes']);
-				} else if (this.type == 'INST_ADMIN') {
-					this.router.navigate(['/','departments']);	
-				} else if (this.type == 'INS_DATA_MANAGER') {
-					this.router.navigate(['/','courses']);	
-				}
+				this.roleService.renderScreen(this.type);
 
 				this.dialogRef.close();
 			},
 			(error) => {
 				console.log(error);
-			}
-			)
+			})
 	};
 
 	close() {
