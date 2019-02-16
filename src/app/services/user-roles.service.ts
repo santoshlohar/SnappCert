@@ -25,23 +25,25 @@ export class UserRolesService {
 
 	renderScreen(role) {
 
-		if(role == 'SYSTEM_ADMIN') {
+		if(role == this.roles.systemAdmin) {
 			this.router.navigate(['/home']);
-		} else if(role == 'REG_REQESTER') {
+		} else if(role == this.roles.requester) {
 			this.router.navigate(['/home']);
-		} else if(role == 'KYC_AGENT') {
+		} else if(role == this.roles.kycAgent) {
 			this.router.navigate(['/institutes']);
-		} else if(role == 'INST_ADMIN') {
-			this.router.navigate(['/','departments']);
-		} else if(role == 'INS_DATA_MANAGER') {
-			this.router.navigate(['/','courses']);
-		} else if(role == 'AFF_INS_DATA_MANAGER') {
-			this.router.navigate(['/','dashboard']);
-		} else if(role == 'DATA_APPROVER') {
+		} else if(role == this.roles.insAdmin) {
+			this.router.navigate(['/departments']);
+		} else if(role == this.roles.insDataMgr) {
+			this.router.navigate(['/courses']);
+		} else if(role == this.roles.affInsDataMgr) {
+			this.router.navigate(['/dashboard']);
+		} else if(role == this.roles.dataReviewer) {
 			this.router.navigate(['/home']);
-		} else if(role == 'DATA_CERTIFIER') {
+		} else if(role == this.roles.dataApprover) {
 			this.router.navigate(['/home']);
-		} else if(role == 'STUDENT') {
+		} else if(role == this.roles.dataCertifier) {
+			this.router.navigate(['/home']);
+		} else if(role == this.roles.student) {
 			this.router.navigate(['/home']);
 		} 
 	}
