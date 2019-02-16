@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-batch-upload-list',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BatchUploadListComponent implements OnInit {
 
-  constructor() { }
+	url;
+	loginUser;
+	authUsers: [] = [];
+	displayedColumns = ['userType', 'instituteId', 'departmentId', 'affInstituteId', 'username', 'emailId', 'phone', '_id'];
 
-  ngOnInit() {
-  }
+	dataSource = new MatTableDataSource<any>();
+	selection = new SelectionModel<any>(true, []);
+
+	@ViewChild(MatSort) sort: MatSort;
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+
+	constructor() { }
+
+	ngOnInit() {
+	}
 
 }
