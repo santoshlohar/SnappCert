@@ -12,7 +12,16 @@ export class BatchUploadListComponent implements OnInit {
 	url;
 	loginUser;
 	authUsers: [] = [];
-	displayedColumns = ['userType', 'instituteId', 'departmentId', 'affInstituteId', 'username', 'emailId', 'phone', '_id'];
+	displayedColumns = [
+		'userType', 
+		'instituteId', 
+		'departmentId', 
+		'affInstituteId', 
+		'username', 
+		'emailId', 
+		'phone', 
+		'_id'
+	];
 
 	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
