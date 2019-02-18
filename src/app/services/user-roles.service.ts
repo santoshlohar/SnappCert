@@ -35,6 +35,8 @@ export class UserRolesService {
 			this.router.navigate(['/','departments']);
 		} else if(role == 'INS_DATA_MANAGER') {
 			this.router.navigate(['/','courses']);
+		}  else if(role == 'DATA_REVIEWER') {
+			this.router.navigate(['/','courses']);
 		} else if(role == 'DATA_APPROVER') {
 			this.router.navigate(['/home']);
 		} else if(role == 'DATA_CERTIFIER') {
