@@ -1,22 +1,17 @@
 <div class="container">
+    <div class="list-header">
+        <div class="inner-div aff-btn upload-btn-wrapper">
+            <button mat-button class="add-btn">Upload Batch Data</button>
+            <input type="file" name="excel" (change)="uploadBatch($event.target.files, $event.target.name)"/>
+            <!-- <a mat-button class="add-btn" (click)="uploadBatch()"> Upload Batch Data </a> -->
+        </div>
+        <span class="spacer"></span>
+        <div class="inner-div aff-btn">
+            <!-- <a mat-button class="add-btn"> Upload Batch Data </a> -->
+        </div>
+    </div>
     <div class="list-container">
         <mat-table [dataSource]="dataSource" class="mat-elevation-z8 list-wrapper">
-            <ng-container matColumnDef="userType">
-                <mat-header-cell *matHeaderCellDef> 
-                    <div> User Type</div>
-                    <!-- <div>
-                        <mat-form-field>
-                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
-                        </mat-form-field>
-                    </div> -->
-                </mat-header-cell>
-                <mat-cell *matCellDef="let element"> 
-                    <div class="cell-div">
-                        {{element.UserType}} 
-                    </div>
-                </mat-cell>
-            </ng-container>
-
             <ng-container matColumnDef="instituteId">
                 <mat-header-cell *matHeaderCellDef> 
                     <div> Institute ID</div>
@@ -28,14 +23,14 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                     <div class="cell-div">
-                        {{element.Institution_ID}}  
+                        {{element.instituteId}}  
                     </div>
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="departmentId">
+            <ng-container matColumnDef="affiliated">
                 <mat-header-cell *matHeaderCellDef> 
-                    <div> Department ID </div>
+                    <div> Affiliated </div>
                     <!-- <div>
                         <mat-form-field>
                             <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
@@ -44,14 +39,14 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                     <div class="cell-div">
-                        {{element.Department_ID}} 
+                        {{element.affiliated}} 
                     </div>
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="affInstituteId">
+            <ng-container matColumnDef="courseId">
                 <mat-header-cell *matHeaderCellDef> 
-                    <div> Aff. Institute ID </div>
+                    <div> Course ID </div>
                     <!-- <div>
                         <mat-form-field>
                             <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
@@ -60,14 +55,14 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                     <div class="cell-div">
-                        {{element.afflInstituteID}} 
+                        {{element.courseId}} 
                     </div>
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="username">
+            <ng-container matColumnDef="batchId">
                 <mat-header-cell *matHeaderCellDef> 
-                    <div> Name </div>
+                    <div> Batch ID </div>
                     <!-- <div>
                         <mat-form-field>
                             <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
@@ -76,14 +71,14 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                     <div class="cell-div">
-                        {{element.UserName}} 
+                        {{element.batchId}} 
                     </div>
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="emailId">
+            <ng-container matColumnDef="batchYear">
                 <mat-header-cell *matHeaderCellDef> 
-                    <div> Email </div>
+                    <div> Batch Year </div>
                     <!-- <div>
                         <mat-form-field>
                             <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
@@ -92,14 +87,14 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                     <div class="cell-div">
-                        {{element.emailId}} 
+                        <!-- {{element.emailId}}  -->
                     </div>
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="phone">
+            <ng-container matColumnDef="minCredits">
                 <mat-header-cell *matHeaderCellDef> 
-                    <div> Phone No. </div>
+                    <div> Min. Credits </div>
                     <!-- <div>
                         <mat-form-field>
                             <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
@@ -108,7 +103,215 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                     <div class="cell-div">
-                        {{element.phoneNumber}} 
+                        <!-- {{element.phoneNumber}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="minCgpa">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Min. CGPA </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalCgpa">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Total. CGPA </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="minScore">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Min. Score </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalScore">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Total. Score </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="termType">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Term Type </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="termId">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Term ID </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="termStart">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Term Start </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="termEnd">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Term End </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="DataStatus">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Data Status </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="comments">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Comments </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Date </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="time">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Time </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="userName">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> User Name </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        <!-- {{element._id}}  -->
                     </div>
                 </mat-cell>
             </ng-container>
@@ -124,14 +327,15 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                     <div class="cell-div">
-                        {{element._id}} 
+                        <!-- {{element._id}}  -->
                     </div>
                 </mat-cell>
-                <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
             </ng-container>
-
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
     </div>
+    <div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div> 
 </div>
