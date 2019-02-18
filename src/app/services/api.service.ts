@@ -33,7 +33,6 @@ export class ApiService {
 	};
 
 	get(url) {
-		console.log(this.httpOptions)
 		this.getData = this.http.get(this.apiURL + url, this.httpOptions);
 		return this.getData;		
 	}

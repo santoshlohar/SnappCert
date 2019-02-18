@@ -108,7 +108,6 @@ export class CertificateUploadListComponent implements OnInit {
 					
 						this.newCertificates.push(this.certificatesData[i]);
 						this.dataSource.data = this.newCertificates;
-						console.log(this.dataSource.data)
 						
 					}
 					//this.validatedCertificate(this.dataSource.data[i]);

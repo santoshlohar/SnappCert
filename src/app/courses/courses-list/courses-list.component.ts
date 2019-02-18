@@ -44,7 +44,6 @@ export class CoursesListComponent implements OnInit {
 
 		this.apiService.get(this.url)
 			.subscribe((response) => {
-				console.log(response);
 				this.courses = response;
 				this.dataSource.data = this.courses;
 			});

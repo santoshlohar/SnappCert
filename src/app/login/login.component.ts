@@ -4,8 +4,7 @@ import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
-
-
+import { AuthGuard } from '../services/auth-guard';
 
 @Component({
 	selector: 'app-login',
@@ -24,7 +23,8 @@ export class LoginComponent implements OnInit {
 				private formBuilder: FormBuilder,
 				private authService: AuthService,
 				private router: Router,
-				private dialog: MatDialog) {}
+				private dialog: MatDialog,
+				private authGuard: AuthGuard) {}
 
 	ngOnInit() {
 		this.userLogin = this.formBuilder.group({

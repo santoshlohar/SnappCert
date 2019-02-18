@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class Globals {
   isSidebar: boolean = false;
   isUserLoggedIn: boolean = false;
+  stateRoute: string;
 
   ngOnInit() {
 	}

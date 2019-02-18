@@ -51,11 +51,9 @@ export class DepartmentsListComponent implements OnInit {
 	};
 
 	getDepartments() {
-		console.log("Get dept");
 		this.url = '/departments';
 		this.apiService.get(this.url)
 			.subscribe((response) => {
-				console.log(response);
 				this.Departments = response;
 				this.dataSource.data = this.Departments;
 			});
