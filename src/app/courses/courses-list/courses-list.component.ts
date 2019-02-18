@@ -3,6 +3,8 @@ import {SelectionModel} from '@angular/cdk/collections';
 import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { ApiService } from '../../services/api.service';
 import { InstituteCourse } from '../../modals/institute-course';
+import { Router } from '@angular/router';
+import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'app-courses-list',
@@ -33,9 +35,14 @@ export class CoursesListComponent implements OnInit {
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
-	constructor(private apiService: ApiService) { }
+	constructor(private apiService: ApiService,
+				private router: Router,
+				public globals: Globals) { 
+					this.globals.stateRoute = this.router.url;
+				}
 
 	ngOnInit() {
+		console.log(this.globals.stateRoute)
 		this.getInsCourses();
 	}
 

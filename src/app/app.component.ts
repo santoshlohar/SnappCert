@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Globals } from './globals';
 
 @Component({
@@ -8,7 +8,9 @@ import { Globals } from './globals';
 })
 export class AppComponent {
 	title = 'snapperCertificate';
+	@Input() stateRoute: string;
 	constructor( public globals: Globals) {
+		console.log(this.stateRoute)
 	}
 
 	ngOnInit() {

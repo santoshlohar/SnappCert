@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Globals } from '../globals';
-import { Router } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { AuthGuard } from '../services/auth-guard';
 
 @Component({
 	selector: 'app-header',
@@ -10,11 +11,21 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+	@Input() stateRoute: string;
 	constructor(public globals: Globals,
 				public router: Router,
-				private authService: AuthService) { }
+				private authService: AuthService,
+				private authGuard: AuthGuard) {
+					console.log(this.stateRoute);
+					this.stateRoute = this.router.url;
+				}
 
 	ngOnInit() {
+		// console.log(this.router.url);
+	}
+
+	ngOnViewInit() {
+		console.log(this.stateRoute)
 	}
 
 	gotoLogin() {

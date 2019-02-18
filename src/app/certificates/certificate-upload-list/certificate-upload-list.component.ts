@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, Output} from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort, MatTableDataSource, MatPaginator, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { ValidatedCertificate } from '../../modals/validated_certificate';
 import { isNumber, isString } from 'util';
 import { map } from 'rxjs/operators';
 import { NgClass } from '@angular/common';
+import { Globals } from 'src/app/globals';
 
 @Component({
 	selector: 'app-certificate-upload-list',
@@ -51,12 +52,16 @@ export class CertificateUploadListComponent implements OnInit {
 	//newCertificates = new MatTableDataSource<ValidatedCertificate>(this.certificatesData);
 	selection = new SelectionModel<any>(true, []);
 
+	@Output() stateRoute: string;
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 
 	constructor(private apiService: ApiService,
 				public dialoge: MatDialog,
-				public router: Router) { }
+				public router: Router,
+				public globals: Globals) { 
+					this.stateRoute = this.router.url;
+				}
 
 	ngOnInit() {
 		this.dataSource.sort = this.sort;

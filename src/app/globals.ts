@@ -7,6 +7,7 @@ export class Globals {
   stateRoute: string;
 
   ngOnInit() {
+    console.log(this.stateRoute)
 	}
   
 }
