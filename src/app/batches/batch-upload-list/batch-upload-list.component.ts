@@ -14,8 +14,11 @@ export class BatchUploadListComponent implements OnInit {
 	loginUser;
 	authUsers: [] = [];
 	uploadedFileName;
+	batchesData = [];
+	newBatches = [];
 	displayedColumns = [
 		'select',
+		'actions',
 		'instituteId', 
 		'affiliated', 
 		'courseId', 
@@ -86,7 +89,17 @@ export class BatchUploadListComponent implements OnInit {
 			.subscribe((response) => {
 				if(response.message == 'success') {
 					console.log(response.data);
-					this.dataSource.data = response.data;
+					this.batchesData = response.data;
+					for(var i=0; i<this.batchesData.length; i++) {
+						this.batchesData[i].position = i;
+						this.batchesData[i].editing = false;
+					
+						if(this.batchesData[i].transactionStatus == 'New') {
+
+							this.newBatches.push(this.batchesData[i]);
+							this.dataSource.data = this.newBatches;
+						}							
+					}
 				}
 			},
 			(error) => {
@@ -97,6 +110,52 @@ export class BatchUploadListComponent implements OnInit {
 				}
 			})
 	}
+
+	edit(row) {
+		var tableData = this.newBatches;
+		for(var i=0;i<tableData.length;i++) {
+			if(row._id == tableData[i]._id) {
+				if(tableData[i].editing == false) {
+					tableData[i].editing = true;
+				} else {
+					tableData[i].editing = false;
+				}
+				// if(tableData[i].scrErnErr == true) {
+				// 	if(isString(tableData[i].scoreEarned)) {
+				// 		tableData[i].scoreEarned = Number(tableData[i].scoreEarned);
+				// 		tableData[i].scrErnErr = false;
+				// 	}
+				// } else {
+				// 	if(isNaN(tableData[i].scoreEarned)) {
+				// 		tableData[i].scrErnErr = true;
+				// 	}
+				// }
+
+				// if(tableData[i].totalScrErr == true) {
+				// 	if(isString(tableData[i].totalScore)) {
+				// 		tableData[i].totalScore = Number(tableData[i].totalScore);
+				// 		tableData[i].totalScrErr = false;
+				// 	}
+				// } else {
+				// 	if(isNaN(tableData[i].totalScore)) {
+				// 		tableData[i].totalScrErr = true;
+				// 	}
+				// }
+
+				// if(tableData[i].creditsError == true) {
+				// 	if(isString(tableData[i].creditsEarned)) {
+				// 		tableData[i].creditsEarned = Number(tableData[i].creditsEarned);
+				// 		tableData[i].creditsError = false;
+				// 	}
+				// } else {
+				// 	if(isNaN(tableData[i].creditsEarned)) {
+				// 		tableData[i].creditsError = true;
+				// 	}
+				// }
+				this.dataSource.data = tableData;			
+			}
+		}
+	};
 
 }
 
