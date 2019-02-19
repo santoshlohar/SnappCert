@@ -4,7 +4,6 @@ import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
-import { AuthGuard } from '../services/auth-guard';
 import { UserRolesService } from '../services/user-roles.service';
 
 @Component({
