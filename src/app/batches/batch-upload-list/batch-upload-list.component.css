@@ -48,3 +48,7 @@ mat-table {
 	top: 0;
 	opacity: 0;
 }
+
+.mat-checkbox-background .mat-checkbox-checked.mat-accent{
+    background-color: #E2BE40 !important;
+}

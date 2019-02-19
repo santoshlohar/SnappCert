@@ -15,6 +15,7 @@ export class BatchUploadListComponent implements OnInit {
 	authUsers: [] = [];
 	uploadedFileName;
 	displayedColumns = [
+		'select',
 		'instituteId', 
 		'affiliated', 
 		'courseId', 
@@ -53,6 +54,17 @@ export class BatchUploadListComponent implements OnInit {
 		this.getTempBatch();
 	}
 
+	isAllSelected() {
+		const numSelected = this.selection.selected.length;
+		const numRows = this.dataSource.data.length;
+		return numSelected === numRows;
+	};
+
+	masterToggle() {
+		this.isAllSelected() ? 
+			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+	};
+
 	uploadBatch(files, filename) {
 		var form = new FormData();
 		form.append(filename, files[0]);
@@ -65,7 +77,6 @@ export class BatchUploadListComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			});
-		
 	}
 
 	getTempBatch(){
