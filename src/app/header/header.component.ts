@@ -16,8 +16,9 @@ export class HeaderComponent implements OnInit {
 				public router: Router,
 				private authService: AuthService,
 				private authGuard: AuthGuard) {
-					console.log(this.stateRoute);
 					this.stateRoute = this.router.url;
+					console.log(this.stateRoute);
+
 				}
 
 	ngOnInit() {

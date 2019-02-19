@@ -10,7 +10,6 @@ export class AppComponent {
 	title = 'snapperCertificate';
 	@Input() stateRoute: string;
 	constructor( public globals: Globals) {
-		console.log(this.stateRoute)
 	}
 
 	ngOnInit() {
