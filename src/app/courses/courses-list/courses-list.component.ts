@@ -44,14 +44,9 @@ export class CoursesListComponent implements OnInit {
 				}
 
 	ngOnInit() {
-		this.loginUser = JSON.stringify(localStorage.getItem('user'));
-		this.inst_Id = this.loginUser.instituteId;
-		if(this.loginUser.userType == 'INS_DATA_MANAGER') {
-			this.getInsCourses();
-		} else if (this.loginUser.userType == 'AFF_INS_DATA_MANAGER') {
-			this.getCoursesByInsId();
-		}
-		
+		this.loginUser = JSON.parse(localStorage.getItem('user'));
+		this.inst_Id = this.loginUser.instituteID;
+		this.getCoursesByInsId();
 	}
 
 	getInsCourses() {
@@ -65,11 +60,18 @@ export class CoursesListComponent implements OnInit {
 	}
 
 	getCoursesByInsId() {
-		this.url = '/coursedatabyinstid';
+		this.url = '/coursedatabyinstid/';
 
 		this.apiService.get(this.url + this.inst_Id)
 			.subscribe((response) => {
 				console.log(response);
+				if(response.message == 'success') {
+					if(response.data.length) {
+						this.dataSource.data = response.data;
+					} else {
+						console.log("NO RECORD");
+					}
+				}
 			},
 			(error) => {
 				console.log(error);
