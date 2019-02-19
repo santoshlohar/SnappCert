@@ -57,14 +57,19 @@
 			<mat-divider></mat-divider>
 		</div> 
 		<div *ngIf='userType == "AFF_INS_DATA_MANAGER"'>
-			<div class="innerbar-content">
-				<a href="/dashboard"><img class="sidebar-img" src="./assets/icons/dashboard.png" alt="dashboard" /> </a><br />
-				<a class="link-btn" id="img-dashboard" routerLink="/dashboard">Dashboard</a>
+			<div class="innerbar-content" routerLink="/departments">
+				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
+				<span class="link-btn"> Dashboard </span>
 			</div>
 			<mat-divider></mat-divider>
-			<div class="innerbar-content">
-				<a href="/batchUploadList"><img class="sidebar-img" src="./assets/icons/batch_list_white.png" alt="dashboard" /> </a><br />
-				<a class="link-btn" id="img-dashboard" routerLink="/batchUploadList"> Batch Data </a>
+			<div class="innerbar-content" routerLink="/courses">
+				<img class="sidebar-img" src="./assets/icons/batch_list_white.png"/><br />
+				<span class="link-btn"> Course Data </span>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content" routerLink="/batchUploadList">
+				<img class="sidebar-img" src="./assets/icons/batch_list_white.png"/><br />
+				<span class="link-btn"> Batch Data </span>
 			</div>
 			<mat-divider></mat-divider>
 		</div>
