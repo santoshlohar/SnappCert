@@ -46,12 +46,13 @@ export class LoginComponent implements OnInit {
 				this.userData = response;
 				this.type = this.userData.UserType;
 				this.roleService.renderScreen(this.type);
-
+				
 				this.dialogRef.close();
 			},
 			(error) => {
 				console.log(error);
-			})
+			}
+			)
 	};
 
 	close() {
