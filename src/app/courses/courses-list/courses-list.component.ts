@@ -14,6 +14,8 @@ import { Globals } from 'src/app/globals';
 export class CoursesListComponent implements OnInit {
 
 	url;
+	loginUser;
+	inst_Id;
 	courses: InstituteCourse[] = [];
 	displayedColumns = [
 		'instituteId',
@@ -42,8 +44,14 @@ export class CoursesListComponent implements OnInit {
 				}
 
 	ngOnInit() {
-		console.log(this.globals.stateRoute)
-		this.getInsCourses();
+		this.loginUser = JSON.stringify(localStorage.getItem('user'));
+		this.inst_Id = this.loginUser.instituteId;
+		if(this.loginUser.userType == 'INS_ADMIN') {
+			this.getInsCourses();
+		} else if (this.loginUser.userType == 'AFF_INS_DATA_MANAGER') {
+			this.getCoursesByInsId();
+		}
+		
 	}
 
 	getInsCourses() {
@@ -54,6 +62,18 @@ export class CoursesListComponent implements OnInit {
 				this.courses = response;
 				this.dataSource.data = this.courses;
 			});
+	}
+
+	getCoursesByInsId() {
+		this.url = '/coursedatabyinstid';
+
+		this.apiService.get(this.url + this.inst_Id)
+			.subscribe((response) => {
+				console.log(response);
+			},
+			(error) => {
+				console.log(error);
+			})
 	}
 
 	editCourse(row) {
