@@ -1,0 +1,50 @@
+.container {
+    padding: 40px 20px;
+}
+
+.list-container {
+    width: 1094px;
+    height: inherit;
+    overflow: auto;
+}
+
+mat-table {
+    width: 100%;
+    min-width: 1910px;
+}
+
+.list-header {
+    display: flex;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.inner-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.aff-btn {
+    padding: 15px 2px;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.add-btn {
+    color: #444444;
+    background-color: #E2BE40;
+}
+
+.upload-btn-wrapper input[type=file] {
+	font-size: 100px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}

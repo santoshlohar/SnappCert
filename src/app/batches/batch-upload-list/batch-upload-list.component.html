@@ -1,0 +1,373 @@
+<div class="container">
+    <div class="list-header">
+        <div class="inner-div aff-btn upload-btn-wrapper">
+            <button mat-button class="add-btn">Upload Batch Data</button>
+            <input type="file" name="excel" (change)="uploadBatch($event.target.files, $event.target.name)"/>
+            <!-- <a mat-button class="add-btn" (click)="uploadBatch()"> Upload Batch Data </a> -->
+        </div>
+        <span class="spacer"></span>
+        <div class="inner-div aff-btn">
+            <!-- <a mat-button class="add-btn"> Upload Batch Data </a> -->
+        </div>
+    </div>
+    <div class="list-container">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8 list-wrapper">
+            <ng-container matColumnDef="instituteId">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Institute ID</div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.instituteID}}  
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="affiliated">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Affiliated </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.afflInstituteID}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="courseId">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Course ID </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.courseID}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="batchId">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Batch ID </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.batchID}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="batchYear">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Batch Year </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.batchYear}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="minCredits">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Min. Credits </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.minCredits}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="minCgpa">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Min. CGPA </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.minCGPA}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalCgpa">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Total. CGPA </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.totalCGPA}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="minScore">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Min. Score </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.minScore}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalScore">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Total. Score </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.totalScore}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="termType">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Term Type </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.termType}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="termId">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Term ID </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.termID}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="termStart">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Term Start </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.termStartMonth}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="termEnd">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Term End </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.termEndMonth}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="transactionStatus">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Transaction Status </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.transactionStatus}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="failure">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Failure </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.failureReason}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="comments">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Comments </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.comments}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="transactionMachine">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Transaction Machine </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.transactionMachine}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Date </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.transactionDate}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="time">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Time </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.transactionTime}}
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="userName">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> User Name </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element.transactionUser}}
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="_id">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Actions </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                    <div class="cell-div">
+                        {{element._id}} 
+                    </div>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+    <div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div> 
+</div>

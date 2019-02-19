@@ -39,6 +39,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
+import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
 
 @NgModule({
     declarations: [
@@ -65,7 +66,8 @@ import { UserAddComponent } from './users/user-add/user-add.component';
         ForgotPasswordComponent,
         DashboardComponent,
         UsersListComponent,
-        UserAddComponent 
+        UserAddComponent,
+        BatchUploadListComponent
     ],
     imports: [
         BrowserModule,
