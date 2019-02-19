@@ -29,8 +29,10 @@ export class BatchUploadListComponent implements OnInit {
 		'termId',
 		'termStart',
 		'termEnd',
-		'DataStatus',
+		'transactionStatus',
+		'failure',
 		'comments',
+		'transactionMachine',
 		'date',
 		'time',
 		'userName',
@@ -48,6 +50,7 @@ export class BatchUploadListComponent implements OnInit {
 	ngOnInit() {
 		//this.dataSource.data = Batch_Data;
 		//console.log(this.dataSource.data);
+		this.getTempBatch();
 	}
 
 	uploadBatch(files, filename) {
@@ -70,10 +73,17 @@ export class BatchUploadListComponent implements OnInit {
 
 		this.apiService.get(this.url)
 			.subscribe((response) => {
-				console.log(response);
+				if(response.message == 'success') {
+					console.log(response.data);
+					this.dataSource.data = response.data;
+				}
 			},
 			(error) => {
 				console.log(error);
+				if(error) {
+					var errMessage = error.error.message;
+					alert(errMessage);
+				}
 			})
 	}
 
