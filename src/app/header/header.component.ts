@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Globals } from '../globals';
-import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AuthGuard } from '../services/auth-guard';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-header',
@@ -15,18 +16,12 @@ export class HeaderComponent implements OnInit {
 	constructor(public globals: Globals,
 				public router: Router,
 				private authService: AuthService,
-				private authGuard: AuthGuard) {
-					this.stateRoute = this.router.url;
-					console.log(this.stateRoute);
-
+				private authGuard: AuthGuard,
+				private route: ActivatedRoute) {
 				}
 
 	ngOnInit() {
 		// console.log(this.router.url);
-	}
-
-	ngOnViewInit() {
-		console.log(this.stateRoute)
 	}
 
 	gotoLogin() {
