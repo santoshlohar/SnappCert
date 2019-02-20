@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -255,3 +255,28 @@ export class BatchUploadListComponent implements OnInit {
 	}
 
 }
+
+// const Batch_Data: any[] = [
+// 	{
+// 		instituteId: '111', 
+// 		affiliated: '111', 
+// 		courseId: '11', 
+// 		batchId:'11', 
+// 		batchYear:'11', 
+// 		minCredits:'11', 
+// 		minCgpa:'aaa',
+// 		totalCgpa:'aa',
+// 		minScore:'aa',
+// 		totalScore:'aa',
+// 		termType:'aa',
+// 		termId: 'aa',
+// 		termStart:'aa',
+// 		termEnd:'aa',
+// 		dataStatus:'aa',
+// 		comments:'aa',
+// 		date:'aa',
+// 		time:'aa',
+// 		userName:'aa',
+// 		_id: 'aa'
+// 	}
+// ]

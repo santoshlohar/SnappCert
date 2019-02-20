@@ -24,7 +24,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
-import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
+// import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
+import { BatchesComponent } from './batches/batches.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -46,7 +47,8 @@ const routes: Routes =  [
     { path: 'courseAdd', component: CourseAddComponent},
     { path: 'certificateUploadList', component: CertificateUploadListComponent, canActivate: [AuthGuard]},
     { path: 'certificateUpload', component: CerificatesUploadComponent, canActivate: [AuthGuard]},
-	{ path: 'batchUploadList', component: BatchUploadListComponent, canActivate: [AuthGuard]},    
+    { path: 'batches', component: BatchesComponent, canActivate: [AuthGuard]},
+	// { path: 'batchUploadList', component: BatchUploadListComponent, canActivate: [AuthGuard]},    
     { path: '**', component: PageNotFoundComponent}
 ];
 
