@@ -5,7 +5,7 @@
 				<a mat-button class="add-btn" routerLink="/userAdd">Add User</a>
 			</div>
 		</div>
-		<div>
+		<div class="table-wrapper">
 			<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 				<ng-container matColumnDef="userType">
 					<mat-header-cell *matHeaderCellDef>
@@ -106,7 +106,7 @@
 				</ng-container>
 
 				<ng-container matColumnDef="_id">
-					<mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef class="actions"> Actions </mat-header-cell>
 					<mat-cell *matCellDef="let row"> 
 						<mat-icon class="update icons" (click)="editCourse(row)">edit</mat-icon>
 					</mat-cell>
