@@ -30,6 +30,10 @@ mat-table {
     padding: 15px 2px;
 }
 
+.mat-header-btns {
+    padding: 1px 5px;
+}
+
 .upload-btn-wrapper {
     position: relative;
     overflow: hidden;
@@ -39,6 +43,7 @@ mat-table {
 .add-btn {
     color: #444444;
     background-color: #E2BE40;
+    margin: 2px 4px;
 }
 
 .upload-btn-wrapper input[type=file] {

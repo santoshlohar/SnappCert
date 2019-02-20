@@ -16,6 +16,8 @@ export class BatchUploadListComponent implements OnInit {
 	uploadedFileName;
 	batchesData = [];
 	newBatches = [];
+	selectedBatches = [];
+	errorBatches = [];
 	displayedColumns = [
 		'select',
 		'actions',
@@ -61,12 +63,12 @@ export class BatchUploadListComponent implements OnInit {
 		const numSelected = this.selection.selected.length;
 		const numRows = this.dataSource.data.length;
 		return numSelected === numRows;
-	};
+	}
 
 	masterToggle() {
 		this.isAllSelected() ? 
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
-	};
+	}
 
 	uploadBatch(files, filename) {
 		var form = new FormData();
@@ -95,7 +97,23 @@ export class BatchUploadListComponent implements OnInit {
 						this.batchesData[i].editing = false;
 					
 						if(this.batchesData[i].transactionStatus == 'New') {
+							
+							if(isNaN(this.batchesData[i].minCredits)) {
+								this.batchesData[i].minCreditsErr = true;
+							}
 
+							if(isNaN(this.batchesData[i].minCGPA)) {
+								this.batchesData[i].minCGPAErr = true;
+							}
+
+							if(isNaN(this.batchesData[i].totalCGPA)) {
+								this.batchesData[i].totalCGPAErr = true;
+							}
+
+							if(isNaN(this.batchesData[i].minScore)) {
+								this.batchesData[i].minScoreErr = true;
+							}
+							
 							this.newBatches.push(this.batchesData[i]);
 							this.dataSource.data = this.newBatches;
 						}							
@@ -120,42 +138,121 @@ export class BatchUploadListComponent implements OnInit {
 				} else {
 					tableData[i].editing = false;
 				}
-				// if(tableData[i].scrErnErr == true) {
-				// 	if(isString(tableData[i].scoreEarned)) {
-				// 		tableData[i].scoreEarned = Number(tableData[i].scoreEarned);
-				// 		tableData[i].scrErnErr = false;
-				// 	}
-				// } else {
-				// 	if(isNaN(tableData[i].scoreEarned)) {
-				// 		tableData[i].scrErnErr = true;
-				// 	}
-				// }
 
-				// if(tableData[i].totalScrErr == true) {
-				// 	if(isString(tableData[i].totalScore)) {
-				// 		tableData[i].totalScore = Number(tableData[i].totalScore);
-				// 		tableData[i].totalScrErr = false;
-				// 	}
-				// } else {
-				// 	if(isNaN(tableData[i].totalScore)) {
-				// 		tableData[i].totalScrErr = true;
-				// 	}
-				// }
+				if(tableData[i].minCreditsErr == true) {
+					if(String(tableData[i].minCredits)) {
+						tableData[i].minCredits = Number(tableData[i].minCredits);
+						tableData[i].minCreditsErr = false;
+					}
+				} else {
+					if(isNaN(tableData[i].minCredits)) {
+						tableData[i].minCreditsErr = true;
+					}
+				}
 
-				// if(tableData[i].creditsError == true) {
-				// 	if(isString(tableData[i].creditsEarned)) {
-				// 		tableData[i].creditsEarned = Number(tableData[i].creditsEarned);
-				// 		tableData[i].creditsError = false;
-				// 	}
-				// } else {
-				// 	if(isNaN(tableData[i].creditsEarned)) {
-				// 		tableData[i].creditsError = true;
-				// 	}
-				// }
+				if(tableData[i].minCGPAErr == true) {
+					if(String(tableData[i].minCGPA)) {
+						tableData[i].minCGPA = Number(tableData[i].minCGPA);
+						tableData[i].minCGPAErr = false;
+					}
+				} else {
+					if(isNaN(tableData[i].minCGPA)) {
+						tableData[i].minCGPAErr = true;
+					}
+				}
+
+				if(tableData[i].totalCGPAErr == true) {
+					if(String(tableData[i].totalCGPA)) {
+						tableData[i].totalCGPA = Number(tableData[i].totalCGPA);
+						tableData[i].totalCGPAErr = false;
+					}
+				} else {
+					if(isNaN(tableData[i].totalCGPA)) {
+						tableData[i].totalCGPAErr = true;
+					}
+				}
+
+				if(tableData[i].minScoreErr == true) {
+					if(String(tableData[i].minScore)) {
+						tableData[i].minScore = Number(tableData[i].minScore);
+						tableData[i].minScoreErr = false;
+					}
+				} else {
+					if(isNaN(tableData[i].minScore)) {
+						tableData[i].minScoreErr = true;
+					}
+				}
+
+				if(tableData[i].totalScoreErr == true) {
+					if(String(tableData[i].totalScore)) {
+						tableData[i].totalScore = Number(tableData[i].totalScore);
+						tableData[i].totalScoreErr = false;
+					}
+				} else {
+					if(isNaN(tableData[i].totalScore)) {
+						tableData[i].totalScoreErr = true;
+					}
+				}
+				
 				this.dataSource.data = tableData;			
 			}
 		}
-	};
+	}
+
+	processData() {
+		console.log("process");
+		this.selectedBatches = this.selection.selected;
+
+		this.url = "/updatemultibatchdata";
+		if(this.selectedBatches.length) {
+			for(var i=0;i<this.selectedBatches.length;i++){
+				var singleBatch = this.selectedBatches[i];
+				console.log(singleBatch);
+				if(!singleBatch.instituteID || !singleBatch.afflInstituteID || !singleBatch.courseID ||
+				   !singleBatch.batchID || !singleBatch.batchYear || !singleBatch.minCredits || singleBatch.minCreditsErr ||
+				   !singleBatch.minCGPA || singleBatch.minCGPAErr || !singleBatch.totalCGPA || singleBatch.totalCGPAErr ||
+				   !singleBatch.minScore || singleBatch.minScoreErr || !singleBatch.totalScore || singleBatch.totalScoreErr ||
+				   !singleBatch.termType || !singleBatch.termID || !singleBatch.termStartMonth || !singleBatch.termEndMonth ||
+				   !singleBatch.termEndMonth ) {
+
+					alert("Please deselect error batch before process the data!");
+				} else {
+					this.apiService.post(this.url, this.selectedBatches)
+						.subscribe((response: any) => {
+							console.log(response);
+							if(response.message == 'success') {
+								
+							}
+						},
+						(error) => {
+							console.log(error);
+							var message = error.error.message;
+							alert(message);
+						})
+				}
+			}
+		} else {
+			alert("please select atleast one batch data to process!")
+		}
+	}
+
+	deleteBatches() {
+		console.log("delete");
+		this.selectedBatches = this.selection.selected;
+
+		this.url = "/deletempbatchdata";
+		if(this.selectedBatches.length) {
+			this.apiService.post(this.url, this.selectedBatches)
+				.subscribe((response) => {
+					console.log(response)
+				},
+				(error) => {
+					console.log(error);
+				})
+		} else {
+			alert("please select atleast one batch data to delete!");
+		}
+	}
 
 }
 

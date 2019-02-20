@@ -3,11 +3,13 @@
         <div class="inner-div aff-btn upload-btn-wrapper">
             <button mat-button class="add-btn">Upload Batch Data</button>
             <input type="file" name="excel" (change)="uploadBatch($event.target.files, $event.target.name)"/>
-            <!-- <a mat-button class="add-btn" (click)="uploadBatch()"> Upload Batch Data </a> -->
         </div>
         <span class="spacer"></span>
         <div class="inner-div aff-btn">
-            <!-- <a mat-button class="add-btn"> Upload Batch Data </a> -->
+            <div class="mat-header-btns">
+                <a mat-button class="add-btn" (click)="deleteBatches()"> Delete Batches </a>
+                <a mat-button class="add-btn" (click)="processData()"> Process </a>
+            </div>
         </div>
     </div>
     <div class="list-container">
@@ -40,9 +42,6 @@
                     (click)="edit(element)" 
                     *ngIf="element.editing"
                     matTooltip="Check">check</mat-icon>
-                    <mat-icon class="clr-blue icon"
-                    (click)="delete(element._id)"
-                    matTooltip="Delete">delete_outline</mat-icon>
                 </mat-cell>
             </ng-container>
             
@@ -151,7 +150,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.minCredits) || element.instError}">
+                    [ngClass]="{'highlight': !(element.minCredits) || element.minCreditsErr}">
                     <span *ngIf="!element.editing"> {{element.minCredits}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.minCredits" [(ngModel)]="element.minCredits">
@@ -170,7 +169,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.minCGPA) || element.instError}">
+                    [ngClass]="{'highlight': !(element.minCGPA) || element.minCGPAErr}">
                     <span *ngIf="!element.editing"> {{element.minCGPA}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.minCGPA" [(ngModel)]="element.minCGPA">
@@ -189,7 +188,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.totalCGPA) || element.instError}">
+                    [ngClass]="{'highlight': !(element.totalCGPA) || element.totalCGPAErr}">
                     <span *ngIf="!element.editing"> {{element.totalCGPA}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.totalCGPA" [(ngModel)]="element.totalCGPA">
@@ -208,7 +207,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.minScore) || element.instError}">
+                    [ngClass]="{'highlight': !(element.minScore) || element.minScoreErr}">
                     <span *ngIf="!element.editing"> {{element.minScore}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.minScore" [(ngModel)]="element.minScore">
@@ -227,7 +226,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.totalScore) || element.instError}">
+                    [ngClass]="{'highlight': !(element.totalScore) || element.totalScoreErr}">
                     <span *ngIf="!element.editing"> {{element.totalScore}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.totalScore" [(ngModel)]="element.totalScore">
@@ -246,7 +245,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.termType) || element.instError}">
+                    [ngClass]="{'highlight': !(element.termType) }">
                     <span *ngIf="!element.editing"> {{element.termType}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.termType" [(ngModel)]="element.termType">
@@ -265,7 +264,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.termID) || element.instError}">
+                    [ngClass]="{'highlight': !(element.termID)}">
                     <span *ngIf="!element.editing"> {{element.termID}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.termID" [(ngModel)]="element.termID">
@@ -284,7 +283,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.termStartMonth) || element.instError}">
+                    [ngClass]="{'highlight': !(element.termStartMonth)}">
                     <span *ngIf="!element.editing"> {{element.termStartMonth}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.termStartMonth" [(ngModel)]="element.termStartMonth">
@@ -303,7 +302,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.termEndMonth) || element.instError}">
+                    [ngClass]="{'highlight': !(element.termEndMonth)}">
                     <span *ngIf="!element.editing"> {{element.termEndMonth}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.termEndMonth" [(ngModel)]="element.termEndMonth">
@@ -322,7 +321,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.transactionStatus) || element.instError}">
+                    [ngClass]="{'highlight': !(element.transactionStatus)}">
                     <span *ngIf="!element.editing"> {{element.transactionStatus}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.transactionStatus" [(ngModel)]="element.transactionStatus">
@@ -341,7 +340,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.failureReason) || element.instError}">
+                    [ngClass]="{'highlight': !(element.failureReason)}">
                     <span *ngIf="!element.editing"> {{element.failureReason}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.failureReason" [(ngModel)]="element.failureReason">
@@ -360,7 +359,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.comments) || element.instError}">
+                    [ngClass]="{'highlight': !(element.comments)}">
                     <span *ngIf="!element.editing"> {{element.comments}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.comments" [(ngModel)]="element.comments">
@@ -379,7 +378,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.transactionMachine) || element.instError}">
+                    [ngClass]="{'highlight': !(element.transactionMachine)}">
                     <span *ngIf="!element.editing"> {{element.transactionMachine}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.transactionMachine" [(ngModel)]="element.transactionMachine">
@@ -398,7 +397,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.transactionDate) || element.instError}">
+                    [ngClass]="{'highlight': !(element.transactionDate)}">
                     <span *ngIf="!element.editing"> {{element.transactionDate}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.transactionDate" [(ngModel)]="element.transactionDate">
@@ -417,7 +416,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.transactionTime) || element.instError}">
+                    [ngClass]="{'highlight': !(element.transactionTime)}">
                     <span *ngIf="!element.editing"> {{element.transactionTime}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.transactionTime" [(ngModel)]="element.transactionTime">
@@ -436,7 +435,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.transactionUser) || element.instError}">
+                    [ngClass]="{'highlight': !(element.transactionUser)}">
                     <span *ngIf="!element.editing"> {{element.transactionUser}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.transactionUser" [(ngModel)]="element.transactionUser">
