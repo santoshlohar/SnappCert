@@ -3,6 +3,8 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { User } from '../../modals/user';
 import { ApiService } from 'src/app/services/api.service';
+import { Router } from '@angular/router';
+import { Globals } from 'src/app/globals';
 
 @Component({
 	selector: 'app-users-list',
@@ -22,9 +24,11 @@ export class UsersListComponent implements OnInit {
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 
-	constructor(private apiService: ApiService) { 
-		
-	}
+	constructor(private apiService: ApiService,
+				private router: Router,
+				public globals: Globals) { 
+					this.globals.stateRoute = this.router.url;
+				}
 
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem("user"));
@@ -34,12 +38,11 @@ export class UsersListComponent implements OnInit {
 			this.getAffInstituteUsers();
 		}
 		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
-		
+		this.dataSource.paginator = this.paginator;	
 	}
 
 	getInstituteUsers() {
-		var instituteID = this.loginUser.Institution_ID;
+		var instituteID = this.loginUser.instituteID;
 		this.url = "/usesrbyinstitute/" + instituteID;
 
 		this.apiService.get(this.url)
