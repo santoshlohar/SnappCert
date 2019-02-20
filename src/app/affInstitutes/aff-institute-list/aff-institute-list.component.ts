@@ -14,7 +14,7 @@ export class AffInstituteListComponent implements OnInit {
 
 	url;
 	affInstData: AffInstitute[] = [];
-	displayedColumns = ['instituteId', 'deptId', 'affInstId', 'affInsName', 'affInsLocation', 'status', 'id'];
+	displayedColumns = ['instituteId', 'deptId', 'affInstId', 'affInsLocation', 'status', 'id'];
 	dataSource = new MatTableDataSource<AffInstitute>(this.affInstData);
 	selection = new SelectionModel<AffInstitute>(true, []);
 

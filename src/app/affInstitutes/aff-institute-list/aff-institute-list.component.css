@@ -1,5 +1,5 @@
 .container {
-    padding: 40px 1px;
+    padding: 40px 38px;
     max-width: 1225px;
 }
 
@@ -7,6 +7,14 @@
     height: 550px;
     overflow: auto;
     padding: 12px 24px;
+    box-shadow: 5px 5px 15px 6px #bfb9b9;
+    border-radius: 10px;
+}
+
+mat-table {
+    width: 100%;
+    display: -ms-grid;
+    display: grid;
 }
 
 .filter-div {
@@ -14,8 +22,10 @@
 }
 
 .add-btn {
-    color: #fff;
-    background-color: darkgreen;
+    color: #333 !important;
+    background-color: #e2be40;
+    border-radius: 8px;
+    margin-bottom: 12px;
 }
 
 .spacer {
@@ -39,3 +49,70 @@ table {
 .aff-btn {
     padding: 15px 2px;
 }
+
+.update {
+    color: #1073f3;
+}
+
+.search {
+    color: #787b80;
+    font-size: 14px !important;
+    height: 12px !important;
+}
+
+.filters {
+    width: 80% !important;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 75%;
+} 
+
+.mat-header-cell {
+    display: block;
+    padding: 8px 0px 0px 12px;
+}
+
+.table-data-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    color: #565050;
+}
+
+.mat-cell {
+    width: 50px;
+    padding: 6px 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+}
+
+.mat-header-cell {
+    color: #333 !important;
+}
+
+.icons {
+    cursor: pointer;
+}
+
+.actions {
+    margin-bottom: 38px;
+}
+
+.mat-row{
+    height: 10px;
+}
+/* 
+.mat-form-field-infix {
+    padding: 0 !important;
+    border-top-width: 0 !important;
+    border-top-style: solid !important;
+    width: 0 !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0 !important;
+} */

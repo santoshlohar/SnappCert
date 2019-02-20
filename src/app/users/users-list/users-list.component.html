@@ -1,128 +1,19 @@
-<!-- <div class="container">
-	<div class="wrapper">
-		<div class="panel panel-primary heading">
-			<div class="head-btn">
-				<div class="logo-background add-btn">
-					<a mat-button class="add-btn btn-text " routerLink="/userAdd">Add User</a>
-				</div>
-			</div>
-		</div>
-		<div class="list-container">
-			<mat-table [dataSource]="dataSource" class="mat-elevation-z8 list-wrapper">
-				<ng-container matColumnDef="userType">
-					<mat-header-cell *matHeaderCellDef> 
-						<div> User Type</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> 
-						<div class="cell-div">
-							{{element.UserType}} 
-						</div>
-					</mat-cell>
-				</ng-container>
-
-				<ng-container matColumnDef="instituteId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div> Institute ID</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> 
-						<div class="cell-div">
-							{{element.Institution_ID}}  
-						</div>
-					</mat-cell>
-				</ng-container>
-
-				<ng-container matColumnDef="departmentId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div> Department ID </div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> 
-						<div class="cell-div">
-							{{element.Department_ID}} 
-						</div>
-					</mat-cell>
-				</ng-container>
-
-				<ng-container matColumnDef="affInstituteId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div> Aff. Institute ID </div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> 
-						<div class="cell-div">
-							{{element.afflInstituteID}} 
-						</div>
-					</mat-cell>
-				</ng-container>
-
-				<ng-container matColumnDef="username">
-					<mat-header-cell *matHeaderCellDef> 
-						<div> Name </div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> 
-						<div class="cell-div">
-							{{element.UserName}} 
-						</div>
-					</mat-cell>
-				</ng-container>
-
-				<ng-container matColumnDef="emailId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div> Email </div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> 
-						<div class="cell-div">
-							{{element.emailId}} 
-						</div>
-					</mat-cell>
-				</ng-container>
-
-				<ng-container matColumnDef="phone">
-					<mat-header-cell *matHeaderCellDef> 
-						<div> Phone No. </div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> 
-						<div class="cell-div">
-							{{element.phoneNumber}} 
-						</div>
-					</mat-cell>
-				</ng-container>
-
-				<ng-container matColumnDef="_id">
-					<mat-header-cell *matHeaderCellDef> 
-						<div> Actions </div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> 
-						<div class="cell-div">
-							{{element._id}} 
-						</div>
-					</mat-cell>
-					<mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
-				</ng-container>
-
-				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-			</mat-table>
-		</div>
-	</div>
-</div> -->
-
-
 <div class="container">
 	<div class="user-container mat-elevation-z8">
 		<div class="outer-div">
 			<div class="inner-div user-btn">
 				<a mat-button class="add-btn" routerLink="/userAdd">Add User</a>
 			</div>
-			<span class="spacer"></span>
-			<div class="inner-div">
-				<mat-form-field class="">
-					<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-				</mat-form-field>
-			</div>
 		</div>
 		<div>
 			<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 				<ng-container matColumnDef="userType">
-					<mat-header-cell *matHeaderCellDef> User Type </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>
+						<div> User Type </div>
+						<mat-form-field>
+							<mat-icon class="search icons">search</mat-icon><input matInput class="form-field filters">
+						</mat-form-field>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> 
 						<div class="table-data-content">
 							{{element.UserType}} 
@@ -131,16 +22,26 @@
 				</ng-container>
 
 				<ng-container matColumnDef="instituteId">
-					<mat-header-cell *matHeaderCellDef> Institution ID  </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>
+						<div> Institution ID </div>
+						<mat-form-field>
+							<mat-icon class="search icons">search</mat-icon><input matInput class="form-field filters">
+						</mat-form-field>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> 
 						<div class="table-data-content">
 							{{element.Institution_ID}} 
 						</div>
-						</mat-cell>
+					</mat-cell>
 				</ng-container>
 
 				<ng-container matColumnDef="departmentId">
-					<mat-header-cell *matHeaderCellDef> Department ID </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>
+						<div> Department ID </div>
+						<mat-form-field>
+							<mat-icon class="search icons">search</mat-icon><input matInput class="form-field filters">
+						</mat-form-field>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> 
 						<div class="table-data-content">
 							{{element.Department_ID}} 
@@ -149,7 +50,12 @@
 				</ng-container>
 
 				<ng-container matColumnDef="affInstituteId">
-					<mat-header-cell *matHeaderCellDef> Affl. Institute ID </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>
+						<div> Affl. Institute ID </div>
+						<mat-form-field>
+							<mat-icon class="search icons">search</mat-icon><input matInput class="form-field filters">
+						</mat-form-field>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> 
 						<div class="table-data-content">
 							{{element.AfflInstituteID}} 
@@ -158,7 +64,12 @@
 				</ng-container>
 
 				<ng-container matColumnDef="username">
-					<mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>
+						<div> User Name </div>
+						<mat-form-field>
+							<mat-icon class="search icons">search</mat-icon><input matInput class="form-field filters">
+						</mat-form-field>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> 
 						<div class="table-data-content">
 							{{element.UserName}} 
@@ -167,7 +78,12 @@
 				</ng-container>
 
 				<ng-container matColumnDef="emailId">
-					<mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>
+						<div> Email ID </div>
+						<mat-form-field>
+							<mat-icon class="search icons">search</mat-icon><input matInput class="form-field filters">
+						</mat-form-field>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> 
 						<div class="table-data-content">
 							{{element.EmailId}} 
@@ -176,7 +92,12 @@
 				</ng-container>
 
 				<ng-container matColumnDef="phone">
-					<mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+					<mat-header-cell *matHeaderCellDef>
+						<div> Phone </div>
+						<mat-form-field>
+							<mat-icon class="search icons">search</mat-icon><input matInput class="form-field filters">
+						</mat-form-field>
+					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> 
 						<div class="table-data-content">
 							{{element.PhoneNumber}} 

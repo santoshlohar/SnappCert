@@ -5,7 +5,7 @@ import { InstituteDepts } from '../../modals/institute-depts';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-
+import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'app-departments-list',
