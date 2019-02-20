@@ -1,30 +1,12 @@
 <div class="container">
 	<div class="certupload-container mat-elevation-z8">
 		<div class="outer-div">
-			<div class="inner-div">
-				<!-- <mat-form-field class="">
-					<input matInput (keyup)="applyfilter($event.target.value)" placeholder="Filter">
-				</mat-form-field> -->
-			</div>
-			<span class="spacer"></span>
 			<div class="inner-div aff-btn">
 				<div class="mat-header-btns">
 					<a mat-button class="add-btn" (click)="deleteCertificates()">Delete Certificate</a>
 					<a mat-button class="add-btn" (click)="processData()">Process</a>
 					<a mat-button class="add-btn" routerLink="/certificateUpload">Upload certificate</a>
 				</div>
-					<!-- <label for="singleFile">Upload file</label>
-					<input id="singleFile" type="file" [fileUploadInputFor]= "fileUploadQueue"/>
-					<br>
-					<mat-file-upload-queue #fileUploadQueue
-						[fileAlias]="'file'"
-						[httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'">
-					
-						<mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>
-					</mat-file-upload-queue> -->
-				<!-- <mat-form-field class="">
-					<input matInput id="fileToUpload" type="file" [(ngModel)]="uploadCerticate">
-				</mat-form-field> -->
 			</div>
 		</div>
 		<div class="table-wrapper">

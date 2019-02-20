@@ -104,15 +104,4 @@ table {
 
 .mat-row{
     height: 10px;
-}
-/* 
-.mat-form-field-infix {
-    padding: 0 !important;
-    border-top-width: 0 !important;
-    border-top-style: solid !important;
-    width: 0 !important;
-}
-
-.mat-form-field-appearance-legacy .mat-form-field-infix {
-    padding: 0 !important;
-} */
+}  
