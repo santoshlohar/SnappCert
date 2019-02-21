@@ -29,6 +29,7 @@ export class StudentUploadListComponent implements OnInit {
 		'transactiontime',
 		'transactionUser'
 	];
+	url;
 	
 	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
@@ -39,6 +40,7 @@ export class StudentUploadListComponent implements OnInit {
 	constructor(private apiService: ApiService) { }
 
 	ngOnInit() {
+		this.getTempStudents();
 	}
 
 	isAllSelected() {
@@ -52,8 +54,29 @@ export class StudentUploadListComponent implements OnInit {
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
 	}
 
-	uploadstudent() {
+	uploadstudent(files, filename) {
+		var form = new FormData();
+		form.append(filename, files[0]);
 
+		this.url = '/studentdet/fileupload';
+		this.apiService.post(this.url, form)
+			.subscribe((response) => {
+				console.log(response);
+			},
+			(error) => {
+				console.log(error);
+			});
+	}
+
+	getTempStudents() {
+		this.url = "/temp/studentdet";
+		this.apiService.get(this.url)
+			.subscribe((response) => {
+				console.log(response)
+			},
+			(error) => {
+				console.log(error);
+			})
 	}
 
 	deleteStudents() {

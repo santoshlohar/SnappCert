@@ -26,6 +26,8 @@ import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
 // import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
 import { BatchesComponent } from './batches/batches.component';
+import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
+import { StudentUploadListComponent } from './batches/student-upload-list/student-upload-list.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -47,7 +49,14 @@ const routes: Routes =  [
     { path: 'courseAdd', component: CourseAddComponent},
     { path: 'certificateUploadList', component: CertificateUploadListComponent, canActivate: [AuthGuard]},
     { path: 'certificateUpload', component: CerificatesUploadComponent, canActivate: [AuthGuard]},
-    { path: 'batches', component: BatchesComponent, canActivate: [AuthGuard]},
+    {   path: 'batches', 
+        component: BatchesComponent, 
+        canActivate: [AuthGuard],
+        children: [
+            { path: 'batchUploadList', component: BatchUploadListComponent},
+            { path: 'studentUploadList', component: StudentUploadListComponent}
+        ]
+    },
 	// { path: 'batchUploadList', component: BatchUploadListComponent, canActivate: [AuthGuard]},    
     { path: '**', component: PageNotFoundComponent}
 ];
