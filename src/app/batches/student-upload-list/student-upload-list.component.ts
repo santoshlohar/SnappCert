@@ -30,6 +30,8 @@ export class StudentUploadListComponent implements OnInit {
 		'transactionUser'
 	];
 	url;
+	studentData = [];
+	newStudents = [];
 	
 	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
@@ -73,6 +75,27 @@ export class StudentUploadListComponent implements OnInit {
 		this.apiService.get(this.url)
 			.subscribe((response) => {
 				console.log(response)
+				if(response.message == 'success') {
+					this.studentData = response.data;
+					for(var i=0; i<this.studentData.length; i++) {
+						this.studentData[i].position = i;
+						this.studentData[i].editing = false;
+
+						if(this.studentData[i].transactionStatus == 'New') {
+
+							if(isNaN(this.studentData[i].aadhaarNoLoginID)) {
+								this.studentData[i].aadhaarNoErr = true;
+							}
+
+							if(isNaN(this.studentData[i].mobile)) {
+								this.studentData[i].mobileNoErr = true;
+							}
+
+							this.newStudents.push(this.studentData[i]);
+							this.dataSource.data = this.newStudents;
+						}
+					}
+				}
 			},
 			(error) => {
 				console.log(error);
@@ -85,6 +108,43 @@ export class StudentUploadListComponent implements OnInit {
 
 	processData() {
 
+	}
+
+	edit(row) {
+		var tableData = this.newStudents;
+		for(var i=0;i<tableData.length;i++) {
+			if(row._id == tableData[i]._id) {
+				if(tableData[i].editing == false) {
+					tableData[i].editing = true;
+				} else {
+					tableData[i].editing = false;
+				}
+
+				if(tableData[i].aadhaarNoErr == true) {
+					if(String(tableData[i].aadhaarNoLoginID)) {
+						tableData[i].aadhaarNoLoginID = Number(tableData[i].aadhaarNoLoginID);
+						tableData[i].aadhaarNoErr = false;
+					}
+				} else {
+					if(isNaN(tableData[i].aadhaarNoLoginID)) {
+						tableData[i].aadhaarNoErr = true;
+					}
+				}
+				
+				if(tableData[i].mobileNoErr == true) {
+					if(String(tableData[i].mobile)) {
+						tableData[i].mobile = Number(tableData[i].mobile);
+						tableData[i].mobileNoErr = false;
+					}
+				} else {
+					if(isNaN(tableData[i].mobile)) {
+						tableData[i].mobileNoErr = true;
+					}
+				}
+
+				this.dataSource.data = tableData;
+			}
+		}
 	}
 }
 

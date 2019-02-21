@@ -150,7 +150,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.aadhaarNoLoginID) || element.minScoreErr}">
+                    [ngClass]="{'highlight': !(element.aadhaarNoLoginID) || element.aadhaarNoErr}">
                     <span *ngIf="!element.editing"> {{element.aadhaarNoLoginID}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.aadhaarNoLoginID" [(ngModel)]="element.aadhaarNoLoginID">
@@ -188,7 +188,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.mobile) }">
+                    [ngClass]="{'highlight': !(element.mobile) || element.mobileNoErr }">
                     <span *ngIf="!element.editing"> {{element.mobile}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.mobile" [(ngModel)]="element.mobile">
