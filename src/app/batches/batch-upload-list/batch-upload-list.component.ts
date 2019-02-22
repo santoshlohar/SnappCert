@@ -221,7 +221,7 @@ export class BatchUploadListComponent implements OnInit {
 						.subscribe((response: any) => {
 							console.log(response);
 							if(response.message == 'success') {
-								
+								alert("Your data processed successfully...");
 							}
 						},
 						(error) => {
