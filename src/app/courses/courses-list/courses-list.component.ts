@@ -38,19 +38,13 @@ export class CoursesListComponent implements OnInit {
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	constructor(private apiService: ApiService,
-				private router: Router,
-				public globals: Globals) { 
-					this.globals.stateRoute = this.router.url;
+				private router: Router) { 
 				}
 
 	ngOnInit() {
-		this.loginUser = JSON.stringify(localStorage.getItem('user'));
+		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.inst_Id = this.loginUser.instituteID;
-		if(this.loginUser.userType == 'INS_DATA_MANAGER') {
-			this.getInsCourses();
-		} else if (this.loginUser.userType == 'AFF_INS_DATA_MANAGER') {
-			this.getCoursesByInsId();
-		}
+		this.getCoursesByInsId();
 	}
 
 	getInsCourses() {
@@ -68,8 +62,7 @@ export class CoursesListComponent implements OnInit {
 
 		this.apiService.get(this.url + this.inst_Id)
 			.subscribe((response) => {
-				console.log(response);
-				if(response.message == 'success') {
+ 				if(response.message == 'success') {
 					if(response.data.length) {
 						this.dataSource.data = response.data;
 					} else {
