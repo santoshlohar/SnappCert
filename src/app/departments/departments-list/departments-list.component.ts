@@ -16,9 +16,10 @@ export class DepartmentsListComponent implements OnInit {
 
   	displayedColumns = ['instituteId', 'deptId', 'deptName', 'status' , '_id'];
 	url: string;
-	Departments: InstituteDepts[] = [];
-	dataSource = new MatTableDataSource<InstituteDepts>(this.Departments);
-	selection = new SelectionModel<InstituteDepts>(true, []);
+	activated;
+	departments: any[] = [];
+	dataSource = new MatTableDataSource<any>();
+	selection = new SelectionModel<any>(true, []);
 
 	instituteIdFilter = new FormControl();
 	departmentIdFilter = new FormControl();
@@ -54,21 +55,37 @@ export class DepartmentsListComponent implements OnInit {
 		this.url = '/departments';
 		this.apiService.get(this.url)
 			.subscribe((response) => {
-				this.Departments = response;
-				this.dataSource.data = this.Departments;
+				this.departments = response;
+				for(var i=0;i<this.departments.length;i++) {
+					if(this.departments[i].status == 'Active') {
+						this.departments[i].activated = 'Inactive';
+					}
+					if( this.departments[i].status == 'Inactive') {
+						this.departments[i].activated = 'Active';
+					}
+					this.dataSource.data = this.departments;
+				}
+				
 			});
 	};
 
 	editDepartment(data) {
-		console.log(data);
 		var deptId = data._id;
 		this.url = '/departments/';
-		// this.router.navigate(['/editDepartment/', deptId ])
 		this.apiService.put(this.url + deptId, data)
 			.subscribe((response) => {
 				console.log(response);
 			})
 	};
+
+	activate(data) {
+		var deptId = data._id;
+		this.url = '/departments/';
+		this.apiService.put(this.url + deptId, data)
+			.subscribe((response) => {
+				this.getDepartments();
+			});
+	}
 
 	filterByColumn() {
 		this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
