@@ -38,9 +38,7 @@ export class CoursesListComponent implements OnInit {
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	constructor(private apiService: ApiService,
-				private router: Router,
-				public globals: Globals) { 
-					this.globals.stateRoute = this.router.url;
+				private router: Router) { 
 				}
 
 	ngOnInit() {
@@ -64,8 +62,7 @@ export class CoursesListComponent implements OnInit {
 
 		this.apiService.get(this.url + this.inst_Id)
 			.subscribe((response) => {
-				console.log(response);
-				if(response.message == 'success') {
+ 				if(response.message == 'success') {
 					if(response.data.length) {
 						this.dataSource.data = response.data;
 					} else {
