@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit {
 	}
 
 	subHeading(url) {
-		console.log(url)
 		if(url === '/dashboard') {
 			this.heading = 'My Dashboard';
 		} else if(url === '/users') {
