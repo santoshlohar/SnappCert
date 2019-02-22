@@ -26,9 +26,9 @@
 			<span class="page-heading-login1">Last Login:</span><span class="page-heading-login">21 Feb 2019 10:00 AM<img class="img" src="/assets/icons/right-arrow.png" /></span>
 		</div>
 		<div class="spacer"></div>
-		<!-- <div class="login">
+		<div class="login">
 			<span class="page-heading-logout">Welcome, Institute Admin <img class="img" src="/assets/icons/down-arrow.png" /></span>
-		</div> -->
+		</div>
 		<div class="float-right">
 			<a mat-button [routerLink]="['/login']" *ngIf="!globals.isUserLoggedIn">Login</a>
 			<a mat-button (click)="logout()" *ngIf="globals.isUserLoggedIn">Logout</a>
