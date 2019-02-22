@@ -17,10 +17,6 @@
     position: relative;
 }
 
-.head-wrapper {
-
-}
-
 .parallelogram {
     width: 300px;
     height: 64px;
@@ -33,11 +29,68 @@
     font-weight: 600;
 }
 
+.parallelogram-login {
+    width: 265px;
+    height: 30px;
+    transform: skew(50deg);
+    background: #f7f4f4;
+    margin-left: 22px;
+    padding: 15px 72px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login {
+    width: 235px;
+    height: 13px;
+    background: #f7f4f4;
+    margin-left: 50px;
+    padding: 15px 0px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 500;
+}
+
 .page-heading {
     color: #444444;
     z-index: 5;
     position: absolute;
     transform: skew(-50deg);
+}
+
+.page-heading-login {
+    color: #444444;
+    z-index: 5;
+    position: absolute;
+    transform: skew(-50deg);
+    margin-top: -15px;
+    font-size: 12px;
+    margin-left: 29px;
+}
+
+.page-heading-login1{
+    color: #333;
+    z-index: 5;
+    position: absolute;
+    transform: skew(-50deg);
+    margin-top: -15px;
+    font-weight: 400;
+    margin-left: -54px;
+    font-size: 12px;
+}
+
+.page-heading-logout {
+    color: #444444;
+    z-index: 5;
+    position: absolute;
+    margin-top: -15px;
+    font-size: 12px;
+    margin-left: 29px;
+}
+
+.img {
+    margin: -2px 0px 0px 15px;
 }
 
 .spacer {
