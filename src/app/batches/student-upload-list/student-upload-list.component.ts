@@ -32,6 +32,7 @@ export class StudentUploadListComponent implements OnInit {
 	url;
 	studentData = [];
 	newStudents = [];
+	selectedStudents = [];
 	
 	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
@@ -103,11 +104,50 @@ export class StudentUploadListComponent implements OnInit {
 	}
 
 	deleteStudents() {
-
+		this.selectedStudents = this.selection.selected;
+		this.url = "/deletetempstudentdet";
+		if(this.selectedStudents.length) {
+			this.apiService.post(this.url, this.selectedStudents)
+			.subscribe((response) => {
+				console.log(response);
+			},
+			(error) => {
+				console.log(error);
+			})
+		} else {
+			alert("please select atleast one student data to delete!");
+		}
+		
 	}
 
 	processData() {
+		this.selectedStudents = this.selection.selected;
 
+		this.url = "/updatemultistudentdet";
+		if(this.selectedStudents.length) {
+			for(var i=0;i<this.selectedStudents.length;i++) {
+				var student = this.selectedStudents[i];
+				console.log(student);
+				if( !student.batchID || !student.studentID || !student.name ||
+					!student.fatherName || !student.dob || !student.aadhaarNoLoginID ||
+					!student.emailID || !student.mobile || !student.specialization ) {
+						alert("Please deselect error student before process the data!");
+				} else {
+					this.apiService.post(this.url, this.selectedStudents)
+						.subscribe((response: any) => {
+							console.log(response);
+							if(response.message == 'success') {
+								alert("Your data processed successfully...");
+							}
+						},
+						(error) => {
+							console.log(error);
+						});
+				}
+			}
+		} else {
+			alert("please select atleast one student data to process!")
+		}
 	}
 
 	edit(row) {
