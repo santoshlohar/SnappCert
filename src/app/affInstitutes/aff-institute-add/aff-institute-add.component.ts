@@ -3,7 +3,6 @@ import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-aff-institute-add',
   templateUrl: './aff-institute-add.component.html',

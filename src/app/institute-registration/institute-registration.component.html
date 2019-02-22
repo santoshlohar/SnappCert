@@ -1,5 +1,4 @@
-<app-header></app-header>
-
+<!-- <app-header></app-header> -->
 <div class="container">
 	<div class="panel panel-primary headeing">
 		<div class="panel panel-heading">
@@ -9,34 +8,129 @@
 	<div class="addInst-wrapper">
 		<div class="example-container">
 			<form [formGroup]="instRequestForm" #intReq="ngForm" (ngSubmit)="registerInstitute(intReq)">
-				<div>
-                    <p class="h6 mar-top">Requester</p>
+				<div style="margin-bottom: 20px;">
+                    <div style="width: 100%; height: 20px; border-bottom: 1px solid #6c757d; text-align: center; margin-bottom: 5%;">
+                        <span style="font-size: 21px; background-color: #F3F5F6; color: #989898; font-weight: 500; padding: 0 50px;">
+                            Requester Details
+                        </span>
+                    </div>
                     <mat-form-field class="input-field">
-                        <input matInput 
-                        type="text"
-                        placeholder="Requester Name"
-                        formControlName="requesterName"
-                        required>
+                        <input matInput type="text" placeholder="Requester Name" formControlName="requesterName" required>
                         <mat-error *ngIf="hasError('requesterName', 'required')">Requester Name is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
-                        <input matInput 
-                        type="email"
-                        placeholder="Requester Email"
-                        formControlName="requesterEmail"
-                        required
-                        email>
+                        <input matInput type="email" placeholder="Requester Email" formControlName="requesterEmail" required email>
                         <mat-error *ngIf="hasError('requesterEmail', 'required')">Requester Name is required!</mat-error>
                         <mat-error *ngIf="hasError('requesterEmail', 'email')">Please enter valid email!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
-                        <input matInput 
-                        type="number"
-                        placeholder="Requester Phone"
-                        formControlName="requesterPhone"
-                        required>
+                        <input matInput type="number" placeholder="Requester Phone" formControlName="requesterPhone" required>
                         <mat-error *ngIf="hasError('requesterPhone', 'required')">Phone Number is required!</mat-error>
                     </mat-form-field>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <div style="width: 100%; height: 20px; border-bottom: 1px solid #6c757d; text-align: center; margin-bottom: 5%;">
+                        <span style="font-size: 21px; background-color: #F3F5F6; color: #989898; font-weight: 500; padding: 0 50px;">
+                            Institute Details
+                        </span>
+                    </div>
+                    <mat-form-field class="input-field">
+                        <mat-select formControlName="instType" placeholder="Institute Type" required>
+                            <mat-option value="Central_University">Central University</mat-option>
+                            <mat-option value="State_University">State University</mat-option>
+                            <mat-option value="Deemed_University">Deemed University</mat-option>
+                            <mat-option value="Private_University">Private University</mat-option>
+                            <mat-option value="CBSE">CBSE</mat-option>
+                            <mat-option value="ICSE">ICSE</mat-option>
+                            <mat-option value="State_Board">State Board</mat-option>
+                            <mat-option value="International_Board">International Board</mat-option>
+                            <mat-option value="Private_Institute">Private Institute</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Institute ID" formControlName="instituteID">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Institute Name" formControlName="instituteName" required>
+                        <mat-error *ngIf="hasError('instituteName', 'required')">Institute Name is required!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Date of Establishment" formControlName="establishDate">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Address Line 1" formControlName="address1">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Address Line 2" formControlName="address2">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="State" formControlName="state">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="City" formControlName="city">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Academic Head" formControlName="academicHead">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Academic Head Email ID" formControlName="academicHeadEmail">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Academic Head Phone" formControlName="academicHeadPhone">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Administrator Head" formControlName="administratorHead">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Administrator Head Email ID" formControlName="administratorHeadEmail">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Administrator Head Phone" formControlName="administratorHeadPhone">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Board Line No." formControlName="boardLineNo">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Location" formControlName="location">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Website" formControlName="website">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Affiliated To Institution" formControlName="affiliatedTo">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Affiliated To Institution Type" formControlName="affiliatedToType">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Recognized By" formControlName="recognizedBy">
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Regulatory Body" formControlName="regulatoryBody">
+                    </mat-form-field>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <div style="width: 100%; height: 20px; border-bottom: 1px solid #6c757d; text-align: center; margin-bottom: 5%;">
+                        <span style="font-size: 21px; background-color: #F3F5F6; color: #989898; font-weight: 500; padding: 0 50px;">
+                            Institute Admin
+                        </span>
+                    </div>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Name" formControlName="name" required>
+                        <mat-error *ngIf="hasError('name', 'required')">Name is required!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Email" formControlName="email" required>
+                        <mat-error *ngIf="hasError('email', 'required')">Email is required!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-field">
+                        <input matInput type="text" placeholder="Phone" formControlName="phone" required>
+                        <mat-error *ngIf="hasError('phone', 'required')">Phone is required!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="action-btns text-center">
+                    <button mat-raised-button class="action-btn">Save</button>
+                    <button mat-raised-button class="action-btn">Cancel</button>
                 </div>
 			</form>
 		</div>

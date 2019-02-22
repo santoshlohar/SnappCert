@@ -1,67 +1,67 @@
 <div class="container">
-		<div class="panel panel-primary heading-wrapper">
-			<div class="panel panel-heading">
-				<span class="panel-title" id="heading"> Add User </span>
-			</div>
+	<div class="panel panel-primary heading-wrapper">
+		<div class="panel panel-heading">
+			<span class="panel-title" id="heading"> Add User </span>
 		</div>
-		<div class="form-wrapper">
-			<div class="example-container" linear>
-				<form [formGroup]="authUserForm" #userForm="ngForm" (ngSubmit)="addUser(userForm)">
-					<div>
-						<!-- <p class="h6 mar-top">Add Institute Department</p> -->
-						<div style="width: 100%; height: 20px; border-bottom: 1px solid #6c757d; text-align: center; margin-bottom: 3%;">
-							<span style="font-size: 21px; background-color: #F3F5F6; color: #989898; font-weight: 500; padding: 0 50px;">
-								User Details
-							</span>
-						</div>
-						<mat-form-field class="input-field">
-							<mat-select formControlName="userType" placeholder="User Type" required>
-								<mat-option value="SYSTEM_ADMIN">System Admin</mat-option>
-								<mat-option value="KYC_AGENT">Kyc Agent</mat-option>
-								<mat-option value="INST_ADMIN">Institute Admin</mat-option>
-								<mat-option value="INS_DATA_MANAGER">Institute Data Manager</mat-option>
-								<mat-option value="DATA_REVIEWER">Data Reviewer</mat-option>
-								<mat-option value="DATA_APPROVER">Data Approver</mat-option>
-								<mat-option value="DATA_CERTIFIER">Data Certifier</mat-option>
-								<mat-option value="STUDENT">Student</mat-option>
-							</mat-select>
-						</mat-form-field>
-						<mat-form-field class="input-field">
-							<input matInput 
-							placeholder="Institute ID" 
-							formControlName="institute_ID"
-							required>
-						</mat-form-field>
-						<mat-form-field class="input-field">
-							<input matInput 
-							placeholder="Department ID" 
-							formControlName="department_ID"
-							required>
-						</mat-form-field>
-						<mat-form-field class="input-field">
-							<input matInput 
-							placeholder="Name" 
-							formControlName="name"
-							required>
-						</mat-form-field>
-						<mat-form-field class="input-field">
-							<input matInput 
-							placeholder="Email ID" 
-							formControlName="emailId"
-							required>
-						</mat-form-field>
-						<mat-form-field class="input-field">
-							<input matInput 
-							placeholder="Phone No." 
-							formControlName="phone"
-							required>
-						</mat-form-field>
+	</div>
+	<div class="form-wrapper">
+		<div class="example-container" linear>
+			<form [formGroup]="authUserForm" #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+				<div>
+					<!-- <p class="h6 mar-top">Add Institute Department</p> -->
+					<div style="width: 100%; height: 20px; border-bottom: 1px solid #6c757d; text-align: center; margin-bottom: 3%;">
+						<span style="font-size: 21px; background-color: #F3F5F6; color: #989898; font-weight: 500; padding: 0 50px;">
+							User Details
+						</span>
 					</div>
-					<div class="action-btns text-center">
-						<button mat-raised-button class="action-btn">Add</button>
-						<button mat-raised-button class="action-btn">Cancel</button>
-					</div>
-				</form>
-			</div>
+					<mat-form-field class="input-field">
+						<mat-select formControlName="userType" placeholder="User Type" required>
+							<mat-option value="SYSTEM_ADMIN">System Admin</mat-option>
+							<mat-option value="KYC_AGENT">Kyc Agent</mat-option>
+							<mat-option value="INST_ADMIN">Institute Admin</mat-option>
+							<mat-option value="INS_DATA_MANAGER">Institute Data Manager</mat-option>
+							<mat-option value="DATA_REVIEWER">Data Reviewer</mat-option>
+							<mat-option value="DATA_APPROVER">Data Approver</mat-option>
+							<mat-option value="DATA_CERTIFIER">Data Certifier</mat-option>
+							<mat-option value="STUDENT">Student</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Institute ID" 
+						formControlName="institute_ID"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Department ID" 
+						formControlName="department_ID"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Name" 
+						formControlName="name"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Email ID" 
+						formControlName="emailId"
+						required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput 
+						placeholder="Phone No." 
+						formControlName="phone"
+						required>
+					</mat-form-field>
+				</div>
+				<div class="action-btns text-center">
+					<button mat-raised-button class="action-btn">Add</button>
+					<button mat-raised-button class="action-btn">Cancel</button>
+				</div>
+			</form>
 		</div>
+	</div>
 </div>
