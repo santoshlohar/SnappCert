@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
+	heading: string;
+
 	@Input() stateRoute: string;
 	constructor(public globals: Globals,
 				public router: Router,
@@ -31,6 +33,33 @@ export class HeaderComponent implements OnInit {
 	logout() {
 		this.authService.logout();
 		this.router.navigate(['']);
+	}
+
+	ngDoCheck() {
+		this.subHeading(this.router.url);
+	}
+
+	subHeading(url) {
+		console.log(url)
+		if(url === '/dashboard') {
+			this.heading = 'My Dashboard';
+		} else if(url === '/users') {
+			this.heading = 'Authorized Users';
+		} else if(url === '/userAdd') {
+			this.heading = 'Add Users';
+		} else if(url === '/userAdd') {
+			this.heading = 'Add Users';
+		} else if(url === '/institutes') {
+			this.heading = 'Institutes List';
+		} else if(url === '/departments') {
+			this.heading = 'My Departments';
+		} else if(url === '/affInstitutes') {
+			this.heading = 'Aff. Institutes';
+		} else if(url === '/courses') {
+			this.heading = 'Courses';
+		} else if(url === '/certificateUploadList') {
+			this.heading = 'Certificates';
+		}
 	}
 
 }
