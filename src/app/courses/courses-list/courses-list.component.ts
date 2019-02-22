@@ -44,7 +44,7 @@ export class CoursesListComponent implements OnInit {
 				}
 
 	ngOnInit() {
-		this.loginUser = JSON.parse(localStorage.getItem('user'));
+		this.loginUser = JSON.stringify(localStorage.getItem('user'));
 		this.inst_Id = this.loginUser.instituteID;
 		if(this.loginUser.userType == 'INS_DATA_MANAGER') {
 			this.getInsCourses();
