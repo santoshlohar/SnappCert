@@ -159,7 +159,7 @@ export class CertificateUploadListComponent implements OnInit {
 					tableData[i].editing = false;
 				}
 				if(tableData[i].scrErnErr == true) {
-					if(isString(tableData[i].scoreEarned)) {
+					if(String(tableData[i].scoreEarned)) {
 						tableData[i].scoreEarned = Number(tableData[i].scoreEarned);
 						tableData[i].scrErnErr = false;
 					}
