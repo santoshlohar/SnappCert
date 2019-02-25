@@ -83,4 +83,12 @@ export class CoursesListComponent implements OnInit {
 				console.log(response);
 			})
 	}
+
+	activate(row) {
+		this.url = '/coursedata/';
+		this.apiService.put(this.url+ row._id, row)
+			.subscribe((response) => {
+				console.log(response);
+			})
+	}
 }
