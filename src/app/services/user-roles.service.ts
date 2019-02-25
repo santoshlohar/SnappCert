@@ -34,7 +34,7 @@ export class UserRolesService {
 		} else if(role == this.roles.insAdmin) {
 			this.router.navigate(['/departments']);
 		} else if(role == this.roles.insDataMgr) {
-			this.router.navigate(['/courses']);
+			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.affInsDataMgr) {
 			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.dataReviewer) {
