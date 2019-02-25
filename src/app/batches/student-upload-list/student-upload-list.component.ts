@@ -130,7 +130,8 @@ export class StudentUploadListComponent implements OnInit {
 				console.log(student);
 				if( !student.batchID || !student.studentID || !student.name ||
 					!student.fatherName || !student.dob || !student.aadhaarNoLoginID ||
-					!student.emailID || !student.mobile || !student.specialization ) {
+					student.aadhaarNoErr || !student.emailID || !student.mobile || 
+					student.mobileNoErr ||!student.specialization  ) {
 						alert("Please deselect error student before process the data!");
 				} else {
 					this.apiService.post(this.url, this.selectedStudents)

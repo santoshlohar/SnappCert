@@ -55,7 +55,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.batchID) || element.instError}">
+                    [ngClass]="{'highlight': !(element.batchID)}">
                     <span *ngIf="!element.editing"> {{element.batchID}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.batchID" [(ngModel)]="element.batchID">
@@ -74,7 +74,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.studentID) || element.instError}">
+                    [ngClass]="{'highlight': !(element.studentID)}">
                     <span *ngIf="!element.editing"> {{element.studentID}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.studentID" [(ngModel)]="element.studentID">
@@ -93,7 +93,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.name) || element.minCreditsErr}">
+                    [ngClass]="{'highlight': !(element.name)}">
                     <span *ngIf="!element.editing"> {{element.name}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.name" [(ngModel)]="element.name">
@@ -112,7 +112,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.fatherName) || element.minCGPAErr}">
+                    [ngClass]="{'highlight': !(element.fatherName)}">
                     <span *ngIf="!element.editing"> {{element.fatherName}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.fatherName" [(ngModel)]="element.fatherName">
@@ -131,7 +131,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.dob) || element.totalCGPAErr}">
+                    [ngClass]="{'highlight': !(element.dob)}">
                     <span *ngIf="!element.editing"> {{element.dob}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput [value]="element.dob" [(ngModel)]="element.dob">
@@ -169,7 +169,7 @@
                     </div> -->
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element" 
-                    [ngClass]="{'highlight': !(element.emailID) || element.totalScoreErr}">
+                    [ngClass]="{'highlight': !(element.emailID)}">
                     <span *ngIf="!element.editing"> {{element.emailID}} </span>
                     <mat-form-field floatLabel="never" *ngIf="element.editing">
                         <input matInput type="email" [value]="element.emailID" [(ngModel)]="element.emailID">
