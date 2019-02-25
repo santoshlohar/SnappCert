@@ -66,3 +66,7 @@
     border-radius: 10px;
     width: 10%;
 }
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    color: #3e4042 !important;
+}
