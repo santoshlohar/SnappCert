@@ -17,6 +17,7 @@ export class CoursesListComponent implements OnInit {
 	loginUser;
 	inst_Id;
 	courses: InstituteCourse[] = [];
+	course;
 	displayedColumns = [
 		'select',
 		'instituteId',
@@ -76,7 +77,17 @@ export class CoursesListComponent implements OnInit {
 			.subscribe((response) => {
  				if(response.message == 'success') {
 					if(response.data.length) {
-						this.dataSource.data = response.data;
+						this.courses = response.data;
+						console.log(this.courses)
+						for(var i=0;i<this.courses.length;i++) {
+							this.course = this.courses[i];
+							if(this.courses[i].status == "Active") {
+								this.courses[i].activated = "Deactivate";
+							} else if(this.courses[i].status == "InActive") {
+								this.courses[i].activated = "Activate";
+							}
+						}
+						this.dataSource.data = this.courses;
 					} else {
 						console.log("NO RECORD");
 					}
@@ -98,9 +109,19 @@ export class CoursesListComponent implements OnInit {
 
 	activate(row) {
 		this.url = '/coursedata/';
-		this.apiService.put(this.url+ row._id, row)
+		console.log(row);
+		if(row.status == "Active") {
+			row.status = "Inactive";
+			row.activated = "Activate"
+		} else if(row.status = "Inactive") {
+			row.status = "Active";
+			row.activated = "Deactivate";
+		}
+		this.course = row;
+		console.log(this.course)
+		this.apiService.put(this.url+ row._id, this.course)
 			.subscribe((response) => {
 				console.log(response);
-			})
+			});
 	}
 }

@@ -127,7 +127,6 @@ export class StudentUploadListComponent implements OnInit {
 		if(this.selectedStudents.length) {
 			for(var i=0;i<this.selectedStudents.length;i++) {
 				var student = this.selectedStudents[i];
-				console.log(student);
 				if( !student.batchID || !student.studentID || !student.name ||
 					!student.fatherName || !student.dob || !student.aadhaarNoLoginID ||
 					student.aadhaarNoErr || !student.emailID || !student.mobile || 
@@ -136,7 +135,6 @@ export class StudentUploadListComponent implements OnInit {
 				} else {
 					this.apiService.post(this.url, this.selectedStudents)
 						.subscribe((response: any) => {
-							console.log(response);
 							if(response.message == 'success') {
 								alert("Your data processed successfully...");
 							}

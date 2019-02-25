@@ -128,11 +128,12 @@
 						<mat-icon class="search icons">search</mat-icon><input matInput class="form-field filters">
 					</mat-form-field>
 				</mat-header-cell>
-				<mat-cell *matCellDef="let element"> 
+				<mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+				<!-- <mat-cell *matCellDef="let element"> 
 					<mat-form-field floatLabel="never">
 						<input matInput placeholder="Status" [value]="element.status" [(ngModel)]="element.status">
 					</mat-form-field>
-				</mat-cell>
+				</mat-cell> -->
 			</ng-container>
 
 			<ng-container matColumnDef="_id">

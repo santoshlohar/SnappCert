@@ -10,5 +10,7 @@ export interface InstituteCourse {
     termType: String;
     noOfTerms: Number;
     status: String;
+    isActivated: Boolean;
+    activated: String;
     _id: Number;
 }

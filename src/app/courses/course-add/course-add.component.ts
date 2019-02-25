@@ -35,7 +35,7 @@ export class CourseAddComponent implements OnInit {
 				
 	ngOnInit() {
 		this.affInsCourseForm = this._formBuilder.group({
-            Institution_ID: ['', Validators.required],
+            instituteID: ['', Validators.required],
             department_ID: ['', Validators.required],
             Course_Type: ['', Validators.required],
             Course_ID: ['', Validators.required],
