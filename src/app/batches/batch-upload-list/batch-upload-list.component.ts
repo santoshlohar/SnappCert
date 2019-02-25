@@ -90,7 +90,6 @@ export class BatchUploadListComponent implements OnInit {
 		this.apiService.get(this.url)
 			.subscribe((response) => {
 				if(response.message == 'success') {
-					console.log(response.data);
 					this.batchesData = response.data;
 					for(var i=0; i<this.batchesData.length; i++) {
 						this.batchesData[i].position = i;
@@ -200,14 +199,12 @@ export class BatchUploadListComponent implements OnInit {
 	}
 
 	processData() {
-		console.log("process");
 		this.selectedBatches = this.selection.selected;
 
 		this.url = "/updatemultibatchdata";
 		if(this.selectedBatches.length) {
 			for(var i=0;i<this.selectedBatches.length;i++){
 				var singleBatch = this.selectedBatches[i];
-				console.log(singleBatch);
 				if(!singleBatch.instituteID || !singleBatch.afflInstituteID || !singleBatch.courseID ||
 				   !singleBatch.batchID || !singleBatch.batchYear || !singleBatch.minCredits || singleBatch.minCreditsErr ||
 				   !singleBatch.minCGPA || singleBatch.minCGPAErr || !singleBatch.totalCGPA || singleBatch.totalCGPAErr ||
@@ -219,13 +216,11 @@ export class BatchUploadListComponent implements OnInit {
 				} else {
 					this.apiService.post(this.url, this.selectedBatches)
 						.subscribe((response: any) => {
-							console.log(response);
 							if(response.message == 'success') {
 								alert("Your data processed successfully...");
 							}
 						},
 						(error) => {
-							console.log(error);
 							var message = error.error.message;
 							alert(message);
 						})
@@ -237,7 +232,6 @@ export class BatchUploadListComponent implements OnInit {
 	}
 
 	deleteBatches() {
-		console.log("delete");
 		this.selectedBatches = this.selection.selected;
 
 		this.url = "/deletempbatchdata";

@@ -46,8 +46,6 @@ export class HeaderComponent implements OnInit {
 			this.heading = 'Authorized Users';
 		} else if(url === '/userAdd') {
 			this.heading = 'Add Users';
-		} else if(url === '/userAdd') {
-			this.heading = 'Add Users';
 		} else if(url === '/institutes') {
 			this.heading = 'Institutes List';
 		} else if(url === '/departments') {
@@ -58,6 +56,10 @@ export class HeaderComponent implements OnInit {
 			this.heading = 'Courses';
 		} else if(url === '/certificateUploadList') {
 			this.heading = 'Certificates';
+		} else if(url === '/batches/batchUploadList') {
+			this.heading = 'Batches';
+		} else if(url === '/batches/studentUploadList') {
+			this.heading = 'Students';
 		}
 	}
 
