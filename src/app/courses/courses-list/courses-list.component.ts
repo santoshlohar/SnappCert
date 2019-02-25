@@ -18,6 +18,7 @@ export class CoursesListComponent implements OnInit {
 	inst_Id;
 	courses: InstituteCourse[] = [];
 	displayedColumns = [
+		'select',
 		'instituteId',
 		'deptId', 
 		'courseType', 
@@ -46,6 +47,17 @@ export class CoursesListComponent implements OnInit {
 		this.inst_Id = this.loginUser.instituteID;
 		this.getCoursesByInsId();
 	}
+
+	isAllSelected() {
+		const numSelected = this.selection.selected.length;
+		const numRows = this.dataSource.data.length;
+		return numSelected === numRows;
+	};
+
+	masterToggle() {
+		this.isAllSelected() ? 
+			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+	};
 
 	getInsCourses() {
 		this.url = '/coursedata';

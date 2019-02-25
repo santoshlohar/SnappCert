@@ -7,6 +7,20 @@
 		</div>
 		<div class="table-wrapper">
 			<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+			<ng-container matColumnDef="select" sticky>
+				<mat-header-cell class="first-of-type" *matHeaderCellDef>
+					<mat-checkbox (change)="$event ? masterToggle() : null"
+					[checked]="selection.hasValue() && isAllSelected() == true"
+					[indeterminate]="selection.hasValue() && !isAllSelected()">
+					</mat-checkbox>
+				</mat-header-cell>
+				<mat-cell *matCellDef="let row"> 
+					<mat-checkbox (click)="$event.stopPropagation()"
+					(change)="$event ? selection.toggle(row) : null"
+					[checked]="selection.isSelected(row) == true">
+					</mat-checkbox>
+				</mat-cell>
+			</ng-container>
 			<ng-container matColumnDef="instituteId">
 				<mat-header-cell *matHeaderCellDef>
 					<div> Institute ID </div>

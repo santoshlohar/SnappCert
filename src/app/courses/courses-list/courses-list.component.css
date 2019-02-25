@@ -12,8 +12,7 @@
 
 mat-table {
     width: 100%;
-    display: -ms-grid ;
-    display: grid;
+    min-width: 1942px;
  }
 
 .filter-div {
@@ -80,7 +79,7 @@ table {
 
 .mat-header-cell {
     display: block;
-    padding: 8px 0px 0px 12px;
+    padding: 1px 14px;
 }
 
 .table-data-content {
@@ -115,6 +114,10 @@ table {
     height: 10px;
 }
 
+.mat-header-row {
+    min-height: 60px;
+}
+
 .active-btn {
     color: #333 !important;
     background-color: #e2be40;
@@ -122,4 +125,15 @@ table {
     line-height: 0;
     height: 25px;
     width: 80px;
+}
+
+mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+    padding: none;
+    min-height: 50px;
+}
+
+.mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+    padding: 2px 15px;
 }
