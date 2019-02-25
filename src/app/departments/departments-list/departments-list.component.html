@@ -63,7 +63,7 @@
 				<ng-container matColumnDef="_id">
 					<mat-header-cell class="actions" *matHeaderCellDef> Actions </mat-header-cell>
 					<mat-cell *matCellDef="let row">
-						<button mat-button class="active-btn" (click)="activate(row)">Activated</button>
+						<button mat-button class="active-btn" (click)="activate(row)">{{row.activated}}</button>
 						<!-- <mat-icon class="update icons" (click)="editDepartment(row)">edit</mat-icon> -->
 					</mat-cell>
 				</ng-container>
