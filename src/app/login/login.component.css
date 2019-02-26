@@ -44,4 +44,5 @@ mat-form-field-infix {
   color: red !important;
   background-color: transparent;
   text-decoration: underline !important;
+  font-size: 14px;
 }
