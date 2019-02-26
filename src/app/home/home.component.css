@@ -26,6 +26,10 @@
     
 } */
 
+@media (max-width: 1000px) {
+    width: 690px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -42,6 +46,7 @@ html body {
     min-width: 100%;
     min-height: 100%;
     position: relative;
+    width: 690px;
 }
 
 .home::before {

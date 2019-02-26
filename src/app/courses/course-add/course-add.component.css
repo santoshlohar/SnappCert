@@ -1,6 +1,9 @@
+@media (max-width: 1500px) and (min-width: 600px) {
+    .container {width: 1225px;}
+}
+
 .container {
     padding: 40px 38px;
-    max-width: 1225px;
 }
 
 .wrapper {
