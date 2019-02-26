@@ -34,7 +34,7 @@ export class UsersListComponent implements OnInit {
 		this.loginUser = JSON.parse(localStorage.getItem("user"));
 		if(this.loginUser.UserType === 'INST_ADMIN') {
 			this.getInstituteUsers();
-		} else if(this.loginUser.UserType === 'INS_DATA_MANAGER') {
+		} else if(this.loginUser.UserType === 'AFF_INS_DATA_MANAGER') {
 			this.getAffInstituteUsers();
 		}
 		this.dataSource.sort = this.sort;
@@ -69,6 +69,10 @@ export class UsersListComponent implements OnInit {
 					this.authUsers = response.data;
 					this.dataSource.data = this.authUsers;
 				}
+			},
+			(error) => {
+				alert(error.error.message);
+				return false;
 			})
 	}
 

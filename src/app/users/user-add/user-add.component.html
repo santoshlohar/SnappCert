@@ -16,14 +16,46 @@
 					</div>
 					<mat-form-field class="input-field">
 						<mat-select formControlName="userType" placeholder="User Type" required>
-							<mat-option value="SYSTEM_ADMIN">System Admin</mat-option>
-							<mat-option value="KYC_AGENT">Kyc Agent</mat-option>
-							<mat-option value="INST_ADMIN">Institute Admin</mat-option>
-							<mat-option value="INS_DATA_MANAGER">Institute Data Manager</mat-option>
-							<mat-option value="DATA_REVIEWER">Data Reviewer</mat-option>
-							<mat-option value="DATA_APPROVER">Data Approver</mat-option>
-							<mat-option value="DATA_CERTIFIER">Data Certifier</mat-option>
-							<mat-option value="STUDENT">Student</mat-option>
+							<mat-option 
+								value="SYSTEM_ADMIN"
+								*ngIf='role === "SYSTEM_ADMIN"'>
+								System Admin
+							</mat-option>
+							<mat-option 
+								value="KYC_AGENT"
+								*ngIf='role === "SYSTEM_ADMIN"'>
+								Kyc Agent
+							</mat-option>
+							<mat-option 
+								value="INST_ADMIN"
+								*ngIf='role === "INST_ADMIN"'>
+								Institute Admin
+							</mat-option>
+							<mat-option 
+								value="INS_DATA_MANAGER"
+								*ngIf='role === "INST_ADMIN" || role === "INS_DATA_MANAGER"'>
+								Institute Data Manager
+							</mat-option>
+							<mat-option 
+								value="INS_DATA_MANAGER"
+								*ngIf='role === "INST_ADMIN" || role === "AFF_INS_DATA_MANAGER"'>
+								Aff. Institute Data Manager
+							</mat-option>
+							<mat-option 
+								value="DATA_REVIEWER"
+								*ngIf='role == "INST_ADMIN" || role == "INS_DATA_MANAGER" || role == "AFF_INS_DATA_MANAGER"'>
+								Data Reviewer
+							</mat-option>
+							<mat-option 
+								value="DATA_APPROVER"
+								*ngIf='role == "INST_ADMIN" || role == "AFF_INS_DATA_MANAGER"'>
+								Data Approver
+							</mat-option>
+							<mat-option 
+								value="DATA_CERTIFIER"
+								*ngIf='role == "INST_ADMIN" || role == "INS_DATA_MANAGER"'>
+								Data Certifier
+							</mat-option>
 						</mat-select>
 					</mat-form-field>
 					<mat-form-field class="input-field">

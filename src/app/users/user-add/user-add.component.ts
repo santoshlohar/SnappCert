@@ -22,6 +22,7 @@ export class UserAddComponent implements OnInit {
 		Department_ID: ''
 	};
 	loginUser;
+	role;
 	authUserForm: FormGroup;
 
 	constructor(private _formBuilder: FormBuilder,
@@ -29,6 +30,8 @@ export class UserAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
+		this.role = this.loginUser.UserType;
+		console.log(this.role)
 		this.authUserForm = this._formBuilder.group({
 			userType: ['', Validators.required],
 			institute_ID: ['', Validators.required],
