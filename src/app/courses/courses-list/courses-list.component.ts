@@ -16,8 +16,15 @@ export class CoursesListComponent implements OnInit {
 	url;
 	loginUser;
 	inst_Id;
-	courses: InstituteCourse[] = [];
-	course;
+	userType;
+	aff_inst_Id;
+	courses = [];
+	course= {};
+	singleCourse= {
+		Course_ID : '',
+		afflInstituteID: ''
+	};
+	affInstCourses: [] = [];
 	displayedColumns = [
 		'select',
 		'instituteId',
@@ -34,8 +41,8 @@ export class CoursesListComponent implements OnInit {
 		'_id'
 	];
 
-	dataSource = new MatTableDataSource<InstituteCourse>(this.courses);
-	selection = new SelectionModel<InstituteCourse>(true, []);
+	dataSource = new MatTableDataSource<any>();
+	selection = new SelectionModel<any>(true, []);
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -45,8 +52,13 @@ export class CoursesListComponent implements OnInit {
 
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
+		this.userType = this.loginUser.UserType;
 		this.inst_Id = this.loginUser.instituteID;
+		if(this.loginUser.Affliated_Institute_ID) {
+			this.aff_inst_Id = this.loginUser.Affliated_Institute_ID;
+		}
 		this.getCoursesByInsId();
+		this.getCoursesByAffIns();
 	}
 
 	isAllSelected() {
@@ -124,4 +136,34 @@ export class CoursesListComponent implements OnInit {
 				console.log(response);
 			});
 	}
+
+	selectCourses() {
+		var selectedCourse = this.selection.selected;
+		this.url = "/afflinstitute/courses";
+		for(var i=0;i<selectedCourse.length;i++) {
+			selectedCourse[i].afflInstituteID = this.loginUser.Affliated_Institute_ID;
+			break;
+		};		   
+		this.apiService.post(this.url, selectedCourse)
+			.subscribe((response: any) => {
+				console.log(response);
+				if(response.message == 'success') {
+					alert("Selected courses link with your institute successfully!")
+				}
+			},
+			(error) => {
+				console.log(error);
+			});
+	}
+
+	getCoursesByAffIns() {
+		this.url = "/coursesbyafflinstid/";
+		this.apiService.get(this.url + this.aff_inst_Id)
+			.subscribe((response) => {
+				console.log(response);
+			},
+			(error) => {
+				console.log(error)
+			})
+	};
 }

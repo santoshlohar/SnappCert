@@ -1,8 +1,12 @@
 <div class="container">
     <div class="affIns-container mat-elevation-z8">
 		<div class="outer-div">
-			<div class="inner-div aff-btn">
+			<div class="inner-div aff-btn" *ngIf="userType == 'INS_DATA_MANAGER'">
 				<a mat-button class="add-btn" routerLink="/courseAdd">Add Institute Course</a>
+			</div>
+			<span class="spacer"></span>
+			<div class="inner-div aff-btn">
+				<a mat-button class="add-btn" (click)="selectCourses()">Aff. Institute Course</a>
 			</div>
 		</div>
 		<div class="table-wrapper">
