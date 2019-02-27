@@ -12,8 +12,9 @@ export class DepartmentAddComponent implements OnInit {
 
 	insDeptForm: FormGroup;
 	loggedInUser;
+	inst_id;
 	dept = {
-		Institution_ID: '',
+		instituteID: '',
 		department_ID: '',
 		department_Name: ''
 	};
@@ -25,12 +26,12 @@ export class DepartmentAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.inst_id = this.loggedInUser.instituteID;
 		this.insDeptForm = this._formBuilder.group({
-			Institution_ID: ['', Validators.required],
+			instituteID: [{value: this.inst_id, disabled: true}, Validators.required],
 			department_ID: ['', Validators.required],
 			department_Name: ['', Validators.required]
 		});
-		this.insDeptForm.controls.Institution_ID.setValue(this.loggedInUser.Institution_ID);
 	}
 
 	viewDepartments() {
@@ -38,17 +39,14 @@ export class DepartmentAddComponent implements OnInit {
 	}
 
 	addDept(deptData: NgForm) {
-		console.log(deptData);
-
 		if(deptData.invalid) {
 			return;
 		}
 		this.url = '/department';
 
-		this.dept.Institution_ID = deptData.value.Institution_ID;
+		this.dept.instituteID = this.inst_id;
 		this.dept.department_ID = deptData.value.department_ID;
 		this.dept.department_Name = deptData.value.department_Name;
-
 		this.apiService.post(this.url,this.dept)
 			.subscribe((response) => {
 				this.viewDepartments();

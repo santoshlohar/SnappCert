@@ -55,17 +55,21 @@ export class DepartmentsListComponent implements OnInit {
 		this.url = '/departments';
 		this.apiService.get(this.url)
 			.subscribe((response) => {
-				this.departments = response;
-				for(var i=0;i<this.departments.length;i++) {
-					if(this.departments[i].status == 'Active') {
-						this.departments[i].activated = 'Inactive';
+				console.log(response)
+				if(response.message == 'success') {
+					this.departments = response.data;
+					for(var i=0;i<this.departments.length;i++) {
+						if(this.departments[i].status == 'Active') {
+							this.departments[i].activated = 'Inactive';
+						}
+						if( this.departments[i].status == 'Inactive') {
+							this.departments[i].activated = 'Active';
+						}
+						this.dataSource.data = this.departments;
 					}
-					if( this.departments[i].status == 'Inactive') {
-						this.departments[i].activated = 'Active';
-					}
-					this.dataSource.data = this.departments;
+				} else {
+					alert("");
 				}
-				
 			});
 	};
 
