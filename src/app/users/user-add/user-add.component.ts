@@ -44,7 +44,6 @@ export class UserAddComponent implements OnInit {
 		this.getDeptList();
 		this.authUserForm = this._formBuilder.group({
 			userType: ['', Validators.required],
-			instituteID: [{value: this.inst_id, disabled: true}, Validators.required],
 			department_ID: ['', Validators.required],
 			name: ['', Validators.required],
 			emailId: ['', Validators.required],
