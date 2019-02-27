@@ -43,6 +43,7 @@ import { UserAddComponent } from './users/user-add/user-add.component';
 import { BatchesComponent } from './batches/batches.component';
 import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
 import { StudentUploadListComponent } from './batches/student-upload-list/student-upload-list.component';
+import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 
 @NgModule({
     declarations: [
@@ -73,7 +74,8 @@ import { StudentUploadListComponent } from './batches/student-upload-list/studen
         // BatchUploadListComponent,
         BatchesComponent,
         BatchUploadListComponent,
-        StudentUploadListComponent
+        StudentUploadListComponent,
+        CourseEditComponent
     ],
     imports: [
         BrowserModule,

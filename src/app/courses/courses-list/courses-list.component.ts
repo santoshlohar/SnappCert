@@ -27,6 +27,7 @@ export class CoursesListComponent implements OnInit {
 	affInstCourses: [] = [];
 	displayedColumns = [
 		'select',
+		'actions',
 		'instituteId',
 		'deptId', 
 		'courseType', 
@@ -111,12 +112,7 @@ export class CoursesListComponent implements OnInit {
 	}
 
 	editCourse(row) {
-		console.log(row);
-		this.url = '/coursedata/';
-		this.apiService.put(this.url+ row._id, row)
-			.subscribe((response) => {
-				console.log(response);
-			})
+		this.router.navigate(['/courseEdit/'+ row._id]);
 	}
 
 	activate(row) {
