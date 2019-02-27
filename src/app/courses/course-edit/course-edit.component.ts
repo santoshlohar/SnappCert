@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,6 +13,21 @@ export class CourseEditComponent implements OnInit {
 	url;
 	id;
 	course;
+	courseData = {
+		department_ID: '',
+		Course_Type: '',
+		Course_ID: '',
+		Course_Name: '',
+		Specialization: '',
+		Certificate_Generate: '',
+		Certificate_Print: '',
+		GPA_Calculated: '',
+		Subject_Credits: '',
+		Course_Duration: '',
+		Duration_Unit: '',
+		Term_Type: '',
+		No_of_Terms: ''
+	};
 	insCourseForm: FormGroup;
 	constructor(private formBuilder: FormBuilder,
 				private apiService: ApiService,
@@ -24,18 +39,18 @@ export class CourseEditComponent implements OnInit {
 		this.getCourseById(this.id);
 		this.insCourseForm = this.formBuilder.group({
 			department_ID: ['', Validators.required],
-			course_Type:  ['', Validators.required],
-			course_ID: ['', Validators.required],
-			course_Name: ['', Validators.required],
-			specialization: ['', Validators.required],
-			certificate_Generate: ['', Validators.required],
-			certificate_Print: ['', Validators.required],
-			gpa_Calculated: ['', Validators.required],
-			subject_Credits: ['', Validators.required],
-			course_Duration: ['', Validators.required],
-			duration_Unit: ['', Validators.required],
-			term_Type: ['', Validators.required],
-			no_of_Terms: ['', Validators.required],
+			Course_Type:  ['', Validators.required],
+			Course_ID: ['', Validators.required],
+			Course_Name: ['', Validators.required],
+			Specialization: ['', Validators.required],
+			Certificate_Generate: ['', Validators.required],
+			Certificate_Print: ['', Validators.required],
+			GPA_Calculated: ['', Validators.required],
+			Subject_Credits: ['', Validators.required],
+			Course_Duration: ['', Validators.required],
+			Duration_Unit: ['', Validators.required],
+			Term_Type: ['', Validators.required],
+			No_of_Terms: ['', Validators.required]
 		});
 	}
 
@@ -46,11 +61,38 @@ export class CourseEditComponent implements OnInit {
 				if(response.message == 'success' && response.data != '') {
 					this.course = response.data;
 					console.log(this.course)
+					this.insCourseForm.patchValue(this.course);
 				}
 			},
 			(error) => {
 				console.log(error)
 			})
+	}
+
+	editCourse(data: NgForm) {
+		console.log(data);
+		this.url = "/coursedata/";
+		this.courseData.department_ID =  data.value.department_ID;
+		this.courseData.Course_Type = data.value.Course_Type;
+		this.courseData.Course_ID = data.value.Course_ID;
+		this.courseData.Course_Name = data.value.Course_Name;
+		this.courseData.Specialization = data.value.Specialization;
+		this.courseData.Certificate_Generate = data.value.Certificate_Generate;
+		this.courseData.Certificate_Print = data.value.Certificate_Print;
+		this.courseData.GPA_Calculated = data.value.GPA_Calculated;
+		this.courseData.Subject_Credits = data.value.Subject_Credits;
+		this.courseData.Course_Duration = data.value.Course_Duration;
+		this.courseData.Duration_Unit = data.value.Duration_Unit;
+		this.courseData.Term_Type = data.value.Term_Type;
+		this.courseData.No_of_Terms = data.value.No_of_Terms;
+
+		this.apiService.put(this.url+this.id, this.courseData)
+			.subscribe((response) => {
+				console.log(response)
+			},
+			(error) => {
+				console.log(error);
+			});
 	}
 
 }
