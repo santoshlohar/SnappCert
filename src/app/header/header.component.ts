@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 export class HeaderComponent implements OnInit {
 
 	heading: string;
+	courseId;
 
 	@Input() stateRoute: string;
 	constructor(public globals: Globals,
