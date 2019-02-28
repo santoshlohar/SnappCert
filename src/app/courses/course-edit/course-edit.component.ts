@@ -12,6 +12,8 @@ export class CourseEditComponent implements OnInit {
 	
 	url;
 	id;
+	inst_Id;
+	loginUser;
 	course;
 	courseData = {
 		department_ID: '',
@@ -26,7 +28,8 @@ export class CourseEditComponent implements OnInit {
 		Course_Duration: '',
 		Duration_Unit: '',
 		Term_Type: '',
-		No_of_Terms: ''
+		No_of_Terms: '',
+		instituteID: ''
 	};
 	insCourseForm: FormGroup;
 	constructor(private formBuilder: FormBuilder,
@@ -36,6 +39,8 @@ export class CourseEditComponent implements OnInit {
 
 	ngOnInit() {
 		this.id = this.route.snapshot.params['courseId'];
+		this.loginUser = JSON.parse(localStorage.getItem('user'));
+		this.inst_Id = this.loginUser.instituteID;
 		this.getCourseById(this.id);
 		this.insCourseForm = this.formBuilder.group({
 			department_ID: ['', Validators.required],
@@ -56,11 +61,11 @@ export class CourseEditComponent implements OnInit {
 
 	getCourseById(id) {
 		this.url = "/course/";
+		console.log(this.url)
 		this.apiService.get(this.url+id)
 			.subscribe((response) => {
 				if(response.message == 'success' && response.data != '') {
 					this.course = response.data;
-					console.log(this.course)
 					this.insCourseForm.patchValue(this.course);
 				}
 			},
@@ -71,7 +76,7 @@ export class CourseEditComponent implements OnInit {
 
 	editCourse(data: NgForm) {
 		console.log(data);
-		this.url = "/coursedata/";
+		this.url = "/course/";
 		this.courseData.department_ID =  data.value.department_ID;
 		this.courseData.Course_Type = data.value.Course_Type;
 		this.courseData.Course_ID = data.value.Course_ID;
@@ -85,7 +90,9 @@ export class CourseEditComponent implements OnInit {
 		this.courseData.Duration_Unit = data.value.Duration_Unit;
 		this.courseData.Term_Type = data.value.Term_Type;
 		this.courseData.No_of_Terms = data.value.No_of_Terms;
-
+		this.courseData.instituteID = this.inst_Id;
+		console.log(this.courseData)
+		console.log(this.url+this.id);
 		this.apiService.put(this.url+this.id, this.courseData)
 			.subscribe((response) => {
 				console.log(response)
