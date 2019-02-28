@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-course-edit',
@@ -34,7 +34,8 @@ export class CourseEditComponent implements OnInit {
 	insCourseForm: FormGroup;
 	constructor(private formBuilder: FormBuilder,
 				private apiService: ApiService,
-				private route: ActivatedRoute) { 
+				private route: ActivatedRoute,
+				private router: Router) { 
 				}
 
 	ngOnInit() {
@@ -91,11 +92,15 @@ export class CourseEditComponent implements OnInit {
 		this.courseData.Term_Type = data.value.Term_Type;
 		this.courseData.No_of_Terms = data.value.No_of_Terms;
 		this.courseData.instituteID = this.inst_Id;
-		console.log(this.courseData)
-		console.log(this.url+this.id);
+		
 		this.apiService.put(this.url+this.id, this.courseData)
 			.subscribe((response) => {
-				console.log(response)
+				if(response.message == 'success') {
+					this.router.navigate(['/courses']);
+				} else {
+					var errmsg = response.error.msg;
+					alert(errmsg);
+				}
 			},
 			(error) => {
 				console.log(error);

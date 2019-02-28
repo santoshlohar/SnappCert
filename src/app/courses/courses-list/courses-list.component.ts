@@ -59,7 +59,7 @@ export class CoursesListComponent implements OnInit {
 			this.aff_inst_Id = this.loginUser.Affliated_Institute_ID;
 		}
 		this.getCoursesByInsId();
-		this.getCoursesByAffIns();
+		//this.getCoursesByAffIns();
 	}
 
 	isAllSelected() {
@@ -79,7 +79,16 @@ export class CoursesListComponent implements OnInit {
 		this.apiService.get(this.url)
 			.subscribe((response) => {
 				this.courses = response;
-				this.dataSource.data = this.courses;
+				console.log(this.courses);
+				for(var i=0;i<this.courses.length;i++) {
+					if(this.courses[i].isActivated) {
+						this.courses[i].activated = "Inactivate"
+					} else {
+						this.courses[i].activated = "Activate"
+					}
+					this.dataSource.data = this.courses;
+				}
+				
 			});
 	}
 
@@ -91,12 +100,11 @@ export class CoursesListComponent implements OnInit {
  				if(response.message == 'success') {
 					if(response.data.length) {
 						this.courses = response.data;
-						console.log(this.courses)
 						for(var i=0;i<this.courses.length;i++) {
 							this.course = this.courses[i];
-							if(this.courses[i].status == "Active") {
+							if(this.courses[i].isActivated) {
 								this.courses[i].activated = "Deactivate";
-							} else if(this.courses[i].status == "InActive") {
+							} else if(!this.courses[i].isActivated) {
 								this.courses[i].activated = "Activate";
 							}
 						}
@@ -116,20 +124,18 @@ export class CoursesListComponent implements OnInit {
 	}
 
 	activate(row) {
-		this.url = '/coursedata/';
-		console.log(row);
-		if(row.status == "Active") {
-			row.status = "Inactive";
-			row.activated = "Activate"
-		} else if(row.status = "Inactive") {
-			row.status = "Active";
+		this.url = '/course/';
+		if(row.isActivated == true) {
+			row.isActivated = false;
+			row.activated = "Activate";
+		} else if(row.isActivated == false) {
+			row.isActivated = true;
 			row.activated = "Deactivate";
 		}
 		this.course = row;
-		console.log(this.course)
 		this.apiService.put(this.url+ row._id, this.course)
 			.subscribe((response) => {
-				console.log(response);
+				this.getCoursesByInsId();
 			});
 	}
 
