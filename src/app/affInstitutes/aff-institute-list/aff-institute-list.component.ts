@@ -50,7 +50,8 @@ export class AffInstituteListComponent implements OnInit {
 		this.apiService.put(this.url+ row._id, row)
 			.subscribe((response) => {
 				console.log(response);
-			})
+			});
 	}
+
 
 }

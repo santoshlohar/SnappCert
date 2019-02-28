@@ -54,20 +54,21 @@
                             <mat-icon class="search icons">search</mat-icon><input matInput class="form-field filters">
                         </mat-form-field>
                     </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> 
+                    <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+                    <!-- <mat-cell *matCellDef="let element"> 
                         <mat-form-field floatLabel="never">
                             <input matInput placeholder="Status" [value]="element.status" [(ngModel)]="element.status">
                         </mat-form-field>	
-                    </mat-cell>
+                    </mat-cell> -->
                 </ng-container>
 
                 <ng-container matColumnDef="id">
                     <mat-header-cell class="actions" *matHeaderCellDef> Actions </mat-header-cell>
                     <mat-cell *matCellDef="let row"> 
-                        <mat-icon class="update icons" (click)="updateAffIns(row)">edit</mat-icon>
+                        <button mat-button class="active-btn" (click)="activate(row)">{{row.activated}}</button>
                     </mat-cell>
                 </ng-container>
-0
+
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </mat-table>
