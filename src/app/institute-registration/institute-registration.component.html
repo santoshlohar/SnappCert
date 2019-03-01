@@ -46,6 +46,7 @@
                             <mat-option value="International_Board">International Board</mat-option>
                             <mat-option value="Private_Institute">Private Institute</mat-option>
                         </mat-select>
+                        <mat-error *ngIf="hasError('instType', 'required')">Institute type is required!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput type="text" placeholder="Institute ID" formControlName="instituteID">
@@ -74,6 +75,7 @@
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput type="text" placeholder="Academic Head Email ID" formControlName="academicHeadEmail">
+                        <mat-error *ngIf="hasError('academicHeadEmail', 'email')">Please enter valid email!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput type="text" placeholder="Academic Head Phone" formControlName="academicHeadPhone">
@@ -83,6 +85,7 @@
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput type="text" placeholder="Administrator Head Email ID" formControlName="administratorHeadEmail">
+                        <mat-error *ngIf="hasError('administratorHeadEmail', 'email')">Please enter valid email!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput type="text" placeholder="Administrator Head Phone" formControlName="administratorHeadPhone">
@@ -106,7 +109,18 @@
                         <input matInput type="text" placeholder="Recognized By" formControlName="recognizedBy">
                     </mat-form-field>
                     <mat-form-field class="input-field">
-                        <input matInput type="text" placeholder="Regulatory Body" formControlName="regulatoryBody">
+                        <mat-select formControlName="regulatoryBody" placeholder="Regulatory Body" required>
+                            <mat-option value="UGC">UGC</mat-option>
+                            <mat-option value="AICTE">AICTE</mat-option>
+                            <mat-option value="DEC">DEC</mat-option>
+                            <mat-option value="ICAR">ICAR</mat-option>
+                            <mat-option value="NCTE">NCTE</mat-option>
+                            <mat-option value="NBA">NBA</mat-option>
+                            <mat-option value="BCI">BCI</mat-option>
+                            <mat-option value="MCI">MCI</mat-option>
+                            <mat-option value="NAAC">NAAC</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError('regulatoryBody', 'required')">Regulatory Body is required!</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="mainDiv">
@@ -122,6 +136,7 @@
                     <mat-form-field class="input-field">
                         <input matInput type="text" placeholder="Email" formControlName="email" required>
                         <mat-error *ngIf="hasError('email', 'required')">Email is required!</mat-error>
+                        <mat-error *ngIf="hasError('email', 'email')">Please enter valid email!</mat-error>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput type="text" placeholder="Phone" formControlName="phone" required>

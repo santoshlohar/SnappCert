@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-institute-registration',
@@ -15,7 +16,7 @@ export class InstituteRegistrationComponent implements OnInit {
 
 	constructor(private http: HttpClient,
 				private _formBuilder: FormBuilder, 
-		) { }
+				private router: Router) { }
 
 	ngOnInit() {
 		this.instRequestForm = this._formBuilder.group({
@@ -54,11 +55,10 @@ export class InstituteRegistrationComponent implements OnInit {
     }
 
 	registerInstitute(regForm: NgForm) {
-		console.log(regForm);
+		console.log(regForm.value);
 		if (regForm.invalid) {
 			return;
 		}
-
 		var data = {
 			requesterName : regForm.value.requesterName,
 			requesteremailId : regForm.value.requesterEmail,
@@ -84,7 +84,6 @@ export class InstituteRegistrationComponent implements OnInit {
 			affiliatedInstituteType : regForm.value.affiliatedToType,
 			recognizedBy : regForm.value.recognizedBy,
 			regulatoryBodyName : regForm.value.regulatoryBody,
-			// kycStatus : "NEW",
 			InstAdminName : regForm.value.name,
 			InstAdminEmailId : regForm.value.email,
 			InstAdminPhoneNo : regForm.value.phone
@@ -95,8 +94,11 @@ export class InstituteRegistrationComponent implements OnInit {
 		this.http.post(this.url, data)
 			.subscribe((response: any) => {
 				if(response.message == 'success') {
-					alert('Success');
+					this.router.navigate(['/home']);
 				}
+			},
+			(error) => {
+				console.log(error);
 			});
 	}
 	
