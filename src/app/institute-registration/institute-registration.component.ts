@@ -94,7 +94,7 @@ export class InstituteRegistrationComponent implements OnInit {
 		this.http.post(this.url, data)
 			.subscribe((response: any) => {
 				if(response.message == 'success') {
-					this.router.navigate(['/home']);
+					this.router.navigate(['/']);
 				}
 			},
 			(error) => {
