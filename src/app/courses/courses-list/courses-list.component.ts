@@ -163,9 +163,29 @@ export class CoursesListComponent implements OnInit {
 		this.apiService.get(this.url + this.aff_inst_Id)
 			.subscribe((response) => {
 				console.log(response);
+				this.dataSource.data = response.data;
 			},
 			(error) => {
 				console.log(error)
 			})
-	};
+	}
+
+	viewSelectCourses() {
+		this.url = "/coursesbyafflinstid/";
+
+		this.apiService.get(this.url+ this.aff_inst_Id)
+			.subscribe((response) => {
+				console.log(response);
+				if(response.message == 'success') {
+					if(response.data){
+						this.getCoursesByAffIns();
+					} else {
+						alert("No courses found for your Affiliated Institute!")
+					}
+				}
+			},
+			(error) => {
+				console.log(error)
+			})
+	}
 }

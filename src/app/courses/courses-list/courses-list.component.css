@@ -1,6 +1,6 @@
 .container {
     padding: 40px 38px;
-    max-width: 1225px;
+    max-width: 1135px;
 }
 
 .affIns-container {
@@ -23,11 +23,15 @@ mat-table {
     color: #333 !important;
     background-color: #e2be40;
     border-radius: 8px;
-    margin-bottom: 12px;
+    margin: 2px 4px;
 }
 
 .spacer {
     flex: 1 1 auto;
+}
+
+.mat-header-btns {
+    padding: 1px 5px;
 }
 
 table {
