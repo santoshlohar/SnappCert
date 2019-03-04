@@ -38,7 +38,7 @@ export class UserRolesService {
 		} else if(role == this.roles.affInsDataMgr) {
 			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.dataReviewer) {
-			this.router.navigate(['/home']);
+			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.dataApprover) {
 			this.router.navigate(['/home']);
 		} else if(role == this.roles.dataCertifier) {

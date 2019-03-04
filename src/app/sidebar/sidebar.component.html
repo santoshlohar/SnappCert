@@ -78,5 +78,17 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div>
+		<div *ngIf='userType == "DATA_REVIEWER"' >
+			<div class="innerbar-content" routerLink="/dashboard">
+				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
+				<span class="link-btn"> Dashboard </span>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content" routerLink="/certificateUploadList">
+				<img class="sidebar-img" src="./assets/icons/institute_w.png"/><br />
+				<span class="link-btn"> Certificates </span>
+			</div>
+			<mat-divider></mat-divider>
+		</div>
 	</mat-sidenav-content>
 </mat-sidenav-container>
