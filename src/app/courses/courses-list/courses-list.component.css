@@ -106,6 +106,14 @@ table {
     color: #333 !important;
 }
 
+.clr-blue {
+    color: #3666f5;
+}
+
+.icon {
+    cursor: pointer;
+}
+
 .icons {
     cursor: pointer;
 }
