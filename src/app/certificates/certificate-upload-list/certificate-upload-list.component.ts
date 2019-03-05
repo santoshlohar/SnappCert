@@ -16,8 +16,9 @@ import { Globals } from 'src/app/globals';
 	styleUrls: ['./certificate-upload-list.component.css']
 })
 export class CertificateUploadListComponent implements OnInit {
-	
-	displayedColumns = [
+	displayedColumns = [];
+
+	tempCertColumns = [
 		'select',
 		'actions',
 		'instituteId',
@@ -38,6 +39,18 @@ export class CertificateUploadListComponent implements OnInit {
 		'transactionDate',
 		'transactionTime',
 		'transactionUser'
+	];
+	finalCertColumns = [
+		'select',
+		'actions',
+		'instituteId',
+		'courseId',
+		'batchId',
+		'studentId',
+		'certificateId',
+		'specialization',
+		'completionDate',
+		'transactionStatus'
 	];
 	url: string;
 	loginUser;
@@ -69,8 +82,10 @@ export class CertificateUploadListComponent implements OnInit {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.userType = this.loginUser.UserType;
 		if(this.userType === "INS_DATA_MANAGER") {
+			//this.displayedColumns = this.tempCertColumns;
 			this.getCertificatesList();
-		} else if(this.userType === "DATA_REVIEWER") {
+		} else if(this.userType === "INST_REVIEWER") {
+			//this.displayedColumns = this.finalCertColumn;
 			this.getFinalCertificates();
 		}
 		this.dataSource.sort = this.sort;

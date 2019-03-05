@@ -29,6 +29,7 @@ import { BatchesComponent } from './batches/batches.component';
 import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
 import { StudentUploadListComponent } from './batches/student-upload-list/student-upload-list.component';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
+import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -51,6 +52,7 @@ const routes: Routes =  [
     { path: 'courseEdit/:courseId', component: CourseEditComponent, canActivate: [AuthGuard]},
     { path: 'certificateUploadList', component: CertificateUploadListComponent, canActivate: [AuthGuard]},
     { path: 'certificateUpload', component: CerificatesUploadComponent, canActivate: [AuthGuard]},
+    { path: 'certificateView/:certificateId', component: CertificateViewComponent, canActivate: [AuthGuard]},
     {   path: 'batches', 
         component: BatchesComponent, 
         canActivate: [AuthGuard],
