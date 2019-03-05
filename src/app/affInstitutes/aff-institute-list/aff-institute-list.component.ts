@@ -13,8 +13,10 @@ import { Router } from '@angular/router';
 export class AffInstituteListComponent implements OnInit {
 
 	url;
+	
 	affInstData: AffInstitute[] = [];
 	displayedColumns = ['instituteId', 'deptId', 'affInstId', 'affInsLocation', 'status', 'id'];
+	activated;
 	dataSource = new MatTableDataSource<AffInstitute>(this.affInstData);
 	selection = new SelectionModel<AffInstitute>(true, []);
 
@@ -34,24 +36,55 @@ export class AffInstituteListComponent implements OnInit {
 	}
 
 	getAffInstitutes() {
-		this.url = '/afflInstitutes';
+		this.url = '/afflInstitutes/';
 
 		this.apiService.get(this.url)
-			.subscribe((response) => {
-				console.log(response);
-				this.affInstData = response;
-				this.dataSource.data = this.affInstData;
-			})
-	}
+			.subscribe((response:any) => {
+				console.log(response)
+				if(response.message == "success") {
+					this.affInstData = response.data;
+					for(var i = 0; i < this.affInstData.length; i++) {
+						if(this.affInstData[i].status == "Active") {
+							this.affInstData[i].activated = 'Inactive';
+						}
+						if(this.affInstData[i].status == "Inactive") {
+							this.affInstData[i].activated = 'Active';
+						}
+						this.dataSource.data = this.affInstData;
+					}
+				} else {
+					alert("asda");
+				}
+			});
+	};
 
-	updateAffIns(row) {
-		console.log(row);
-		this.url = '/afflInstitutes/';
-		this.apiService.put(this.url+ row._id, row)
+	activate(data) {
+		var affInstId = data._id;
+		this.url = "/afflInstitutes/";
+		this.apiService.put(this.url + affInstId, data)
 			.subscribe((response) => {
-				console.log(response);
+				this.getAffInstitutes();
 			});
 	}
+
+	// updateAffIns(row) {
+	// 	console.log(row);
+	// 	this.url = '/afflInstitutes/';
+	// 	this.apiService.put(this.url+ row._id, row)
+	// 		.subscribe((response) => {
+	// 			console.log(response);
+	// 		});
+	// }
+
+	// activate(data) {
+	// 	console.log('data' + JSON.stringify(data));
+	// 	var affInstId = data._id;
+	// 	this.url = '/afflInstitutes/';
+	// 	this.apiService.put(this.url + affInstId, data)
+	// 		.subscribe((response) => {
+	// 			this.getAffInstitutes();
+	// 		});
+	// }
 
 
 }

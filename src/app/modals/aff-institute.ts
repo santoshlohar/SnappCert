@@ -5,5 +5,7 @@ export interface AffInstitute {
     afflInstitute_Name: String;
     afflInstitute_loc: String;
     status: String;
+    isActivated: Boolean;
+    activated: string;
     _id: Number;
 }
