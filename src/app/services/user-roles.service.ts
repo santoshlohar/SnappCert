@@ -17,7 +17,8 @@ export class UserRolesService {
 		insAdmin: 'INST_ADMIN',
 		insDataMgr: 'INS_DATA_MANAGER',
 		affInsDataMgr: 'AFF_INS_DATA_MANAGER',
-		dataReviewer: 'DATA_REVIEWER',
+		instReviewer: 'INST_REVIEWER',
+		affInstReviewer: 'AFF_INST_REVIEWER',
 		dataApprover: 'DATA_APPROVER',
 		dataCertifier: 'DATA_CERTIFIER',
 		student: 'STUDENT'
@@ -37,7 +38,7 @@ export class UserRolesService {
 			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.affInsDataMgr) {
 			this.router.navigate(['/dashboard']);
-		} else if(role == this.roles.dataReviewer) {
+		} else if(role == this.roles.instReviewer) {
 			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.dataApprover) {
 			this.router.navigate(['/home']);

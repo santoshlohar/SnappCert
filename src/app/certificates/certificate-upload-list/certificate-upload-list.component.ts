@@ -40,6 +40,8 @@ export class CertificateUploadListComponent implements OnInit {
 		'transactionUser'
 	];
 	url: string;
+	loginUser;
+	userType: string;
 	certificatesData = [];
 	newCertificates = [];
 	selectedCertificates = [];
@@ -64,10 +66,15 @@ export class CertificateUploadListComponent implements OnInit {
 				}
 
 	ngOnInit() {
+		this.loginUser = JSON.parse(localStorage.getItem('user'));
+		this.userType = this.loginUser.UserType;
+		if(this.userType === "INS_DATA_MANAGER") {
+			this.getCertificatesList();
+		} else if(this.userType === "DATA_REVIEWER") {
+			this.getFinalCertificates();
+		}
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-		this.getCertificatesList();
-		
 	};
 
 	// highlight(element: UploadedCertificate) {
@@ -209,7 +216,6 @@ export class CertificateUploadListComponent implements OnInit {
 
 	deleteCertificates(){
 		this.selectedCertificates = this.selection.selected;
-		console.log("delete multiple records.")
 		this.url = "/deltempcertificates";
 		if(this.selectedCertificates.length) {
 			//this.validatedCertificates(this.selectedCertificates);
@@ -238,7 +244,6 @@ export class CertificateUploadListComponent implements OnInit {
 					return false;
 			} else if( typeof(certificate.instituteID == 'string')) {
 				this.intError = true;
-				
 			}
 		}
 		
@@ -262,6 +267,28 @@ export class CertificateUploadListComponent implements OnInit {
 		} else {
 			alert("please select atleast one certificate data to delete!");
 		}
+	}
+
+	getFinalCertificates() {
+		console.log(this.userType)
+		this.url = "/certificates";
+		this.apiService.get(this.url)
+			.subscribe((response) => {
+				if(response.message == 'success' && response.data) {
+					this.certificatesData = response.data;
+					for(var i=0;i<this.certificatesData.length;i++) {
+						if(this.certificatesData[i].versionStatus == "Active" && this.certificatesData[i].transactionStatus == 'New') {
+							console.log(this.certificatesData[i]);
+							this.newCertificates.push(this.certificatesData[i]);
+							this.dataSource.data = this.newCertificates;
+						}
+					}
+					//this.dataSource.data = response.data;
+				}
+			},
+			(error) => {
+				console.log(error);
+			})
 	}
 
 	// public hasError = (controlName: string, errorName: string) =>{
