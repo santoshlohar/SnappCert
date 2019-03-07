@@ -62,6 +62,8 @@ export class CertificateUploadListComponent implements OnInit {
 	highlight: boolean;
 	certificate;
 	intError: boolean;
+	params;
+	reviewers: Number;
 
 	dataSource = new MatTableDataSource<any>();
 	//newCertificates = new MatTableDataSource<ValidatedCertificate>(this.certificatesData);
@@ -82,20 +84,14 @@ export class CertificateUploadListComponent implements OnInit {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.userType = this.loginUser.UserType;
 		if(this.userType === "INS_DATA_MANAGER") {
-			//this.displayedColumns = this.tempCertColumns;
 			this.getCertificatesList();
 		} else if(this.userType === "INST_REVIEWER") {
-			//this.displayedColumns = this.finalCertColumn;
+			this.getReviewersList();
 			this.getFinalCertificates();
 		}
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 	};
-
-	// highlight(element: UploadedCertificate) {
-	// 	console.log(element)
-	// 	element.highlighted = !element.highlighted;
-	// }
 
 	isAllSelected() {
 		const numSelected = this.selection.selected.length;
@@ -282,10 +278,9 @@ export class CertificateUploadListComponent implements OnInit {
 		} else {
 			alert("please select atleast one certificate data to delete!");
 		}
-	}
+	};
 
 	getFinalCertificates() {
-		console.log(this.userType)
 		this.url = "/certificates";
 		this.apiService.get(this.url)
 			.subscribe((response) => {
@@ -294,17 +289,43 @@ export class CertificateUploadListComponent implements OnInit {
 					for(var i=0;i<this.certificatesData.length;i++) {
 						if(this.certificatesData[i].versionStatus == "Active" && this.certificatesData[i].transactionStatus == 'New') {
 							console.log(this.certificatesData[i]);
+							// if(this.certificatesData[i].transactionStatus == 'New' ) {
+							// 	this.newCertificates.push(this.certificatesData[i]);
+							// } else if(this.certificatesData[i].transactionStatus == 'Under Review' ) {
+							// 	this.newCertificates.push(this.certificatesData[i]);
+							// }
 							this.newCertificates.push(this.certificatesData[i]);
 							this.dataSource.data = this.newCertificates;
 						}
 					}
-					//this.dataSource.data = response.data;
 				}
 			},
 			(error) => {
 				console.log(error);
 			})
-	}
+	};
+
+	getReviewersList() {
+		this.url = "/searchUsers";
+
+		this.params = {
+			UserType: "INST_REVIEWER",
+			instituteID: this.loginUser.instituteID,
+			Department_ID: this.loginUser.Department_ID
+		}
+		this.apiService.post(this.url, this.params)
+			.subscribe((response: any) => {
+				console.log(response);
+				if(response.message == 'success') {
+					if(response.data) {
+						this.reviewers = response.data.length;
+					}
+				}
+			},
+			(error) => {
+				console.log(error);
+			})
+	};
 
 	// public hasError = (controlName: string, errorName: string) =>{
     //     return this.instRequestForm.controls[controlName].hasError(errorName);
