@@ -6,5 +6,7 @@ export interface User {
     username: String;
     emailId: String;
     phone: String;
+    isActivated: Boolean;
+    activated: string;
     _id: Number;
 }

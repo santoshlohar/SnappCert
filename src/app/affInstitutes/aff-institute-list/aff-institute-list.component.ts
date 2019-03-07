@@ -40,7 +40,7 @@ export class AffInstituteListComponent implements OnInit {
 
 		this.apiService.get(this.url)
 			.subscribe((response:any) => {
-				console.log(response)
+				console.log(response);
 				if(response.message == "success") {
 					this.affInstData = response.data;
 					for(var i = 0; i < this.affInstData.length; i++) {
@@ -53,7 +53,7 @@ export class AffInstituteListComponent implements OnInit {
 						this.dataSource.data = this.affInstData;
 					}
 				} else {
-					alert("asda");
+					alert("");
 				}
 			});
 	};

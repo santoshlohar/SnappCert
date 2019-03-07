@@ -16,7 +16,7 @@ export class UsersListComponent implements OnInit {
 	url;
 	loginUser;
 	authUsers: [] = [];
-	displayedColumns = ['userType', 'instituteId', 'departmentId', 'affInstituteId', 'username', 'emailId', 'phone', '_id'];
+	displayedColumns = ['userType', 'instituteId', 'departmentId', 'affInstituteId', 'username', 'emailId', 'phone', 'status', '_id'];
 
 	dataSource = new MatTableDataSource<User>();
 	selection = new SelectionModel<User>(true, []);
@@ -43,21 +43,56 @@ export class UsersListComponent implements OnInit {
 
 	getInstituteUsers() {
 		var instituteID = this.loginUser.instituteID;
-		this.url = "/usesrbyinstitute/" + instituteID;
+		 this.url = "/usesrbyinstitute/" + instituteID;
+		 
+		 this.apiService.get(this.url)
+		 	.subscribe((response) => {
+				 console.log(response);
+				 if(response.message == "success") {
+					 this.authUsers = response.data;
+					 for (var i = 0; i < response.data.length; i++) {
+						if(response.data[i].status == "Active") {
+							response.data[i].activatedd = 'Inactive';
+						}
+						if(response.data[i].status == "Inactive") {
+							response.data[i].activatedd = 'Active';
+						}
+					 }
+					//  
+					 this.dataSource.data = this.authUsers;
+				 } else {
+					 alert("");
+				 }
+			 })
+	};
 
-		this.apiService.get(this.url)
+	activate(data) {
+		var userId = data._id;
+		this.url = "/usesrbyinstitute/" + userId;
+
+		this.apiService.put(this.url, data)
 			.subscribe((response) => {
-				if(response.message == 'success') {
-					this.authUsers = response.data;
-					this.dataSource.data = this.authUsers;
-				}
-			},
-			(error) => {
-				console.log(error);
-				alert(error.error.message);
-				return false;
-			})
+				this.getInstituteUsers();
+			});
 	}
+
+	// getInstituteUsers() {
+	// 	var instituteID = this.loginUser.instituteID;
+	// 	this.url = "/usesrbyinstitute/" + instituteID;
+
+	// 	this.apiService.get(this.url)
+	// 		.subscribe((response) => {
+	// 			if(response.message == 'success') {
+	// 				this.authUsers = response.data;
+	// 				this.dataSource.data = this.authUsers;
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 			alert(error.error.message);
+	// 			return false;
+	// 		})
+	// }
 
 	getAffInstituteUsers() {
 		var affInstituteId = this.loginUser.Affliated_Institute_ID;

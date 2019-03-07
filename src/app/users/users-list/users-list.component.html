@@ -105,10 +105,22 @@
 						</mat-cell>
 				</ng-container>
 
+				<ng-container matColumnDef="status">
+                    <mat-header-cell *matHeaderCellDef>
+                        <div> User Status </div>
+                        <mat-form-field>
+                            <mat-icon class="search icons">search</mat-icon><input matInput class="form-field filters">
+                        </mat-form-field>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+                </ng-container>
+
 				<ng-container matColumnDef="_id">
 					<mat-header-cell *matHeaderCellDef class="actions"> Actions </mat-header-cell>
 					<mat-cell *matCellDef="let row"> 
-						<mat-icon class="update icons" (click)="editCourse(row)">edit</mat-icon>
+						<!-- <mat-icon class="update icons" (click)="editCourse(row)">edit</mat-icon> -->
+						<button mat-button class="active-btn update" (click)="editCourse(row)">Edit</button>&nbsp;
+						<button mat-button class="active-btn" (click)="activate(row)">{{row.activatedd}}</button>
 					</mat-cell>
 				</ng-container>
 
