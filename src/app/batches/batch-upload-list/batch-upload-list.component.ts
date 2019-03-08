@@ -86,8 +86,8 @@ export class BatchUploadListComponent implements OnInit {
 
 	getTempBatch(){
 		this.url = '/temp/batchdata';
-
-		this.apiService.get(this.url)
+		var params = ''
+		this.apiService.get(this.url, params)
 			.subscribe((response) => {
 				if(response.message == 'success') {
 					this.batchesData = response.data;

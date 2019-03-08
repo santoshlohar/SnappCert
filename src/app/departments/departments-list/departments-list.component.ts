@@ -53,7 +53,8 @@ export class DepartmentsListComponent implements OnInit {
 
 	getDepartments() {
 		this.url = '/departments';
-		this.apiService.get(this.url)
+		var params = '';
+		this.apiService.get(this.url, params)
 			.subscribe((response) => {
 				console.log(response)
 				if(response.message == 'success') {

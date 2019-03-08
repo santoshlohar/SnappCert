@@ -106,8 +106,8 @@ export class CertificateUploadListComponent implements OnInit {
 
 	getCertificatesList() {
 		this.url = '/temp/certificates';
-		
-		this.apiService.get(this.url)
+		var params = ''
+		this.apiService.get(this.url, params)
 			.subscribe((response: UploadedCertificate[]) => {
 				
 				this.certificatesData = response;
@@ -282,7 +282,8 @@ export class CertificateUploadListComponent implements OnInit {
 
 	getFinalCertificates() {
 		this.url = "/certificates";
-		this.apiService.get(this.url)
+		var params = '';
+		this.apiService.get(this.url, params)
 			.subscribe((response) => {
 				if(response.message == 'success' && response.data) {
 					this.certificatesData = response.data;

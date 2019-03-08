@@ -32,7 +32,7 @@ export class ApiService {
 		return this.http.post(this.apiURL + url, data);
 	};
 
-	get(url) {
+	get(url, data) {
 		this.getData = this.http.get(this.apiURL + url, this.httpOptions);
 		return this.getData;		
 	}

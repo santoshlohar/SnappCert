@@ -75,7 +75,8 @@ export class InstitutesListComponent implements OnInit {
 
 	getInstitutes() {
 		var getInsUrl = '/institutes';
-		this.apiService.get(getInsUrl)
+		var params = '';
+		this.apiService.get(getInsUrl, params)
 			.subscribe((response) => {
 				this.institutes = response.elements;
 				for(var i=0;i<this.institutes.length;i++) {

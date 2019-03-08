@@ -63,7 +63,8 @@ export class CourseEditComponent implements OnInit {
 	getCourseById(id) {
 		this.url = "/course/";
 		console.log(this.url)
-		this.apiService.get(this.url+id)
+		var params = '';
+		this.apiService.get(this.url+id, params)
 			.subscribe((response) => {
 				if(response.message == 'success' && response.data != '') {
 					this.course = response.data;

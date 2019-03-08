@@ -73,7 +73,8 @@ export class StudentUploadListComponent implements OnInit {
 
 	getTempStudents() {
 		this.url = "/temp/studentdet";
-		this.apiService.get(this.url)
+		var params = ''
+		this.apiService.get(this.url, params)
 			.subscribe((response) => {
 				console.log(response)
 				if(response.message == 'success') {

@@ -37,8 +37,8 @@ export class AffInstituteListComponent implements OnInit {
 
 	getAffInstitutes() {
 		this.url = '/afflInstitutes/';
-
-		this.apiService.get(this.url)
+		var params = '';
+		this.apiService.get(this.url, params)
 			.subscribe((response:any) => {
 				console.log(response);
 				if(response.message == "success") {
