@@ -8,14 +8,14 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 	providedIn: 'root'
 })
 export class AuthService {
-	apiURL: string = 'http://localhost:3000/api/v1';
+	baseURL: string = 'http://localhost:3000/api/v1';
 	user;
 	constructor(public globals: Globals,
 				private router: Router,
 				private http: HttpClient) { }
 
 	login(data) {
-		return this.http.post(this.apiURL+'/authenticateUser', data)
+		return this.http.post(this.baseURL+'/authenticateUser', data)
 					.pipe(
 						map((user) => {
 							if(user && user['token']) {
