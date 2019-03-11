@@ -199,7 +199,7 @@
 				<mat-row *matRowDef="let row; columns: tempCertColumns;"></mat-row>
 			</mat-table>
 		</div>
-		<div class="table-wrapper" *ngIf="userType == 'INST_REVIEWER'">
+		<div class="table-wrapper" *ngIf="userType == 'INST_REVIEWER' || userType == 'DATA_CERTIFIER'">
 			<mat-table [dataSource]="dataSource" 
 			class="mat-table-item mat-elevation-z8">
 			
@@ -250,7 +250,7 @@
 			<ng-container matColumnDef="certificateId">
 				<mat-header-cell *matHeaderCellDef> Certificate ID</mat-header-cell>
 				<mat-cell *matCellDef="let element"> 
-					<span> {{element.studentID}} </span>
+					<span> {{element.certificateID}} </span>
 				</mat-cell>
 			</ng-container>
 			<ng-container matColumnDef="specialization">

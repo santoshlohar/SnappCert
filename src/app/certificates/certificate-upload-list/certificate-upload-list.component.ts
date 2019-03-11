@@ -64,6 +64,7 @@ export class CertificateUploadListComponent implements OnInit {
 	intError: boolean;
 	params;
 	reviewers: Number;
+	certifiers: Number;
 
 	dataSource = new MatTableDataSource<any>();
 	//newCertificates = new MatTableDataSource<ValidatedCertificate>(this.certificatesData);
@@ -87,6 +88,9 @@ export class CertificateUploadListComponent implements OnInit {
 			this.getCertificatesList();
 		} else if(this.userType === "INST_REVIEWER") {
 			this.getReviewersList();
+			this.getFinalCertificates();
+		} else if (this.userType == "DATA_CERTIFIER") {
+			this.getCertifiersList();
 			this.getFinalCertificates();
 		}
 		this.dataSource.sort = this.sort;
@@ -297,6 +301,11 @@ export class CertificateUploadListComponent implements OnInit {
 							// }
 							this.newCertificates.push(this.certificatesData[i]);
 							this.dataSource.data = this.newCertificates;
+						} else if (this.certificatesData[i].transactionStatus == 'Reviewed' || this.certificatesData[i].transactionStatus == 'Under Certify') {
+							if (this.certificatesData[i].certifier1ID != this.loginUser.UserName && this.certificatesData[i].certifier2ID != this.loginUser.UserName && this.certificatesData[i].certifier3ID != this.loginUser.UserName) {
+								this.newCertificates.push(this.certificatesData[i]);
+								this.dataSource.data = this.newCertificates;
+							}
 						}
 					}
 				}
@@ -304,6 +313,27 @@ export class CertificateUploadListComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			})
+	};
+
+	getCertifiersList() {
+		this.url = "/searchUsers";
+
+		this.params = {
+			UserType: "DATA_CERTIFIER",
+			instituteID: this.loginUser.instituteID,
+			Department_ID: this.loginUser.Department_ID
+		}
+		this.apiService.post(this.url, this.params)
+			.subscribe((response: any) => {
+				console.log(response);
+				if(response.message == "success") {
+					if (response.data) {
+						this.certifiers = response.data.length;
+					}
+				}
+			}, (error) => {
+				console.log(error);
+			});
 	};
 
 	getReviewersList() {
