@@ -3,13 +3,16 @@ import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { CertificateService } from '../certificate.service';
 
+
+
 @Component({
 	selector: 'app-certificate-view',
 	templateUrl: './certificate-view.component.html',
 	styleUrls: ['./certificate-view.component.css']
 })
 export class CertificateViewComponent implements OnInit {
-
+	id = '';
+	loginUser;
 	certificateId;
 	instituteId;
 	certificate = {
@@ -22,7 +25,10 @@ export class CertificateViewComponent implements OnInit {
 		totalScore: '',
 		CGPA: '',
 		creditsEarned: '',
-		completionDate: ''
+		completionDate: '',
+		reviewer1ID: '',
+		reviewer1Name: '',
+		transactionStatus: ''
 	};
 	institute = {
 		instituteType: '',
@@ -41,6 +47,7 @@ export class CertificateViewComponent implements OnInit {
 		Duration_Unit: ''
 
 	};
+	reviewers;
 	constructor(private apiService: ApiService,
 				private route: ActivatedRoute,
 				private service: CertificateService) { 
@@ -48,6 +55,7 @@ export class CertificateViewComponent implements OnInit {
 				}
 
 	ngOnInit() {
+		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.getCertificate();	
 	}
 
@@ -95,13 +103,10 @@ export class CertificateViewComponent implements OnInit {
 
 	getCourse() {
 		this.url = "/coursedata/";
-		console.log(this.certificate.courseID);
 		var data;
 		var Course_ID = this.certificate.courseID
-		console.log(this.url);
 		this.apiService.get(this.url + Course_ID, data)
 			.subscribe((response) => {
-				console.log(response);
 				if(response.message == 'success') {
 					if(response.data) {
 						this.course = response.data[0];
@@ -113,6 +118,29 @@ export class CertificateViewComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			});
+	}
+
+	reviewed() {
+		console.log(this.certificate);
+		this.url = "/certificate/";
+		this.reviewers = JSON.parse(localStorage.getItem('reviewers'));
+		if(this.reviewers.length > 1) {
+			for(var i=0;i<this.reviewers.length;i++) {
+				if(this.loginUser._id == this.reviewers[i]._id) {
+					this.certificate.reviewer1ID = this.loginUser._id;
+					this.certificate.reviewer1Name = this.loginUser.UserName;
+					this.certificate.transactionStatus = "Reviewed";
+					console.log(this.certificate)
+				}
+			}
+		}
+		this.apiService.put(this.url+this.certificateId, this.certificate)
+			.subscribe((response) => {
+				console.log(response)
+			},
+			(error) => {
+				console.log(error);
+			})
 	}
 
 }

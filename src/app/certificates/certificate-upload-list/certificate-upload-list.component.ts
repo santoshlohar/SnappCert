@@ -338,7 +338,6 @@ export class CertificateUploadListComponent implements OnInit {
 
 	getReviewersList() {
 		this.url = "/searchUsers";
-
 		this.params = {
 			UserType: "INST_REVIEWER",
 			instituteID: this.loginUser.instituteID,
@@ -346,10 +345,10 @@ export class CertificateUploadListComponent implements OnInit {
 		}
 		this.apiService.post(this.url, this.params)
 			.subscribe((response: any) => {
-				console.log(response);
 				if(response.message == 'success') {
 					if(response.data) {
-						this.reviewers = response.data.length;
+						this.reviewers = response.data;
+						localStorage.setItem('reviewers', JSON.stringify(this.reviewers));
 					}
 				}
 			},

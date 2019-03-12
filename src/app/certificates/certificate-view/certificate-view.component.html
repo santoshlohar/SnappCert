@@ -292,7 +292,7 @@
 					<div class="sec-sub-heading"><span>Reviewer Status</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span>University</span>
+						<span>{{certificate.transactionStatus}}</span>
 					</div>
 				</div>
 				<div class="sub-detail">
@@ -303,6 +303,10 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="action-btns text-center">
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Reviewed</button>
+			<button mat-raised-button class="action-btn">Cancel</button>
 		</div>
 	</div>
 </div>

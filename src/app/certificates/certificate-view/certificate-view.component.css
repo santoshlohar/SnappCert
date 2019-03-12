@@ -70,3 +70,17 @@
     padding-left: 8px;
     font-size: 14px;
 }
+
+.action-btns {
+    padding: 18px 1px;
+}
+
+.action-btn {
+    margin: 1px 15px;
+    background-color: #e2be40;
+    color: #333;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    width: 9%;
+}
