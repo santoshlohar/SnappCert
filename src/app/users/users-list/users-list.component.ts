@@ -32,7 +32,7 @@ export class UsersListComponent implements OnInit {
 
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem("user"));
-		if(this.loginUser.UserType === 'INST_ADMIN') {
+		if(this.loginUser.UserType === 'INST_ADMIN' || this.loginUser.UserType === 'INS_DATA_MANAGER') {
 			this.getInstituteUsers();
 		} else if(this.loginUser.UserType === 'AFF_INS_DATA_MANAGER') {
 			this.getAffInstituteUsers();

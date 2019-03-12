@@ -1,5 +1,5 @@
 .container {
-    padding: 40px 1px;
+    padding: 40px 26px;
     overflow: auto;
 }
 
@@ -47,7 +47,7 @@ mat-table {
 }
 
 .table-wrapper {
-    width: 1079px;
+    /* width: 1079px; */
     height: inherit;
     overflow: auto;
 }
