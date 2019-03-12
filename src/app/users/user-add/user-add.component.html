@@ -15,7 +15,7 @@
 						</span>
 					</div>
 					<mat-form-field class="input-field">
-						<mat-select formControlName="userType" placeholder="User Type" required>
+						<mat-select #type formControlName="userType" placeholder="User Type" required (selectionChange)="checkType(type)">
 							<mat-option 
 								value="SYSTEM_ADMIN"
 								*ngIf='role === "SYSTEM_ADMIN"'>
@@ -58,11 +58,16 @@
 							</mat-option>
 						</mat-select>
 					</mat-form-field>
-					<mat-form-field class="input-field">
-						<input matInput 
-						placeholder="Department ID" 
+					<mat-form-field class="input-field" *ngIf="noDept">
+						<mat-select placeholder="Department" 
 						formControlName="department_ID"
 						required>
+							<mat-option *ngFor="let department of departments;" [value]='department.id'>{{department.department_Name}}</mat-option>
+						</mat-select>
+						<!-- <input matInput 
+						placeholder="Department ID" 
+						formControlName="department_ID"
+						required> -->
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput 
