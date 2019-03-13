@@ -47,21 +47,19 @@ export class UsersListComponent implements OnInit {
 		var params = '';
 		this.apiService.get(this.url, params)
 		 	.subscribe((response) => {
-				 console.log(response);
 				 if(response.message == "success") {
-					 this.authUsers = response.data;
-					 for (var i = 0; i < response.data.length; i++) {
-						if(response.data[i].status == "Active") {
-							response.data[i].activatedd = 'Inactive';
-						}
-						if(response.data[i].status == "Inactive") {
-							response.data[i].activatedd = 'Active';
-						}
-					 }
-					//  
-					 this.dataSource.data = this.authUsers;
+					this.authUsers = response.data;
+					for (var i = 0; i < response.data.length; i++) {
+					if(response.data[i].status == "Active") {
+						response.data[i].activatedd = 'Inactive';
+					}
+					if(response.data[i].status == "Inactive") {
+						response.data[i].activatedd = 'Active';
+					}
+					}
+					this.dataSource.data = this.authUsers;
 				 } else {
-					 alert("");
+					alert("");
 				 }
 			 })
 	};

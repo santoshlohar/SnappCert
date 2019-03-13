@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class UserAddComponent implements OnInit {
 
 	url: String;
-	user = {
+	user: any = {
 		userName: '',
 		type: '',
 		emailId: '',
@@ -28,7 +28,6 @@ export class UserAddComponent implements OnInit {
 	affInst_Id;
 	departments:[]=[];
 	authUserForm: FormGroup;
-
 	constructor(private _formBuilder: FormBuilder,
 				private apiService: ApiService,
 				private router: Router) { }
@@ -40,14 +39,16 @@ export class UserAddComponent implements OnInit {
 		if(this.loginUser.Affliated_Institute_ID != '') {
 			this.affInst_Id = this.loginUser.Affliated_Institute_ID;
 		}
-		console.log(this.role);
 		this.getDeptList();
 		this.authUserForm = this._formBuilder.group({
 			userType: ['', Validators.required],
-			department_ID: ['', Validators.required],
+			department_ID: [''],
 			name: ['', Validators.required],
 			emailId: ['', Validators.required],
 			phone: ['', Validators.required],
+			instituteID: [''],
+			countryName: [''],
+			referredBy: [''],
 		});
 	}
 
@@ -64,18 +65,20 @@ export class UserAddComponent implements OnInit {
 		this.user.referredBy =  this.loginUser.UserName;
 		this.user.countryName =  "India";
 		this.user.instituteID = this.inst_id;
-		this.user.Department_ID = userData.value.department_ID;
+
+		if(userData.value.department_ID != "") {
+			this.user.Department_ID = userData.value.department_ID;
+		} else {
+			this.user.Department_ID = "";
+		}
 		if(this.role == "AFF_INS_DATA_MANAGER") {
 			this.user.Affliated_Institute_ID = this.affInst_Id;
 		} else {
 			this.user.Affliated_Institute_ID =  '';
 		}
-
-		console.log(this.user);
-
+		
 		this.apiService.post(this.url, this.user)
 			.subscribe((response: any) => {
-				console.log(response);
 				if(response.message == "User created successfully.") {
 					this.router.navigate(['/users']);
 				}
@@ -87,11 +90,26 @@ export class UserAddComponent implements OnInit {
 		var params = '';
 		this.apiService.get(this.url+ this.inst_id, params)
 			.subscribe((response) => {
-				console.log(response);
+				if(response.message == 'success') {
+					if(response.data) {
+						this.departments = response.data; 
+					}
+				}
 			},
 			(error) => {
 				console.log(error)
 			})
 	}
 
+	// checkType(type) {
+	// 	console.log(type.value)
+	// 	console.log("1")
+	// 	if(type.value == 'INS_DATA_MANAGER') {
+	// 		this.noDept = false;
+	// 		console.log(this.noDept)
+	// 	} else {
+	// 		this.noDept = true;
+	// 		console.log(this.noDept)
+	// 	}
+	// }
 }
