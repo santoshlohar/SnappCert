@@ -28,7 +28,6 @@ export class UserAddComponent implements OnInit {
 	affInst_Id;
 	departments:[]=[];
 	authUserForm: FormGroup;
-	noDept: Boolean = true;
 	constructor(private _formBuilder: FormBuilder,
 				private apiService: ApiService,
 				private router: Router) { }
@@ -40,7 +39,6 @@ export class UserAddComponent implements OnInit {
 		if(this.loginUser.Affliated_Institute_ID != '') {
 			this.affInst_Id = this.loginUser.Affliated_Institute_ID;
 		}
-		console.log(this.role);
 		this.getDeptList();
 		this.authUserForm = this._formBuilder.group({
 			userType: ['', Validators.required],
@@ -73,19 +71,14 @@ export class UserAddComponent implements OnInit {
 		} else {
 			this.user.Department_ID = "";
 		}
-		//this.user.Department_ID = userData.value.department_ID;
-		console.log(this.user);
 		if(this.role == "AFF_INS_DATA_MANAGER") {
 			this.user.Affliated_Institute_ID = this.affInst_Id;
 		} else {
 			this.user.Affliated_Institute_ID =  '';
 		}
-
 		
-
 		this.apiService.post(this.url, this.user)
 			.subscribe((response: any) => {
-				console.log(response);
 				if(response.message == "User created successfully.") {
 					this.router.navigate(['/users']);
 				}
@@ -100,7 +93,6 @@ export class UserAddComponent implements OnInit {
 				if(response.message == 'success') {
 					if(response.data) {
 						this.departments = response.data; 
-						console.log(this.departments);
 					}
 				}
 			},
@@ -109,15 +101,15 @@ export class UserAddComponent implements OnInit {
 			})
 	}
 
-	checkType(type) {
-		console.log(type.value)
-		console.log("1")
-		if(type.value == 'INS_DATA_MANAGER') {
-			this.noDept = false;
-			console.log(this.noDept)
-		} else {
-			this.noDept = true;
-			console.log(this.noDept)
-		}
-	}
+	// checkType(type) {
+	// 	console.log(type.value)
+	// 	console.log("1")
+	// 	if(type.value == 'INS_DATA_MANAGER') {
+	// 		this.noDept = false;
+	// 		console.log(this.noDept)
+	// 	} else {
+	// 		this.noDept = true;
+	// 		console.log(this.noDept)
+	// 	}
+	// }
 }

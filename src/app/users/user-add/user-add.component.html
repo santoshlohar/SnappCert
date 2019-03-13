@@ -15,7 +15,7 @@
 						</span>
 					</div>
 					<mat-form-field class="input-field">
-						<mat-select #type formControlName="userType" placeholder="User Type" required (selectionChange)="checkType(type)">
+						<mat-select #type formControlName="userType" placeholder="User Type" required>
 							<mat-option 
 								value="SYSTEM_ADMIN"
 								*ngIf='role === "SYSTEM_ADMIN"'>
@@ -33,7 +33,7 @@
 							</mat-option>
 							<mat-option 
 								value="INS_DATA_MANAGER"
-								*ngIf='role === "INST_ADMIN" || role === "INS_DATA_MANAGER"'>
+								*ngIf='role === "INST_ADMIN"'>
 								Institute Data Manager
 							</mat-option>
 							<mat-option 
@@ -42,32 +42,28 @@
 								Aff. Institute Data Manager
 							</mat-option>
 							<mat-option 
-								value="DATA_REVIEWER"
-								*ngIf='role == "INST_ADMIN" || role == "INS_DATA_MANAGER" || role == "AFF_INS_DATA_MANAGER"'>
+								value="INST_REVIEWER"
+								*ngIf='role == "INS_DATA_MANAGER" || role == "AFF_INS_DATA_MANAGER"'>
 								Data Reviewer
 							</mat-option>
 							<mat-option 
 								value="DATA_APPROVER"
-								*ngIf='role == "INST_ADMIN" || role == "AFF_INS_DATA_MANAGER"'>
+								*ngIf='role == "AFF_INS_DATA_MANAGER"'>
 								Data Approver
 							</mat-option>
 							<mat-option 
 								value="DATA_CERTIFIER"
-								*ngIf='role == "INST_ADMIN" || role == "INS_DATA_MANAGER"'>
+								*ngIf='role == "INS_DATA_MANAGER"'>
 								Data Certifier
 							</mat-option>
 						</mat-select>
 					</mat-form-field>
-					<mat-form-field class="input-field" *ngIf="noDept">
+					<mat-form-field class="input-field">
 						<mat-select placeholder="Department" 
 						formControlName="department_ID"
 						required>
 							<mat-option *ngFor="let department of departments;" [value]='department.id'>{{department.department_Name}}</mat-option>
 						</mat-select>
-						<!-- <input matInput 
-						placeholder="Department ID" 
-						formControlName="department_ID"
-						required> -->
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput 
