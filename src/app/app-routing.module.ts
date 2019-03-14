@@ -30,6 +30,7 @@ import { BatchUploadListComponent } from './batches/batch-upload-list/batch-uplo
 import { StudentUploadListComponent } from './batches/student-upload-list/student-upload-list.component';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
+import { CertificatesListComponent } from './certificates/certificates-list/certificates-list.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -51,6 +52,7 @@ const routes: Routes =  [
     { path: 'courseAdd', component: CourseAddComponent, canActivate: [AuthGuard]},
     { path: 'courseEdit/:courseId', component: CourseEditComponent, canActivate: [AuthGuard]},
     { path: 'certificateUploadList', component: CertificateUploadListComponent, canActivate: [AuthGuard]},
+    { path: 'certificates', component: CertificatesListComponent, canActivate: [AuthGuard]},
     { path: 'certificateUpload', component: CerificatesUploadComponent, canActivate: [AuthGuard]},
     { path: 'certificateView/:certificateId', component: CertificateViewComponent, canActivate: [AuthGuard]},
     {   path: 'batches', 
@@ -61,7 +63,6 @@ const routes: Routes =  [
             { path: 'studentUploadList', component: StudentUploadListComponent}
         ]
     },
-	// { path: 'batchUploadList', component: BatchUploadListComponent, canActivate: [AuthGuard]},    
     { path: '**', component: PageNotFoundComponent}
 ];
 

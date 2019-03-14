@@ -45,6 +45,7 @@ import { BatchUploadListComponent } from './batches/batch-upload-list/batch-uplo
 import { StudentUploadListComponent } from './batches/student-upload-list/student-upload-list.component';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
+import { CertificatesListComponent } from './certificates/certificates-list/certificates-list.component';
 
 @NgModule({
     declarations: [
@@ -77,7 +78,8 @@ import { CertificateViewComponent } from './certificates/certificate-view/certif
         BatchUploadListComponent,
         StudentUploadListComponent,
         CourseEditComponent,
-        CertificateViewComponent
+        CertificateViewComponent,
+        CertificatesListComponent
     ],
     imports: [
         BrowserModule,
