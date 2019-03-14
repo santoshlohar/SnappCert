@@ -101,18 +101,18 @@ export class CertificateUploadListComponent implements OnInit {
 		}
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-	};
+	}
 
 	isAllSelected() {
 		const numSelected = this.selection.selected.length;
 		const numRows = this.dataSource.data.length;
 		return numSelected === numRows;
-	};
+	}
 
 	masterToggle() {
 		this.isAllSelected() ? 
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
-	};
+	}
 
 	uploadCertificate(files, filename) {
 		console.log(files[0]);
@@ -125,7 +125,7 @@ export class CertificateUploadListComponent implements OnInit {
 			.subscribe((response) => {
 				console.log(response);
 			})
-	};
+	}
 
 	getCertificatesList() {
 		this.url = '/temp/certificates';
@@ -162,7 +162,7 @@ export class CertificateUploadListComponent implements OnInit {
 			(error)=> {
 				console.log(error)
 			});
-	};
+	}
 
 	processData() {
 		if(this.reviewers.length< 1) {
@@ -190,7 +190,7 @@ export class CertificateUploadListComponent implements OnInit {
 				alert("please select atleast one certificate data to process!");
 			}
 		}
-	};
+	}
 
 	edit(row) {
 		var tableData = this.newCertificates;
@@ -237,7 +237,7 @@ export class CertificateUploadListComponent implements OnInit {
 				this.dataSource.data = tableData;			
 			}
 		}
-	};
+	}
 
 	delete(id) {
 		var params = [{
@@ -248,7 +248,7 @@ export class CertificateUploadListComponent implements OnInit {
 			.subscribe((response) => {
 				this.getCertificatesList();
 			});
-	};
+	}
 
 	deleteCertificates(){
 		this.selectedCertificates = this.selection.selected;
@@ -283,7 +283,7 @@ export class CertificateUploadListComponent implements OnInit {
 			}
 		}
 		
-	};
+	}
 
 	goToFinalTable() {
 		this.selectedCertificates = this.selection.selected;
@@ -313,7 +313,7 @@ export class CertificateUploadListComponent implements OnInit {
 		} else {
 			alert("please select atleast one certificate data to delete!");
 		}
-	};
+	}
 
 	getFinalCertificates() {
 		this.url = "/certificates";
@@ -344,7 +344,7 @@ export class CertificateUploadListComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			})
-	};
+	}
 
 	getCertifiersList() {
 		this.url = "/searchUsers";
@@ -372,7 +372,7 @@ export class CertificateUploadListComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			});
-	};
+	}
 
 	getReviewersList() {
 		this.url = "/searchUsers";		
@@ -400,7 +400,7 @@ export class CertificateUploadListComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			})
-	};
+	}
 
 	// public hasError = (controlName: string, errorName: string) =>{
     //     return this.instRequestForm.controls[controlName].hasError(errorName);

@@ -304,8 +304,17 @@
 				</div>
 			</div>
 		</div>
-		<div class="action-btns text-center">
+		<div class="action-btns text-center" *ngIf="userType == 'INS_DATA_MANAGER'">
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Hold</button>
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Reassess</button>
+			<button mat-raised-button class="action-btn">Cancel</button>
+		</div>
+		<div class="action-btns text-center" *ngIf="userType == 'INST_REVIEWER'">
 			<button mat-raised-button class="action-btn" (click)="reviewed()">Reviewed</button>
+			<button mat-raised-button class="action-btn">Reject</button>
+		</div>
+		<div class="action-btns text-center" *ngIf="userType == 'DATA_CERTIFIER'">
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Certify</button>
 			<button mat-raised-button class="action-btn">Reject</button>
 		</div>
 	</div>

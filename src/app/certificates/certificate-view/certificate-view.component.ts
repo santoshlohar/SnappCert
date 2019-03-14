@@ -13,6 +13,7 @@ import { CertificateService } from '../certificate.service';
 export class CertificateViewComponent implements OnInit {
 	id = '';
 	loginUser;
+	userType;
 	certificateId;
 	instituteId;
 	certificate = {
@@ -56,6 +57,7 @@ export class CertificateViewComponent implements OnInit {
 
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
+		this.userType = this.loginUser.UserType;
 		this.getCertificate();	
 	}
 
@@ -126,6 +128,7 @@ export class CertificateViewComponent implements OnInit {
 		if(this.reviewers.length > 1) {
 			for(var i=0;i<this.reviewers.length;i++) {
 				if(this.loginUser._id == this.reviewers[i]._id) {
+					console.log(this.loginUser._id)
 					this.certificate.reviewer1ID = this.loginUser._id;
 					this.certificate.reviewer1Name = this.loginUser.UserName;
 					this.certificate.transactionStatus = "Reviewed";
