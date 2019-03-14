@@ -57,15 +57,19 @@ export class CertificateUploadListComponent implements OnInit {
 	userType: string;
 	certificatesData = [];
 	newCertificates = [];
-	selectedCertificates = [];
+	selectedCertificates: any = [];
 	editing: boolean = false;
 	highlight: boolean;
 	certificate;
 	intError: boolean;
-	params;
-	reviewers: Number;
-	certifiers: Number;
-
+	params = {
+	};
+	reviewers;
+	certifiers;
+	reviewer = {
+		id: String,
+		name: String
+	}
 	dataSource = new MatTableDataSource<any>();
 	//newCertificates = new MatTableDataSource<ValidatedCertificate>(this.certificatesData);
 	selection = new SelectionModel<any>(true, []);
@@ -80,17 +84,19 @@ export class CertificateUploadListComponent implements OnInit {
 				public globals: Globals) { 
 					this.stateRoute = this.router.url;
 				}
-
+	
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.userType = this.loginUser.UserType;
+		this.getReviewersList();
+		setTimeout(() => {
+			this.getCertifiersList();
+		}, 500);
 		if(this.userType === "INS_DATA_MANAGER") {
 			this.getCertificatesList();
 		} else if(this.userType === "INST_REVIEWER") {
-			this.getReviewersList();
 			this.getFinalCertificates();
 		} else if (this.userType == "DATA_CERTIFIER") {
-			this.getCertifiersList();
 			this.getFinalCertificates();
 		}
 		this.dataSource.sort = this.sort;
@@ -146,28 +152,30 @@ export class CertificateUploadListComponent implements OnInit {
 	};
 
 	processData() {
-		this.selectedCertificates = this.selection.selected;
-		
-		this.url = "/updatemultitempcertificate";
-		if(this.selectedCertificates.length) {
-			//this.validatedCertificates(this.selectedCertificates);
-			this.apiService.post(this.url, this.selectedCertificates)
-				.subscribe((response: any) => {
-					console.log(response);
-					if(response.message == 'success') {
-						this.goToFinalTable();
-					} else {
-						return false;
-					}
-				},
-				(error)=> {
-					console.log(error)
-					var message = error.error.message;
-					alert(message);
-					return false;
-				});
+		if(this.reviewers.length< 1) {
+			alert("Before process the data, Please add Reviewers for Authorized user.")
+		} else if(this.certifiers.length< 1) {
+			alert("Before process the data, Please add Certifier for Authorized user.")
 		} else {
-			alert("please select atleast one certificate data to process!");
+			this.selectedCertificates = this.selection.selected;
+			this.url = "/updatemultitempcertificate";
+			if(this.selectedCertificates.length) {
+				this.apiService.post(this.url, this.selectedCertificates)
+					.subscribe((response: any) => {
+						if(response.message == 'success') {
+							this.goToFinalTable();
+						} else {
+							return false;
+						}
+					},
+					(error)=> {
+						var message = error.error.message;
+						alert(message);
+						return false;
+					});
+			} else {
+				alert("please select atleast one certificate data to process!");
+			}
 		}
 	};
 
@@ -266,11 +274,21 @@ export class CertificateUploadListComponent implements OnInit {
 
 	goToFinalTable() {
 		this.selectedCertificates = this.selection.selected;
-
+		this.reviewers.length;
 		this.url = '/pushcerttemp2final';
 
 		if(this.selectedCertificates.length) {
-			//this.validatedCertificates(this.selectedCertificates);
+			for(var i=0;i<this.selectedCertificates.length;i++) {
+				this.selectedCertificates[i].reviewers = [];
+				for(var j=0;j<this.reviewers.length;j++) {
+					this.selectedCertificates[i].reviewers.push(this.reviewers[j]);
+				}
+				this.selectedCertificates[i].certifiers = [];
+				for(var k=0;k<this.certifiers.length;k++) {
+					this.selectedCertificates[i].certifiers.push(this.certifiers[k]);
+				}
+			};
+			console.log(this.selectedCertificates)
 			this.apiService.post(this.url, this.selectedCertificates)
 				.subscribe((response) => {
 					console.log(response);
@@ -317,32 +335,46 @@ export class CertificateUploadListComponent implements OnInit {
 
 	getCertifiersList() {
 		this.url = "/searchUsers";
-
-		this.params = {
-			UserType: "DATA_CERTIFIER",
-			instituteID: this.loginUser.instituteID,
-			Department_ID: this.loginUser.Department_ID
+		if(this.userType == 'INS_DATA_MANAGER') {
+			this.params = {
+				UserType: "DATA_CERTIFIER",
+				instituteID: this.loginUser.instituteID
+			}
+		} else if(this.userType == 'DATA_CERTIFIER') {
+			this.params = {
+				UserType: "DATA_CERTIFIER",
+				instituteID: this.loginUser.instituteID,
+				Department_ID: this.loginUser.Department_ID
+			}
 		}
 		this.apiService.post(this.url, this.params)
 			.subscribe((response: any) => {
-				console.log(response);
 				if(response.message == "success") {
 					if (response.data) {
-						this.certifiers = response.data.length;
+						this.certifiers = response.data;
+						localStorage.setItem('certifiers', JSON.stringify(this.certifiers));
 					}
 				}
-			}, (error) => {
+			},
+			(error) => {
 				console.log(error);
 			});
 	};
 
 	getReviewersList() {
-		this.url = "/searchUsers";
-		this.params = {
-			UserType: "INST_REVIEWER",
-			instituteID: this.loginUser.instituteID,
-			Department_ID: this.loginUser.Department_ID
-		}
+		this.url = "/searchUsers";		
+		if(this.userType == 'INS_DATA_MANAGER') {
+			this.params = {
+				UserType: "INST_REVIEWER",
+				instituteID: this.loginUser.instituteID
+			}
+		} else if(this.userType == 'INST_REVIEWER') {
+			this.params = {
+				UserType: "INST_REVIEWER",
+				instituteID: this.loginUser.instituteID,
+				Department_ID: this.loginUser.Department_ID
+			}
+		} 
 		this.apiService.post(this.url, this.params)
 			.subscribe((response: any) => {
 				if(response.message == 'success') {
