@@ -67,7 +67,6 @@ export class CertificateViewComponent implements OnInit {
 				if(response.message == 'success') {
 					if(response.data) {
 						this.certificate = response.data[0];
-						console.log(this.certificate)
 						this.instituteId  = this.certificate.instituteID;
 						setTimeout(() => {
 							this.getInstitute();
