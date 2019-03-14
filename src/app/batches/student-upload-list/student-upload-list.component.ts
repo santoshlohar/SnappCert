@@ -30,10 +30,14 @@ export class StudentUploadListComponent implements OnInit {
 		'transactionUser'
 	];
 	url;
+	loginUser;
+	userType;
 	studentData = [];
 	newStudents = [];
 	selectedStudents = [];
-	
+	reviewers;
+	approvers;
+	params = {};
 	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
 
@@ -43,6 +47,8 @@ export class StudentUploadListComponent implements OnInit {
 	constructor(private apiService: ApiService) { }
 
 	ngOnInit() {
+		this.loginUser = JSON.parse(localStorage.getItem('user'));
+		this.userType = this.loginUser.UserType;
 		this.getTempStudents();
 	}
 
@@ -138,6 +144,7 @@ export class StudentUploadListComponent implements OnInit {
 						.subscribe((response: any) => {
 							if(response.message == 'success') {
 								alert("Your data processed successfully...");
+
 							}
 						},
 						(error) => {
@@ -184,6 +191,76 @@ export class StudentUploadListComponent implements OnInit {
 
 				this.dataSource.data = tableData;
 			}
+		}
+	}
+
+	getReviewersList() {
+		this.url = "/searchUsers";		
+		this.params = {
+			UserType: "INST_REVIEWER",
+			Affliated_Institute_ID: this.loginUser.Affliated_Institute_ID
+		}
+		this.apiService.post(this.url, this.params)
+			.subscribe((response: any) => {
+				if(response.message == 'success') {
+					if(response.data) {
+						this.reviewers = response.data;
+						localStorage.setItem('reviewers', JSON.stringify(this.reviewers));
+					}
+				}
+			},
+			(error) => {
+				console.log(error);
+			})
+	}
+
+	getApproversList() {
+		this.url = "/searchUsers";		
+		this.params = {
+			UserType: "DATA_APPROVER",
+			Affliated_Institute_ID: this.loginUser.Affliated_Institute_ID
+		}
+		this.apiService.post(this.url, this.params)
+			.subscribe((response: any) => {
+				if(response.message == 'success') {
+					if(response.data) {
+						this.approvers = response.data;
+						localStorage.setItem('approvers', JSON.stringify(this.approvers));
+					}
+				}
+			},
+			(error) => {
+				console.log(error);
+			})
+	}
+
+	goToFinalTable() {
+		this.selectedStudents = this.selection.selected;
+		this.url = '/pushstudentdettemp2final';
+
+		if(this.selectedStudents.length) {
+			for(var i=0;i<this.selectedStudents.length;i++) {
+				this.selectedStudents[i].reviewers = [];
+				for(var j=0;j<this.reviewers.length;j++) {
+					this.selectedStudents[i].reviewers.push(this.reviewers[j]);
+				}
+				this.selectedStudents[i].certifiers = [];
+				for(var k=0;k<this.approvers.length;k++) {
+					this.selectedStudents[i].certifiers.push(this.approvers[k]);
+				}
+
+				console.log(this.selectedStudents)
+				this.apiService.post(this.url, this.selectedStudents)
+					.subscribe((response) => {
+						console.log(response);
+					},
+					(error)=> {
+						console.log(error)
+					}
+				);
+			}
+		} else {
+			alert("please select atleast one certificate data to delete!");
 		}
 	}
 }
