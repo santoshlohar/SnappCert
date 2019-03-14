@@ -10,6 +10,14 @@
     border-radius: 10px;
 }
 
+.upload-btn-wrapper input[type=file] {
+	font-size: 100px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}
+
 mat-table {
     width: 100%;
     display: -ms-grid;

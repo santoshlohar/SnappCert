@@ -114,6 +114,19 @@ export class CertificateUploadListComponent implements OnInit {
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
 	};
 
+	uploadCertificate(files, filename) {
+		console.log(files[0]);
+		var form = new FormData();
+		this.url = "/certificates/fileupload";
+
+		form.append(filename, files[0]);
+		
+		this.apiService.post(this.url, form )
+			.subscribe((response) => {
+				console.log(response);
+			})
+	};
+
 	getCertificatesList() {
 		this.url = '/temp/certificates';
 		var params = ''

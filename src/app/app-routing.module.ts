@@ -17,7 +17,6 @@ import { AffInstituteAddComponent } from './affInstitutes/aff-institute-add/aff-
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CourseAddComponent } from './courses/course-add/course-add.component';
 import { CertificateUploadListComponent } from './certificates/certificate-upload-list/certificate-upload-list.component';
-import { CerificatesUploadComponent } from './certificates/cerificates-upload/cerificates-upload.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -53,7 +52,6 @@ const routes: Routes =  [
     { path: 'courseEdit/:courseId', component: CourseEditComponent, canActivate: [AuthGuard]},
     { path: 'certificateUploadList', component: CertificateUploadListComponent, canActivate: [AuthGuard]},
     { path: 'certificates', component: CertificatesListComponent, canActivate: [AuthGuard]},
-    { path: 'certificateUpload', component: CerificatesUploadComponent, canActivate: [AuthGuard]},
     { path: 'certificateView/:certificateId', component: CertificateViewComponent, canActivate: [AuthGuard]},
     {   path: 'batches', 
         component: BatchesComponent, 

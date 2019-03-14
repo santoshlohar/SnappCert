@@ -31,7 +31,6 @@ import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/af
 import { CourseAddComponent } from './courses/course-add/course-add.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CertificateUploadListComponent } from './certificates/certificate-upload-list/certificate-upload-list.component';
-import { CerificatesUploadComponent } from './certificates/cerificates-upload/cerificates-upload.component';
 import { PwdGenerateComponent } from './pwd-generate/pwd-generate.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { NotifyOtpComponent } from './dialog-boxes/notify-otp.component';
@@ -65,7 +64,6 @@ import { CertificatesListComponent } from './certificates/certificates-list/cert
         CourseAddComponent,
         CoursesListComponent,
         CertificateUploadListComponent,
-        CerificatesUploadComponent,
         PwdGenerateComponent,
         VerifyOtpComponent,
         NotifyOtpComponent,
@@ -73,7 +71,6 @@ import { CertificatesListComponent } from './certificates/certificates-list/cert
         DashboardComponent,
         UsersListComponent,
         UserAddComponent,
-        // BatchUploadListComponent,
         BatchesComponent,
         BatchUploadListComponent,
         StudentUploadListComponent,
