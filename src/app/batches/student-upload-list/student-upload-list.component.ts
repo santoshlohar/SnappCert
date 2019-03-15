@@ -49,7 +49,14 @@ export class StudentUploadListComponent implements OnInit {
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.userType = this.loginUser.UserType;
+		this.getReviewersList();
+		setTimeout(() => {
+			this.getApproversList();
+		}, 500);
 		this.getTempStudents();
+
+		this.dataSource.sort = this.sort;
+		this.dataSource.paginator = this.paginator;
 	}
 
 	isAllSelected() {
@@ -144,7 +151,7 @@ export class StudentUploadListComponent implements OnInit {
 						.subscribe((response: any) => {
 							if(response.message == 'success') {
 								alert("Your data processed successfully...");
-
+								this.goToFinalTable();
 							}
 						},
 						(error) => {
@@ -204,6 +211,7 @@ export class StudentUploadListComponent implements OnInit {
 			.subscribe((response: any) => {
 				if(response.message == 'success') {
 					if(response.data) {
+						console.log(response.data);
 						this.reviewers = response.data;
 						localStorage.setItem('reviewers', JSON.stringify(this.reviewers));
 					}
@@ -244,9 +252,9 @@ export class StudentUploadListComponent implements OnInit {
 				for(var j=0;j<this.reviewers.length;j++) {
 					this.selectedStudents[i].reviewers.push(this.reviewers[j]);
 				}
-				this.selectedStudents[i].certifiers = [];
+				this.selectedStudents[i].approvers = [];
 				for(var k=0;k<this.approvers.length;k++) {
-					this.selectedStudents[i].certifiers.push(this.approvers[k]);
+					this.selectedStudents[i].approvers.push(this.approvers[k]);
 				}
 
 				console.log(this.selectedStudents)
@@ -260,7 +268,7 @@ export class StudentUploadListComponent implements OnInit {
 				);
 			}
 		} else {
-			alert("please select atleast one certificate data to delete!");
+			alert("please select atleast one student data to process into final table!");
 		}
 	}
 }

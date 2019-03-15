@@ -12,6 +12,7 @@ export class BatchUploadListComponent implements OnInit {
 
 	url;
 	loginUser;
+	userType;
 	authUsers: [] = [];
 	uploadedFileName;
 	batchesData = [];
@@ -44,7 +45,9 @@ export class BatchUploadListComponent implements OnInit {
 		'userName',
 		'_id'
 	];
-
+	reviewers;
+	approvers;
+	params = {};
 	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
 
@@ -54,9 +57,15 @@ export class BatchUploadListComponent implements OnInit {
 	constructor(private apiService: ApiService) { }
 
 	ngOnInit() {
-		//this.dataSource.data = Batch_Data;
-		//console.log(this.dataSource.data);
+		this.loginUser = JSON.parse(localStorage.getItem('user'));
+		this.userType = this.loginUser.UserType;
+		this.getReviewersList();
+		setTimeout(() => {
+			this.getApproversList();
+		}, 500);
 		this.getTempBatch();
+		this.dataSource.sort = this.sort;
+		this.dataSource.paginator = this.paginator;
 	}
 
 	isAllSelected() {
@@ -211,13 +220,13 @@ export class BatchUploadListComponent implements OnInit {
 				   !singleBatch.minScore || singleBatch.minScoreErr || !singleBatch.totalScore || singleBatch.totalScoreErr ||
 				   !singleBatch.termType || !singleBatch.termID || !singleBatch.termStartMonth || !singleBatch.termEndMonth ||
 				   !singleBatch.termEndMonth ) {
-
 					alert("Please deselect error batch before process the data!");
 				} else {
 					this.apiService.post(this.url, this.selectedBatches)
 						.subscribe((response: any) => {
 							if(response.message == 'success') {
 								alert("Your data processed successfully...");
+								this.goToFinalTable();
 							}
 						},
 						(error) => {
@@ -245,6 +254,76 @@ export class BatchUploadListComponent implements OnInit {
 				})
 		} else {
 			alert("please select atleast one batch data to delete!");
+		}
+	}
+
+	getReviewersList() {
+		this.url = "/searchUsers";		
+		this.params = {
+			UserType: "INST_REVIEWER",
+			Affliated_Institute_ID: this.loginUser.Affliated_Institute_ID
+		}
+		this.apiService.post(this.url, this.params)
+			.subscribe((response: any) => {
+				if(response.message == 'success') {
+					if(response.data) {
+						this.reviewers = response.data;
+						localStorage.setItem('reviewers', JSON.stringify(this.reviewers));
+					}
+				}
+			},
+			(error) => {
+				console.log(error);
+			})
+	}
+
+	getApproversList() {
+		this.url = "/searchUsers";		
+		this.params = {
+			UserType: "DATA_APPROVER",
+			Affliated_Institute_ID: this.loginUser.Affliated_Institute_ID
+		}
+		this.apiService.post(this.url, this.params)
+			.subscribe((response: any) => {
+				if(response.message == 'success') {
+					if(response.data) {
+						this.approvers = response.data;
+						localStorage.setItem('approvers', JSON.stringify(this.approvers));
+					}
+				}
+			},
+			(error) => {
+				console.log(error);
+			})
+	}
+
+	goToFinalTable() {
+		this.selectedBatches = this.selection.selected;
+		this.url = '/pushbatchdatatemp2final';
+
+		if(this.selectedBatches.length) {
+			for(var i=0;i<this.selectedBatches.length;i++) {
+				this.selectedBatches[i].reviewers = [];
+				for(var j=0;j<this.reviewers.length;j++) {
+					this.selectedBatches[i].reviewers.push(this.reviewers[j]);
+				}
+				this.selectedBatches[i].approvers = [];
+				for(var k=0;k<this.approvers.length;k++) {
+					this.selectedBatches[i].approvers.push(this.approvers[k]);
+				}
+
+				console.log(this.selectedBatches)
+				this.apiService.post(this.url, this.selectedBatches)
+					.subscribe((response) => {
+						console.log(response);
+					},
+					(error)=> {
+						console.log(error)
+					}
+				);
+			}
+		} else {
+			alert("please select atleast one batch data to process into final table!");
 		}
 	}
 

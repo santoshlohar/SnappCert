@@ -60,6 +60,8 @@ export class CoursesListComponent implements OnInit {
 			console.log(this.aff_inst_Id)
 		}
 		this.getCoursesByInsId();
+		this.dataSource.sort = this.sort;
+		this.dataSource.paginator = this.paginator;
 		//this.getCoursesByAffIns();
 	}
 
