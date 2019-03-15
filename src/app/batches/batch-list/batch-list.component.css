@@ -1,0 +1,120 @@
+.container {
+    padding: 40px 26px;
+    overflow: auto;
+}
+
+.list-header {
+    overflow: auto;
+    padding: 12px 24px;
+    box-shadow: 5px 5px 15px 6px #bfb9b9;
+    border-radius: 10px;
+}
+
+.outer-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.inner-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.aff-btn {
+    padding: 15px 2px;
+}
+
+.mat-header-btns {
+    padding: 1px 5px;
+}
+
+.add-btn {
+    color: #333 !important;
+    background-color: #e2be40;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    margin: 2px 4px;
+}
+
+.list-container {
+    height: inherit;
+    overflow: auto;
+}
+
+mat-table {
+    width: 100%;
+    min-width: 1955px;
+}
+
+.mat-header-cell {
+    display: block;
+    padding: 10px 10px;
+}
+
+.mat-cell {
+    width: 100px !important;
+    padding: 0px 9px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    min-height: 49px;
+    height: 49px !important;
+}
+
+mat-column-star {
+    width: 20px;
+    padding-right: 8px;
+}
+
+mat-table-sticky:first-child{
+    border-right: 1px solid #e0e0e0;
+    padding: none;
+    min-height: 50px;
+}
+mat-table-sticky:last-child{
+    border-right: 1px solid #e0e0e0;
+    padding: none;
+    min-height: 50px;
+}
+
+mat-column-position, mat-column-position {
+    padding-left: 8px;
+}
+
+.mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky:last-child {
+    border-right: 1px solid #e0e0e0;
+}
+
+.mat-checkbox-background .mat-checkbox-checked.mat-accent{
+    background-color: #E2BE40 !important;
+}
+
+.clr-blue {
+    color: #3666f5;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.material-icons {
+    font-size: 18px !important;
+    font-weight: 600;
+}
+
+.mat-row {
+    height: 50px !important;
+}
+
+.active-btn {
+    color: #333 !important;
+    background-color: #e2be40;
+    border-radius: 7px;
+    line-height: 0;
+    height: 25px;
+    width: 60px;
+}
