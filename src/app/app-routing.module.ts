@@ -24,12 +24,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
 // import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
-import { BatchesComponent } from './batches/batches.component';
-import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
-import { StudentUploadListComponent } from './batches/student-upload-list/student-upload-list.component';
+import { UploadedBatchesComponent } from './uploaded-batches/uploaded-batches.component';
+import { BatchUploadListComponent } from './uploaded-batches/batch-upload-list/batch-upload-list.component';
+import { StudentUploadListComponent } from './uploaded-batches/student-upload-list/student-upload-list.component';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
 import { CertificatesListComponent } from './certificates/certificates-list/certificates-list.component';
+import { BatchesComponent } from './batches/batches.component';
+import { BatchListComponent } from './batches/batch-list/batch-list.component';
+import { StudentListComponent } from './batches/student-list/student-list.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -53,12 +56,20 @@ const routes: Routes =  [
     { path: 'certificateUploadList', component: CertificateUploadListComponent, canActivate: [AuthGuard]},
     { path: 'certificates', component: CertificatesListComponent, canActivate: [AuthGuard]},
     { path: 'certificateView/:certificateId', component: CertificateViewComponent, canActivate: [AuthGuard]},
-    {   path: 'batches', 
-        component: BatchesComponent, 
+    { path: 'uploadedBatches', 
+        component: UploadedBatchesComponent, 
         canActivate: [AuthGuard],
         children: [
             { path: 'batchUploadList', component: BatchUploadListComponent},
             { path: 'studentUploadList', component: StudentUploadListComponent}
+        ]
+    },
+    { path: 'batches', 
+        component: BatchesComponent, 
+        canActivate: [AuthGuard],
+        children: [
+            { path: 'batchList', component: BatchListComponent},
+            { path: 'studentList', component: StudentListComponent}
         ]
     },
     { path: '**', component: PageNotFoundComponent}

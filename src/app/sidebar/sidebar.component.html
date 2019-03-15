@@ -77,8 +77,13 @@
 				<span class="link-btn"> Courses </span>
 			</div>
 			<mat-divider></mat-divider>
-			<div class="innerbar-content" routerLink="/batches/batchUploadList">
+			<div class="innerbar-content" routerLink="/uploadedBatches/batchUploadList">
 				<img class="sidebar-img" src="./assets/icons/batch_list_white.png"/><br />
+				<span class="link-btn"> Uploaded Batches </span>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content" routerLink="/batches/batchList">
+				<img class="sidebar-img" src="./assets/icons/institute_w.png"/><br />
 				<span class="link-btn"> Batches </span>
 			</div>
 			<mat-divider></mat-divider>
@@ -105,6 +110,18 @@
 				<img class="sidebar-img" src="./assets/icons/institute_w.png"/><br />
 				<span class="link-btn"> Certificates </span>
 			</div>
+		</div>
+		<div *ngIf='userType == "DATA_APPROVER"' >
+			<div class="innerbar-content" routerLink="/dashboard">
+				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
+				<span class="link-btn"> Dashboard </span>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content" routerLink="/batches/batchList">
+				<img class="sidebar-img" src="./assets/icons/institute_w.png"/><br />
+				<span class="link-btn"> Batches </span>
+			</div>
+			<mat-divider></mat-divider>
 		</div>
 	</mat-sidenav-content>
 </mat-sidenav-container>

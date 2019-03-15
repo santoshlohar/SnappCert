@@ -19,13 +19,13 @@ export class UserRolesService {
 		affInsDataMgr: 'AFF_INS_DATA_MANAGER',
 		instReviewer: 'INST_REVIEWER',
 		affInstReviewer: 'AFF_INST_REVIEWER',
-		dataApprover: 'DATA_APPROVER',
 		dataCertifier: 'DATA_CERTIFIER',
+		dataApprover: 'DATA_APPROVER',
 		student: 'STUDENT'
 	}
 
 	renderScreen(role) {
-
+		console.log(role)
 		if(role == this.roles.systemAdmin) {
 			this.router.navigate(['/home']);
 		} else if(role == this.roles.requester) {
@@ -40,10 +40,10 @@ export class UserRolesService {
 			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.instReviewer) {
 			this.router.navigate(['/dashboard']);
-		} else if(role == this.roles.dataApprover) {
-			this.router.navigate(['/home']);
 		} else if(role == this.roles.dataCertifier) {
-			this.router.navigate(['/home']);
+			this.router.navigate(['/dashboard']);
+		} else if(role == this.roles.dataApprover) {
+			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.student) {
 			this.router.navigate(['/home']);
 		} 

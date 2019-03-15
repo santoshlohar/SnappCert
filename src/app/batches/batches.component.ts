@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { toBase64String } from '@angular/compiler/src/output/source_map';
-import { Observable, Observer } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-batches',
@@ -11,13 +7,12 @@ import { Router } from '@angular/router';
 })
 export class BatchesComponent implements OnInit {
 	navLinks = [
-		{ path: '/batches/batchUploadList', label: 'Batches'},
-		{ path: '/batches/studentUploadList', label: 'Students'}
+		{ path: '/batches/batchList', label: 'Batches'},
+		{ path: '/batches/studentList', label: 'Students'}
 	];
-	
-	constructor(private router: Router) { 
-	}
+	constructor() { }
 
 	ngOnInit() {
 	}
+
 }
