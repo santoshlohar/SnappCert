@@ -33,6 +33,8 @@ import { CertificatesListComponent } from './certificates/certificates-list/cert
 import { BatchesComponent } from './batches/batches.component';
 import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { StudentListComponent } from './batches/student-list/student-list.component';
+import { BatchViewComponent } from './batches/batch-view/batch-view.component';
+import { StudentViewComponent } from './batches/student-view/student-view.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -72,6 +74,8 @@ const routes: Routes =  [
             { path: 'studentList', component: StudentListComponent}
         ]
     },
+    { path: 'batchView/:batchId', component: BatchViewComponent, canActivate: [AuthGuard]},
+    { path: 'studentView/:studentId', component: StudentViewComponent, canActivate: [AuthGuard]},
     { path: '**', component: PageNotFoundComponent}
 ];
 
