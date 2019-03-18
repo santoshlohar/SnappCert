@@ -40,6 +40,8 @@ export class UserRolesService {
 			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.instReviewer) {
 			this.router.navigate(['/dashboard']);
+		} else if(role == this.roles.affInstReviewer) {
+			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.dataCertifier) {
 			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.dataApprover) {

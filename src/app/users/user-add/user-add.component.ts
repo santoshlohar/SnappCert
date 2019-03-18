@@ -53,7 +53,6 @@ export class UserAddComponent implements OnInit {
 	}
 
 	addUser(userData: NgForm) {
-		console.log(userData)
 		if(userData.invalid) {
 			return false;
 		}

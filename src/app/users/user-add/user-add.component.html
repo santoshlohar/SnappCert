@@ -43,7 +43,12 @@
 							</mat-option>
 							<mat-option 
 								value="INST_REVIEWER"
-								*ngIf='role == "INS_DATA_MANAGER" || role == "AFF_INS_DATA_MANAGER"'>
+								*ngIf='role == "INS_DATA_MANAGER"'>
+								Data Reviewer
+							</mat-option>
+							<mat-option 
+								value="AFF_INST_REVIEWER"
+								*ngIf='role == "AFF_INS_DATA_MANAGER"'>
 								Data Reviewer
 							</mat-option>
 							<mat-option 
