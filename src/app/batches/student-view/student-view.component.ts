@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-student-view',
@@ -6,13 +8,38 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./student-view.component.css']
 })
 export class StudentViewComponent implements OnInit {
+
+	url;
 	loginUser;
 	userType;
-	constructor() { }
+	studentId;
+	student = {};
+	constructor(private apiService: ApiService,
+				private route: ActivatedRoute) {
+		this.studentId = this.route.snapshot.params['studentId'];
+	 }
 
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.userType = this.loginUser.UserType;
+		this.getStudentData();
+	}
+
+	getStudentData() {
+		this.url = "/student/";
+		var data;
+		this.apiService.get(this.url + this.studentId, data)
+			.subscribe((response) => {
+				console.log(response)
+				if(response.message == 'success') {
+					if(response.data) {
+						this.student = response.data;
+					}
+				}
+			},
+			(error) => {
+				console.log(error);
+			})
 	}
 
 }
