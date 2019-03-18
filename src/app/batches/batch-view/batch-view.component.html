@@ -1,3 +1,159 @@
-<p>
-  batch-view works!
-</p>
+<div class="container">
+	<div class="wrapper">
+		<div class="section">
+			<div class="heading">
+				<span class="head-span">
+					Batch Details
+				</span>
+			</div>
+			<div class="sec-body">
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Institute ID </span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Aff. Institute ID </span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Course ID </span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Batch ID </span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Batch Year </span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Min. Credits</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Min. CGPA</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Total CGPA</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Min. Score</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Total Score</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Term Type</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Term ID</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Term Start</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Term End</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Status</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Date</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Time</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>User</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Comments</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="action-btns text-center" *ngIf="userType == 'AFF_INS_DATA_MANAGER'">
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Hold</button>
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Reassess</button>
+			<button mat-raised-button class="action-btn">Cancel</button>
+		</div>
+		<div class="action-btns text-center" *ngIf="userType == 'AFF_INST_REVIEWER'">
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Reviewed</button>
+			<button mat-raised-button class="action-btn">Reject</button>
+		</div>
+		<div class="action-btns text-center" *ngIf="userType == 'DATA_APPROVER'">
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Approved</button>
+			<button mat-raised-button class="action-btn">Reject</button>
+		</div>
+	</div>
+</div>

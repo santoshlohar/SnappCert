@@ -1,3 +1,131 @@
-<p>
-  student-view works!
-</p>
+<div class="container">
+	<div class="wrapper">
+		<div class="section">
+			<div class="heading">
+				<span class="head-span">
+					Student Details
+				</span>
+			</div>
+			<div class="sec-body">
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Batch ID </span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Student ID</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Name</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Father's Name</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>DOB</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Aadhaar ID</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Email ID</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Term Type</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Mobile No.</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Specialization</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Status</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Date</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Time</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>User</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+				<div class="sub-detail">
+					<div class="sec-sub-heading"><span>Comments</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>  </span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="action-btns text-center" *ngIf="userType == 'AFF_INS_DATA_MANAGER'">
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Hold</button>
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Reassess</button>
+			<button mat-raised-button class="action-btn">Cancel</button>
+		</div>
+		<div class="action-btns text-center" *ngIf="userType == 'AFF_INST_REVIEWER'">
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Reviewed</button>
+			<button mat-raised-button class="action-btn">Reject</button>
+		</div>
+		<div class="action-btns text-center" *ngIf="userType == 'DATA_APPROVER'">
+			<button mat-raised-button class="action-btn" (click)="reviewed()">Approved</button>
+			<button mat-raised-button class="action-btn">Reject</button>
+		</div>
+	</div>
+</div>
