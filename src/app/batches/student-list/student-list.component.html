@@ -16,68 +16,68 @@
 					<mat-cell *matCellDef="let element" >
 						<button mat-button 
 						class="active-btn" 
-						[routerLink]="['', element._id]"
+						[routerLink]="['/studentView', element._id]"
 						>View</button>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="batchId">
 					<mat-header-cell *matHeaderCellDef> Batch ID</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.batchID}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="studentId">
 					<mat-header-cell *matHeaderCellDef> Student ID</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.studentID}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="name">
 					<mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.name}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="fatherName">
 					<mat-header-cell *matHeaderCellDef> Father Name </mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.fatherName}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="dob">
 					<mat-header-cell *matHeaderCellDef> DOB </mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.dob}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="aadhaar">
 					<mat-header-cell *matHeaderCellDef>Aadhaar ID</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.aadhaarNoLoginID}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="emailId">
 					<mat-header-cell *matHeaderCellDef>Email ID</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.emailID}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="mobile">
 					<mat-header-cell *matHeaderCellDef>Mobile No.</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.mobile}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="specialization">
 					<mat-header-cell *matHeaderCellDef>Specialization</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.specialization}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="transactionStatus">
 					<mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.transactionStatus}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="comments">
@@ -89,19 +89,19 @@
 				<ng-container matColumnDef="date">
 					<mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.transactionDate}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="time">
 					<mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.transactionTime}} </span>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="username">
 					<mat-header-cell *matHeaderCellDef>User Name</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<span> {{element.instituteID}} </span>
+						<span> {{element.transactionUser}} </span>
 					</mat-cell>
 				</ng-container>
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

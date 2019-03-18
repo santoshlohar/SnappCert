@@ -13,6 +13,7 @@ export class StudentListComponent implements OnInit {
 	url;
 	loginUser;
 	userType;
+	students = [];
 	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
 	displayedColumns = [
@@ -41,14 +42,21 @@ export class StudentListComponent implements OnInit {
 		this.userType = this.loginUser.UserType;
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
+		this.getAfflInsStudents();
 	}
 
 	getAfflInsStudents() {
-		this.url = "";
+		this.url = "/studentList";
 		var data;
 		this.apiService.get(this.url, data)
-			.subsribe((response) => {
+			.subscribe((response) => {
 				console.log(response)
+				if(response.message == 'success') {
+					if(response.data) {
+						this.students = response.data;
+						this.dataSource.data = this.students;
+					}
+				}
 			},
 			(error) => {
 				console.log(error);

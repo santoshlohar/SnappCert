@@ -13,6 +13,7 @@ export class BatchListComponent implements OnInit {
 	url;
 	loginUser;
 	userType;
+	batches = [];
 	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
 	displayedColumns = [
@@ -46,6 +47,7 @@ export class BatchListComponent implements OnInit {
 		this.userType = this.loginUser.UserType;
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
+		this.getAfflInsBatches();
 	}
 
 	isAllSelected() {
@@ -60,11 +62,17 @@ export class BatchListComponent implements OnInit {
 	}
 
 	getAfflInsBatches() {
-		this.url = "";
+		this.url = "/batchList";
 		var data;
 		this.apiService.get(this.url, data)
-			.subsribe((response) => {
-				console.log(response)
+			.subscribe((response) => {
+				console.log(response);
+				if(response.message == 'success') {
+					if(response.data) {
+						this.batches = response.data;
+						this.dataSource.data = this.batches;
+					}
+				}
 			},
 			(error) => {
 				console.log(error);
