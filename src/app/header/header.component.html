@@ -10,7 +10,7 @@
 	</mat-toolbar-row>
 </mat-toolbar> -->
 
-<mat-toolbar class="header-bar logo-background">
+<!-- <mat-toolbar class="header-bar logo-background">
 	<mat-toolbar-row>
 		<div class="head-wrapper">
 			<img src="../../assets/icons/cropped_logo.png" class="snap_logo" alt="">
@@ -32,5 +32,45 @@
 			<a mat-button [routerLink]="['/login']" *ngIf="!globals.isUserLoggedIn">Login</a>
 			<a mat-button (click)="logout()" *ngIf="globals.isUserLoggedIn">Logout</a>
 		</div>	
+	</mat-toolbar-row>
+</mat-toolbar> -->
+
+
+<mat-toolbar class="header-bar logo-background">
+	<mat-toolbar-row>
+		<div class="header">
+			<div class="heading-wrapper">
+				<img src="../../assets/icons/image.png" class="snap_logo" alt="" />
+			</div>
+		</div>
+		<div class="header">
+			<div class="head-wrapper">
+				<span class="app-heading">Snapper Certificate</span>
+			</div>
+		</div>
+		<div class="header">
+			<div class="parallelogram">
+				<mat-divider></mat-divider>
+				<span class="page-heading"> {{ heading }} </span>
+			</div>
+		</div>
+		<div class="header">
+			<div class="parallelogram-login">
+				<div class="dropdown1">
+					<button class="dropbtn1"><span class="page-heading-login1">Last Login:</span>
+					<span class="page-heading-login">21 Feb 2019 10:00 AM <img class="img" src="/assets/icons/right-arrow.png" /></span></button>
+				</div>
+			</div>
+		</div>
+		<div class="spacer"></div>
+		<div class="header">
+			<div class="dropdown">
+				<button class="dropbtn">Welcome, Institute Admin <img class="img" src="/assets/icons/down-arrow.png" /></button>
+				<div class="dropdown-content">
+					<a mat-button [routerLink]="['/login']" *ngIf="!globals.isUserLoggedIn">Login</a>
+					<a mat-button (click)="logout()" *ngIf="globals.isUserLoggedIn">Logout</a>
+				</div>
+			</div>
+		</div>
 	</mat-toolbar-row>
 </mat-toolbar>

@@ -10,39 +10,32 @@
 .spacer {
     flex: 1 1 auto;
 } */
-
+/* 
 .header-bar {
     color: #fff;
     height: 50px;
     position: relative;
 }
 
-.parallelogram {
-    width: 300px;
+
+
+
+
+.heading-wrapper {
+    width: 104px;
     height: 64px;
     transform: skew(50deg);
     background: #f7f4f4;
-    margin-left: 50px;
+    margin-left: 22px;
     padding: 25px 40px;
-    text-transform: uppercase;
     font-size: 26px;
     font-weight: 600;
 }
 
-.parallelogram-login {
-    width: 265px;
-    height: 30px;
-    transform: skew(50deg);
-    background: #f7f4f4;
-    margin-left: 22px;
-    padding: 15px 72px;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 600;
-}
+
 
 .login {
-    width: 235px;
+    width: 220px;
     height: 13px;
     background: #f7f4f4;
     margin-left: 50px;
@@ -51,12 +44,137 @@
     font-size: 20px;
     font-weight: 500;
 }
-
-.page-heading {
+.page-heading-logout {
     color: #444444;
     z-index: 5;
     position: absolute;
+    margin-top: -15px;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.snap_logo {
+    width: 65px;
+    height: 55px;
+    margin-top: -21px;
+    margin-left: -19px;
+    z-index: 5;
+    position: absolute;
     transform: skew(-50deg);
+}
+
+
+
+  @media screen and (max-width: 479px) {
+      .dropdown {
+          width: 100px;
+      }
+  }
+
+ */
+
+
+ .heading-wrapper {
+     width: 104px;
+     height: 64px;
+     transform: skew(50deg);
+     background: #f7f4f4;
+     margin-left: 22px;
+     padding: 25px 40px;
+     font-size: 26px;
+     font-weight: 600;
+ }
+
+ .snap_logo {
+     width: 65px;
+     height: 55px;
+     margin-top: -21px;
+     margin-left: -19px;
+     z-index: 5;
+     position: absolute;
+     transform: skew(-50deg);
+ }
+
+ .head-wrapper {
+     margin-left: 25px;
+     color: #f7f4f4;
+ }
+
+ .parallelogram {
+     width: 300px;
+     height: 64px;
+     transform: skew(50deg);
+     background: #f7f4f4;
+     margin-left: 18px;
+     padding: 25px 40px;
+     text-transform: uppercase;
+     font-size: 26px;
+     font-weight: 600; 
+ }
+
+ .page-heading {
+     color: #444444;
+     z-index: 5;
+     position: absolute;
+     transform: skew(-50deg);
+ }
+
+ mat-divider {
+     border-top-color: #e2be40;
+     width: 40%;
+     border-top-width: 3px;
+     transform: skew(-50deg);
+     margin-left: 19px;
+     border-radius: -72px;
+ }
+
+ .parallelogram-login {
+     width: 265px;
+     height: 30px;
+     transform: skew(50deg);
+     background: -415px;
+     padding: 15px 90px;
+     text-transform: uppercase;
+     font-size: 14px;
+     font-weight: 600;
+ }
+
+ .dropdown1 {
+     position: relative;
+     display: inline-block;
+ }
+
+.dropdown1:hover .dropbtn {
+    background-color: #f7f4f4;
+}
+
+.dropbtn1 {
+    background-color: #f7f4f4;
+    color: #444444;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    width: 265px;
+    height: 36px;
+    margin-top: -16px;
+    margin-left: -72px;
+}
+
+.page-heading-login1 {
+    color: #333;
+    z-index: 5;
+    position: absolute;
+    transform: skew(-50deg);
+    margin-top: -15px;
+    font-weight: 600;
+    margin-left: -110px;
+    font-size: 14px;    
 }
 
 .page-heading-login {
@@ -66,48 +184,59 @@
     transform: skew(-50deg);
     margin-top: -15px;
     font-size: 12px;
-    margin-left: 29px;
-}
-
-.page-heading-login1{
-    color: #333;
-    z-index: 5;
-    position: absolute;
-    transform: skew(-50deg);
-    margin-top: -15px;
-    font-weight: 400;
-    margin-left: -54px;
-    font-size: 12px;
-}
-
-.page-heading-logout {
-    color: #444444;
-    z-index: 5;
-    position: absolute;
-    margin-top: -15px;
-    font-size: 12px;
-    margin-left: 29px;
+    margin-left: -28px;
 }
 
 .img {
-    margin: -2px 0px 0px 15px;
+    margin: -2px 0px 0px 0px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 142px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 0px 28px;
+    text-decoration: none;
+    display: block;
+    width: 220px;
+    border-top: 3px solid #e2be40;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.dropdown-content a:hover { background-color: #f1f1f1; }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #f7f4f4;
+}
+
+.dropbtn {
+    background-color: #f7f4f4;
+    color: #444444;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    width: 220px;
+    height: 32px;
 }
 
 .spacer {
     flex: 1 1 auto;
-}
-
-.snap_logo {
-    width: 35px;
-    height: 35px;
-    margin-right: 12px;
-}
-
-mat-divider {
-    border-top-color: #E2BE40;
-    width: 40%; 
-    border-top-width: 3px;
-    transform: skew(-50deg);
-    margin-left: 19px;
-    border-radius: 5px;
 }
