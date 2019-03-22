@@ -3,6 +3,7 @@ import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-institute-registration',
@@ -16,7 +17,8 @@ export class InstituteRegistrationComponent implements OnInit {
 
 	constructor(private http: HttpClient,
 				private _formBuilder: FormBuilder, 
-				private router: Router) { }
+				private router: Router,
+				private location: Location) { }
 
 	ngOnInit() {
 		this.instRequestForm = this._formBuilder.group({
@@ -101,6 +103,9 @@ export class InstituteRegistrationComponent implements OnInit {
 				console.log(error);
 			});
 	}
-	
+
+	goBack() {
+		this.location.back();
+	}	
 
 }

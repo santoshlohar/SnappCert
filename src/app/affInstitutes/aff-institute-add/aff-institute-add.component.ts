@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-aff-institute-add',
@@ -22,7 +23,8 @@ export class AffInstituteAddComponent implements OnInit {
 	affliatedInsForm: FormGroup;
 	constructor(private _formBuilder: FormBuilder,
 				private apiService: ApiService,
-				private router: Router) { }
+				private router: Router,
+				private location: Location) { }
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
@@ -61,6 +63,10 @@ export class AffInstituteAddComponent implements OnInit {
 	viewAffInstitutes() {
 		console.log("View Aff Inst");
 		this.router.navigate(['/affInstitutes']);
+	}
+
+	goBack() {
+		this.location.back();
 	}
 
 }

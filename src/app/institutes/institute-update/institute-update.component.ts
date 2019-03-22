@@ -3,6 +3,7 @@ import { NgForm, FormBuilder, FormGroup, Validators, FormControl} from '@angular
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { tap } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-institute-update',
@@ -42,7 +43,8 @@ export class InstituteUpdateComponent implements OnInit {
 	instituteDetailForm: FormGroup;
 	constructor(private _formBuilder: FormBuilder,
 				private apiService: ApiService,
-				private route: ActivatedRoute) { 
+				private route: ActivatedRoute,
+				private location: Location) { 
 					this.route.paramMap.subscribe(params => {
 						this.instituteId = params.get('instId');
 					})
@@ -96,5 +98,9 @@ export class InstituteUpdateComponent implements OnInit {
 
 	updateInstitute() {
 		console.log("goto institute list");
+	}
+
+	goBack() {
+		this.location.back();
 	}
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-course-edit',
@@ -35,7 +36,8 @@ export class CourseEditComponent implements OnInit {
 	constructor(private formBuilder: FormBuilder,
 				private apiService: ApiService,
 				private route: ActivatedRoute,
-				private router: Router) { 
+				private router: Router,
+				private location: Location) { 
 				}
 
 	ngOnInit() {
@@ -106,6 +108,10 @@ export class CourseEditComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			});
+	}
+
+	goBack() {
+		this.location.back();
 	}
 
 }

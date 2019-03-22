@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-department-add',
@@ -22,7 +23,8 @@ export class DepartmentAddComponent implements OnInit {
 
 	constructor(private _formBuilder: FormBuilder,
 				private apiService: ApiService,
-				private router: Router) { }
+				private router: Router,
+				private location: Location) { }
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
@@ -51,6 +53,10 @@ export class DepartmentAddComponent implements OnInit {
 			.subscribe((response) => {
 				this.viewDepartments();
 			});
+	}
+
+	goBack() {
+		this.location.back();
 	}
 
 }

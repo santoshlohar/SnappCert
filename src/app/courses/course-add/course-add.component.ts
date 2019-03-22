@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-course-add',
@@ -31,7 +31,8 @@ export class CourseAddComponent implements OnInit {
     };
     constructor(private _formBuilder: FormBuilder,
                 private apiService: ApiService,
-				private router: Router) { }
+                private router: Router,
+                private location: Location) { }
 				
 	ngOnInit() {
 		this.affInsCourseForm = this._formBuilder.group({
@@ -65,6 +66,10 @@ export class CourseAddComponent implements OnInit {
             console.log(response);
             this.router.navigate(['/courses']);
         });
+    }
+
+    goBack() {
+        this.location.back();
     }
 
 }

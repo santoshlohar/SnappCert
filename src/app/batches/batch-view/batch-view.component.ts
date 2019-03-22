@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-batch-view',
@@ -15,7 +16,8 @@ export class BatchViewComponent implements OnInit {
 	batchId;
 	batch = {};
 	constructor(private apiService: ApiService,
-		private route: ActivatedRoute) { 
+		private route: ActivatedRoute,
+		private location: Location) { 
 			this.batchId = this.route.snapshot.params['batchId'];
 		}
 
@@ -40,6 +42,10 @@ export class BatchViewComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			})
+	}
+
+	goBack() {
+		this.location.back();
 	}
 
 }

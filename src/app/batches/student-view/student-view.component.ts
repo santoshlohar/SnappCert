@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-student-view',
@@ -15,7 +16,8 @@ export class StudentViewComponent implements OnInit {
 	studentId;
 	student = {};
 	constructor(private apiService: ApiService,
-				private route: ActivatedRoute) {
+				private route: ActivatedRoute,
+				private location: Location) {
 		this.studentId = this.route.snapshot.params['studentId'];
 	 }
 
@@ -40,6 +42,10 @@ export class StudentViewComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			})
+	}
+
+	goBack() {
+		this.location.back();
 	}
 
 }

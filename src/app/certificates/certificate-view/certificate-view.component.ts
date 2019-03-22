@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { CertificateService } from '../certificate.service';
-
-
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-certificate-view',
@@ -51,7 +50,8 @@ export class CertificateViewComponent implements OnInit {
 	reviewers;
 	constructor(private apiService: ApiService,
 				private route: ActivatedRoute,
-				private service: CertificateService) { 
+				private service: CertificateService,
+				private location: Location) { 
 					this.certificateId = this.route.snapshot.params['certificateId'];
 				}
 
@@ -145,4 +145,7 @@ export class CertificateViewComponent implements OnInit {
 			})
 	}
 
+	goBack() {
+		this.location.back();
+	}
 }

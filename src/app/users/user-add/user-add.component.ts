@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-user-add',
@@ -30,7 +31,8 @@ export class UserAddComponent implements OnInit {
 	authUserForm: FormGroup;
 	constructor(private _formBuilder: FormBuilder,
 				private apiService: ApiService,
-				private router: Router) { }
+				private router: Router,
+				private location: Location) { }
 
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
@@ -111,4 +113,8 @@ export class UserAddComponent implements OnInit {
 	// 		console.log(this.noDept)
 	// 	}
 	// }
+
+	goBack() {
+		this.location.back();
+	}
 }
