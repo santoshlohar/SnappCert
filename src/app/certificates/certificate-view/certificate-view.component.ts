@@ -28,25 +28,27 @@ export class CertificateViewComponent implements OnInit {
 		completionDate: '',
 		reviewer1ID: '',
 		reviewer1Name: '',
-		transactionStatus: ''
+		transactionStatus: '',
+		instituteIdRef: {
+			instituteType: '',
+			instituteId: '',
+			instituteName: '',
+			location: '',
+			website: '',
+			affiliatedTo: '',
+			affiliatedInstituteType: '',
+			recognizedBy: ''
+		},
+		courseIDRef: {
+			Course_Name: '',
+			Course_Duration: '',
+			Duration_Unit: '',
+			certificateID: ''
+		}
 	};
-	institute = {
-		instituteType: '',
-		instituteId: '',
-		instituteName: '',
-		location: '',
-		website: '',
-		affiliatedTo: '',
-		affiliatedInstituteType: '',
-		recognizedBy: ''
-	};
+	institute = {};
 	url;
-	course = {
-		Course_Name: '',
-		Course_Duration: '',
-		Duration_Unit: ''
-
-	};
+	course = {};
 	reviewers;
 	constructor(private apiService: ApiService,
 				private route: ActivatedRoute,
@@ -69,11 +71,8 @@ export class CertificateViewComponent implements OnInit {
 				if(response.message == 'success') {
 					if(response.data) {
 						this.certificate = response.data[0];
-						this.instituteId  = this.certificate.instituteID;
-						setTimeout(() => {
-							this.getInstitute();
-							this.getCourse();
-						}, 500)
+						this.institute = this.certificate.instituteIdRef;
+						this.course = this.certificate.courseIDRef;
 					} else {
 						alert("This certificate ID is not Available in our database.");
 					}
@@ -84,41 +83,6 @@ export class CertificateViewComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			})		
-	}
-
-	getInstitute() {
-		this.url = "/institutes/";
-		var params = '';
-		this.apiService.get(this.url+this.instituteId, params) 
-			.subscribe((response) => {
-				if(response.message == 'success') {
-					if(response.data) {
-						this.institute = response.data;
-					}
-				}
-			},
-			(error) => {
-				console.log(error);
-			})
-	}
-
-	getCourse() {
-		this.url = "/coursedata/";
-		var data;
-		var Course_ID = this.certificate.courseID
-		this.apiService.get(this.url + Course_ID, data)
-			.subscribe((response) => {
-				if(response.message == 'success') {
-					if(response.data) {
-						this.course = response.data[0];
-					}
-				} else {
-					alert("Failed to get course data! Please try again.");
-				}
-			},
-			(error) => {
-				console.log(error);
-			});
 	}
 
 	reviewed() {

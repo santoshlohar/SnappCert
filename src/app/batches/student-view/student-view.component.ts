@@ -19,7 +19,7 @@ export class StudentViewComponent implements OnInit {
 				private route: ActivatedRoute,
 				private location: Location) {
 		this.studentId = this.route.snapshot.params['studentId'];
-	 }
+	}
 
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
