@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
 	selector: 'app-certificates-list',
@@ -37,7 +38,8 @@ export class CertificatesListComponent implements OnInit {
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 
-	constructor(private apiService: ApiService) { }
+	constructor(private apiService: ApiService,
+				private http: HttpClient) { }
 
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
@@ -113,7 +115,7 @@ export class CertificatesListComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			});
-	};
+	}
 
 	getReviewersList() {
 		this.url = "/searchUsers";		
@@ -141,7 +143,34 @@ export class CertificatesListComponent implements OnInit {
 			(error) => {
 				console.log(error);
 			})
+	}
+
+	httpOptions = {
+		headers: new HttpHeaders({
+			'Content-Type': 'application/pdf'
+		})
 	};
+
+	download() {
+		var data;
+		var path = 'file.pdf';
+		this.url = "/downloadCertificate/pdfs/";
+		this.http.get('http://localhost:3000/api/v1/downloadCertificate/pdfs/'+ path, this.httpOptions)
+			.subscribe((response) => {
+				console.log(response);
+
+			},
+			(error) => {
+				console.log(error);
+			})
+		// this.apiService.get(this.url + path, data)
+		// 	.subscribe((response) => {
+		// 		console.log(response);
+		// 	},
+		// 	(error) => {
+		// 		console.log(error);
+		// 	})
+	}
 
 }
 
