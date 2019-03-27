@@ -35,6 +35,7 @@ import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { StudentListComponent } from './batches/student-list/student-list.component';
 import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
+import { Role } from './modals/role';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -44,7 +45,7 @@ const routes: Routes =  [
     { path: 'generatePassword', component: PwdGenerateComponent},
     { path: 'verifyOtp', component: VerifyOtpComponent},
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-    { path: 'users', component: UsersListComponent, canActivate: [AuthGuard]},
+    { path: 'users', component: UsersListComponent, canActivate: [AuthGuard], data: { roles: [Role.AffInsDataMgr] } },
     { path: 'userAdd', component: UserAddComponent, canActivate: [AuthGuard]},
     { path: 'institutes', component: InstitutesListComponent, canActivate: [AuthGuard]},
     { path: 'instituteUpdate/:instId', component: InstituteUpdateComponent },

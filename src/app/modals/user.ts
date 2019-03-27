@@ -1,5 +1,5 @@
 export interface User { 
-    userType: String;
+    UserType: String;
     instituteId: String;
     departmentId: String;
     affInstituteId: String;
@@ -8,5 +8,6 @@ export interface User {
     phone: String;
     isActivated: Boolean;
     activated: string;
+    token?: string;
     _id: Number;
 }
