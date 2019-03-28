@@ -36,6 +36,7 @@ import { StudentListComponent } from './batches/student-list/student-list.compon
 import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
 import { Role } from './modals/role';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -44,9 +45,24 @@ const routes: Routes =  [
     { path: 'registration', component: InstituteRegistrationComponent},
     { path: 'generatePassword', component: PwdGenerateComponent},
     { path: 'verifyOtp', component: VerifyOtpComponent},
-    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-    { path: 'users', component: UsersListComponent, canActivate: [AuthGuard], data: { roles: [Role.AffInsDataMgr] } },
-    { path: 'userAdd', component: UserAddComponent, canActivate: [AuthGuard]},
+    { 
+        path: 'dashboard', 
+        component: DashboardComponent, 
+        canActivate: [AuthGuard],
+        data: { roles: [Role.AffInsDataMgr] } 
+    },
+    { 
+        path: 'users', 
+        component: UsersListComponent, 
+        canActivate: [AuthGuard], 
+        data: { roles: [Role.AffInsDataMgr] } 
+    },
+    { 
+        path: 'userAdd', 
+        component: UserAddComponent, 
+        canActivate: [AuthGuard],
+        data: { roles: [Role.AffInsDataMgr] }
+    },
     { path: 'institutes', component: InstitutesListComponent, canActivate: [AuthGuard]},
     { path: 'instituteUpdate/:instId', component: InstituteUpdateComponent },
     { path: 'departments', component: DepartmentsListComponent, canActivate: [AuthGuard]},
@@ -77,6 +93,7 @@ const routes: Routes =  [
     },
     { path: 'batchView/:batchId', component: BatchViewComponent, canActivate: [AuthGuard]},
     { path: 'studentView/:studentId', component: StudentViewComponent, canActivate: [AuthGuard]},
+    { path: 'accessDenied', component: AccessDeniedComponent},
     { path: '**', component: PageNotFoundComponent}
 ];
 

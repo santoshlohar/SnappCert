@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { Globals } from './globals';
 
@@ -38,7 +39,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
-// import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
 import { UploadedBatchesComponent } from './uploaded-batches/uploaded-batches.component';
 import { BatchUploadListComponent } from './uploaded-batches/batch-upload-list/batch-upload-list.component';
 import { StudentUploadListComponent } from './uploaded-batches/student-upload-list/student-upload-list.component';
@@ -50,6 +50,16 @@ import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { StudentListComponent } from './batches/student-list/student-list.component';
 import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
+
+// export function getAccessToken() {
+//     var user = JSON.parse(localStorage.getItem('user'));
+//     if(user.token){
+//         var accessToken = user.token;
+//         return accessToken;
+//     }
+//     return false;
+// }
 
 @NgModule({
     declarations: [
@@ -86,7 +96,8 @@ import { StudentViewComponent } from './batches/student-view/student-view.compon
         BatchListComponent,
         StudentListComponent,
         BatchViewComponent,
-        StudentViewComponent
+        StudentViewComponent,
+        AccessDeniedComponent
     ],
     imports: [
         BrowserModule,
@@ -96,7 +107,16 @@ import { StudentViewComponent } from './batches/student-view/student-view.compon
 		BrowserAnimationsModule,
 		MaterialModule,
         HttpClientModule,
-        AngularFontAwesomeModule 
+        AngularFontAwesomeModule,
+        JwtModule.forRoot({
+            config : {
+                tokenGetter: function tokenGetter() {
+                    var token = localStorage.getItem('access_token');
+                    return  token;
+                },
+                whitelistedDomains: ["http:localhost:3000"]
+            }
+        })
     ],
     providers: [
         AuthService,
@@ -106,7 +126,7 @@ import { StudentViewComponent } from './batches/student-view/student-view.compon
             provide: STEPPER_GLOBAL_OPTIONS, 
             useValue: { showError: true } 
         }
-	],
+    ],
 	bootstrap: [AppComponent]
 })
 

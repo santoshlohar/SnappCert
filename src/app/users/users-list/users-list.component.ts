@@ -95,7 +95,7 @@ export class UsersListComponent implements OnInit {
 	getAffInstituteUsers() {
 		var affInstituteId = this.loginUser.Affliated_Institute_ID;
 		this.url = '/usesrbyafflinstitute/' + affInstituteId;
-		var params = '';
+		var params;
 		this.apiService.get(this.url, params)
 			.subscribe((response) => {
 				if(response.message == 'success') {
