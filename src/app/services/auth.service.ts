@@ -21,15 +21,7 @@ export class AuthService {
 				private router: Router,
 				private http: HttpClient,
 				private jwtHelperService: JwtHelperService
-				) { 
-					// this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
-					// this.currentUser = this.currentUserSubject.asObservable();
-					// console.log("24" + JSON.parse(localStorage.getItem('user')));
-				}
-	
-	// public get currentUserValue(): User {
-	// 	return this.currentUserSubject.value;
-	// }
+				) { }
 
 	login(data) {
 		return this.http.post(this.baseURL+'/authenticateUser', data)
@@ -39,7 +31,6 @@ export class AuthService {
 								localStorage.setItem('user', JSON.stringify(user));
 								localStorage.setItem('access_token', user.token);
 								this.globals.isUserLoggedIn = true;
-								//this.currentUserSubject.next(user);
 							}
 							return user;	
 						})
