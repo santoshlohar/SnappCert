@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Globals } from './globals';
+import { AuthGuard } from './services/auth-guard';
 
 @Component({
 	selector: 'app-root',
@@ -9,10 +9,12 @@ import { Globals } from './globals';
 export class AppComponent {
 	title = 'snapperCertificate';
 	@Input() stateRoute: string;
-	constructor( public globals: Globals) {
+	loggedIn;
+	constructor(private authGuard: AuthGuard) {
 	}
 
 	ngOnInit() {
+		this.loggedIn = this.authGuard.canActivate;
 	}
 
 }
