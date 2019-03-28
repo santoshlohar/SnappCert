@@ -57,7 +57,6 @@ export class CoursesListComponent implements OnInit {
 		this.inst_Id = this.loginUser.instituteID;
 		if(this.loginUser.Affliated_Institute_ID) {
 			this.aff_inst_Id = this.loginUser.Affliated_Institute_ID;
-			console.log(this.aff_inst_Id)
 		}
 		this.getCoursesByInsId();
 		this.dataSource.sort = this.sort;
@@ -82,7 +81,6 @@ export class CoursesListComponent implements OnInit {
 		this.apiService.get(this.url, params)
 			.subscribe((response) => {
 				this.courses = response;
-				console.log(this.courses);
 				for(var i=0;i<this.courses.length;i++) {
 					if(this.courses[i].isActivated) {
 						this.courses[i].activated = "Inactivate"
@@ -148,7 +146,6 @@ export class CoursesListComponent implements OnInit {
 			for(var i=0;i<selectedCourse.length;i++) {
 				selectedCourse[i].Affliated_Institute_ID = this.loginUser.Affliated_Institute_ID;
 			};
-			console.log(selectedCourse)
 			this.url = "/afflinstitute/courses";		   
 			this.apiService.post(this.url, selectedCourse)
 				.subscribe((response: any) => {
@@ -181,10 +178,8 @@ export class CoursesListComponent implements OnInit {
 		var params = '';
 		this.apiService.get(this.url+ this.aff_inst_Id, params)
 			.subscribe((response) => {
-				console.log(response);
 				if(response.message == 'success') {
 					if(response.data){
-						console.log(response.data);
 						this.courses = response.data.afflCourses;
 						for(var i=0;i<this.courses.length;i++) {
 							this.course = this.courses[i];

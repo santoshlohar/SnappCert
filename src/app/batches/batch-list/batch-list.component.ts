@@ -66,7 +66,6 @@ export class BatchListComponent implements OnInit {
 		var data;
 		this.apiService.get(this.url, data)
 			.subscribe((response) => {
-				console.log(response);
 				if(response.message == 'success') {
 					if(response.data) {
 						this.batches = response.data;
