@@ -13,7 +13,9 @@ import { Observable } from 'rxjs';
 export class HeaderComponent implements OnInit {
 
 	heading: string;
+	user;
 	courseId;
+	role;
 
 	@Input() stateRoute: string;
 	constructor(public globals: Globals,
@@ -24,6 +26,8 @@ export class HeaderComponent implements OnInit {
 				}
 
 	ngOnInit() {
+		this.user = JSON.parse(localStorage.getItem('user'));
+		this.roleName(this.user.UserType);
 	}
 
 	gotoLogin() {
@@ -67,6 +71,32 @@ export class HeaderComponent implements OnInit {
 				this.heading = 'Certificate Data';
 			}
 		}
+	}
+
+	roleName(type) {
+		if(type == 'SYSTEM_ADMIN') {
+			this.role = 'System Admin';
+		} else if(type == 'REG_REQESTER') {
+			this.role = 'Requester';
+		} else if(type == 'KYC_AGENT') {
+			this.role = 'KYC Agent';
+		} else if(type == 'INST_ADMIN') {
+			this.role = 'Institute Admin';
+		} else if(type == 'INS_DATA_MANAGER') {
+			this.role = 'Data Manager';
+		} else if(type == 'AFF_INS_DATA_MANAGER') {
+			this.role = 'Data Manager';
+		} else if(type == 'INST_REVIEWER') {
+			this.role = 'Reviewer';
+		} else if(type == 'AFF_INST_REVIEWER') {
+			this.role = 'Reviewer';
+		} else if(type == 'DATA_CERTIFIER') {
+			this.role = 'Certifier';
+		} else if(type == 'DATA_APPROVER') {
+			this.role = 'Approver';
+		} else if(type == 'STUDENT') {
+			this.role = 'Student';
+		} 
 	}
 
 }

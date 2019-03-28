@@ -65,7 +65,7 @@
 		<div class="spacer"></div>
 		<div class="header">
 			<div class="dropdown">
-				<button class="dropbtn">Welcome, Institute Admin <img class="img" src="/assets/icons/down-arrow.png" /></button>
+				<button class="dropbtn">Welcome, {{role}} <img class="img" src="/assets/icons/down-arrow.png" /></button>
 				<div class="dropdown-content">
 					<a mat-button [routerLink]="['/login']" *ngIf="!globals.isUserLoggedIn">Login</a>
 					<a mat-button (click)="logout()" *ngIf="globals.isUserLoggedIn">Logout</a>
