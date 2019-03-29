@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { AuthGuard } from './services/auth-guard';
+import { AuthService } from './services/auth.service';
+import { User } from './modals/user';
 
 @Component({
 	selector: 'app-root',
@@ -8,13 +9,18 @@ import { AuthGuard } from './services/auth-guard';
 })
 export class AppComponent {
 	title = 'snapperCertificate';
-	@Input() stateRoute: string;
+	isUserLogin: User;
+	@Input() isUserLoggedIn: boolean;
 	loggedIn;
-	constructor(private authGuard: AuthGuard) {
+	constructor(private authService: AuthService) {
+					this.authService.currentUser
+						.subscribe((user) => {
+							this.isUserLogin = user;
+						});		
 	}
 
-	ngOnInit() {
-		this.loggedIn = this.authGuard.canActivate;
+	ngOnInit() {			
 	}
+
 
 }

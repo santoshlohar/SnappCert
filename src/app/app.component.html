@@ -1,6 +1,6 @@
-<app-header *ngIf="loggedIn"></app-header>
+<app-header *ngIf="isUserLogin"></app-header>
 <div class="main-body ">
-    <div class="page-sidebar" *ngIf="loggedIn">
+    <div class="page-sidebar" *ngIf="isUserLogin">
         <app-sidebar></app-sidebar>
     </div>
     <div class="page-content body-background">

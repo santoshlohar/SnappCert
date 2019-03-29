@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { tap, map } from 'rxjs/operators';
 import { Globals } from '../globals';
 import { Router } from '@angular/router';
@@ -12,16 +12,25 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
 	baseURL: string = 'http://localhost:3000/api/v1';
-
 	user;
-	// private currentUserSubject: BehaviorSubject<User>;
-	// public currentUser: Observable<User>;
+	@Output() isUserLoggedIn: boolean = false;
+	private currentUserSubject: BehaviorSubject<User>;
+	public currentUser: Observable<User>;
 	
 	constructor(public globals: Globals,
 				private router: Router,
 				private http: HttpClient,
 				private jwtHelperService: JwtHelperService
-				) { }
+				) {
+					this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+					this.currentUser = this.currentUserSubject.asObservable();
+				}
+
+	public get currentUserValue(): User {
+		console.log(this.currentUserSubject.value)
+		return this.currentUserSubject.value;
+	}
+
 
 	login(data) {
 		return this.http.post(this.baseURL+'/authenticateUser', data)
@@ -30,7 +39,8 @@ export class AuthService {
 							if(user && user['token']) {
 								localStorage.setItem('user', JSON.stringify(user));
 								localStorage.setItem('access_token', user.token);
-								this.globals.isUserLoggedIn = true;
+								this.currentUserSubject.next(user);
+								console.log(this.currentUserSubject)
 							}
 							return user;	
 						})
@@ -40,7 +50,7 @@ export class AuthService {
 	logout() {
 		localStorage.removeItem('user');
 		localStorage.removeItem('access_token');
-		this.globals.isUserLoggedIn = false;
+		this.currentUserSubject.next(null);
 		this.router.navigate(['/login']);
 	}
 

@@ -4,6 +4,7 @@ import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } f
 import { AuthService } from '../services/auth.service';
 import { AuthGuard } from '../services/auth-guard';
 import { Observable } from 'rxjs';
+import { User } from '../modals/user';
 
 @Component({
 	selector: 'app-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
 	heading: string;
 	user;
+	isUserLogin: User;
 	courseId;
 	role;
 
@@ -23,9 +25,13 @@ export class HeaderComponent implements OnInit {
 				private authService: AuthService,
 				private authGuard: AuthGuard,
 				private route: ActivatedRoute) {
+					this.authService.currentUser
+						.subscribe((user) => {
+							this.isUserLogin = user;
+						});
 				}
 
-	ngOnInit() {
+	ngOnInit() {	
 		this.user = JSON.parse(localStorage.getItem('user'));
 		this.roleName(this.user.UserType);
 	}
