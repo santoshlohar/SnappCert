@@ -38,12 +38,17 @@
 
 <mat-toolbar class="header-bar logo-background">
 	<mat-toolbar-row>
-		<div class="header">
+		<!-- <div class="header">
+			<div class="menu-bar">
+				<fa-icon [icon]="faBars"></fa-icon>
+			</div>
+		</div> -->
+		<div class="header" fxShow="true" fxHide.lt-sm>
 			<div class="heading-wrapper">
 				<img src="../../assets/icons/image.png" class="snap_logo" alt="" />
 			</div>
 		</div>
-		<div class="header">
+		<div class="header" fxHide="true" fxShow.gt-sm>
 			<div class="head-wrapper">
 				<span class="app-heading">Snapper Certificate</span>
 			</div>
@@ -54,7 +59,7 @@
 				<span class="page-heading"> {{ heading }} </span>
 			</div>
 		</div>
-		<div class="header">
+		<div class="header" fxHide="true" fxShow.gt-md>
 			<div class="parallelogram-login">
 				<div class="dropdown1">
 					<button class="dropbtn1"><span class="page-heading-login1">Last Login:</span>
@@ -63,7 +68,7 @@
 			</div>
 		</div>
 		<div class="spacer"></div>
-		<div class="header">
+		<div class="header" fxHide="true" fxShow.gt-md>
 			<div class="dropdown">
 				<button class="dropbtn">
 					<span class="normal-subheading">Welcome, {{role}}<img class="img" src="/assets/icons/down-arrow.png" />
