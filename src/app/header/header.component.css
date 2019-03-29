@@ -102,8 +102,12 @@
 }
 
 .head-wrapper {
-    margin-left: 25px;
+    margin-left: 17px;
     color: #f7f4f4;
+}
+
+.app-heading {
+    font-size: 21px;
 }
 
 .parallelogram {
@@ -112,7 +116,7 @@
     transform: skew(35deg);
     background: #f7f4f4;
     margin-left: 18px;
-    padding: 23px 26px;
+    padding: 16px 26px;
     text-transform: uppercase;
 }
 
@@ -140,7 +144,7 @@ mat-divider {
     -webkit-transform: skew(50deg);
     transform: skew(35deg);
     background: -415px;
-    padding: 15px 90px;
+    padding: 9px 90px;
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 600;

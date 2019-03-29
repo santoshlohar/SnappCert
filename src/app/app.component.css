@@ -10,10 +10,12 @@
 }
 
 .page-sidebar {
-    width: 220px;
+    /* width: 220px; */
+    width: 17%;
     background-color: #38464f;
 }
 
 .page-content {
+    width: 83%;
     flex: 1;
 }
