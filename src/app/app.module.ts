@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { JwtModule } from '@auth0/angular-jwt';
 
 import { Globals } from './globals';
@@ -51,15 +52,6 @@ import { StudentListComponent } from './batches/student-list/student-list.compon
 import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
-
-// export function getAccessToken() {
-//     var user = JSON.parse(localStorage.getItem('user'));
-//     if(user.token){
-//         var accessToken = user.token;
-//         return accessToken;
-//     }
-//     return false;
-// }
 
 @NgModule({
     declarations: [
@@ -108,6 +100,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 		MaterialModule,
         HttpClientModule,
         AngularFontAwesomeModule,
+        FlexLayoutModule,
         JwtModule.forRoot({
             config : {
                 tokenGetter: function tokenGetter() {
