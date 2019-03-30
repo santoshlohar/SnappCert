@@ -43,8 +43,11 @@
 				<fa-icon [icon]="faBars"></fa-icon>
 			</div>
 		</div> -->
-		<div class="header" fxShow="true" fxHide.lt-sm>
+		<div class="header" fxHide="true" fxShow.gt-md>
 			<div class="heading-wrapper">
+				<img src="../../assets/icons/image.png" class="snap_logo" alt="" />
+			</div>
+			<div class="responsive-heading" fxHide="true" fxShow.lt-md>
 				<img src="../../assets/icons/image.png" class="snap_logo" alt="" />
 			</div>
 		</div>
@@ -53,7 +56,7 @@
 				<span class="app-heading">Snapper Certificate</span>
 			</div>
 		</div>
-		<div class="header">
+		<div class="header" fxShow="true" fxHide.lt-sm>
 			<div class="parallelogram">
 				<mat-divider></mat-divider>
 				<span class="page-heading"> {{ heading }} </span>
@@ -78,6 +81,11 @@
 					<a mat-button [routerLink]="['/login']" *ngIf="!isUserLogin">Login</a>
 					<a mat-button (click)="logout()" *ngIf="isUserLogin">Logout</a>
 				</div>
+			</div>
+		</div>
+		<div class="header" fxHide="true" fxShow.lt-md>
+			<div class="responsive-heading">
+				<img src="../../assets/icons/image.png" class="snap_logo" alt="" />
 			</div>
 		</div>
 	</mat-toolbar-row>
