@@ -50,6 +50,7 @@ import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { StudentListComponent } from './batches/student-list/student-list.component';
 import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 @NgModule({
@@ -88,6 +89,7 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
         StudentListComponent,
         BatchViewComponent,
         StudentViewComponent,
+        AccessDeniedComponent,
         UserEditComponent
     ],
     imports: [
