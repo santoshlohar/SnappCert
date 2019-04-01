@@ -100,6 +100,18 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div>
+		<div *ngIf='userType == "AFF_INST_REVIEWER"' >
+			<div class="innerbar-content" routerLink="/dashboard">
+				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
+				<span class="link-btn"> Dashboard </span>
+			</div>
+			<mat-divider></mat-divider>
+			<div class="innerbar-content" routerLink="/batches/batchList">
+				<img class="sidebar-img" src="./assets/icons/institute_w.png"/><br />
+				<span class="link-btn"> Batches </span>
+			</div>
+			<mat-divider></mat-divider>
+		</div>
 		<div *ngIf='userType == "DATA_CERTIFIER"'>
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />

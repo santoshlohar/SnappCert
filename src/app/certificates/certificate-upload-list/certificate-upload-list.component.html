@@ -2,8 +2,10 @@
 	<div class="certupload-container mat-elevation-z8">
 		<div class="outer-div">
 			<div class="inner-div aff-btn upload-btn-wrapper">
-				<button mat-button class="add-btn">Upload certificate</button>
-				<input type="file" name="excel" (change)="uploadCertificate($event.target.files, $event.target.name)"/>
+				<button mat-button class="add-btn">Upload certificate
+						<input type="file" name="excel" (change)="uploadCertificate($event.target.files, $event.target.name)"/>
+				</button>
+				
 			</div>
 			<span class="spacer"></span>
 			<div class="inner-div aff-btn">
