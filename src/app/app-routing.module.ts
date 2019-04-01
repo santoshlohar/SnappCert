@@ -23,6 +23,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 // import { BatchUploadListComponent } from './batches/batch-upload-list/batch-upload-list.component';
 import { UploadedBatchesComponent } from './uploaded-batches/uploaded-batches.component';
 import { BatchUploadListComponent } from './uploaded-batches/batch-upload-list/batch-upload-list.component';
@@ -88,6 +89,7 @@ const routes: Routes =  [
                 ] 
         }
     },
+    { path: 'userEdit/:userId', component: UserEditComponent, canActivate: [AuthGuard]},
     { 
         path: 'institutes', 
         component: InstitutesListComponent, 
