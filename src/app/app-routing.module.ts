@@ -197,7 +197,10 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsDataMgr                ] 
+                    Role.InsDataMgr,
+                    Role.InsRev,
+                    Role.DataCert            
+                ] 
         }
     },
     { 
