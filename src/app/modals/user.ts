@@ -9,5 +9,6 @@ export interface User {
     isActivated: Boolean;
     activated: string;
     token?: string;
+    status: String;
     _id: Number;
 }
