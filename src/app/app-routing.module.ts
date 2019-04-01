@@ -36,6 +36,8 @@ import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { StudentListComponent } from './batches/student-list/student-list.component';
 import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
+import { Role } from './modals/role';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -44,22 +46,172 @@ const routes: Routes =  [
     { path: 'registration', component: InstituteRegistrationComponent},
     { path: 'generatePassword', component: PwdGenerateComponent},
     { path: 'verifyOtp', component: VerifyOtpComponent},
-    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-    { path: 'users', component: UsersListComponent, canActivate: [AuthGuard]},
-    { path: 'userAdd', component: UserAddComponent, canActivate: [AuthGuard]},
-    { path: 'userEdit/:userId', component: UserEditComponent, canActivate: [AuthGuard] },
-    { path: 'institutes', component: InstitutesListComponent, canActivate: [AuthGuard]},
-    { path: 'instituteUpdate/:instId', component: InstituteUpdateComponent },
-    { path: 'departments', component: DepartmentsListComponent, canActivate: [AuthGuard]},
-    { path: 'departmentAdd', component: DepartmentAddComponent, canActivate: [AuthGuard]},
-	{ path: 'affInstitutes', component: AffInstituteListComponent, canActivate: [AuthGuard]},
-	{ path: 'affInstituteAdd', component: AffInstituteAddComponent, canActivate: [AuthGuard]},
-	{ path: 'courses', component: CoursesListComponent, canActivate: [AuthGuard]},
-    { path: 'courseAdd', component: CourseAddComponent, canActivate: [AuthGuard]},
-    { path: 'courseEdit/:courseId', component: CourseEditComponent, canActivate: [AuthGuard]},
-    { path: 'certificateUploadList', component: CertificateUploadListComponent, canActivate: [AuthGuard]},
-    { path: 'certificates', component: CertificatesListComponent, canActivate: [AuthGuard]},
-    { path: 'certificateView/:certificateId', component: CertificateViewComponent, canActivate: [AuthGuard]},
+    { 
+        path: 'dashboard', 
+        component: DashboardComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                        Role.InsAdmin,
+                        Role.InsDataMgr,
+                        Role.AffInsDataMgr,
+                        Role.InsRev,
+                        Role.AffInsRev,
+                        Role.DataCert,
+                        Role.DataApp,
+                        Role.Student
+                    ] 
+            } 
+    },
+    { 
+        path: 'users', 
+        component: UsersListComponent, 
+        canActivate: [AuthGuard], 
+        data: { 
+                roles: [
+                    Role.Admin,
+                    Role.InsAdmin,
+                    Role.InsDataMgr,
+                    Role.AffInsDataMgr
+                ] 
+            } 
+    },
+    { 
+        path: 'userAdd', 
+        component: UserAddComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.Admin,
+                    Role.InsAdmin,
+                    Role.InsDataMgr,
+                    Role.AffInsDataMgr
+                ] 
+        }
+    },
+    { path: 'userEdit/:userId', component: UserEditComponent, canActivate: [AuthGuard]},
+    { 
+        path: 'institutes', 
+        component: InstitutesListComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.Agent
+                ] 
+        }
+    },
+    { 
+        path: 'instituteUpdate/:instId', 
+        component: InstituteUpdateComponent,
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.Agent
+                ] 
+        }
+    },
+    { 
+        path: 'departments', 
+        component: DepartmentsListComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.InsAdmin
+                ] 
+        }
+    },
+    { 
+        path: 'departmentAdd', 
+        component: DepartmentAddComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.InsAdmin
+                ] 
+        }
+    },
+	{ 
+        path: 'affInstitutes', 
+        component: AffInstituteListComponent,
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.InsAdmin
+                ] 
+        }
+    },
+	{ 
+        path: 'affInstituteAdd', 
+        component: AffInstituteAddComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.InsAdmin
+                ] 
+        }
+    },
+	{ 
+        path: 'courses', 
+        component: CoursesListComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.InsDataMgr,
+                    Role.AffInsDataMgr
+                ] 
+        }
+    },
+    { 
+        path: 'courseAdd', 
+        component: CourseAddComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.InsDataMgr
+                ] 
+        }
+    },
+    { 
+        path: 'courseEdit/:courseId', 
+        component: CourseEditComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.InsDataMgr
+                ] 
+        }
+    },
+    { 
+        path: 'certificateUploadList', 
+        component: CertificateUploadListComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.InsDataMgr
+                ] 
+        }
+    },
+    { 
+        path: 'certificates', 
+        component: CertificatesListComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.InsDataMgr                ] 
+        }
+    },
+    { 
+        path: 'certificateView/:certificateId', 
+        component: CertificateViewComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.InsDataMgr,
+                    Role.InsRev,
+                    Role.DataCert                 
+                ] 
+        }
+    },
     { path: 'uploadedBatches', 
         component: UploadedBatchesComponent, 
         canActivate: [AuthGuard],
@@ -76,8 +228,31 @@ const routes: Routes =  [
             { path: 'studentList', component: StudentListComponent}
         ]
     },
-    { path: 'batchView/:batchId', component: BatchViewComponent, canActivate: [AuthGuard]},
-    { path: 'studentView/:studentId', component: StudentViewComponent, canActivate: [AuthGuard]},
+    { 
+        path: 'batchView/:batchId', 
+        component: BatchViewComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.AffInsDataMgr,
+                    Role.AffInsRev,
+                    Role.DataApp                 
+                ] 
+        }
+    },
+    { 
+        path: 'studentView/:studentId', 
+        component: StudentViewComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.AffInsDataMgr,
+                    Role.AffInsRev,
+                    Role.DataApp                 
+                ] 
+        }
+    },
+    { path: 'accessDenied', component: AccessDeniedComponent},
     { path: '**', component: PageNotFoundComponent}
 ];
 
