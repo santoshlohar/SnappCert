@@ -63,6 +63,8 @@ export class HeaderComponent implements OnInit {
 			this.heading = 'My Departments';
 		} else if(url === '/affInstitutes') {
 			this.heading = 'Aff. Institutes';
+		} else if(url === '/affInstituteAdd') {
+			this.heading = 'Aff. Institute';
 		} else if(url === '/courses') {
 			this.heading = 'Courses';
 		} else if(url === '/certificateUploadList') {

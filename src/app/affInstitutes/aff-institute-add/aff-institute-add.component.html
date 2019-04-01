@@ -19,11 +19,18 @@
                         formControlName="instituteId"
                         required>
                     </mat-form-field>
-                    <mat-form-field class="input-field">
+                    <!-- <mat-form-field class="input-field">
                         <input matInput 
                         placeholder="Department ID" 
                         formControlName="departmentId"
                         required>
+                    </mat-form-field> -->
+                    <mat-form-field class="input-field">
+                        <mat-select placeholder="Department" 
+                        formControlName="departmentId"
+                        required>
+                            <mat-option *ngFor="let department of departments;" [value]='department.id'>{{department.department_Name}}</mat-option>
+                        </mat-select>
                     </mat-form-field>
                     <mat-form-field class="input-field">
                         <input matInput 

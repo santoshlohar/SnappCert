@@ -19,7 +19,9 @@ export class AffInstituteAddComponent implements OnInit {
 		afflInstitute_loc: ''
 	};
 	url;
-	loggedInUser;
+	departments = [];
+	loginUser;
+	inst_id;
 	affliatedInsForm: FormGroup;
 	constructor(private _formBuilder: FormBuilder,
 				private apiService: ApiService,
@@ -27,7 +29,8 @@ export class AffInstituteAddComponent implements OnInit {
 				private location: Location) { }
 
 	ngOnInit() {
-		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.loginUser = JSON.parse(localStorage.getItem('user'));
+		this.inst_id = this.loginUser.instituteID;
 		this.affliatedInsForm = this._formBuilder.group({
 			instituteId: ['', Validators.required],
 			departmentId: ['', Validators.required],
@@ -35,11 +38,27 @@ export class AffInstituteAddComponent implements OnInit {
 			affInstituteName: ['', Validators.required],
 			affInstituteLoc: ['', Validators.required]
 		});
-		this.affliatedInsForm.controls.instituteId.setValue(this.loggedInUser.Institution_ID);
+		this.getDeptList();
+		this.affliatedInsForm.controls.instituteId.setValue(this.loginUser.Institution_ID);
+	}
+
+	getDeptList() {
+		this.url = "/departmentByInst/";
+		var params = '';
+		this.apiService.get(this.url+ this.inst_id, params)
+			.subscribe((response) => {
+				if(response.message == 'success') {
+					if(response.data) {
+						this.departments = response.data; 
+					}
+				}
+			},
+			(error) => {
+				console.log(error)
+			})
 	}
 
 	addAffInst(affInstData: NgForm) {
-		console.log(affInstData);
 		if(affInstData.invalid) {
 			return;
 		} 
@@ -51,7 +70,6 @@ export class AffInstituteAddComponent implements OnInit {
 		this.affInst.afflInstitute_Name = affInstData.value.affInstituteName;
 		this.affInst.afflInstitute_loc = affInstData.value.affInstituteLoc;
 
-		console.log(this.affInst);
 		// this.viewAffInstitutes();
 		this.apiService.post(this.url, this.affInst)
 			.subscribe((response) => {
