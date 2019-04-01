@@ -14,9 +14,10 @@ import { Globals } from 'src/app/globals';
 export class UsersListComponent implements OnInit {
 
 	url;
+	activated;
 	loginUser;
 	authUsers: [] = [];
-	displayedColumns = ['userType', 'instituteId', 'departmentId', 'affInstituteId', 'username', 'emailId', 'phone', 'status', '_id'];
+	displayedColumns = ['actions', 'userType', 'instituteId', 'departmentId', 'affInstituteId', 'username', 'emailId', 'phone', 'status', '_id'];
 
 	dataSource = new MatTableDataSource<User>();
 	selection = new SelectionModel<User>(true, []);
@@ -50,14 +51,14 @@ export class UsersListComponent implements OnInit {
 				 if(response.message == "success") {
 					this.authUsers = response.data;
 					for (var i = 0; i < response.data.length; i++) {
-					if(response.data[i].status == "Active") {
-						response.data[i].activatedd = 'Inactive';
+						var status = response.data[i].status;
+						if (status == "Active") {
+							response.data[i].activated = "Inactive"; 
+						} else if (status == "Inactive") {
+							response.data[i].activated = "Active";
+						}
+						this.dataSource.data = this.authUsers;
 					}
-					if(response.data[i].status == "Inactive") {
-						response.data[i].activatedd = 'Active';
-					}
-					}
-					this.dataSource.data = this.authUsers;
 				 } else {
 					alert("");
 				 }
@@ -66,31 +67,16 @@ export class UsersListComponent implements OnInit {
 
 	activate(data) {
 		var userId = data._id;
-		this.url = "/usesrbyinstitute/" + userId;
-
-		this.apiService.put(this.url, data)
+		this.url = '/usesrbyinstitute/';
+		this.apiService.put(this.url + userId, data)
 			.subscribe((response) => {
-				this.getInstituteUsers();
+				if (this.loginUser.UserType === "INST_ADMIN" || this.loginUser.UserType === "INS_DATA_MANAGER") {
+					this.getInstituteUsers();
+				} else if (this.loginUser.UserType === "AFF_INS_DATA_MANAGER") {
+					this.getAffInstituteUsers();
+				}
 			});
 	}
-
-	// getInstituteUsers() {
-	// 	var instituteID = this.loginUser.instituteID;
-	// 	this.url = "/usesrbyinstitute/" + instituteID;
-
-	// 	this.apiService.get(this.url)
-	// 		.subscribe((response) => {
-	// 			if(response.message == 'success') {
-	// 				this.authUsers = response.data;
-	// 				this.dataSource.data = this.authUsers;
-	// 			}
-	// 		},
-	// 		(error) => {
-	// 			console.log(error);
-	// 			alert(error.error.message);
-	// 			return false;
-	// 		})
-	// }
 
 	getAffInstituteUsers() {
 		var affInstituteId = this.loginUser.Affliated_Institute_ID;
@@ -100,13 +86,25 @@ export class UsersListComponent implements OnInit {
 			.subscribe((response) => {
 				if(response.message == 'success') {
 					this.authUsers = response.data;
-					this.dataSource.data = this.authUsers;
+					for (var i = 0; i < response.data.length; i++) {
+						var status = response.data[i].status;
+						if (status == "Active") {
+							response.data[i].activated = "Inactive";
+						} else if (status == "Inactive") {
+							response.data[i].activated = "Active";
+						}
+						this.dataSource.data = this.authUsers;
+					}
 				}
 			},
 			(error) => {
 				alert(error.error.message);
 				return false;
 			})
+	}
+
+	editUser(row) {
+		this.router.navigate(['/userEdit/'+ row._id]);
 	}
 
 }
