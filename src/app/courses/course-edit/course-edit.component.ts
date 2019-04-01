@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
 	selector: 'app-course-edit',
 	templateUrl: './course-edit.component.html',
 	styleUrls: ['./course-edit.component.css']
-})
+})	
 export class CourseEditComponent implements OnInit {
 	
 	url;
@@ -70,6 +70,7 @@ export class CourseEditComponent implements OnInit {
 			.subscribe((response) => {
 				if(response.message == 'success' && response.data != '') {
 					this.course = response.data;
+					console.log('course: ' + JSON.stringify(this.course));
 					this.insCourseForm.patchValue(this.course);
 				}
 			},

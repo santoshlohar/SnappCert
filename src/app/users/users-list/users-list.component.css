@@ -20,6 +20,10 @@ mat-table {
     float: right;
 }
 
+.clr-blue {
+    color: #3666f5;
+}
+
 .add-btn {
     color: #333 !important;
     background-color: #e2be40;

@@ -50,6 +50,7 @@ import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { StudentListComponent } from './batches/student-list/student-list.component';
 import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 @NgModule({
     declarations: [
@@ -86,7 +87,8 @@ import { StudentViewComponent } from './batches/student-view/student-view.compon
         BatchListComponent,
         StudentListComponent,
         BatchViewComponent,
-        StudentViewComponent
+        StudentViewComponent,
+        UserEditComponent
     ],
     imports: [
         BrowserModule,
