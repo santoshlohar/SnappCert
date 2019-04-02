@@ -15,22 +15,22 @@
 		<div *ngIf='userType == "INST_ADMIN"'>
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
-				<span class="link-btn"> Dashboard </span>
+				<span class="link-btn" fxShow="true" fxHide.lt-md> Dashboard </span>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content" routerLink="/departments">
 				<img class="sidebar-img" src="./assets/icons/department_w.png"/><br />
-				<span class="link-btn"> Institute Departments </span>
+				<span class="link-btn" fxShow="true" fxHide.lt-md> Institute Departments </span>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content" routerLink="/affInstitutes">
 				<img class="sidebar-img" src="./assets/icons/institute_w.png"/><br />
-				<span class="link-btn"> Affiliated Institutes </span>
+				<span class="link-btn" fxShow="true" fxHide.lt-md> Affiliated Institutes </span>
 			</div>
 			<mat-divider></mat-divider>
 			<div class="innerbar-content" routerLink="/users">
 				<img class="sidebar-img" src="./assets/icons/user_w.png"/><br />
-				<span class="link-btn"> Institute Authorized Users </span>
+				<span class="link-btn" fxShow="true" fxHide.lt-md> Institute Authorized Users </span>
 			</div>
 			<mat-divider></mat-divider>
 		</div>
