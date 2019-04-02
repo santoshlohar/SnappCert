@@ -1,9 +1,5 @@
-@media (max-width: 1500px) and (min-width: 600px) {
-    .container {width: 1225px;}
-}
-
 .container {
-    padding: 40px 38px;
+    padding: 40px 30px;
 }
 
 .wrapper {
@@ -84,7 +80,7 @@
     height: 20px; 
     border-bottom: 1px solid #6c757d; 
     text-align: center; 
-    margin-bottom: 3%;
+    margin: 13px 0px 35px 0px;
 }
 
 #courseSpan {
