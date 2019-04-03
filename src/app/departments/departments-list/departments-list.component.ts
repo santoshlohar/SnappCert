@@ -14,7 +14,7 @@ import { Globals } from 'src/app/globals';
 })
 export class DepartmentsListComponent implements OnInit {
 
-  	displayedColumns = ['instituteId', 'deptId', 'deptName', 'status' , '_id'];
+  	displayedColumns = ['instituteId', 'deptId', 'deptName', 'status', 'actions'];
 	url: string;
 	activated;
 	departments: any[] = [];
