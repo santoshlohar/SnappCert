@@ -57,7 +57,7 @@ mat-table {
     padding: 0px 9px;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 11px;
+    font-size: 12px;
     min-height: 25px;
     
 }
@@ -156,4 +156,13 @@ mat-column-position, mat-column-position {
 
 .mat-header-row, .mat-row, .mat-footer-row {
     border-bottom-width: 0; 
+}
+
+.mat-paginator {
+    font-size: 11px;
+}
+
+.mat-paginator-container {
+    min-height: 48px;
+    display: flex;
 }
