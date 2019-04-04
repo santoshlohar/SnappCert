@@ -13,10 +13,10 @@
 				<ng-container matColumnDef="instituteId">
 					<mat-header-cell *matHeaderCellDef> 
 						<div>Institute ID </div>
-						<div class="search-field">
-							<mat-form-field>
-								<mat-icon class="search icons">search</mat-icon>
+						<div>
+							<mat-form-field class="search-input">
 								<input matInput class="form-field filters" [formControl]="instituteIdFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
@@ -25,10 +25,10 @@
 				<ng-container matColumnDef="deptId">
 					<mat-header-cell *matHeaderCellDef> 
 						<div>Department ID</div>
-						<div class="search-field">
-							<mat-form-field>
-								<mat-icon class="search icons">search</mat-icon>
+						<div>
+							<mat-form-field class="search-input">
 								<input matInput class="form-field filters" [formControl]="departmentIdFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
@@ -37,10 +37,10 @@
 				<ng-container matColumnDef="deptName">
 					<mat-header-cell *matHeaderCellDef>
 						<div>Department Name</div>
-						<div class="search-field">
-							<mat-form-field>
-								<mat-icon class="search icons">search</mat-icon>
+						<div>
+							<mat-form-field class="search-input">
 								<input matInput class="form-field filters" [formControl]="departmentNameFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
@@ -49,10 +49,10 @@
 				<ng-container matColumnDef="status">
 					<mat-header-cell *matHeaderCellDef>
 						<div>Department Status</div>
-						<div class="search-field">
-							<mat-form-field>
-								<mat-icon class="search icons">search</mat-icon>
+						<div>
+							<mat-form-field class="search-input">
 								<input matInput class="form-field filters" [formControl]="departmentStatusFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
@@ -60,10 +60,12 @@
 				</ng-container>
 				<ng-container matColumnDef="actions">
 					<mat-header-cell *matHeaderCellDef> 
-							<div>Actions </div>
+						<div>Actions </div>
 					</mat-header-cell>
 					<mat-cell *matCellDef="let row">
-						<button mat-button class="active-btn" (click)="activate(row)">{{row.activated}}</button>
+						<mat-slide-toggle class="toggle" 
+						[checked]="row.status=='Active'" 
+						(change)="activate(row)"></mat-slide-toggle>
 					</mat-cell>
 				</ng-container>
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

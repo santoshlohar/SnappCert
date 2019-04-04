@@ -56,7 +56,6 @@ export class DepartmentsListComponent implements OnInit {
 		var params = '';
 		this.apiService.get(this.url, params)
 			.subscribe((response) => {
-				console.log(response)
 				if(response.message == 'success') {
 					this.departments = response.data;
 					for(var i=0;i<this.departments.length;i++) {
