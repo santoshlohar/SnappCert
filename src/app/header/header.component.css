@@ -79,6 +79,13 @@
 
  */
 
+ .mat-toolbar-row {
+    position: fixed;
+    position: -webkit-fixed;
+    top: 0;
+    z-index: 1000;
+    background-color: #e2be40;
+}
 
 .heading-wrapper {
     width: 90px;
