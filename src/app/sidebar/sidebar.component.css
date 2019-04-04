@@ -1,6 +1,14 @@
+.mat-sidenav-container {
+    position: fixed;
+    position: -webkit-fixed;
+    left: 0;
+    z-index: 1000;
+}
+
 .sidebar-container {
     border: 1px solid rgba(0, 0, 0, 0.22);
     background-color: #38464f;
+    width: 17%;
 }
 
 .sidebar-content {
