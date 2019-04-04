@@ -90,13 +90,17 @@
     margin-left: -37px;
 }
 
+#logoWrapper {
+    overflow: hidden;
+}
+
 .responsive-heading {
-    width: 90px;
-    height: 47px;
+    width: 61px;
+    height: 64px;
     -webkit-transform: skew(35deg);
     transform: skew(35deg);
     background: #f7f4f4;
-    padding: 30px 44px;
+    padding: 33px 45px;
     margin-right: -39px;
 }
 
@@ -112,10 +116,10 @@
 }
 
 .snap_logo {
-    width: 48px;
-    height: 44px;
+    width: 41px;
+    height: 41px;
     margin-top: -23px;
-    margin-left: -31px;
+    margin-left: -26px;
     z-index: 5;
     position: absolute;
     -webkit-transform: skew(-50deg);
@@ -133,7 +137,7 @@
 
 .parallelogram {
     width: 254px;
-    height: 63px;
+    height: 64px;
     transform: skew(35deg);
     background: #f7f4f4;
     margin-left: 18px;
