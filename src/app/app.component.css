@@ -12,9 +12,15 @@
 .page-sidebar {
     width: 17%;
     background-color: #38464f;
+    position: fixed;
+    height: 100%;
+    z-index: 1000;
 }
 
 .page-content {
     width: 83%;
     flex: 1;
+    height: 100%;
+    position: relative;
+    margin-left: 17%;
 }
