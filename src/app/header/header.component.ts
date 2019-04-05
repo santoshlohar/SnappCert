@@ -4,7 +4,7 @@ import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } f
 import { AuthService } from '../services/auth.service';
 import { AuthGuard } from '../services/auth-guard';
 import { Observable } from 'rxjs';
-import { User } from '../modals/user';
+import { UserModel } from '../modals/user';
 
 @Component({
 	selector: 'app-header',
@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
 	heading: string;
 	user;
-	isUserLogin: User;
+	isUserLogin: UserModel;
 	courseId;
 	role;
 

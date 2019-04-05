@@ -1,11 +1,11 @@
-export interface User { 
+export interface UserModel { 
     UserType: String;
-    instituteId: String;
-    departmentId: String;
-    affInstituteId: String;
-    username: String;
+    instituteID: String;
+    Department_ID: String;
+    Affliated_Institute_ID: String;
+    UserName: String;
     emailId: String;
-    phone: String;
+    phoneNumber: String;
     isActivated: Boolean;
     activated: string;
     token?: string;
