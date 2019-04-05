@@ -10,8 +10,6 @@ import { User } from './modals/user';
 export class AppComponent {
 	title = 'snapperCertificate';
 	isUserLogin: User;
-	@Input() isUserLoggedIn: boolean;
-	loggedIn;
 	constructor(private authService: AuthService) {
 					this.authService.currentUser
 						.subscribe((user) => {
