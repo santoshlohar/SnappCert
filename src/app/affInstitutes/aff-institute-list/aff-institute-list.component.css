@@ -38,10 +38,23 @@
 
 .list-container {
     height: inherit;
-    overflow: auto;
+    overflow-y: scroll;
 }
 
-mat-table {
+.list-container::-webkit-scrollbar {
+    height: 9px;
+} 
+ 
+.list-container::-webkit-scrollbar-track::horizontal {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.list-container::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+
+.mat-table {
     width: 100%;
     min-width: 1200px;
 }
