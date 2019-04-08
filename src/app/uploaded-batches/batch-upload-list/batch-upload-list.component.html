@@ -1,14 +1,15 @@
-<div id="batch-list">
-    <div class="list-header">
-        <div class="inner-div aff-btn upload-btn-wrapper">
-            <button mat-button class="add-btn">Upload Batch Data</button>
-            <input type="file" name="excel" (change)="uploadBatch($event.target.files, $event.target.name)"/>
+<div class="container">
+    <div class="outer-div" [fxLayout]="direction" fxLayout.sm="column" fxLayout.xs="column">
+        <div class="inner-div header-btns upload-btn-wrapper">
+            <button mat-button class="add-btn" fxFlex-lt.md="100">Upload Batch Data
+                <input class="file-upload" type="file" name="excel" (change)="uploadBatch($event.target.files, $event.target.name)"/>
+            </button>
         </div>
         <span class="spacer"></span>
-        <div class="inner-div aff-btn">
+        <div class="inner-div header-btns">
             <div class="mat-header-btns">
-                <a mat-button class="add-btn" (click)="deleteBatches()"> Delete Batches </a>
-                <a mat-button class="add-btn" (click)="processData()"> Process </a>
+                <a mat-button class="add-btn" fxFlex="60" fxFlex-lt.md="100" (click)="deleteBatches()">Delete Batches</a>
+                <a mat-button class="add-btn" fxFlex="40" fxFlex-lt.md="100" (click)="processData()">Process</a>
             </div>
         </div>
     </div>
