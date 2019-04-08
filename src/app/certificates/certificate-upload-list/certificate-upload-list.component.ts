@@ -16,9 +16,8 @@ import { Globals } from 'src/app/globals';
 	styleUrls: ['./certificate-upload-list.component.css']
 })
 export class CertificateUploadListComponent implements OnInit {
-	displayedColumns = [];
 
-	tempCertColumns = [
+	displayedColumns = [
 		'select',
 		'actions',
 		'instituteId',
@@ -40,18 +39,7 @@ export class CertificateUploadListComponent implements OnInit {
 		'transactionTime',
 		'transactionUser'
 	];
-	finalCertColumns = [
-		'select',
-		'actions',
-		'instituteId',
-		'courseId',
-		'batchId',
-		'studentId',
-		'certificateId',
-		'specialization',
-		'completionDate',
-		'transactionStatus'
-	];
+
 	url: string;
 	loginUser;
 	userType: string;
@@ -70,8 +58,8 @@ export class CertificateUploadListComponent implements OnInit {
 		id: String,
 		name: String
 	}
+
 	dataSource = new MatTableDataSource<any>();
-	//newCertificates = new MatTableDataSource<ValidatedCertificate>(this.certificatesData);
 	selection = new SelectionModel<any>(true, []);
 
 	@Output() stateRoute: string;
@@ -79,28 +67,23 @@ export class CertificateUploadListComponent implements OnInit {
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 
 	constructor(private apiService: ApiService,
-				public dialoge: MatDialog,
-				public router: Router,
-				public globals: Globals) { 
-					this.stateRoute = this.router.url;
-				}
-	
+		public dialoge: MatDialog,
+		public router: Router,
+		public globals: Globals) {
+			this.stateRoute = this.router.url;
+		}
+
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.userType = this.loginUser.UserType;
+		this.dataSource.sort = this.sort;
+		this.dataSource.paginator = this.paginator;
 		this.getReviewersList();
 		setTimeout(() => {
 			this.getCertifiersList();
 		}, 500);
-		if(this.userType === "INS_DATA_MANAGER") {
-			this.getCertificatesList();
-		} else if(this.userType === "INST_REVIEWER") {
-			this.getFinalCertificates();
-		} else if (this.userType == "DATA_CERTIFIER") {
-			this.getFinalCertificates();
-		}
-		this.dataSource.sort = this.sort;
-		this.dataSource.paginator = this.paginator;
+
+		this.getCertificatesList();
 	}
 
 	isAllSelected() {
@@ -267,24 +250,6 @@ export class CertificateUploadListComponent implements OnInit {
 		}
 	}
 
-	validatedCertificates(certificates) {
-		
-		for(var i=0; i<certificates.length; i++) {
-			var certificate = certificates[i];
-			console.log(certificate);
-
-			if(!certificate.instituteID || !certificate.afflInstituteID || !certificate.courseID
-				|| !certificate.batchID || !certificate.studentID || !certificate.certificateID
-				|| !certificate.completionDate) {
-					alert("Please solve the errors before process the certificates data!");
-					return false;
-			} else if( typeof(certificate.instituteID == 'string')) {
-				this.intError = true;
-			}
-		}
-		
-	}
-
 	goToFinalTable() {
 		this.selectedCertificates = this.selection.selected;
 		this.reviewers.length;
@@ -313,37 +278,6 @@ export class CertificateUploadListComponent implements OnInit {
 		} else {
 			alert("please select atleast one certificate data to delete!");
 		}
-	}
-
-	getFinalCertificates() {
-		this.url = "/certificates";
-		var params = '';
-		this.apiService.get(this.url, params)
-			.subscribe((response) => {
-				if(response.message == 'success' && response.data) {
-					this.certificatesData = response.data;
-					for(var i=0;i<this.certificatesData.length;i++) {
-						if(this.certificatesData[i].versionStatus == "Active" && this.certificatesData[i].transactionStatus == 'New') {
-							console.log(this.certificatesData[i]);
-							// if(this.certificatesData[i].transactionStatus == 'New' ) {
-							// 	this.newCertificates.push(this.certificatesData[i]);
-							// } else if(this.certificatesData[i].transactionStatus == 'Under Review' ) {
-							// 	this.newCertificates.push(this.certificatesData[i]);
-							// }
-							this.newCertificates.push(this.certificatesData[i]);
-							this.dataSource.data = this.newCertificates;
-						} else if (this.certificatesData[i].transactionStatus == 'Reviewed' || this.certificatesData[i].transactionStatus == 'Under Certify') {
-							if (this.certificatesData[i].certifier1ID != this.loginUser.UserName && this.certificatesData[i].certifier2ID != this.loginUser.UserName && this.certificatesData[i].certifier3ID != this.loginUser.UserName) {
-								this.newCertificates.push(this.certificatesData[i]);
-								this.dataSource.data = this.newCertificates;
-							}
-						}
-					}
-				}
-			},
-			(error) => {
-				console.log(error);
-			})
 	}
 
 	getCertifiersList() {
@@ -402,30 +336,4 @@ export class CertificateUploadListComponent implements OnInit {
 			})
 	}
 
-	// public hasError = (controlName: string, errorName: string) =>{
-    //     return this.instRequestForm.controls[controlName].hasError(errorName);
-    // }
 }
-
-// const certificate_data:  UploadedCertificates[] = [
-// 	{
-// 		instituteID: '111',
-// 		afflInstituteID: 'AI01',
-// 		courseID: 'CI01',
-// 		batchID: '001',
-// 		studentID: '001',
-// 		certificateID: 3627,
-// 		Specialization: "computer application",
-// 		scoreEarned: 786,
-// 		totalScore: 1000,
-// 		CGPA: 6,
-// 		creditsEarned: 6,
-// 		completionDate: '12 Jan',
-// 		transactionStatus: 'New',
-// 		failureReason: 'Data not correct',
-// 		transactionMachine: '84392',
-// 		transactionDate: '29 Jan',
-// 		transactionTime: '15 Hrs',
-// 		transactionUser: 'Sushmita'
-// 	}
-// ];
