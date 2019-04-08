@@ -1,7 +1,7 @@
 <div class="container">
-	<div class="list-header">
+	<div class="wrapper">
 		<div class="outer-div">
-			<div class="inner-div aff-btn">
+			<div class="inner-div header-btns">
 				<div class="mat-header-btns">
 					<a mat-button class="add-btn" (click)="download()">Download</a>
 				</div>
@@ -10,7 +10,7 @@
 		<div class="list-container">
 			<mat-table [dataSource]="dataSource" 
 			class="mat-table-item mat-elevation-z8">
-				<ng-container matColumnDef="select" sticky>
+				<!-- <ng-container matColumnDef="select" sticky>
 					<mat-header-cell *matHeaderCellDef>
 						<mat-checkbox (change)="$event ? masterToggle() : null"
 						[checked]="selection.hasValue() && isAllSelected() == true"
@@ -23,7 +23,7 @@
 						[checked]="selection.isSelected(row) == true">
 						</mat-checkbox>
 					</mat-cell>
-				</ng-container>
+				</ng-container> -->
 				<ng-container matColumnDef="actions" sticky>
 					<mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
 					<mat-cell *matCellDef="let element" >
@@ -138,7 +138,7 @@
 			</mat-table>
 		</div>
 		<div>
-			<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+			<mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
 		</div>
 	</div>
 </div>

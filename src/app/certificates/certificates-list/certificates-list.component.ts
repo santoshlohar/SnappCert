@@ -12,7 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CertificatesListComponent implements OnInit {
 
 	displayedColumns = [
-		'select',
+		
 		'actions',
 		'instituteId',
 		'courseId',
