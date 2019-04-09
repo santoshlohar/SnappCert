@@ -48,9 +48,6 @@ export class LoginComponent implements OnInit {
 				this.roleService.renderScreen(this.type);
 				
 				this.dialogRef.close();
-			},
-			(error) => {
-				console.log(error);
 			})
 	};
 

@@ -3,10 +3,11 @@ import { MaterialModule } from './material-module';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JwtModule } from '@auth0/angular-jwt';
+import { HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
 
 import { Globals } from './globals';
 
@@ -53,6 +54,7 @@ import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 @NgModule({
     declarations: [
@@ -91,7 +93,8 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
         BatchViewComponent,
         StudentViewComponent,
         AccessDeniedComponent,
-        UserEditComponent
+        UserEditComponent,
+        ErrorDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -115,7 +118,12 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
     ],
     providers: [
         AuthService,
-		ApiService,
+        ApiService,
+        { 
+            provide: HTTP_INTERCEPTORS, 
+            useClass: HttpConfigInterceptor, 
+            multi: true 
+        },
         Globals,
         {   
             provide: STEPPER_GLOBAL_OPTIONS, 
