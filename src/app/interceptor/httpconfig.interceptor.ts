@@ -12,11 +12,14 @@ import {
 
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
+import { LoginComponent } from '../login/login.component';
 
 @Injectable() 
 export class HttpConfigInterceptor implements HttpInterceptor { 
 
-	constructor(public errorDialogService: ErrorDialogService) { }
+	constructor(public errorDialogService: ErrorDialogService,
+				public dialog: MatDialog) { }
 
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		const token: string = localStorage.getItem('token');
@@ -44,6 +47,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                     reason: error && error.error.reason ? error.error.reason : '',
                     status: error.status
 				};
+				this.dialog.closeAll();
                 this.errorDialogService.openDialog(data);
                 return throwError(error);
 			})

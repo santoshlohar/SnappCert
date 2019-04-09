@@ -12,8 +12,7 @@ export class ErrorDialogService {
 
 	openDialog(data): void {
 		const dialogRef = this.dialog.open(ErrorDialogComponent, {
-			width: '350px',
-			height: '385px',
+			width: '250px',
 			data: data
 		});
 
