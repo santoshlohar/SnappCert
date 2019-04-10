@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<div class="header" fxHide="true" fxShow.lt-md>
-			<fa name="bars" class="fa-icon"></fa>
+			<fa name="bars" class="fa-icon" (click)="openSidebar()"></fa>
 		</div>
 		<div class="header" fxHide="true" fxShow.gt-sm>
 			<div class="head-wrapper">
@@ -37,6 +37,8 @@
 				<div class="dropdown-content">
 					<a mat-button [routerLink]="['/login']" *ngIf="!isUserLogin">Login</a>
 					<a mat-button (click)="logout()" *ngIf="isUserLogin">Logout</a>
+					
+					<fa name="bars" class="fa-icon" (click)="openSidebar()"></fa>
 				</div>
 			</div>
 		</div>

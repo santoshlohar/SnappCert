@@ -1,10 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Globals } from '../globals';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AuthGuard } from '../services/auth-guard';
 import { Observable } from 'rxjs';
 import { UserModel } from '../modals/user';
+import { MatSidenav } from '@angular/material';
+import { SidebarComponent } from '../sidebar/sidebar/sidebar.component';
+import { SidebarService } from '../sidebar/sidebar/sidebar.service';
 
 @Component({
 	selector: 'app-header',
@@ -20,11 +23,13 @@ export class HeaderComponent implements OnInit {
 	role;
 
 	@Input() stateRoute: string;
-	constructor(public globals: Globals,
+	// @ViewChild('sidenav') public sidenav;
+	constructor (public globals: Globals,
 				public router: Router,
 				private authService: AuthService,
 				private authGuard: AuthGuard,
-				private route: ActivatedRoute) {
+				private route: ActivatedRoute,
+				private sidebarService: SidebarService) {
 					this.authService.currentUser
 						.subscribe((user) => {
 							this.isUserLogin = user;
@@ -107,6 +112,10 @@ export class HeaderComponent implements OnInit {
 		} else if(type == 'STUDENT') {
 			this.role = 'Student';
 		} 
+	}
+
+	openSidebar() {
+		this.sidebarService.toggle();
 	}
 
 }

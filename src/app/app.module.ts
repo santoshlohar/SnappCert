@@ -13,6 +13,7 @@ import { Globals } from './globals';
 
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
+import { SidebarService } from './sidebar/sidebar/sidebar.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar/sidebar.component';
 import { PageSidebarComponent } from './sidebar/page-sidebar/page-sidebar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -61,6 +63,7 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
         AppComponent,
         PageNotFoundComponent,
         HeaderComponent,
+        SidebarComponent,
         PageSidebarComponent,
         HomeComponent,
         LoginComponent,
@@ -120,6 +123,7 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
     providers: [
         AuthService,
         ApiService,
+        SidebarService,
         { 
             provide: HTTP_INTERCEPTORS, 
             useClass: HttpConfigInterceptor, 
