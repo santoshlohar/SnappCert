@@ -21,7 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { PageSidebarComponent } from './sidebar/page-sidebar/page-sidebar.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { InstituteRegistrationComponent } from './institute-registration/institute-registration.component';
@@ -61,7 +61,7 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
         AppComponent,
         PageNotFoundComponent,
         HeaderComponent,
-        SidebarComponent,
+        PageSidebarComponent,
         HomeComponent,
         LoginComponent,
         InstituteRegistrationComponent,
