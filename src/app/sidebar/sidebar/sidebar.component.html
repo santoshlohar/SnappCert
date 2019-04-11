@@ -1,18 +1,16 @@
-<!-- <mat-drawer-container>
-	<mat-drawer #drawer [mode]="side">
-		<p>Toggle Button</p>
-	</mat-drawer>
-
-	<mat-drawer-content>
-		<p>Toggle Button Content</p>
-	</mat-drawer-content>
-</mat-drawer-container> -->
-
-<mat-sidenav-container>
-	<mat-sidenav #sidenav [mode]="side" class="sidenav-bar">
-		<p>Toggle Button</p>
+<mat-sidenav-container class="example-container">
+	<mat-sidenav #sidenav mode="side" opened="false" _isFocusTrapEnabled="true">
+		<p>Hi I am toggle</p>
 	</mat-sidenav>
-	<mat-sidenav-content>
 
+	<mat-sidenav-content class="main-content">
+		<div class="main-body">
+			<div class="page-sidebar" *ngIf="isUserLogin">
+				<app-page-sidebar></app-page-sidebar>
+			</div>
+			<div class="page-content body-background">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
 	</mat-sidenav-content>
 </mat-sidenav-container>

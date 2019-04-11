@@ -284,3 +284,9 @@ mat-divider {
     flex: 1 1 auto;
 }
 
+.example-container {
+    height: 100%;
+    width: 100px;
+    z-index: 999; 
+    background-color: #f7f4f4;   
+} 

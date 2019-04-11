@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatSidenav, MatDrawer } from '@angular/material';
-import { SidebarService } from './sidebar.service';
+import { MatSidenav } from '@angular/material';
+import { SidebarService } from '../sidebar/sidebar.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserModel } from 'src/app/modals/user';
 
 @Component({
 	selector: 'app-sidebar',
@@ -10,19 +11,25 @@ import { SidebarService } from './sidebar.service';
 })
 export class SidebarComponent implements OnInit {
 
-	//public sidebar: any;
+	opened: boolean = false;
+	isUserLogin: UserModel;
 	@ViewChild('sidenav') public sidenav: MatSidenav;
-	//@ViewChild('drawer') public drawer: MatDrawer;
-	@ViewChild(MatDrawer) matDrawer: MatDrawer;
-	constructor(public sidebarService: SidebarService) { 
-		console.log("sidebar component");
+	constructor(public sidebarService: SidebarService,
+				public authService: AuthService) {
+					this.authService.currentUser
+						.subscribe((user) => {
+							this.isUserLogin = user;
+						});
+	 }
+
+	ngOnInit() {
+		console.log("This Sidebar");
+		this.sidebarService.setSidenav(this.sidenav);
+		//console.log(this.sidenav);
 	}
 
-	ngOnInit(): void{
-		//console.log(this.matDrawer);
-		console.log("sidebar com")
-		//this.sidebarService.setDrawer(this.matDrawer);
-		this.sidebarService.setSidenav(this.sidenav);
+	ngOnChange() {
+		//this.sidebarService.setSidenav(this.sidenav);
 	}
 
 }

@@ -21,9 +21,10 @@ export class HeaderComponent implements OnInit {
 	isUserLogin: UserModel;
 	courseId;
 	role;
+	opened: boolean = false;
 
 	@Input() stateRoute: string;
-	@ViewChild('sidenav') public sidenav;
+	@ViewChild('sidenav') public sidenav: MatSidenav;
 	public sidebar: MatSidenav;
 	constructor (public globals: Globals,
 				public router: Router,
@@ -35,11 +36,14 @@ export class HeaderComponent implements OnInit {
 						.subscribe((user) => {
 							this.isUserLogin = user;
 						});
+
+					
 				}
 
 	ngOnInit() {	
 		this.user = JSON.parse(localStorage.getItem('user'));
 		this.roleName(this.user.UserType);
+		this.sidebarService.setSidenav(this.sidenav);
 	}
 
 	gotoLogin() {
