@@ -23,7 +23,8 @@ export class HeaderComponent implements OnInit {
 	role;
 
 	@Input() stateRoute: string;
-	// @ViewChild('sidenav') public sidenav;
+	@ViewChild('sidenav') public sidenav;
+	public sidebar: MatSidenav;
 	constructor (public globals: Globals,
 				public router: Router,
 				private authService: AuthService,

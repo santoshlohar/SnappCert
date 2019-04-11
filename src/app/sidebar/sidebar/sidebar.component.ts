@@ -18,10 +18,11 @@ export class SidebarComponent implements OnInit {
 		console.log("sidebar component");
 	}
 
-	ngOnInit() {
-		console.log(this.matDrawer);
+	ngOnInit(): void{
+		//console.log(this.matDrawer);
 		console.log("sidebar com")
-		this.sidebarService.setDrawer(this.matDrawer);
+		//this.sidebarService.setDrawer(this.matDrawer);
+		this.sidebarService.setSidenav(this.sidenav);
 	}
 
 }

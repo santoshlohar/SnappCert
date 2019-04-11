@@ -7,19 +7,29 @@ import { SidebarComponent } from './sidebar.component';
 })
 export class SidebarService {
 
-	private matDrawer: MatDrawer;
+	public matDrawer: MatDrawer;
+	public matSidenav: MatSidenav;
 
     setDrawer(drawer: MatDrawer) {
 		console.log("set sidebar")
 		this.matDrawer = drawer;
 		console.log(drawer)
-    }
+	}
+	
+	public setSidenav(sidenav: MatSidenav) {
+		this.matSidenav = sidenav;
+		console.log(this.matSidenav);
+	}
 
-    toggle() {
-		console.log("toggle sidebar")
-         this.matDrawer.toggle();
+    // toggle() {
+	// 	this.matDrawer.toggle();
+	// }
+	
+	public toggle(): void {
+		console.log(this.matSidenav)
+		this.matSidenav.toggle();
     }
-	// public open() {
+	//  public open() {
 	// 	console.log(this.sidenav)
 	// 	return this.sidenav.open();
 	// }
