@@ -12,6 +12,10 @@
 	z-index: 123; 
 	position: relative;
 	background-color: #a94040;
+	top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .main-content {

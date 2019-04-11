@@ -32,4 +32,8 @@ export class SidebarComponent implements OnInit {
 		//this.sidebarService.setSidenav(this.sidenav);
 	}
 
+	close(reason: string) {
+		this.sidenav.close();
+	  }
+
 }

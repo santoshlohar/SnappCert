@@ -1,5 +1,5 @@
-<mat-sidenav-container class="example-container">
-	<mat-sidenav #sidenav mode="side" opened="false" _isFocusTrapEnabled="true">
+<mat-sidenav-container class="example-container" (backdropClick)="close('backdrop')">
+	<mat-sidenav #sidenav mode="over" opened="false" _isFocusTrapEnabled="true">
 		<p>Hi I am toggle</p>
 	</mat-sidenav>
 
