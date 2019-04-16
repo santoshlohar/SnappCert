@@ -6,14 +6,9 @@
 	right: 0;
 }
 
-#sidenav {
-	margin-top: 64px;
+.mat-sidenav {
+	width: 32%;
 }
-
-/* .sidebar-content {
-	width: 0%;
-	height: 0%;
-} */
 
 .main-body {
 	display: flex;
