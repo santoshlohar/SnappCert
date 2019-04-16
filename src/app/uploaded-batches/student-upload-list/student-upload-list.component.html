@@ -1,0 +1,341 @@
+<div class="container">
+    <div class="outer-div" [fxLayout]="direction" fxLayout.sm="column" fxLayout.xs="column">
+        <div class="inner-div header-btns upload-btn-wrapper">
+            <button mat-button class="add-btn" fxFlex-lt.md="100">Upload Student Data
+                <input class="file-upload" type="file" name="excel" (change)="uploadstudent($event.target.files, $event.target.name)"/>
+            </button>
+        </div>
+        <span class="spacer"></span>
+        <div class="inner-div header-btns">
+            <div class="mat-header-btns">
+                <a mat-button class="add-btn" fxFlex="60" fxFlex-lt.md="100" (click)="deleteBatches()">Delete Batches</a>
+                <a mat-button class="add-btn" fxFlex="40" fxFlex-lt.md="100" (click)="processData()">Process</a>
+            </div>
+        </div>
+    </div>
+    <div class="list-container">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8 list-wrapper">
+            <ng-container matColumnDef="select" sticky>
+                <mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected() == true"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row"> 
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row) == true">
+                    </mat-checkbox>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions" sticky>
+                <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <mat-icon 
+                    class="clr-blue icon"  
+                    (click)="edit(element)"
+                    *ngIf="!element.editing"
+                    matTooltip="Edit">edit</mat-icon>
+                    <mat-icon
+                    class="clr-blue icon"
+                    (click)="edit(element)" 
+                    *ngIf="element.editing"
+                    matTooltip="Check">check</mat-icon>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="batchId">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Batch ID </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.batchID)}">
+                    <span *ngIf="!element.editing"> {{element.batchID}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.batchID" [(ngModel)]="element.batchID">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="studentId">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Student ID </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.studentID)}">
+                    <span *ngIf="!element.editing"> {{element.studentID}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.studentID" [(ngModel)]="element.studentID">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Name </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.name)}">
+                    <span *ngIf="!element.editing"> {{element.name}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.name" [(ngModel)]="element.name">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="fatherName">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Father </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.fatherName)}">
+                    <span *ngIf="!element.editing"> {{element.fatherName}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.fatherName" [(ngModel)]="element.fatherName">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="dob">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> DOB </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.dob)}">
+                    <span *ngIf="!element.editing"> {{element.dob}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.dob" [(ngModel)]="element.dob">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="aadhaar">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Aadhaar ID </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.aadhaarNoLoginID) || element.aadhaarNoErr}">
+                    <span *ngIf="!element.editing"> {{element.aadhaarNoLoginID}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.aadhaarNoLoginID" [(ngModel)]="element.aadhaarNoLoginID">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="emailId">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Email ID </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.emailID)}">
+                    <span *ngIf="!element.editing"> {{element.emailID}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput type="email" [value]="element.emailID" [(ngModel)]="element.emailID">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="mobile">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Mobile No. </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.mobile) || element.mobileNoErr }">
+                    <span *ngIf="!element.editing"> {{element.mobile}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.mobile" [(ngModel)]="element.mobile">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="specialization">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Specialization </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.specialization)}">
+                    <span *ngIf="!element.editing"> {{element.specialization}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.specialization" [(ngModel)]="element.specialization">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="transactionStatus">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Transaction Status </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.transactionStatus)}">
+                    <span *ngIf="!element.editing"> {{element.transactionStatus}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.transactionStatus" [(ngModel)]="element.transactionStatus">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="failure">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Failure </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.failureReason)}">
+                    <span *ngIf="!element.editing"> {{element.failureReason}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.failureReason" [(ngModel)]="element.failureReason">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="transactionMachine">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Transaction Machine </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.transactionMachine)}">
+                    <span *ngIf="!element.editing"> {{element.transactionMachine}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.transactionMachine" [(ngModel)]="element.transactionMachine">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="transactiondate">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Transaction Date </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.transactionDate)}">
+                    <span *ngIf="!element.editing"> {{element.transactionDate}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.transactionDate" [(ngModel)]="element.transactionDate">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="transactiontime">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Transaction Time </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.transactionTime)}">
+                    <span *ngIf="!element.editing"> {{element.transactionTime}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.transactionTime" [(ngModel)]="element.transactionTime">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="transactionUser">
+                <mat-header-cell *matHeaderCellDef> 
+                    <div> Transaction User </div>
+                    <!-- <div>
+                        <mat-form-field>
+                            <input matInput class="form-field" [formControl]="instituteIdFilter" placeholder="User Type">
+                        </mat-form-field>
+                    </div> -->
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.transactionUser)}">
+                    <span *ngIf="!element.editing"> {{element.transactionUser}} </span>
+                    <mat-form-field floatLabel="never" *ngIf="element.editing">
+                        <input matInput [value]="element.transactionUser" [(ngModel)]="element.transactionUser">
+                        <mat-error>Required</mat-error>
+                    </mat-form-field>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+    <div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div> 

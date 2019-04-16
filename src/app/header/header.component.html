@@ -1,0 +1,49 @@
+<mat-toolbar class="header-bar logo-background">
+	<mat-toolbar-row>
+		<div class="header" fxHide="true" fxShow.gt-md fxShow.md>
+			<div class="heading-wrapper">
+				<img src="../../assets/icons/image.png" class="snap_logo_gtmd" alt="" />
+			</div>
+		</div>
+		<div class="header" fxHide="true" fxShow.lt-md>
+			<fa name="bars" class="fa-icon"></fa>
+		</div>
+		<div class="header" fxHide="true" fxShow.gt-sm>
+			<div class="head-wrapper">
+				<span class="app-heading">Snapper Certificate</span>
+			</div>
+		</div>
+		<div class="header" fxShow="true" fxHide.lt-sm>
+			<div class="parallelogram">
+				<mat-divider></mat-divider>
+				<span class="page-heading"> {{ heading }} </span>
+			</div>
+		</div>
+		<div class="header" fxShow="true" fxHide.lt-md>
+			<div class="parallelogram-login">
+				<div class="dropdown1">
+					<button class="dropbtn1"><span class="page-heading-login1">Last Login:</span>
+					<span class="page-heading-login">21 Feb 2019 10:00 AM <img class="img" src="/assets/icons/right-arrow.png" /></span></button>
+				</div>
+			</div>
+		</div>
+		<div class="spacer"></div>
+		<div class="header" fxShow="true" fxHide.lt-md>
+			<div class="dropdown">
+				<button class="dropbtn">
+					<span class="normal-subheading">Welcome, {{role}}<img class="img" src="/assets/icons/down-arrow.png" />
+					</span> 
+				</button>
+				<div class="dropdown-content">
+					<a mat-button [routerLink]="['/login']" *ngIf="!isUserLogin">Login</a>
+					<a mat-button (click)="logout()" *ngIf="isUserLogin">Logout</a>
+				</div>
+			</div>
+		</div>
+		<div class="header" #logoWrapper fxHide="true" fxShow.lt-md>
+			<div class="responsive-heading">
+				<img src="../../assets/icons/image.png" class="snap_logo" alt="" />
+			</div>
+		</div>
+	</mat-toolbar-row>
+</mat-toolbar>

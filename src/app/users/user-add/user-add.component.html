@@ -1,0 +1,103 @@
+<div class="container">
+	<div class="panel panel-primary heading-wrapper">
+		<div class="panel panel-heading">
+			<span class="panel-title" id="heading"> Add User </span>
+		</div>
+	</div>
+	<div class="form-wrapper">
+		<div class="example-container" linear>
+			<form [formGroup]="authUserForm" #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+				<div>
+					<div id="userDiv">
+						<span id="userSpan">
+							User Details
+						</span>
+					</div>
+					<div fxLayout="row wrap" 
+						fxLayoutGap="23px" 
+						fxLayout.lt-md="column" 
+						fxFlexAlign="center">
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<mat-select #type formControlName="userType" placeholder="User Type" required>
+								<mat-option 
+									value="SYSTEM_ADMIN"
+									*ngIf='role === "SYSTEM_ADMIN"'>
+									System Admin
+								</mat-option>
+								<mat-option 
+									value="KYC_AGENT"
+									*ngIf='role === "SYSTEM_ADMIN"'>
+									Kyc Agent
+								</mat-option>
+								<mat-option 
+									value="INST_ADMIN"
+									*ngIf='role === "INST_ADMIN"'>
+									Institute Admin
+								</mat-option>
+								<mat-option 
+									value="INS_DATA_MANAGER"
+									*ngIf='role === "INST_ADMIN"'>
+									Institute Data Manager
+								</mat-option>
+								<mat-option 
+									value="AFF_INS_DATA_MANAGER"
+									*ngIf='role === "INST_ADMIN"'>
+									Aff. Institute Data Manager
+								</mat-option>
+								<mat-option 
+									value="INST_REVIEWER"
+									*ngIf='role == "INS_DATA_MANAGER"'>
+									Data Reviewer
+								</mat-option>
+								<mat-option 
+									value="AFF_INST_REVIEWER"
+									*ngIf='role == "AFF_INS_DATA_MANAGER"'>
+									Data Reviewer
+								</mat-option>
+								<mat-option 
+									value="DATA_APPROVER"
+									*ngIf='role == "AFF_INS_DATA_MANAGER"'>
+									Data Approver
+								</mat-option>
+								<mat-option 
+									value="DATA_CERTIFIER"
+									*ngIf='role == "INS_DATA_MANAGER"'>
+									Data Certifier
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<mat-select placeholder="Department" 
+							formControlName="department_ID"
+							required>
+								<mat-option *ngFor="let department of departments;" [value]='department.id'>{{department.department_Name}}</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Name" 
+							formControlName="name"
+							required>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Email ID" 
+							formControlName="emailId"
+							required>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Phone No." 
+							formControlName="phone"
+							required>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="action-btns text-center">
+					<button mat-raised-button class="action-btn">Add</button>
+					<button mat-raised-button class="action-btn" (click)="goBack()">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

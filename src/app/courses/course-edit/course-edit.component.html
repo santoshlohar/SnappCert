@@ -1,0 +1,82 @@
+<div class="container">
+	<div class="panel panel-primary heading-wrapper">
+		<div class="panel panel-heading">
+			<span class="panel-title" id="heading"> Edit Institute Course Data </span>
+		</div>
+	</div>
+	<div class="form-wrapper">
+		<div class="example-container" linear>
+			<form [formGroup]="insCourseForm" #courseEditForm="ngForm" (ngSubmit)="editCourse(courseEditForm)">
+				<div>
+					<div id="courseDiv">
+						<span id="courseSpan">
+							Course Details
+						</span>
+					</div>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Department ID" formControlName="department_ID" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<mat-select formControlName="Course_Type" placeholder="Course Type" required>
+							<mat-option value="school"> School Board </mat-option>
+							<mat-option value="graduation"> Graduation Degree </mat-option>
+							<mat-option value="Master"> Master Degree </mat-option>
+							<mat-option value="doctorate"> Doctorate </mat-option>
+							<mat-option value="diploma"> Diploma </mat-option>
+							<mat-option value="certificateProgram"> Certificate Program </mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Course ID" formControlName="Course_ID" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Course Name" formControlName="Course_Name" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Specialization" formControlName="Specialization">
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Certificate Generate" formControlName="Certificate_Generate">
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<mat-select formControlName="Certificate_Print" placeholder="Certificate Print" required>
+							<mat-option value="yes">Yes</mat-option>
+							<mat-option value="no">No</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<mat-select formControlName="GPA_Calculated" placeholder="GPA Calculated" required>
+							<mat-option value="yes">Yes</mat-option>
+							<mat-option value="no">No</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<mat-select formControlName="Subject_Credits" placeholder="Subject Credits" required>
+							<mat-option value="yes">Yes</mat-option>
+							<mat-option value="no">No</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Course Duration" formControlName="Course_Duration" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<mat-select formControlName="Duration_Unit" placeholder="Duration Unit" required>
+							<mat-option value="month">Month</mat-option>
+							<mat-option value="year">Year</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Term Type" formControlName="Term_Type">
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="No. of Terms" formControlName="No_of_Terms">
+					</mat-form-field>
+					<div class="action-btns text-center">
+						<button mat-raised-button class="action-btn">Update</button>
+						<button mat-raised-button class="action-btn" (click)=goBack()>Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

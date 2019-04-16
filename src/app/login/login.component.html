@@ -1,3 +1,89 @@
-<p>
-  login works!
-</p>
+<!-- <h1 mat-dialog-title class="text-center"> Login </h1>
+<div mat-dialog-content>
+		<form class="example-form" (ngSubmit)="userLogin(login)" #login="ngForm">
+			<table class="example-full-width" cellspacing="0">
+			<tr>
+				<td>
+				<mat-form-field class="example-full-width">
+				<input 
+					matInput 
+					placeholder="Email ID" 
+					[(ngModel)]="emailId" 
+					name="emailId" 
+					required>
+				</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<mat-form-field class="example-full-width">
+				<input matInput 
+					placeholder="Password" 
+					[(ngModel)]="password" 
+					type="password" 
+					name="password" 
+					required>
+				</mat-form-field>
+				</td>
+			</tr>
+			</table>
+			<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+			<div mat-dialog-actions>
+				<button mat-button type="submit">Login</button>
+				<button mat-button cdkFocusInitial>Ok</button>
+			</div>
+		</form>
+</div> -->
+
+
+<div mat-dialog-title class="text-center logo-color dialog-header">
+	<b> Sign In </b>
+</div>
+
+<mat-dialog-content [formGroup]="userLogin" #loginForm="ngForm">  
+	<div class="input-row">
+		<div class="icon-wrap">
+			<img src="../../assets/icons/Email.svg" alt="">
+		</div>
+		<div>
+			<mat-form-field>
+				<input matInput
+					placeholder="Email ID"
+					formControlName="emailId"
+					required
+					email>
+			</mat-form-field>
+		</div>
+	</div>
+    <div class="input-row">
+		<div class="icon-wrap">
+			<img src="../../assets/icons/pwd.svg" alt="">
+		</div>
+		<div>
+			<mat-form-field>
+				<input matInput
+					placeholder="Password"
+					formControlName="password"
+					required
+					type="password">
+			</mat-form-field>
+		</div>
+	</div>
+	<div class="input-row">
+		<div class="icon-wrap">
+			<input style="zoom: 1.5;" type="checkbox" name="remember" value="0"> 
+		</div>
+		<div>
+			<p style="margin-top: 20%;">Remember Me</p>
+		</div>
+	</div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="text-center">
+	<div class="action-btns">
+		<button mat-raised-button style="width: 40%; border-radius: 10px;" class="logo-background" (click)="login(loginForm)">Login</button>
+	</div>
+	<div>
+		<a (click)="goToForgotPassword()" class="forgotpass"> Forgot Your Password? </a>
+	</div>
+</mat-dialog-actions>

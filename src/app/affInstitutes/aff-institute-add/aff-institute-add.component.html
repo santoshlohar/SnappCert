@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="panel panel-primary heading-wrapper">
+        <div class="panel panel-heading">
+            <span class="panel-title" id="heading"> Add Affliated Institute </span>
+        </div>
+    </div>
+    <div class="addInst-wrapper">
+        <div class="example-container" linear>
+            <form [formGroup]="affliatedInsForm" #affInsForm="ngForm" (ngSubmit)="addAffInst(affInsForm)">
+                <div>
+                    <div id="affDiv">
+                        <span id="addSpan">
+                            Affiliated Institute
+                        </span>
+                    </div>
+                    <div fxLayout="row wrap" 
+                        fxLayoutGap="23px" 
+                        fxLayout.lt-md="column" 
+                        fxFlexAlign="center">
+                        <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+                            <input matInput 
+                            placeholder="Institute ID" 
+                            formControlName="instituteId"
+                            required>
+                        </mat-form-field>
+                        <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+                            <mat-select placeholder="Department" 
+                            formControlName="departmentId"
+                            required>
+                                <mat-option *ngFor="let department of departments;" [value]='department.id'>{{department.department_Name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+                            <input matInput 
+                            placeholder="Affiliated Institute ID"
+                            formControlName="affInstituteId" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+                            <input matInput 
+                            placeholder="Affiliated Institute Name"
+                            formControlName="affInstituteName" 
+                            required>
+                        </mat-form-field>
+                        <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+                            <input matInput 
+                            placeholder="Affiliated Institute Location"
+                            formControlName="affInstituteLoc" 
+                            required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="action-btns text-center">
+                    <button mat-raised-button class="action-btn">Save</button>
+                    <button mat-raised-button class="action-btn" (click)="goBack()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

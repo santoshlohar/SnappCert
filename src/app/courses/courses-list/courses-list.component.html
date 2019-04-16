@@ -1,0 +1,188 @@
+<div class="container">
+	<div class="wrapper">
+		<div class="outer-div">
+			<div class="inner-div header-btns" *ngIf="userType == 'INS_DATA_MANAGER'">
+				<a mat-button class="add-btn" routerLink="/courseAdd">Add Institute Course</a>
+			</div>
+			<span class="spacer"></span>
+			<div class="inner-div header-btns">
+				<div class="mat-header-btns">
+					<a mat-button class="add-btn" (click)="viewSelectCourses()">Selected Courses View</a>
+					<a mat-button class="add-btn" (click)="selectCourses()">Aff. Institute Course</a>
+				</div>
+			</div>
+		</div>
+		<div class="list-container">
+			<mat-table [dataSource]="dataSource" 
+			class="mat-table-item mat-elevation-z8">
+				<ng-container matColumnDef="select" sticky>
+					<mat-header-cell *matHeaderCellDef>
+						<mat-checkbox (change)="$event ? masterToggle() : null"
+						[checked]="selection.hasValue() && isAllSelected() == true"
+						[indeterminate]="selection.hasValue() && !isAllSelected()">
+						</mat-checkbox>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let row"> 
+						<mat-checkbox (click)="$event.stopPropagation()"
+						(change)="$event ? selection.toggle(row) : null"
+						[checked]="selection.isSelected(row) == true">
+						</mat-checkbox>
+					</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="actions">
+					<mat-header-cell *matHeaderCellDef> 
+						<div>Actions</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.UserType}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="instituteId">
+					<mat-header-cell *matHeaderCellDef> 
+						<div>Institute ID</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="instituteIdFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.instituteID}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="deptId">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Department ID</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="deptIdFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.Department_ID}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="courseType">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Course Type</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="courseTypeFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.Course_Type}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="courseId">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Course ID</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="courseIdFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.Course_ID}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="courseName">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Course Name</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="courseNameFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.Course_Name}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="specialization">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Specialization</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="specFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.Specialization}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="courseDuration">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Course Duration</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="durationFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.Course_Duration}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="durationUnit">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Duration Unit</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="unitFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.Duration_Unit}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="termType">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Term Type</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="termTypeFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.Term_Type}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="noOfTerms">
+					<mat-header-cell *matHeaderCellDef>
+						<div>No. of Terms</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="termNoFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.No_of_Terms}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="status">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Status</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="statusFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="_id">
+					<mat-header-cell *matHeaderCellDef> 
+						<div>Actions </div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let row">
+						<mat-slide-toggle class="toggle" 
+						[checked]="row.status=='Active'" 
+						(change)="activate(row)"></mat-slide-toggle>
+					</mat-cell>
+				</ng-container>
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+			</mat-table>
+		</div>
+		<div>
+			<mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
+		</div>
+	</div>
+</div>

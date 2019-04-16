@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.txt-clr-white {
+    color: white !important;
+}
+html, body { height: 100%; }
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+body { margin: 0; font-family: "Roboto"; }
+
+.logo-color {
+    color: #E2BE40;
+}
+
+.logo-background {
+    background-color: #E2BE40;
+}

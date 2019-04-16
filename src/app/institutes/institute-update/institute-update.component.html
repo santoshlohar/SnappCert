@@ -1,0 +1,124 @@
+<div class="container">
+	<div class="panel panel-primary headeing">
+		<div class="panel panel-heading">
+			<h3 class="panel-title">Add Affliated Institute</h3>
+		</div>
+	</div>
+	<div class="form-wrapper">
+		<div class="example-container" linear>
+			<form [formGroup]="instituteDetailForm" #intDetails="ngForm" (ngSubmit)="updateInstitute()">
+				<div class="mainDiv">
+					<div class="instUpdateDiv">
+						<span class="instUpdateSpan">
+							Requester Details
+						</span>
+					</div>
+					<mat-form-field class="input-field">
+						<input disabled matInput placeholder="Requester Name" formControlName="requesterName">
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input disabled matInput placeholder="Requester Email" formControlName="requesteremailId">
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input disabled matInput placeholder="Requester Phone" formControlName="requesterphoneNo">
+					</mat-form-field>
+				</div>
+				<div class="mainDiv">
+					<div class="instUpdateDiv">
+						<span class="instUpdateSpan">
+							Update Institute
+						</span>
+					</div>
+					<mat-form-field class="input-field">
+						<input disabled matInput placeholder="Institute Type" formControlName="instituteType">
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Institute ID" formControlName="instituteId" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input disabled matInput placeholder="Institute Name" formControlName="instituteName">
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Registration ID" formControlName="registrationId" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Date Of Establishment" formControlName="establishmentDate" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Address 1" formControlName="address1" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Address 2" formControlName="address2">
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="State" formControlName="state" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="City" formControlName="city" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Administrator Head" formControlName="administratorName" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Administrator Head Email ID" formControlName="administratorEmailId" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="BoardLine No." formControlName="boardLineNumber" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Location" formControlName="location" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Website" formControlName="website" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Recogniser" formControlName="recognizedBy" required>
+					</mat-form-field>
+				</div>
+				<div class="mainDiv">
+					<div class="instUpdateDiv">
+						<span class="instUpdateSpan">
+							Institute Admin
+						</span>
+					</div>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Admin Name" formControlName="InstAdminName" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Admin Email" formControlName="InstAdminEmailId" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="Admin Phone Number" formControlName="InstAdminPhoneNo" required>
+					</mat-form-field>
+				</div>
+				<div class="mainDiv">
+					<div class="instUpdateDiv">
+						<span class="instUpdateSpan">
+							KYC Agent
+						</span>
+					</div>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="KYC Agent Name" formControlName="kycAgentId" required>
+					</mat-form-field>
+					<mat-form-field class="input-field">
+						<input matInput placeholder="KYC Status" formControlName="kycStatus" required>
+					</mat-form-field>
+				</div>
+				<div class="mainDiv">
+					<div class="instUpdateDiv">
+						<span class="instUpdateSpan">
+							KYC Agent Comments
+						</span>
+					</div>
+					<mat-form-field class="input-field comment-div">
+							<textarea matInput row="5" placeholder="Leave a comment" formControlName="kycComments" ></textarea>
+					</mat-form-field>
+				</div>
+				<div class="action-btns text-center">
+					<button mat-raised-button class="action-btn">Add</button>
+					<button mat-raised-button class="action-btn" (click)="goBack()">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

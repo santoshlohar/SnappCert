@@ -1,0 +1,168 @@
+/* .home-page {
+    position: relative;
+    z-index: 1;
+    background: url(../../assets/images/BlockChain-min.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.home-page::after {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: .4;
+    width: 100%;
+    height: 100%; 
+}
+
+.text-block {
+    
+} */
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html body {
+    width: 100%;
+    height: 100%;
+}
+
+.home {
+    background-image: url(../../assets/images/555.jpg);
+    background-size: cover;
+    background-repeat: repeat;
+    
+    width: 100%;
+    height: 657px;
+    min-width: 100%;
+    /* min-height: 100%; */
+    position: relative;
+    width: 690px;
+}
+
+.home::before {
+    /* background-image: url(../../assets/images/BlockChain-min.png);
+    background-size: cover; */
+    background-color: #343a40;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 85%;
+}
+
+.text-block {
+    background-color: #0a0a0a3b;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.body-block {
+    color: #fff;
+    /* text-shadow: #343a40 2px 2px; */
+    min-width: 100%;
+    min-height: 12em;
+    position: relative;
+}
+
+.body-block::before {
+    content: "";
+    display: block;
+    position: absolute;
+    margin-left: 0;
+    min-width: 100%;
+    min-height: 12em;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+.body-block {
+    width: 90%;
+    text-align: center;
+}
+
+#body-heading {
+    /* text-transform: uppercase; */
+    display: block;
+    padding: 1px 122px;
+    font-size: 65px;
+    font-weight: 700;
+    font-family: Roboto;
+    color: #fff;
+}
+
+.body-text {
+    font-size: 20px;
+    padding: 1px 150px;
+}
+
+.header-block {
+    display: flex;
+} 
+
+.img-wrapper {
+    width: 145px;
+    padding: 0px 19px;
+    margin-top: 27px;
+}
+
+.login-btn-wrapper {
+    width: 195px;
+    padding: 34px 42px;;
+}
+
+.login-btn {
+    /* border: 2px solid #fff; */
+    border-radius: 12px;
+    width: 110px;
+    height: 40px;
+    padding: 7px 28px;
+    cursor: pointer;
+}
+
+.btn-text {
+    color: #444444;
+}
+
+.reg-btn-wrapper {
+    width: 100%;
+    margin-top: 4%;
+    cursor: pointer;
+}
+
+.reg-btn {
+    /* border: 2px solid #fff; */
+    border-radius: 12px;
+    width: 216px;
+    height: 43px;
+    margin: 12px auto;
+    padding: 8px 28px;
+    text-shadow: none;
+}

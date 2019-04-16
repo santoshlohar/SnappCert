@@ -1,0 +1,103 @@
+<div class="container">
+	<div class="wrapper">
+		<div class="outer-div">
+			<div class="inner-div header-btns">
+				<div class="mat-header-btns">
+					<a mat-button class="add-btn" routerLink="/affInstituteAdd">Add Affl. Institute</a>
+				</div>
+			</div>
+		</div>
+		<div class="list-container">
+			<mat-table [dataSource]="dataSource" 
+			class="mat-table-item mat-elevation-z8">
+				<ng-container matColumnDef="instituteId">
+					<mat-header-cell *matHeaderCellDef> 
+						<div>Institute ID </div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="instituteIdFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.Institution_ID}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="deptId">
+					<mat-header-cell *matHeaderCellDef> 
+						<div>Department ID</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="departmentIdFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.department_ID}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="affInstId">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Affl. Inst ID</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="affInstIdFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.AfflInstitution_ID}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="affInstName">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Affl. Inst Name</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="affInstNameFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.afflInstitute_Name}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="affInsLocation">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Affl. Institute Location</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="affInstLocFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.afflInstitute_loc}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="status">
+					<mat-header-cell *matHeaderCellDef>
+						<div> Status </div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="affInstStatusFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="id">
+					<mat-header-cell *matHeaderCellDef> 
+						<div>Actions </div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let row">
+						<mat-slide-toggle class="toggle" 
+						[checked]="row.status=='Active'" 
+						(change)="activate(row)"></mat-slide-toggle>
+					</mat-cell>
+				</ng-container>
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+			</mat-table>
+		</div>
+		<div>
+			<mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="panel panel-primary heading-wrapper">
+		<div class="panel panel-heading">
+			<span class="panel-title" id="heading">Add Institute Department</span>
+		</div>
+	</div>
+	<div class="addInst-wrapper">
+		<div class="example-container" linear>
+			<form [formGroup]="insDeptForm" #deptForm="ngForm" (ngSubmit)="addDept(deptForm)">
+				<div>
+					<div id="deptDiv">
+						<span id="deptSpan">
+							Department
+						</span>
+					</div>
+					<div fxLayout="row wrap" 
+						fxLayoutGap="23px" 
+						fxLayout.lt-md="column" 
+						fxFlexAlign="center">
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Department ID" 
+							formControlName="department_ID"
+							required>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Department Name" 
+							formControlName="department_Name"
+							required>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="action-btns text-center">
+					<button mat-raised-button class="action-btn">Save</button>
+					<button mat-raised-button class="action-btn" (click)="goBack()">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
