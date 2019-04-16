@@ -1,0 +1,32 @@
+.sidebar-container {
+	height: 100%;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+#sidenav {
+	margin-top: 64px;
+}
+
+/* .sidebar-content {
+	width: 0%;
+	height: 0%;
+} */
+
+.main-body {
+	display: flex;
+	height: 100%;
+}
+
+.page-sidebar {
+    width: 17%;
+    height: 100%;
+}
+
+.page-content {
+    width: 83%;
+    flex: 1;
+    height: 100%;
+}

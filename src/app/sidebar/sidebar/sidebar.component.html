@@ -1,0 +1,15 @@
+<mat-sidenav-container class="sidebar-container" (backdropClick)="close()">
+	<mat-sidenav #sidenav mode="over" opened="false" _isFocusTrapEnabled="true">
+		<p>I am toggled sidebar</p>
+	</mat-sidenav>
+	<mat-sidenav-content class="sidebar-content">
+		<div class="main-body">
+			<div class="page-sidebar" *ngIf="isUserLogin">
+				<app-page-sidebar></app-page-sidebar>
+			</div>
+			<div class="page-content body-background">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>
