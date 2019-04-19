@@ -1,13 +1,16 @@
 .sidebar-container {
 	height: 100%;
 	position: relative;
+	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 }
 
 .mat-sidenav {
-	width: 32%;
+	width: 35%;
+	z-index: 999;
+	padding-top: 60px; 
 }
 
 .main-body {

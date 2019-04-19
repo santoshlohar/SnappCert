@@ -79,6 +79,10 @@
 
  */
 
+ .mat-toolbar{
+    z-index: 1;
+ }
+
  .mat-toolbar-row {
     position: fixed;
     position: -webkit-fixed;
