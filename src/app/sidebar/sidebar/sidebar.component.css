@@ -10,7 +10,8 @@
 .mat-sidenav {
 	width: 35%;
 	z-index: 999;
-	padding-top: 60px; 
+	padding-top: 60px;
+	position: fixed; 
 }
 
 .main-body {
