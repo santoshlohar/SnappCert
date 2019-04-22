@@ -79,11 +79,11 @@
 
  */
 
- .mat-toolbar{
+.mat-toolbar{
     z-index: 1;
- }
+}
 
- .mat-toolbar-row {
+.mat-toolbar-row {
     position: fixed;
     position: -webkit-fixed;
     top: 0;
