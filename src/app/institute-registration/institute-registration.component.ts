@@ -65,7 +65,7 @@ export class InstituteRegistrationComponent implements OnInit {
 
 	public hasError = (controlName: string, errorName: string) =>{
 		
-		return  this.instituteFormGroup .controls[controlName].hasError(errorName);
+		return  this.instituteFormGroup.controls[controlName].hasError(errorName);
 		
     }
 
