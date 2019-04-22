@@ -79,11 +79,15 @@
 
  */
 
+ .mat-toolbar{
+    z-index: 1;
+ }
+
  .mat-toolbar-row {
     position: fixed;
     position: -webkit-fixed;
     top: 0;
-    z-index: 1000;
+    z-index: 5;
     background-color: #e2be40;
 }
 
@@ -103,11 +107,11 @@
 
 .responsive-heading {
     width: 61px;
-    height: 64px;
+    height: 55px;
     -webkit-transform: skew(35deg);
     transform: skew(35deg);
     background: #f7f4f4;
-    padding: 33px 45px;
+    padding: 28px 45px;
     margin-right: -39px;
 }
 

@@ -55,6 +55,7 @@ import { StudentViewComponent } from './batches/student-view/student-view.compon
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { SidebarComponent } from './sidebar/sidebar/sidebar.component';
 
 @NgModule({
     declarations: [
@@ -94,7 +95,8 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
         StudentViewComponent,
         AccessDeniedComponent,
         UserEditComponent,
-        ErrorDialogComponent
+        ErrorDialogComponent,
+        SidebarComponent
     ],
     entryComponents: [ErrorDialogComponent],
     imports: [
