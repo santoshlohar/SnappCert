@@ -37,12 +37,14 @@ import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
 import { Role } from './modals/role';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
     { path: 'login', component: LoginComponent},
     { path: 'forgotPassword', component: ForgotPasswordComponent},
     { path: 'registration', component: InstituteRegistrationComponent},
+    { path: 'resetPassword', component: ResetPasswordComponent},
     { path: 'generatePassword', component: PwdGenerateComponent},
     { path: 'verifyOtp', component: VerifyOtpComponent},
     { 

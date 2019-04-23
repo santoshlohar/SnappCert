@@ -56,6 +56,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { SidebarComponent } from './sidebar/sidebar/sidebar.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
     declarations: [
@@ -96,7 +97,8 @@ import { SidebarComponent } from './sidebar/sidebar/sidebar.component';
         AccessDeniedComponent,
         UserEditComponent,
         ErrorDialogComponent,
-        SidebarComponent
+        SidebarComponent,
+        ResetPasswordComponent
     ],
     entryComponents: [ErrorDialogComponent],
     imports: [
