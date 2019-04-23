@@ -132,3 +132,12 @@
 .example-container {
     padding: 12px 16px;
 }
+
+.margin-right-30 {
+    margin-right: 30px;
+}
+
+.add-btn {
+    color: #333 !important;
+    background-color: #e2be40; 
+}

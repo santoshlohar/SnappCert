@@ -19,7 +19,7 @@
                                 fxFlexAlign="center">
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
                                     <input matInput type="text" placeholder="Requester Name" formControlName="requesterName" required>
-                                    <!-- <mat-error *ngIf="hasError('requesterName', 'required')">Requester Name is required!</mat-error> -->
+                                    <!-- <mat-error *ngIf="requesterName.hasError('required')">Requester Name is required!</mat-error> -->
                                 </mat-form-field>
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
                                     <input matInput type="email" placeholder="Requester Email" formControlName="requesterEmail" required email>
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div>
-                            <button mat-button matStepperNext>Next</button>
+                            <button mat-button matStepperNext class="add-btn">Next</button>
                         </div>
                     </form>
                 </mat-step>
@@ -69,7 +69,8 @@
                                     <mat-error *ngIf="hasError('instituteName', 'required')">Institute Name is required!</mat-error>
                                 </mat-form-field>
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-                                    <input matInput type="text" placeholder="Date of Establishment" formControlName="establishDate">
+                                    <input matInput type="text" placeholder="Date of Establishment(DD-MM-YYYY)" formControlName="establishDate" required>
+                                    <mat-error *ngIf="hasError('establishDate', 'required')">Date of Establishment is required!</mat-error>
                                 </mat-form-field>
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
                                     <input matInput type="text" placeholder="Address Line 1" formControlName="address1">
@@ -138,8 +139,8 @@
                             </div>
                         </div>
                         <div>
-                            <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button matStepperNext>Next</button>
+                            <button mat-button matStepperPrevious class="add-btn margin-right-30">Back</button>
+                            <button mat-button matStepperNext class="add-btn">Next</button>
                         </div>
                     </form>
                 </mat-step>
@@ -169,8 +170,8 @@
                             </div>
                         </div>
                         <div>
-                            <button mat-button matStepperNext>Next</button>
-                            <button mat-button type="submit" (click)="registerInstitute(requester,institute,admin)">Save</button> 
+                            <button mat-button matStepperNext class="add-btn margin-right-30">Next</button>
+                            <button mat-button type="submit" class="add-btn" (click)="registerInstitute(requester,institute,admin)">Save</button> 
                         </div>
                     </form>
                 </mat-step>

@@ -20,7 +20,6 @@ export class InstituteRegistrationComponent implements OnInit {
 	reqesterFormGroup: FormGroup;
 	instituteFormGroup: FormGroup;
 	adminFormGroup: FormGroup;
-
 	constructor(private http: HttpClient,
 				private _formBuilder: FormBuilder, 
 				private router: Router,
@@ -37,7 +36,7 @@ export class InstituteRegistrationComponent implements OnInit {
 			instType: ['', Validators.required],
 			code: [''],
 			instituteName: ['', Validators.required],
-			establishDate: [''],
+			establishDate: ['', Validators.required],
 			address1: [''],
 			address2: [''],
 			state: [''],
@@ -61,12 +60,10 @@ export class InstituteRegistrationComponent implements OnInit {
 			email: ['', Validators.required],
 			phone: ['', Validators.required]
 		});
-	}
+    }
 
-	public hasError = (controlName: string, errorName: string) =>{
-		
-		return  this.instituteFormGroup.controls[controlName].hasError(errorName);
-		
+	public hasError = (controlName: string, errorName: string) =>{		
+		return  this.instituteFormGroup.controls[controlName].hasError(errorName);		
     }
 
 	registerInstitute(requester: NgForm, institute: NgForm, admin: NgForm) {
@@ -79,9 +76,9 @@ export class InstituteRegistrationComponent implements OnInit {
 			name: institute.value.instituteName,
 			doe: institute.value.establishDate,
 			address: {
-				address1: institute.value.establishDate,
-				address2: institute.value.establishDate,
-				state: institute.value.establishDate,
+				address_line_1: institute.value.address1,
+				address_line_2: institute.value.address2,
+				state: institute.value.state,
 				city: institute.value.city
 			},
 			requester: {
@@ -117,17 +114,14 @@ export class InstituteRegistrationComponent implements OnInit {
 
 		console.log(data);
 		
-		// this.url = 'http://localhost:3000/api/v1/registerInstitute';
+		this.url = 'http://localhost:3000/api/v1/institute/register';
 
-		// this.http.post(this.url, data)
-		// 	.subscribe((response: any) => {
-		// 		if(response.message == 'success') {
-		// 			this.router.navigate(['/']);
-		// 		}
-		// 	},
-		// 	(error) => {
-		// 		console.log(error);
-		// 	});
+		this.http.post(this.url, data)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					this.router.navigate(['/']);
+				}       
+            });
 	}
 
 	goBack() {
