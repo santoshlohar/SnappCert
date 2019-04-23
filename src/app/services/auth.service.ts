@@ -33,15 +33,17 @@ export class AuthService {
 
 
 	login(data) {
-		return this.http.post(this.baseURL+'/authenticateUser', data)
+		return  this.http.post(this.baseURL+'/user/signin', data)
 					.pipe(
-						map((user: UserModel) => {
-							if(user && user['token']) {
-								localStorage.setItem('user', JSON.stringify(user));
-								localStorage.setItem('access_token', user.token);
-								this.currentUserSubject.next(user);
+						map((result: any) => {
+							if(result.success == true) {
+								this.user = result.data;
+								localStorage.setItem('user', JSON.stringify(this.user));
+								localStorage.setItem('access_token', this.user.accessToken);
+
+								this.currentUserSubject.next(this.user);
 							}
-							return user;	
+							return this.user;	
 						})
 					)
 	}
@@ -55,8 +57,8 @@ export class AuthService {
 
 	getAccessToken() {
 		this.user = JSON.parse(localStorage.getItem('user'));
-		if(this.user.token){
-			var accessToken = this.user.token;
+		if(this.user.accessToken){
+			var accessToken = this.user.accessToken;
 			return accessToken;
 		}
 		return false;
@@ -82,10 +84,18 @@ export class AuthService {
 		const decodeToken = this.jwtHelperService.decodeToken(token);
 
 		if (!decodeToken) {
-			console.log('Invalid token');
 			return false;
 		}
-		return allowedRoles.includes(decodeToken.data['role']);
+		return allowedRoles.includes(decodeToken['role']);
+	}
+
+	forgotPassword(data: object) {
+		return	this.http.post(this.baseURL+'/user/forgotpassword', data)
+				.pipe(
+					map((result: any) => {
+						return result;	
+					})
+				)
 	}
 
 }

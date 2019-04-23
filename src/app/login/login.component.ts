@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 	userLogin: FormGroup;
 	loginData: any = {};
 	url: string;
-	userData: any;
-	type: string;
+	user: any;
+	role: string;
 
 	constructor(public dialogRef: MatDialogRef<LoginComponent>,
 				private formBuilder: FormBuilder,
@@ -37,17 +37,23 @@ export class LoginComponent implements OnInit {
 		this.dialogRef.close();
 	}
 
+	public hasError = (controlName: string, errorName: string) =>{		
+		return  this.userLogin.controls[controlName].hasError(errorName);		
+	}
+
 	login(form: NgForm) {
-		this.loginData.emailId = form.value.emailId;
+		this.loginData.email = form.value.emailId;
 		this.loginData.password = form.value.password;
 		 
 		this.authService.login(this.loginData)
-			.subscribe((response) => {
-				this.userData = response;
-				this.type = this.userData.UserType;
-				this.roleService.renderScreen(this.type);
-				
-				this.dialogRef.close();
+			.subscribe((response: any) => {
+				if(response) {
+					this.user = response;
+					this.role = this.user.role;
+					this.roleService.renderScreen(this.role);
+
+					this.dialogRef.close();
+				}
 			})
 	};
 

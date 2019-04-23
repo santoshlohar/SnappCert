@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
 
 	ngOnInit() {	
 		this.user = JSON.parse(localStorage.getItem('user'));
-		this.roleName(this.user.UserType);
+		this.roleName(this.user.role);
 	}
 
 	gotoLogin() {
@@ -94,7 +94,7 @@ export class HeaderComponent implements OnInit {
 			this.role = 'Requester';
 		} else if(type == 'KYC_AGENT') {
 			this.role = 'KYC Agent';
-		} else if(type == 'INST_ADMIN') {
+		} else if(type == 'institute_admin') {
 			this.role = 'Institute Admin';
 		} else if(type == 'INS_DATA_MANAGER') {
 			this.role = 'Data Manager';

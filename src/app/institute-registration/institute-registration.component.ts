@@ -64,7 +64,7 @@ export class InstituteRegistrationComponent implements OnInit {
 
 	public hasError = (controlName: string, errorName: string) =>{		
 		return  this.instituteFormGroup.controls[controlName].hasError(errorName);		
-    }
+	}
 
 	registerInstitute(requester: NgForm, institute: NgForm, admin: NgForm) {
 		if (requester.invalid || institute.invalid || admin.invalid) {

@@ -14,7 +14,7 @@ export class UserRolesService {
 		systemAdmin: 'SYSTEM_ADMIN',
 		requester: 'REG_REQESTER',
 		kycAgent: 'KYC_AGENT',
-		insAdmin: 'INST_ADMIN',
+		insAdmin: 'institute_admin',
 		insDataMgr: 'INS_DATA_MANAGER',
 		affInsDataMgr: 'AFF_INS_DATA_MANAGER',
 		instReviewer: 'INST_REVIEWER',
