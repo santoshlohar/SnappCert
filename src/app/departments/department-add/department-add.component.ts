@@ -16,9 +16,9 @@ export class DepartmentAddComponent implements OnInit {
 	loggedInUser;
 	inst_id;
 	dept = {
-		instituteID: '',
-		department_ID: '',
-		department_Name: ''
+		instituteId: '',
+		code: '',
+		name: ''
 	};
 	url: string;
 
@@ -30,11 +30,11 @@ export class DepartmentAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
-		this.inst_id = this.loggedInUser.instituteID;
+		this.inst_id = this.loggedInUser.instituteId;
 		this.insDeptForm = this._formBuilder.group({
-			instituteID: [{value: this.inst_id, disabled: true}, Validators.required],
-			department_ID: ['', Validators.required],
-			department_Name: ['', Validators.required]
+			instituteId: [{value: this.inst_id, disabled: true}, Validators.required],
+			code: ['', Validators.required],
+			name: ['', Validators.required]
 		});
 	}
 
@@ -52,20 +52,17 @@ export class DepartmentAddComponent implements OnInit {
 		if(deptData.invalid) {
 			return;
 		}
-		this.url = '/department';
+		this.url = '/department/create';
 
-		this.dept.instituteID = this.inst_id;
-		this.dept.department_ID = deptData.value.department_ID;
-		this.dept.department_Name = deptData.value.department_Name;
-		this.apiService.post(this.url,this.dept)
+		this.dept.instituteId = this.inst_id;
+		this.dept.code = deptData.value.code;
+		this.dept.name = deptData.value.name;
+		this.apiService.post(this.url, this.dept)
 			.subscribe((response: any) => {
-				if(response.message == 'success') {
-					if(response.data) {
-						this.openSnackBar('Your department added successfully.', "department" );
-						this.viewDepartments();
-					}
-				} else {
-					this.openSnackBar('Your department added failed.', "OOPS!" );
+				console.log(response);
+				if(response.success == true) {
+					this.openSnackBar('Your department added successfully.', "department" );
+					this.viewDepartments();
 				}
 			});
 	}
