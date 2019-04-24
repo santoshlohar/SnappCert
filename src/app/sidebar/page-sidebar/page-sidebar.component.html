@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidebar-container">
 	<mat-sidenav-content class="sidenav">
-		<div *ngIf='userType == "KYC_AGENT"' >
+		<div *ngIf='role == "KYC_AGENT"' >
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>
@@ -12,7 +12,7 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div>
-		<div *ngIf='userType == "institute_admin"'>
+		<div *ngIf='role == "institute_admin"'>
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn" fxShow="true" fxHide.lt-md> Dashboard </span>
@@ -34,7 +34,7 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div>
-		<div *ngIf='userType == "INS_DATA_MANAGER"'>
+		<div *ngIf='role == "INS_DATA_MANAGER"'>
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn" fxShow="true" fxHide.lt-md> Dashboard </span>
@@ -61,7 +61,7 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div> 
-		<div *ngIf='userType == "AFF_INS_DATA_MANAGER"'>
+		<div *ngIf='role == "AFF_INS_DATA_MANAGER"'>
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>
@@ -88,7 +88,7 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div>
-		<div *ngIf='userType == "INST_REVIEWER"' >
+		<div *ngIf='role == "INST_REVIEWER"' >
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>
@@ -100,7 +100,7 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div>
-		<div *ngIf='userType == "AFF_INST_REVIEWER"' >
+		<div *ngIf='role == "AFF_INST_REVIEWER"' >
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>
@@ -112,7 +112,7 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div>
-		<div *ngIf='userType == "DATA_CERTIFIER"'>
+		<div *ngIf='role == "DATA_CERTIFIER"'>
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>
@@ -123,7 +123,7 @@
 				<span class="link-btn"> Certificates </span>
 			</div>
 		</div>
-		<div *ngIf='userType == "DATA_APPROVER"' >
+		<div *ngIf='role == "DATA_APPROVER"' >
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>

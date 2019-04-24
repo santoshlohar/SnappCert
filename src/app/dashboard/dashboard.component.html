@@ -2,7 +2,7 @@
 	<div class="panel panel-primary headeing" hidden>
 	</div>
 	<div class="">
-		<div class="docs-component-category-list" *ngIf='userType == "institute_admin"'>
+		<div class="docs-component-category-list" *ngIf='role == "institute_admin"'>
 			<mat-card class="docs-component-category-list-card mat-card">
 				<img mat-card-image src="/assets/icons/department.png" alt="department">
 				<mat-card-title class="mat-card-title">My Departments</mat-card-title>
@@ -24,7 +24,7 @@
 				<mat-card-content class="docs-component-category-list-card-summary mat-card-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</mat-card-content>
 			</mat-card>
 		</div>
-		<div class="docs-component-category-list" *ngIf='userType == "INS_DATA_MANAGER"'>
+		<div class="docs-component-category-list" *ngIf='role == "INS_DATA_MANAGER"'>
 			<mat-card class="docs-component-category-list-card mat-card">
 				<img mat-card-image src="/assets/icons/department.png" alt="department">
 				<mat-card-title class="mat-card-title">My Departments</mat-card-title>
@@ -51,7 +51,7 @@
 				<mat-card-content class="docs-component-category-list-card-summary mat-card-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</mat-card-content>
 			</mat-card>
 		</div>
-		<div class="docs-component-category-list" *ngIf='userType == "AFF_INS_DATA_MANAGER"'>
+		<div class="docs-component-category-list" *ngIf='role == "AFF_INS_DATA_MANAGER"'>
 			<mat-card class="docs-component-category-list-card mat-card">
 				<img mat-card-image src="/assets/icons/department.png" alt="department">
 				<mat-card-title class="mat-card-title">Aff. Institute Details</mat-card-title>
@@ -83,7 +83,7 @@
 				<mat-card-content class="docs-component-category-list-card-summary mat-card-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</mat-card-content>
 			</mat-card>
 		</div>
-		<div class="docs-component-category-list" *ngIf='userType == "INST_REVIEWER"'>
+		<div class="docs-component-category-list" *ngIf='role == "INST_REVIEWER"'>
 			<mat-card class="docs-component-category-list-card mat-card">
 				<img mat-card-image src="/assets/icons/department.png" alt="department">
 				<mat-card-title class="mat-card-title">Aff. Institute Details</mat-card-title>
@@ -115,7 +115,7 @@
 				<mat-card-content class="docs-component-category-list-card-summary mat-card-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</mat-card-content>
 			</mat-card>
 		</div>
-		<div class="docs-component-category-list" *ngIf='userType == "AFF_INST_REVIEWER"'>
+		<div class="docs-component-category-list" *ngIf='role == "AFF_INST_REVIEWER"'>
 			<mat-card class="docs-component-category-list-card mat-card">
 				<img mat-card-image src="/assets/icons/department.png" alt="department">
 				<mat-card-title class="mat-card-title">Aff. Institute Details</mat-card-title>
@@ -147,7 +147,7 @@
 				<mat-card-content class="docs-component-category-list-card-summary mat-card-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</mat-card-content>
 			</mat-card>
 		</div>
-		<div class="docs-component-category-list" *ngIf='userType == "DATA_CERTIFIER"'>
+		<div class="docs-component-category-list" *ngIf='role == "DATA_CERTIFIER"'>
 			<mat-card class="docs-component-category-list-card mat-card">
 				<img mat-card-image src="/assets/icons/department.png" alt="department">
 				<mat-card-title class="mat-card-title">Aff. Institute Details</mat-card-title>
@@ -179,7 +179,7 @@
 				<mat-card-content class="docs-component-category-list-card-summary mat-card-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</mat-card-content>
 			</mat-card>
 		</div>
-		<div class="docs-component-category-list" *ngIf='userType == "DATA_APPROVER"'>
+		<div class="docs-component-category-list" *ngIf='role == "DATA_APPROVER"'>
 			<mat-card class="docs-component-category-list-card mat-card">
 				<img mat-card-image src="/assets/icons/department.png" alt="department">
 				<mat-card-title class="mat-card-title">Aff. Institute Details</mat-card-title>
