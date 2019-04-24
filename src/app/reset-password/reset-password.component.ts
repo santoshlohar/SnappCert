@@ -39,7 +39,6 @@ export class ResetPasswordComponent implements OnInit {
 
 		this.authService.resetPassword(data)
 			.subscribe((result) => {
-				console.log(result);
 				if(result.success == true) {
 					var message = "Your password updated successfully...";
 					localStorage.removeItem('emailId')
