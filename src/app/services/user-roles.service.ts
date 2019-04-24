@@ -33,7 +33,7 @@ export class UserRolesService {
 		} else if(role == this.roles.kycAgent) {
 			this.router.navigate(['/institutes']);
 		} else if(role == this.roles.insAdmin) {
-			this.router.navigate(['/departments']);
+			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.insDataMgr) {
 			this.router.navigate(['/dashboard']);
 		} else if(role == this.roles.affInsDataMgr) {

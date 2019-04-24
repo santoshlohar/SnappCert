@@ -98,4 +98,13 @@ export class AuthService {
 				)
 	}
 
+	resetPassword(data: object) {
+		return	this.http.post(this.baseURL+'/user/resetpassword', data)
+				.pipe(
+					map((result: any) => {
+						return result;	
+					})
+				)
+	}
+
 }

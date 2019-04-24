@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
 	selector: 'app-forgot-password',
@@ -10,8 +12,10 @@ import { AuthService } from '../services/auth.service';
 export class ForgotPasswordComponent implements OnInit {
 
 	forgotpassword: FormGroup;
-	constructor(private formBuilder: FormBuilder,
-				private authService: AuthService) { }
+	constructor(public dialogRef: MatDialogRef<ForgotPasswordComponent>,
+		private formBuilder: FormBuilder,
+				private authService: AuthService,
+				public router: Router) { }
 
 	ngOnInit() {
 		this.forgotpassword = this.formBuilder.group({
@@ -24,7 +28,6 @@ export class ForgotPasswordComponent implements OnInit {
 	}
 
 	forgotPassword(form: NgForm) {
-		console.log(form);
 		if(form.invalid) {
 			return false;
 		}
@@ -37,7 +40,9 @@ export class ForgotPasswordComponent implements OnInit {
 			.subscribe((result: any) => {
 				if(result.success == true) {
 					var message = "Please check your mail for otp..";
-					console.log(message);
+					localStorage.setItem("emailId", data.email);
+					this.dialogRef.close();
+					this.router.navigate(['/resetPassword']);
 				}
 			})         
 	}
