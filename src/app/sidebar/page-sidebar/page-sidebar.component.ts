@@ -9,12 +9,12 @@ export class PageSidebarComponent implements OnInit {
 
 	public sidebar: any;
 	loggedInUser;
-	userType: string;
+	role: string;
 	constructor() { }
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
-		this.userType = this.loggedInUser.UserType;
+		this.role = this.loggedInUser.role;
 	}
 
 	sidebarToggle(e) {
