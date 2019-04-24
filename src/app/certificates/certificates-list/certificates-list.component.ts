@@ -66,8 +66,7 @@ export class CertificatesListComponent implements OnInit {
 
 	getFinalCertificates() {
 		this.url = "/certificates";
-		var params = '';
-		this.apiService.get(this.url, params)
+		this.apiService.get(this.url)
 			.subscribe((response) => {
 				if(response.message == 'success' && response.data) {
 					this.certificatesData = response.data;

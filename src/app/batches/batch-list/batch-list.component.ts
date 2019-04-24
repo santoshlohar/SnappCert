@@ -63,8 +63,7 @@ export class BatchListComponent implements OnInit {
 
 	getAfflInsBatches() {
 		this.url = "/batchList";
-		var data;
-		this.apiService.get(this.url, data)
+		this.apiService.get(this.url)
 			.subscribe((response) => {
 				if(response.message == 'success') {
 					if(response.data) {

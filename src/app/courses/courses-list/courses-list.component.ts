@@ -105,8 +105,7 @@ export class CoursesListComponent implements OnInit {
 
 	getInsCourses() {
 		this.url = '/coursedata';
-		var params = '';
-		this.apiService.get(this.url, params)
+		this.apiService.get(this.url)
 			.subscribe((response) => {
 				this.courses = response;
 				for(var i=0;i<this.courses.length;i++) {
@@ -123,8 +122,7 @@ export class CoursesListComponent implements OnInit {
 
 	getCoursesByInsId() {
 		this.url = '/coursedatabyinstid/';
-		var params = '';
-		this.apiService.get(this.url + this.inst_Id, params)
+		this.apiService.get(this.url + this.inst_Id)
 			.subscribe((response) => {
  				if(response.message == 'success') {
 					if(response.data.length) {
@@ -212,8 +210,7 @@ export class CoursesListComponent implements OnInit {
 
 	viewSelectCourses() {
 		this.url = "/coursesbyafflinstid/";
-		var params = '';
-		this.apiService.get(this.url+ this.aff_inst_Id, params)
+		this.apiService.get(this.url+ this.aff_inst_Id)
 			.subscribe((response) => {
 				if(response.message == 'success') {
 					if(response.data){

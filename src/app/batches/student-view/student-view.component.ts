@@ -29,8 +29,7 @@ export class StudentViewComponent implements OnInit {
 
 	getStudentData() {
 		this.url = "/student/";
-		var data;
-		this.apiService.get(this.url + this.studentId, data)
+		this.apiService.get(this.url + this.studentId)
 			.subscribe((response) => {
 				console.log(response)
 				if(response.message == 'success') {

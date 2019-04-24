@@ -55,9 +55,7 @@ export class UserEditComponent implements OnInit {
 
 	getUserById(id) {
 		this.url = "/user/";
-		console.log(this.url);
-		var params = '';
-		this.apiService.get(this.url+id, params)
+		this.apiService.get(this.url+id)
 			.subscribe((response) => {
 				if (response.message == 'success' && response.data != '') {
 					this.user = response.data;
@@ -72,8 +70,7 @@ export class UserEditComponent implements OnInit {
 
 	getDeptList() {
 		this.url = "/departmentByInst/";
-		var params = '';
-		this.apiService.get(this.url+ this.inst_id, params)
+		this.apiService.get(this.url+ this.inst_id)
 			.subscribe((response) => {
 				if(response.message == 'success') {
 					if(response.data) {

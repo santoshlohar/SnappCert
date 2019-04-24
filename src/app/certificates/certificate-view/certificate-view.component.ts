@@ -65,8 +65,7 @@ export class CertificateViewComponent implements OnInit {
 
 	getCertificate() {
 		this.url = "/certificates/";
-		var params = '';
-		this.apiService.get(this.url+ this.certificateId, params)
+		this.apiService.get(this.url+ this.certificateId)
 			.subscribe((response) => {
 				if(response.message == 'success') {
 					if(response.data) {

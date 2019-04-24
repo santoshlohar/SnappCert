@@ -83,8 +83,7 @@ export class InstituteUpdateComponent implements OnInit {
 	getInstituteData() {
 		console.log("Single Institute - " + this.instituteId);
 		this.apiUrl = '/institutes/';
-		var params = '';
-		this.apiService.get(this.apiUrl + this.instituteId, params)
+		this.apiService.get(this.apiUrl + this.instituteId)
 			.pipe(
 				tap((institute: object) => {
 						this.instituteDetailForm.patchValue(institute)

@@ -47,8 +47,7 @@ export class StudentListComponent implements OnInit {
 
 	getAfflInsStudents() {
 		this.url = "/studentList";
-		var data;
-		this.apiService.get(this.url, data)
+		this.apiService.get(this.url)
 			.subscribe((response) => {
 				if(response.message == 'success') {
 					if(response.data) {

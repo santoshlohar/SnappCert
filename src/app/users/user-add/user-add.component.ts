@@ -88,8 +88,7 @@ export class UserAddComponent implements OnInit {
 
 	getDeptList() {
 		this.url = "/departmentByInst/";
-		var params = '';
-		this.apiService.get(this.url+ this.inst_id, params)
+		this.apiService.get(this.url+ this.inst_id)
 			.subscribe((response) => {
 				if(response.message == 'success') {
 					if(response.data) {

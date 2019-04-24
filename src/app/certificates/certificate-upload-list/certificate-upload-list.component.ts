@@ -112,8 +112,7 @@ export class CertificateUploadListComponent implements OnInit {
 
 	getCertificatesList() {
 		this.url = '/temp/certificates';
-		var params = ''
-		this.apiService.get(this.url, params)
+		this.apiService.get(this.url)
 			.subscribe((response: UploadedCertificate[]) => {
 				
 				this.certificatesData = response;

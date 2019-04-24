@@ -68,8 +68,7 @@ export class UsersListComponent implements OnInit {
 	getInstituteUsers() {
 		var instituteID = this.loginUser.instituteID;
 		this.url = "/usesrbyinstitute/" + instituteID;
-		var params = '';
-		this.apiService.get(this.url, params)
+		this.apiService.get(this.url)
 		 	.subscribe((response) => {
 				if(response.message == "success") {
 					this.authUsers = response.data;
@@ -104,8 +103,7 @@ export class UsersListComponent implements OnInit {
 	getAffInstituteUsers() {
 		var affInstituteId = this.loginUser.Affliated_Institute_ID;
 		this.url = '/usesrbyafflinstitute/' + affInstituteId;
-		var params;
-		this.apiService.get(this.url, params)
+		this.apiService.get(this.url)
 			.subscribe((response) => {
 				if(response.message == 'success') {
 					this.authUsers = response.data;

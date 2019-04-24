@@ -29,8 +29,7 @@ export class BatchViewComponent implements OnInit {
 
 	getBatchData() {
 		this.url = "/batch/";
-		var data;
-		this.apiService.get(this.url + this.batchId, data)
+		this.apiService.get(this.url + this.batchId)
 			.subscribe((response) => {
 				console.log(response)
 				if(response.message == 'success') {
