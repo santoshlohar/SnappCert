@@ -6,6 +6,7 @@ import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { Globals } from 'src/app/globals';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-departments-list',
@@ -14,8 +15,9 @@ import { Globals } from 'src/app/globals';
 })
 export class DepartmentsListComponent implements OnInit {
 
-  	displayedColumns = ['instituteId', 'deptId', 'deptName', 'status', 'actions'];
+  	displayedColumns = ['deptId', 'deptName', 'status', 'actions'];
 	url: string;
+	loggedInUser;
 	activated;
 	departments: any[] = [];
 	dataSource = new MatTableDataSource<any>();
@@ -27,7 +29,6 @@ export class DepartmentsListComponent implements OnInit {
 	departmentStatusFilter = new FormControl();
 
 	filteredValues = {
-		Institution_ID: '',
 		department_ID: '',
 		department_Name: '',
 		status: ''
@@ -41,10 +42,11 @@ export class DepartmentsListComponent implements OnInit {
 				public router: Router) { }
 
 	ngOnInit() {
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.getDepartments();
-		this.filterByColumn();
+		//this.filterByColumn();
 	}
 
 	applyFilter(filterValue: string) {
@@ -52,26 +54,30 @@ export class DepartmentsListComponent implements OnInit {
 	};
 
 	getDepartments() {
-		this.url = '/departments';
-		var params = '';
-		this.apiService.get(this.url, params)
+		this.url = "/department/list";
+		var p = new HttpParams();
+		p = p.append('instituteId', this.loggedInUser.instituteId);
+		p = p.append('skip', '0');
+		p = p.append('limit', '10');
+
+		this.apiService.httpOptions.params = p;
+		
+		this.apiService.get(this.url)
 			.subscribe((response) => {
-				if(response.message == 'success') {
+				console.log(response);
+				if(response.success == true) {
 					this.departments = response.data;
 					for(var i=0;i<this.departments.length;i++) {
-						if(this.departments[i].status == 'Active') {
-							this.departments[i].activated = 'Inactive';
+						if(this.departments[i].isActive == true) {
+							this.departments[i].status = "Active";
+						} else {
+							this.departments[i].status = "Inactive";
 						}
-						if( this.departments[i].status == 'Inactive') {
-							this.departments[i].activated = 'Active';
-						}
-						this.dataSource.data = this.departments;
 					}
-				} else {
-					alert("");
+					this.dataSource.data = this.departments;
 				}
-			});
-	};
+			})
+	}
 
 	editDepartment(data) {
 		var deptId = data._id;
@@ -91,39 +97,39 @@ export class DepartmentsListComponent implements OnInit {
 			});
 	}
 
-	filterByColumn() {
-		this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
-			this.filteredValues['Institution_ID'] = instituteIdFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// filterByColumn() {
+	// 	this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
+	// 		this.filteredValues['Institution_ID'] = instituteIdFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 
-		this.departmentIdFilter.valueChanges.subscribe((departmentIdFilterValue) => {
-			this.filteredValues['department_ID'] = departmentIdFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// 	this.departmentIdFilter.valueChanges.subscribe((departmentIdFilterValue) => {
+	// 		this.filteredValues['department_ID'] = departmentIdFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 
-		this.departmentNameFilter.valueChanges.subscribe((departmentNameFilterValue) => {
-			this.filteredValues['department_Name'] = departmentNameFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// 	this.departmentNameFilter.valueChanges.subscribe((departmentNameFilterValue) => {
+	// 		this.filteredValues['department_Name'] = departmentNameFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 
-		this.departmentStatusFilter.valueChanges.subscribe((departmentStatusFilterValue) => {
-			this.filteredValues['status'] = departmentStatusFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		})
+	// 	this.departmentStatusFilter.valueChanges.subscribe((departmentStatusFilterValue) => {
+	// 		this.filteredValues['status'] = departmentStatusFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	})
 
-		this.dataSource.filterPredicate = this.customFilterPredicate();
-	};
+	// 	this.dataSource.filterPredicate = this.customFilterPredicate();
+	// };
 
-	customFilterPredicate() {
-		const myFilterPredicate = function(data:InstituteDepts, filter: string): boolean {
-			let searchString = JSON.parse(filter);
-			return data.Institution_ID.toString().trim().toLowerCase().indexOf(searchString.Institution_ID) !== -1
-			&& data.department_ID.toString().trim().toLowerCase().indexOf(searchString.department_ID) !== -1
-			&& data.department_Name.toString().trim().toLowerCase().indexOf(searchString.department_Name) !== -1
-			&& data.status.toString().trim().toLowerCase().indexOf(searchString.status) !== -1
-		}
-		return myFilterPredicate;
-	}
+	// customFilterPredicate() {
+	// 	const myFilterPredicate = function(data:InstituteDepts, filter: string): boolean {
+	// 		let searchString = JSON.parse(filter);
+	// 		return data.instituteId.toString().trim().toLowerCase().indexOf(searchString.instituteId) !== -1
+	// 		&& data._id.toString().trim().toLowerCase().indexOf(searchString._id) !== -1
+	// 		&& data.name.toString().trim().toLowerCase().indexOf(searchString.name) !== -1
+	// 		&& data.isActive.toString().trim().toLowerCase().indexOf(searchString.isActive) !== -1
+	// 	}
+	// 	return myFilterPredicate;
+	// }
 
 }

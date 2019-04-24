@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, tap, catchError} from "rxjs/operators";
 import { AuthService } from './auth.service';
-import { Globals } from '../globals';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,18 +15,15 @@ export class ApiService {
 	putData;
 
 	constructor(private http: HttpClient,
-				private authService: AuthService,
-				private globals: Globals) {
-					
+				private authService: AuthService) {
 				}
 	
-	httpOptions = {
+	public httpOptions = {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json',
-			'x-api-token': this.authService.getAccessToken(),
-
+			'x-api-token': this.authService.getAccessToken()
 		}),
-		params: new HttpParams({})
+		params: new HttpParams()
 	};
 
 	post(url, data) {

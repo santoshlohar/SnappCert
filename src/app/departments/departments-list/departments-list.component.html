@@ -10,18 +10,6 @@
 		<div class="list-container">
 			<mat-table [dataSource]="dataSource" 
 			class="mat-table-item mat-elevation-z8">
-				<ng-container matColumnDef="instituteId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Institute ID </div>
-						<div>
-							<mat-form-field class="search-input">
-								<input matInput class="form-field filters" [formControl]="instituteIdFilter">
-								<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Institution_ID}} </mat-cell>
-				</ng-container>
 				<ng-container matColumnDef="deptId">
 					<mat-header-cell *matHeaderCellDef> 
 						<div>Department ID</div>
@@ -32,7 +20,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.department_ID}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="deptName">
 					<mat-header-cell *matHeaderCellDef>
@@ -44,7 +32,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.department_Name}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="status">
 					<mat-header-cell *matHeaderCellDef>
