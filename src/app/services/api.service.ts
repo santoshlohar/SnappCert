@@ -36,7 +36,7 @@ export class ApiService {
 	}
 
 	put(url, data) {
-		this.putData = this.http.put(this.baseURL + url, data);
+		this.putData = this.http.put(this.baseURL + url, data, this.httpOptions);
 		return this.putData;
 	}
 	

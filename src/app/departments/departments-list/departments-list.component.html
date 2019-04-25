@@ -53,7 +53,7 @@
 					<mat-cell *matCellDef="let row">
 						<mat-slide-toggle class="toggle" 
 						[checked]="row.status=='Active'" 
-						(change)="activate(row)"></mat-slide-toggle>
+						(change)="changeStatus(row)"></mat-slide-toggle>
 					</mat-cell>
 				</ng-container>
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
