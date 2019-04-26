@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 import { Globals } from 'src/app/globals';
 import { FormControl } from '@angular/forms';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
 	selector: 'app-users-list',
@@ -57,33 +58,40 @@ export class UsersListComponent implements OnInit {
 		this.loginUser = JSON.parse(localStorage.getItem("user"));
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-		if(this.loginUser.UserType === 'INST_ADMIN' || this.loginUser.UserType === 'INS_DATA_MANAGER') {
+		if(this.loginUser.role === 'institute_admin' || this.loginUser.role === 'INS_DATA_MANAGER') {
 			this.getInstituteUsers();
 		} else if(this.loginUser.UserType === 'AFF_INS_DATA_MANAGER') {
-			this.getAffInstituteUsers();
+			//this.getAffInstituteUsers();
 		}
-		this.filterByColumn();
+		//this.filterByColumn();
 	}
 
 	getInstituteUsers() {
-		var instituteID = this.loginUser.instituteID;
-		this.url = "/usesrbyinstitute/" + instituteID;
-		this.apiService.get(this.url)
+		var instituteId = this.loginUser.instituteId;
+		this.url = "/user/list/";
+		var params = new HttpParams();
+
+		params = params.append('instituteId', instituteId);
+		params = params.append('skip', '0');
+		params = params.append('limit', '10');
+
+		this.apiService.get(this.url, params)
 		 	.subscribe((response) => {
-				if(response.message == "success") {
-					this.authUsers = response.data;
-					for (var i = 0; i < response.data.length; i++) {
-						var status = response.data[i].status;
-						if (status == "Active") {
-							response.data[i].activated = "Inactive"; 
-						} else if (status == "Inactive") {
-							response.data[i].activated = "Active";
-						}
-						this.dataSource.data = this.authUsers;
-					}
-				} else {
-					alert("");
-				}
+				 console.log(response)
+				// if(response.message == "success") {
+				// 	this.authUsers = response.data;
+				// 	for (var i = 0; i < response.data.length; i++) {
+				// 		var status = response.data[i].status;
+				// 		if (status == "Active") {
+				// 			response.data[i].activated = "Inactive"; 
+				// 		} else if (status == "Inactive") {
+				// 			response.data[i].activated = "Active";
+				// 		}
+				// 		this.dataSource.data = this.authUsers;
+				// 	}
+				// } else {
+				// 	alert("");
+				// }
 			})
 	};
 
@@ -95,97 +103,98 @@ export class UsersListComponent implements OnInit {
 				if (this.loginUser.UserType === "INST_ADMIN" || this.loginUser.UserType === "INS_DATA_MANAGER") {
 					this.getInstituteUsers();
 				} else if (this.loginUser.UserType === "AFF_INS_DATA_MANAGER") {
-					this.getAffInstituteUsers();
+					//this.getAffInstituteUsers();
 				}
 			});
 	}
 
-	getAffInstituteUsers() {
-		var affInstituteId = this.loginUser.Affliated_Institute_ID;
-		this.url = '/usesrbyafflinstitute/' + affInstituteId;
-		this.apiService.get(this.url)
-			.subscribe((response) => {
-				if(response.message == 'success') {
-					this.authUsers = response.data;
-					for (var i = 0; i < response.data.length; i++) {
-						var status = response.data[i].status;
-						if (status == "Active") {
-							response.data[i].activated = "Inactive";
-						} else if (status == "Inactive") {
-							response.data[i].activated = "Active";
-						}
-						this.dataSource.data = this.authUsers;
-					}
-				}
-			},
-			(error) => {
-				alert(error.error.message);
-				return false;
-			})
-	}
+	// getAffInstituteUsers() {
+	// 	var affInstituteId = this.loginUser.Affliated_Institute_ID;
+	// 	this.url = '/usesrbyafflinstitute/' + affInstituteId;
+	// 	var params = {};
+	// 	this.apiService.get(this.url, params)
+	// 		.subscribe((response) => {
+	// 			if(response.message == 'success') {
+	// 				this.authUsers = response.data;
+	// 				for (var i = 0; i < response.data.length; i++) {
+	// 					var status = response.data[i].status;
+	// 					if (status == "Active") {
+	// 						response.data[i].activated = "Inactive";
+	// 					} else if (status == "Inactive") {
+	// 						response.data[i].activated = "Active";
+	// 					}
+	// 					this.dataSource.data = this.authUsers;
+	// 				}
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			alert(error.error.message);
+	// 			return false;
+	// 		})
+	// }
 
 	editUser(row) {
 		this.router.navigate(['/userEdit/'+ row._id]);
 	}
 
-	filterByColumn() {
-		this.roleFilter.valueChanges.subscribe((roleFilterValue) => {
-			this.filteredValues['UserType'] = roleFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// filterByColumn() {
+	// 	this.roleFilter.valueChanges.subscribe((roleFilterValue) => {
+	// 		this.filteredValues['UserType'] = roleFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 
-		this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
-			this.filteredValues['instituteID'] = instituteIdFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// 	this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
+	// 		this.filteredValues['instituteID'] = instituteIdFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 
-		this.deptIdFilter.valueChanges.subscribe((deptIdFilterValue) => {
-			this.filteredValues['Department_ID'] = deptIdFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// 	this.deptIdFilter.valueChanges.subscribe((deptIdFilterValue) => {
+	// 		this.filteredValues['Department_ID'] = deptIdFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 
-		this.affInstIdFilter.valueChanges.subscribe((affInstIdFilterValue) => {
-			this.filteredValues['Affliated_Institute_ID'] = affInstIdFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// 	this.affInstIdFilter.valueChanges.subscribe((affInstIdFilterValue) => {
+	// 		this.filteredValues['Affliated_Institute_ID'] = affInstIdFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 
-		this.nameFilter.valueChanges.subscribe((nameFilterValue) => {
-			this.filteredValues['UserName'] = nameFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// 	this.nameFilter.valueChanges.subscribe((nameFilterValue) => {
+	// 		this.filteredValues['UserName'] = nameFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 		
-		this.emailFilter.valueChanges.subscribe((emailFilterValue) => {
-			this.filteredValues['emailId'] = emailFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// 	this.emailFilter.valueChanges.subscribe((emailFilterValue) => {
+	// 		this.filteredValues['emailId'] = emailFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 
-		this.phoneFilter.valueChanges.subscribe((phoneFilterValue) => {
-			this.filteredValues['phoneNumber'] = phoneFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// 	this.phoneFilter.valueChanges.subscribe((phoneFilterValue) => {
+	// 		this.filteredValues['phoneNumber'] = phoneFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 
-		this.statusFilter.valueChanges.subscribe((statusFilterValue) => {
-			this.filteredValues['status'] = statusFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
+	// 	this.statusFilter.valueChanges.subscribe((statusFilterValue) => {
+	// 		this.filteredValues['status'] = statusFilterValue;
+	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
+	// 	});
 
-		this.dataSource.filterPredicate = this.customFilterPredicate();
-	}
+	// 	this.dataSource.filterPredicate = this.customFilterPredicate();
+	// }
 
-	customFilterPredicate() {
-		const myFilterPredicate = function(data:UserModel, filter: string): boolean {
-			let searchString = JSON.parse(filter);
-			return data.UserType.toString().trim().toLowerCase().indexOf(searchString.UserType) !== -1
-			&& data.instituteID.toString().trim().toLowerCase().indexOf(searchString.instituteID) !== -1
-			&& data.Department_ID.toString().trim().toLowerCase().indexOf(searchString.Department_ID) !== -1
-			&& data.Affliated_Institute_ID.toString().trim().toLowerCase().indexOf(searchString.Affliated_Institute_ID) !== -1
-			&& data.UserName.toString().trim().toLowerCase().indexOf(searchString.UserName) !== -1
-			&& data.emailId.toString().trim().toLowerCase().indexOf(searchString.emailId) !== -1
-			&& data.phoneNumber.toString().trim().toLowerCase().indexOf(searchString.phoneNumber) !== -1
-			// && data.status.toString().trim().toLowerCase().indexOf(searchString.status) !== -1
-		}
-		return myFilterPredicate;
-	}
+	// customFilterPredicate() {
+	// 	const myFilterPredicate = function(data:UserModel, filter: string): boolean {
+	// 		let searchString = JSON.parse(filter);
+	// 		return data.UserType.toString().trim().toLowerCase().indexOf(searchString.UserType) !== -1
+	// 		&& data.instituteID.toString().trim().toLowerCase().indexOf(searchString.instituteID) !== -1
+	// 		&& data.Department_ID.toString().trim().toLowerCase().indexOf(searchString.Department_ID) !== -1
+	// 		&& data.Affliated_Institute_ID.toString().trim().toLowerCase().indexOf(searchString.Affliated_Institute_ID) !== -1
+	// 		&& data.UserName.toString().trim().toLowerCase().indexOf(searchString.UserName) !== -1
+	// 		&& data.emailId.toString().trim().toLowerCase().indexOf(searchString.emailId) !== -1
+	// 		&& data.phoneNumber.toString().trim().toLowerCase().indexOf(searchString.phoneNumber) !== -1
+	// 		// && data.status.toString().trim().toLowerCase().indexOf(searchString.status) !== -1
+	// 	}
+	// 	return myFilterPredicate;
+	// }
 
 }
 
