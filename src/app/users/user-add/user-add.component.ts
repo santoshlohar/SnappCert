@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
 	selector: 'app-user-add',
@@ -16,15 +17,15 @@ export class UserAddComponent implements OnInit {
 		userName: '',
 		type: '',
 		emailId: '',
-		phoneNumber: '',
+		phone: '',
 		referredBy: '',
-		countryName: '',
-		instituteID: '',
+		instituteId: '',
 		Affliated_Institute_ID: '',
-		Department_ID: ''
+		departmentId: ''
 	};
-	loginUser;
+	loggedInUser;
 	role;
+	admin: boolean;
 	inst_id;
 	affInst_Id;
 	departments:[]=[];
@@ -35,70 +36,84 @@ export class UserAddComponent implements OnInit {
 				private location: Location) { }
 
 	ngOnInit() {
-		this.loginUser = JSON.parse(localStorage.getItem('user'));
-		this.role = this.loginUser.UserType;
-		this.inst_id = this.loginUser.instituteID;
-		if(this.loginUser.Affliated_Institute_ID != '') {
-			this.affInst_Id = this.loginUser.Affliated_Institute_ID;
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.role = this.loggedInUser.role;
+		this.inst_id = this.loggedInUser.instituteId;
+		if(this.loggedInUser.Affliated_Institute_ID != '') {
+			this.affInst_Id = this.loggedInUser.Affliated_Institute_ID;
 		}
 		this.getDeptList();
 		this.authUserForm = this._formBuilder.group({
-			userType: ['', Validators.required],
-			department_ID: [''],
-			name: ['', Validators.required],
+			userRole: ['', Validators.required],
+			departmentId: [''],
+			firstName: ['', Validators.required],
+			lastName: ['', Validators.required],
 			emailId: ['', Validators.required],
 			phone: ['', Validators.required],
-			instituteID: [''],
 			countryName: [''],
 			referredBy: [''],
 		});
 	}
 
 	addUser(userData: NgForm) {
+		console.log(userData.value);
 		if(userData.invalid) {
 			return false;
 		}
-		this.url = '/user';
-		this.user.userName = userData.value.name;
-		this.user.type =  userData.value.userType;
-		this.user.emailId =  userData.value.emailId;
+		this.url = '/user/create';
+		this.user.firstName = userData.value.firstName;
+		this.user.lastName = userData.value.lastName;
+		this.user.role =  userData.value.userRole;
+		this.user.email =  userData.value.emailId;
 		this.user.phoneNumber =  userData.value.phone;
-		this.user.referredBy =  this.loginUser.UserName;
-		this.user.countryName =  "India";
-		this.user.instituteID = this.inst_id;
+		this.user.referredBy =  this.loggedInUser.UserName;
+		this.user.instituteId = this.inst_id;
 
-		if(userData.value.department_ID != "") {
-			this.user.Department_ID = userData.value.department_ID;
+		if(userData.value.departmentId != "") {
+			this.user.departmentId = userData.value.departmentId;
 		} else {
-			this.user.Department_ID = "";
+			this.user.departmentId = "";
 		}
 		if(this.role == "AFF_INS_DATA_MANAGER") {
 			this.user.Affliated_Institute_ID = this.affInst_Id;
 		} else {
 			this.user.Affliated_Institute_ID =  '';
 		}
-		
+
 		this.apiService.post(this.url, this.user)
 			.subscribe((response: any) => {
-				if(response.message == "User created successfully.") {
+				if(response.success == true) {
 					this.router.navigate(['/users']);
 				}
 			})
 	}
 
 	getDeptList() {
-		this.url = "/departmentByInst/";
-		this.apiService.get(this.url+ this.inst_id)
+		this.url = "/department/list";
+
+		var params = new HttpParams();
+		params = params.append('instituteId', this.inst_id);
+		params = params.append('skip', '0');
+		params = params.append('limit', '10');
+
+		this.apiService.get(this.url, params)
 			.subscribe((response) => {
-				if(response.message == 'success') {
+				console.log(response)
+				if(response.success == true) {
 					if(response.data) {
 						this.departments = response.data; 
 					}
 				}
-			},
-			(error) => {
-				console.log(error)
 			})
+	}
+
+	roleChange(role) {
+		console.log(role);
+		if(role = "institute_admin") {
+			this.admin = true;
+		} else {
+			this.admin = false;
+		}
 	}
 
 	// checkType(type) {

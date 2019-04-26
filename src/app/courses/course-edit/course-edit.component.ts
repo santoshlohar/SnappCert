@@ -44,7 +44,7 @@ export class CourseEditComponent implements OnInit {
 		this.id = this.route.snapshot.params['courseId'];
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.inst_Id = this.loginUser.instituteID;
-		this.getCourseById(this.id);
+		//this.getCourseById(this.id);
 		this.insCourseForm = this.formBuilder.group({
 			department_ID: ['', Validators.required],
 			Course_Type:  ['', Validators.required],
@@ -62,21 +62,21 @@ export class CourseEditComponent implements OnInit {
 		});
 	}
 
-	getCourseById(id) {
-		this.url = "/course/";
-		console.log(this.url)
-		this.apiService.get(this.url+id)
-			.subscribe((response) => {
-				if(response.message == 'success' && response.data != '') {
-					this.course = response.data;
-					console.log('course: ' + JSON.stringify(this.course));
-					this.insCourseForm.patchValue(this.course);
-				}
-			},
-			(error) => {
-				console.log(error)
-			})
-	}
+	// getCourseById(id) {
+	// 	this.url = "/course/";
+	// 	console.log(this.url)
+	// 	this.apiService.get(this.url+id)
+	// 		.subscribe((response) => {
+	// 			if(response.message == 'success' && response.data != '') {
+	// 				this.course = response.data;
+	// 				console.log('course: ' + JSON.stringify(this.course));
+	// 				this.insCourseForm.patchValue(this.course);
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error)
+	// 		})
+	// }
 
 	editCourse(data: NgForm) {
 		console.log(data);

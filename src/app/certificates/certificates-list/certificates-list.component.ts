@@ -50,7 +50,7 @@ export class CertificatesListComponent implements OnInit {
 		setTimeout(() => {
 			this.getCertifiersList();
 		}, 500);
-		this.getFinalCertificates();
+		//this.getFinalCertificates();
 	}
 
 	isAllSelected() {
@@ -64,29 +64,29 @@ export class CertificatesListComponent implements OnInit {
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
 	}
 
-	getFinalCertificates() {
-		this.url = "/certificates";
-		this.apiService.get(this.url)
-			.subscribe((response) => {
-				if(response.message == 'success' && response.data) {
-					this.certificatesData = response.data;
-					for(var i=0;i<this.certificatesData.length;i++) {
-						if(this.certificatesData[i].versionStatus == "Active" && this.certificatesData[i].transactionStatus == 'New') {
-							this.newCertificates.push(this.certificatesData[i]);
-							this.dataSource.data = this.newCertificates;
-						} else if (this.certificatesData[i].transactionStatus == 'Reviewed' || this.certificatesData[i].transactionStatus == 'Under Certify') {
-							if (this.certificatesData[i].certifier1ID != this.loginUser.UserName && this.certificatesData[i].certifier2ID != this.loginUser.UserName && this.certificatesData[i].certifier3ID != this.loginUser.UserName) {
-								this.newCertificates.push(this.certificatesData[i]);
-								this.dataSource.data = this.newCertificates;
-							}
-						}
-					}
-				}
-			},
-			(error) => {
-				console.log(error);
-			})
-	}
+	// getFinalCertificates() {
+	// 	this.url = "/certificates";
+	// 	this.apiService.get(this.url)
+	// 		.subscribe((response) => {
+	// 			if(response.message == 'success' && response.data) {
+	// 				this.certificatesData = response.data;
+	// 				for(var i=0;i<this.certificatesData.length;i++) {
+	// 					if(this.certificatesData[i].versionStatus == "Active" && this.certificatesData[i].transactionStatus == 'New') {
+	// 						this.newCertificates.push(this.certificatesData[i]);
+	// 						this.dataSource.data = this.newCertificates;
+	// 					} else if (this.certificatesData[i].transactionStatus == 'Reviewed' || this.certificatesData[i].transactionStatus == 'Under Certify') {
+	// 						if (this.certificatesData[i].certifier1ID != this.loginUser.UserName && this.certificatesData[i].certifier2ID != this.loginUser.UserName && this.certificatesData[i].certifier3ID != this.loginUser.UserName) {
+	// 							this.newCertificates.push(this.certificatesData[i]);
+	// 							this.dataSource.data = this.newCertificates;
+	// 						}
+	// 					}
+	// 				}
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 		})
+	// }
 
 	getCertifiersList() {
 		this.url = "/searchUsers";

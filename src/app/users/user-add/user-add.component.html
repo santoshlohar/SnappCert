@@ -18,7 +18,22 @@
 						fxLayout.lt-md="column" 
 						fxFlexAlign="center">
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<mat-select #type formControlName="userType" placeholder="User Type" required>
+							<input matInput 
+							placeholder="First Name" 
+							formControlName="firstName"
+							required>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Last Name" 
+							formControlName="lastName"
+							required>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<mat-select #type formControlName="userRole" 
+							placeholder="User Role" 
+							(ngModelChange)="roleChange(role)"
+							required>
 								<mat-option 
 									value="SYSTEM_ADMIN"
 									*ngIf='role === "SYSTEM_ADMIN"'>
@@ -30,18 +45,18 @@
 									Kyc Agent
 								</mat-option>
 								<mat-option 
-									value="INST_ADMIN"
-									*ngIf='role === "INST_ADMIN"'>
+									value="institute_admin"
+									*ngIf='role === "institute_admin"'>
 									Institute Admin
 								</mat-option>
 								<mat-option 
 									value="INS_DATA_MANAGER"
-									*ngIf='role === "INST_ADMIN"'>
+									*ngIf='role === "institute_admin"'>
 									Institute Data Manager
 								</mat-option>
 								<mat-option 
 									value="AFF_INS_DATA_MANAGER"
-									*ngIf='role === "INST_ADMIN"'>
+									*ngIf='role === "institute_admin"'>
 									Aff. Institute Data Manager
 								</mat-option>
 								<mat-option 
@@ -66,18 +81,12 @@
 								</mat-option>
 							</mat-select>
 						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" ngShow="!admin">
 							<mat-select placeholder="Department" 
-							formControlName="department_ID"
-							required>
-								<mat-option *ngFor="let department of departments;" [value]='department.id'>{{department.department_Name}}</mat-option>
+							formControlName="departmentId"
+							>
+								<mat-option *ngFor="let department of departments;" [value]='department._id'>{{department.name}}</mat-option>
 							</mat-select>
-						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput 
-							placeholder="Name" 
-							formControlName="name"
-							required>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<input matInput 

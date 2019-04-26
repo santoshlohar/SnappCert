@@ -24,24 +24,24 @@ export class BatchViewComponent implements OnInit {
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.userType = this.loginUser.UserType;
-		this.getBatchData();
+		//this.getBatchData();
 	}
 
-	getBatchData() {
-		this.url = "/batch/";
-		this.apiService.get(this.url + this.batchId)
-			.subscribe((response) => {
-				console.log(response)
-				if(response.message == 'success') {
-					if(response.data) {
-						this.batch = response.data;
-					}
-				}
-			},
-			(error) => {
-				console.log(error);
-			})
-	}
+	// getBatchData() {
+	// 	this.url = "/batch/";
+	// 	this.apiService.get(this.url + this.batchId)
+	// 		.subscribe((response) => {
+	// 			console.log(response)
+	// 			if(response.message == 'success') {
+	// 				if(response.data) {
+	// 					this.batch = response.data;
+	// 				}
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 		})
+	// }
 
 	goBack() {
 		this.location.back();

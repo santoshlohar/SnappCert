@@ -22,16 +22,15 @@ export class ApiService {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json',
 			'x-api-token': this.authService.getAccessToken()
-		}),
-		params: new HttpParams()
+		})
 	};
 
 	post(url, data) {
 		return this.http.post(this.baseURL + url, data, this.httpOptions);
 	};
 
-	get(url) {
-		this.getData = this.http.get(this.baseURL + url, this.httpOptions);
+	get(url, params) {
+		this.getData = this.http.get(this.baseURL + url, { headers: this.httpOptions.headers, params: params});
 		return this.getData;		
 	}
 

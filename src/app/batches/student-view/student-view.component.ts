@@ -24,24 +24,24 @@ export class StudentViewComponent implements OnInit {
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.userType = this.loginUser.UserType;
-		this.getStudentData();
+		//this.getStudentData();
 	}
 
-	getStudentData() {
-		this.url = "/student/";
-		this.apiService.get(this.url + this.studentId)
-			.subscribe((response) => {
-				console.log(response)
-				if(response.message == 'success') {
-					if(response.data) {
-						this.student = response.data;
-					}
-				}
-			},
-			(error) => {
-				console.log(error);
-			})
-	}
+	// getStudentData() {
+	// 	this.url = "/student/";
+	// 	this.apiService.get(this.url + this.studentId)
+	// 		.subscribe((response) => {
+	// 			console.log(response)
+	// 			if(response.message == 'success') {
+	// 				if(response.data) {
+	// 					this.student = response.data;
+	// 				}
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 		})
+	// }
 
 	goBack() {
 		this.location.back();

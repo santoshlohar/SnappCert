@@ -51,7 +51,7 @@ export class InstituteUpdateComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.getInstituteData();
+		//this.getInstituteData();
 		this.instituteDetailForm = this._formBuilder.group({
 			requesterName: [{value:'', disabled: true}],
 			requesteremailId: [{value: '', disabled: true}],
@@ -80,20 +80,20 @@ export class InstituteUpdateComponent implements OnInit {
 		});
 	}
 
-	getInstituteData() {
-		console.log("Single Institute - " + this.instituteId);
-		this.apiUrl = '/institutes/';
-		this.apiService.get(this.apiUrl + this.instituteId)
-			.pipe(
-				tap((institute: object) => {
-						this.instituteDetailForm.patchValue(institute)
-					})
-			)
-			.subscribe((response)=> {
-				console.log(response);
-			}
-		);								
-	}
+	// getInstituteData() {
+	// 	console.log("Single Institute - " + this.instituteId);
+	// 	this.apiUrl = '/institutes/';
+	// 	this.apiService.get(this.apiUrl + this.instituteId)
+	// 		.pipe(
+	// 			tap((institute: object) => {
+	// 					this.instituteDetailForm.patchValue(institute)
+	// 				})
+	// 		)
+	// 		.subscribe((response)=> {
+	// 			console.log(response);
+	// 		}
+	// 	);								
+	// }
 
 	updateInstitute() {
 		console.log("goto institute list");

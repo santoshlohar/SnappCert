@@ -60,9 +60,9 @@ export class DepartmentsListComponent implements OnInit {
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
 
-		this.apiService.httpOptions.params = params;
+		//this.apiService.httpOptions.params = params;
 		
-		this.apiService.get(this.url)
+		this.apiService.get(this.url, params)
 			.subscribe((response) => {
 				if(response.success == true) {
 					this.departments = response.data;

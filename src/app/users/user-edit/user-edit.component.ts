@@ -42,8 +42,8 @@ export class UserEditComponent implements OnInit {
 		if (this.loginUser.Affliated_Institute_ID != '') {
 			this.affInst_Id = this.loginUser.Affliated_Institute_ID;
 		}
-		this.getUserById(this.id);
-		this.getDeptList();
+		// this.getUserById(this.id);
+		// this.getDeptList();
 		this.editUserForm = this.formBuilder.group({
 			UserType: ['', Validators.required],
 			department_ID: [''],
@@ -53,35 +53,35 @@ export class UserEditComponent implements OnInit {
 		});
 	}
 
-	getUserById(id) {
-		this.url = "/user/";
-		this.apiService.get(this.url+id)
-			.subscribe((response) => {
-				if (response.message == 'success' && response.data != '') {
-					this.user = response.data;
-					console.log("this.user: " + JSON.stringify(this.user));
-					this.editUserForm.patchValue(this.user);
-				}
-			},
-			(error) => {
-				console.log(error);
-			});
-	}
+	// getUserById(id) {
+	// 	this.url = "/user/";
+	// 	this.apiService.get(this.url+id)
+	// 		.subscribe((response) => {
+	// 			if (response.message == 'success' && response.data != '') {
+	// 				this.user = response.data;
+	// 				console.log("this.user: " + JSON.stringify(this.user));
+	// 				this.editUserForm.patchValue(this.user);
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 		});
+	// }
 
-	getDeptList() {
-		this.url = "/departmentByInst/";
-		this.apiService.get(this.url+ this.inst_id)
-			.subscribe((response) => {
-				if(response.message == 'success') {
-					if(response.data) {
-						this.departments = response.data; 
-					}
-				}
-			},
-			(error) => {
-				console.log(error)
-			})
-	}
+	// getDeptList() {
+	// 	this.url = "/departmentByInst/";
+	// 	this.apiService.get(this.url+ this.inst_id)
+	// 		.subscribe((response) => {
+	// 			if(response.message == 'success') {
+	// 				if(response.data) {
+	// 					this.departments = response.data; 
+	// 				}
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error)
+	// 		})
+	// }
 
 	editUser(data: NgForm) {
 		this.url = "/user/";

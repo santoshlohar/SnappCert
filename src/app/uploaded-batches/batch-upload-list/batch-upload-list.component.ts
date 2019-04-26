@@ -63,7 +63,7 @@ export class BatchUploadListComponent implements OnInit {
 		setTimeout(() => {
 			this.getApproversList();
 		}, 500);
-		this.getTempBatch();
+		//this.getTempBatch();
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 	}
@@ -93,48 +93,48 @@ export class BatchUploadListComponent implements OnInit {
 			});
 	}
 
-	getTempBatch(){
-		this.url = '/temp/batchdata';
-		this.apiService.get(this.url)
-			.subscribe((response) => {
-				if(response.message == 'success') {
-					this.batchesData = response.data;
-					for(var i=0; i<this.batchesData.length; i++) {
-						this.batchesData[i].position = i;
-						this.batchesData[i].editing = false;
+	// getTempBatch(){
+	// 	this.url = '/temp/batchdata';
+	// 	this.apiService.get(this.url)
+	// 		.subscribe((response) => {
+	// 			if(response.message == 'success') {
+	// 				this.batchesData = response.data;
+	// 				for(var i=0; i<this.batchesData.length; i++) {
+	// 					this.batchesData[i].position = i;
+	// 					this.batchesData[i].editing = false;
 					
-						if(this.batchesData[i].transactionStatus == 'New') {
+	// 					if(this.batchesData[i].transactionStatus == 'New') {
 							
-							if(isNaN(this.batchesData[i].minCredits)) {
-								this.batchesData[i].minCreditsErr = true;
-							}
+	// 						if(isNaN(this.batchesData[i].minCredits)) {
+	// 							this.batchesData[i].minCreditsErr = true;
+	// 						}
 
-							if(isNaN(this.batchesData[i].minCGPA)) {
-								this.batchesData[i].minCGPAErr = true;
-							}
+	// 						if(isNaN(this.batchesData[i].minCGPA)) {
+	// 							this.batchesData[i].minCGPAErr = true;
+	// 						}
 
-							if(isNaN(this.batchesData[i].totalCGPA)) {
-								this.batchesData[i].totalCGPAErr = true;
-							}
+	// 						if(isNaN(this.batchesData[i].totalCGPA)) {
+	// 							this.batchesData[i].totalCGPAErr = true;
+	// 						}
 
-							if(isNaN(this.batchesData[i].minScore)) {
-								this.batchesData[i].minScoreErr = true;
-							}
+	// 						if(isNaN(this.batchesData[i].minScore)) {
+	// 							this.batchesData[i].minScoreErr = true;
+	// 						}
 							
-							this.newBatches.push(this.batchesData[i]);
-							this.dataSource.data = this.newBatches;
-						}							
-					}
-				}
-			},
-			(error) => {
-				console.log(error);
-				if(error) {
-					var errMessage = error.error.message;
-					alert(errMessage);
-				}
-			})
-	}
+	// 						this.newBatches.push(this.batchesData[i]);
+	// 						this.dataSource.data = this.newBatches;
+	// 					}							
+	// 				}
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 			if(error) {
+	// 				var errMessage = error.error.message;
+	// 				alert(errMessage);
+	// 			}
+	// 		})
+	// }
 
 	edit(row) {
 		var tableData = this.newBatches;

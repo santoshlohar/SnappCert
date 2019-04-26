@@ -83,7 +83,7 @@ export class CertificateUploadListComponent implements OnInit {
 			this.getCertifiersList();
 		}, 500);
 
-		this.getCertificatesList();
+		//this.getCertificatesList();
 	}
 
 	isAllSelected() {
@@ -110,41 +110,41 @@ export class CertificateUploadListComponent implements OnInit {
 			})
 	}
 
-	getCertificatesList() {
-		this.url = '/temp/certificates';
-		this.apiService.get(this.url)
-			.subscribe((response: UploadedCertificate[]) => {
+	// getCertificatesList() {
+	// 	this.url = '/temp/certificates';
+	// 	this.apiService.get(this.url)
+	// 		.subscribe((response: UploadedCertificate[]) => {
 				
-				this.certificatesData = response;
-				for(var i=0; i<this.certificatesData.length; i++) {
-					this.certificatesData[i].position = i;
-					this.certificatesData[i].editing = false;
+	// 			this.certificatesData = response;
+	// 			for(var i=0; i<this.certificatesData.length; i++) {
+	// 				this.certificatesData[i].position = i;
+	// 				this.certificatesData[i].editing = false;
 
-					if(this.certificatesData[i].transactionStatus == 'New') {
+	// 				if(this.certificatesData[i].transactionStatus == 'New') {
 
-						if(isNaN(this.certificatesData[i].scoreEarned)) {
-							this.certificatesData[i].scrErnErr = true;
-						}
+	// 					if(isNaN(this.certificatesData[i].scoreEarned)) {
+	// 						this.certificatesData[i].scrErnErr = true;
+	// 					}
 
-						if(isNaN(this.certificatesData[i].totalScore)) {
-							this.certificatesData[i].totalScrErr = true;
-						}
+	// 					if(isNaN(this.certificatesData[i].totalScore)) {
+	// 						this.certificatesData[i].totalScrErr = true;
+	// 					}
 
-						if(isNaN(this.certificatesData[i].creditsEarned)) {
-							this.certificatesData[i].creditsError = true;
-						}
+	// 					if(isNaN(this.certificatesData[i].creditsEarned)) {
+	// 						this.certificatesData[i].creditsError = true;
+	// 					}
 					
-						this.newCertificates.push(this.certificatesData[i]);
-						this.dataSource.data = this.newCertificates;
+	// 					this.newCertificates.push(this.certificatesData[i]);
+	// 					this.dataSource.data = this.newCertificates;
 						
-					}
-					//this.validatedCertificate(this.dataSource.data[i]);
-				}
-			},
-			(error)=> {
-				console.log(error)
-			});
-	}
+	// 				}
+	// 				//this.validatedCertificate(this.dataSource.data[i]);
+	// 			}
+	// 		},
+	// 		(error)=> {
+	// 			console.log(error)
+	// 		});
+	// }
 
 	processData() {
 		if(this.reviewers.length< 1) {
@@ -228,7 +228,7 @@ export class CertificateUploadListComponent implements OnInit {
 		this.url = '/deltempcertificates';
 		this.apiService.post(this.url, params)
 			.subscribe((response) => {
-				this.getCertificatesList();
+				//this.getCertificatesList();
 			});
 	}
 

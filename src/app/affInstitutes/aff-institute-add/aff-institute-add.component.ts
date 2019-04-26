@@ -38,24 +38,24 @@ export class AffInstituteAddComponent implements OnInit {
 			affInstituteName: ['', Validators.required],
 			affInstituteLoc: ['', Validators.required]
 		});
-		this.getDeptList();
+		//this.getDeptList();
 		this.affliatedInsForm.controls.instituteId.setValue(this.loginUser.Institution_ID);
 	}
 
-	getDeptList() {
-		this.url = "/departmentByInst/";
-		this.apiService.get(this.url+ this.inst_id)
-			.subscribe((response) => {
-				if(response.message == 'success') {
-					if(response.data) {
-						this.departments = response.data; 
-					}
-				}
-			},
-			(error) => {
-				console.log(error)
-			})
-	}
+	// getDeptList() {
+	// 	this.url = "/departmentByInst/";
+	// 	this.apiService.get(this.url+ this.inst_id)
+	// 		.subscribe((response) => {
+	// 			if(response.message == 'success') {
+	// 				if(response.data) {
+	// 					this.departments = response.data; 
+	// 				}
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error)
+	// 		})
+	// }
 
 	addAffInst(affInstData: NgForm) {
 		if(affInstData.invalid) {

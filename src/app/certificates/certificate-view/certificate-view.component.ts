@@ -60,29 +60,29 @@ export class CertificateViewComponent implements OnInit {
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.userType = this.loginUser.UserType;
-		this.getCertificate();	
+		//this.getCertificate();	
 	}
 
-	getCertificate() {
-		this.url = "/certificates/";
-		this.apiService.get(this.url+ this.certificateId)
-			.subscribe((response) => {
-				if(response.message == 'success') {
-					if(response.data) {
-						this.certificate = response.data[0];
-						this.institute = this.certificate.instituteIdRef;
-						this.course = this.certificate.courseIDRef;
-					} else {
-						alert("This certificate ID is not Available in our database.");
-					}
-				} else {
-					alert(response.error);
-				}
-			},
-			(error) => {
-				console.log(error);
-			})		
-	}
+	// getCertificate() {
+	// 	this.url = "/certificates/";
+	// 	this.apiService.get(this.url+ this.certificateId)
+	// 		.subscribe((response) => {
+	// 			if(response.message == 'success') {
+	// 				if(response.data) {
+	// 					this.certificate = response.data[0];
+	// 					this.institute = this.certificate.instituteIdRef;
+	// 					this.course = this.certificate.courseIDRef;
+	// 				} else {
+	// 					alert("This certificate ID is not Available in our database.");
+	// 				}
+	// 			} else {
+	// 				alert(response.error);
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 		})		
+	// }
 
 	reviewed() {
 		console.log(this.certificate);

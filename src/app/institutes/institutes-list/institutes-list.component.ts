@@ -69,25 +69,25 @@ export class InstitutesListComponent implements OnInit {
 	ngOnInit() {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-		this.getInstitutes();
+		//this.getInstitutes();
 		this.filterByColumn();
 	}
 
-	getInstitutes() {
-		var getInsUrl = '/institutes';
-		this.apiService.get(getInsUrl)
-			.subscribe((response) => {
-				this.institutes = response.elements;
-				for(var i=0;i<this.institutes.length;i++) {
-					if(this.institutes[i].kycStatus == "NEW") {
-						this.statusNew = true;
-						this.newInstitutes.push(this.institutes[i]);
-						console.log(this.newInstitutes);
-						this.dataSource.data = this.newInstitutes;
-					}
-				}
-			});
-	}
+	// getInstitutes() {
+	// 	var getInsUrl = '/institutes';
+	// 	this.apiService.get(getInsUrl)
+	// 		.subscribe((response) => {
+	// 			this.institutes = response.elements;
+	// 			for(var i=0;i<this.institutes.length;i++) {
+	// 				if(this.institutes[i].kycStatus == "NEW") {
+	// 					this.statusNew = true;
+	// 					this.newInstitutes.push(this.institutes[i]);
+	// 					console.log(this.newInstitutes);
+	// 					this.dataSource.data = this.newInstitutes;
+	// 				}
+	// 			}
+	// 		});
+	// }
 
 	filterByColumn() {
 		this.instituteTypeFilter.valueChanges.subscribe((instituteTypeFilterValue) => {

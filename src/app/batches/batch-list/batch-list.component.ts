@@ -47,7 +47,7 @@ export class BatchListComponent implements OnInit {
 		this.userType = this.loginUser.UserType;
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-		this.getAfflInsBatches();
+		//this.getAfflInsBatches();
 	}
 
 	isAllSelected() {
@@ -61,19 +61,19 @@ export class BatchListComponent implements OnInit {
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
 	}
 
-	getAfflInsBatches() {
-		this.url = "/batchList";
-		this.apiService.get(this.url)
-			.subscribe((response) => {
-				if(response.message == 'success') {
-					if(response.data) {
-						this.batches = response.data;
-						this.dataSource.data = this.batches;
-					}
-				}
-			},
-			(error) => {
-				console.log(error);
-			})
-	}
+	// getAfflInsBatches() {
+	// 	this.url = "/batchList";
+	// 	this.apiService.get(this.url)
+	// 		.subscribe((response) => {
+	// 			if(response.message == 'success') {
+	// 				if(response.data) {
+	// 					this.batches = response.data;
+	// 					this.dataSource.data = this.batches;
+	// 				}
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 		})
+	// }
  }

@@ -42,23 +42,23 @@ export class StudentListComponent implements OnInit {
 		this.userType = this.loginUser.UserType;
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-		this.getAfflInsStudents();
+		//this.getAfflInsStudents();
 	}
 
-	getAfflInsStudents() {
-		this.url = "/studentList";
-		this.apiService.get(this.url)
-			.subscribe((response) => {
-				if(response.message == 'success') {
-					if(response.data) {
-						this.students = response.data;
-						this.dataSource.data = this.students;
-					}
-				}
-			},
-			(error) => {
-				console.log(error);
-			})
-	}
+	// getAfflInsStudents() {
+	// 	this.url = "/studentList";
+	// 	this.apiService.get(this.url)
+	// 		.subscribe((response) => {
+	// 			if(response.message == 'success') {
+	// 				if(response.data) {
+	// 					this.students = response.data;
+	// 					this.dataSource.data = this.students;
+	// 				}
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 		})
+	// }
 
 }

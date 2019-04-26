@@ -53,7 +53,7 @@ export class StudentUploadListComponent implements OnInit {
 		setTimeout(() => {
 			this.getApproversList();
 		}, 500);
-		this.getTempStudents();
+		//this.getTempStudents();
 
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
@@ -84,37 +84,37 @@ export class StudentUploadListComponent implements OnInit {
 			});
 	}
 
-	getTempStudents() {
-		this.url = "/temp/studentdet";
-		this.apiService.get(this.url)
-			.subscribe((response) => {
-				console.log(response)
-				if(response.message == 'success') {
-					this.studentData = response.data;
-					for(var i=0; i<this.studentData.length; i++) {
-						this.studentData[i].position = i;
-						this.studentData[i].editing = false;
+	// getTempStudents() {
+	// 	this.url = "/temp/studentdet";
+	// 	this.apiService.get(this.url)
+	// 		.subscribe((response) => {
+	// 			console.log(response)
+	// 			if(response.message == 'success') {
+	// 				this.studentData = response.data;
+	// 				for(var i=0; i<this.studentData.length; i++) {
+	// 					this.studentData[i].position = i;
+	// 					this.studentData[i].editing = false;
 
-						if(this.studentData[i].transactionStatus == 'New') {
+	// 					if(this.studentData[i].transactionStatus == 'New') {
 
-							if(isNaN(this.studentData[i].aadhaarNoLoginID)) {
-								this.studentData[i].aadhaarNoErr = true;
-							}
+	// 						if(isNaN(this.studentData[i].aadhaarNoLoginID)) {
+	// 							this.studentData[i].aadhaarNoErr = true;
+	// 						}
 
-							if(isNaN(this.studentData[i].mobile)) {
-								this.studentData[i].mobileNoErr = true;
-							}
+	// 						if(isNaN(this.studentData[i].mobile)) {
+	// 							this.studentData[i].mobileNoErr = true;
+	// 						}
 
-							this.newStudents.push(this.studentData[i]);
-							this.dataSource.data = this.newStudents;
-						}
-					}
-				}
-			},
-			(error) => {
-				console.log(error);
-			})
-	}
+	// 						this.newStudents.push(this.studentData[i]);
+	// 						this.dataSource.data = this.newStudents;
+	// 					}
+	// 				}
+	// 			}
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 		})
+	// }
 
 	deleteStudents() {
 		this.selectedStudents = this.selection.selected;

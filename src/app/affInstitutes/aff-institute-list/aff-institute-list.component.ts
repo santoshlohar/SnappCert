@@ -45,7 +45,7 @@ export class AffInstituteListComponent implements OnInit {
 	ngOnInit(): void {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-		this.getAffInstitutes();
+		//this.getAffInstitutes();
 		this.filterByColumn();
 	}
 
@@ -100,34 +100,34 @@ export class AffInstituteListComponent implements OnInit {
 		return myFilterPredicate;
 	}
 
-	getAffInstitutes() {
-		this.url = '/afflInstitutes/';
-		this.apiService.get(this.url)
-			.subscribe((response:any) => {
-				console.log(response);
-				if(response.message == "success") {
-					this.affInstData = response.data;
-					for(var i = 0; i < this.affInstData.length; i++) {
-						if(this.affInstData[i].status == "Active") {
-							this.affInstData[i].activated = 'Inactive';
-						}
-						if(this.affInstData[i].status == "Inactive") {
-							this.affInstData[i].activated = 'Active';
-						}
-						this.dataSource.data = this.affInstData;
-					}
-				} else {
-					alert("");
-				}
-			});
-	};
+	// getAffInstitutes() {
+	// 	this.url = '/afflInstitutes/';
+	// 	this.apiService.get(this.url)
+	// 		.subscribe((response:any) => {
+	// 			console.log(response);
+	// 			if(response.message == "success") {
+	// 				this.affInstData = response.data;
+	// 				for(var i = 0; i < this.affInstData.length; i++) {
+	// 					if(this.affInstData[i].status == "Active") {
+	// 						this.affInstData[i].activated = 'Inactive';
+	// 					}
+	// 					if(this.affInstData[i].status == "Inactive") {
+	// 						this.affInstData[i].activated = 'Active';
+	// 					}
+	// 					this.dataSource.data = this.affInstData;
+	// 				}
+	// 			} else {
+	// 				alert("");
+	// 			}
+	// 		});
+	// };
 
 	activate(data) {
 		var affInstId = data._id;
 		this.url = "/afflInstitutes/";
 		this.apiService.put(this.url + affInstId, data)
 			.subscribe((response) => {
-				this.getAffInstitutes();
+				//this.getAffInstitutes();
 			});
 	}
 
