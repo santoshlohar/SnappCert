@@ -10,7 +10,7 @@
 		<div class="list-container">
 			<mat-table [dataSource]="dataSource" 
 			class="mat-table-item mat-elevation-z8">
-				<ng-container matColumnDef="instituteId">
+				<!-- <ng-container matColumnDef="instituteId">
 					<mat-header-cell *matHeaderCellDef> 
 						<div>Institute ID </div>
 						<div>
@@ -21,7 +21,7 @@
 						</div>
 					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> {{element.Institution_ID}} </mat-cell>
-				</ng-container>
+				</ng-container> -->
 				<ng-container matColumnDef="deptId">
 					<mat-header-cell *matHeaderCellDef> 
 						<div>Department ID</div>
@@ -32,9 +32,9 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.department_ID}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.departmentId}} </mat-cell>
 				</ng-container>
-				<ng-container matColumnDef="affInstId">
+				<!-- <ng-container matColumnDef="affInstId">
 					<mat-header-cell *matHeaderCellDef>
 						<div>Affl. Inst ID</div>
 						<div>
@@ -45,7 +45,7 @@
 						</div>
 					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> {{element.AfflInstitution_ID}} </mat-cell>
-                </ng-container>
+                </ng-container> -->
                 <ng-container matColumnDef="affInstName">
 					<mat-header-cell *matHeaderCellDef>
 						<div>Affl. Inst Name</div>
@@ -56,7 +56,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.afflInstitute_Name}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="affInsLocation">
 					<mat-header-cell *matHeaderCellDef>
@@ -68,7 +68,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.afflInstitute_loc}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="status">
 					<mat-header-cell *matHeaderCellDef>
@@ -89,7 +89,7 @@
 					<mat-cell *matCellDef="let row">
 						<mat-slide-toggle class="toggle" 
 						[checked]="row.status=='Active'" 
-						(change)="activate(row)"></mat-slide-toggle>
+						(change)="changeStatus(row)"></mat-slide-toggle>
 					</mat-cell>
 				</ng-container>
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -59,8 +59,6 @@ export class DepartmentsListComponent implements OnInit {
 		params = params.append('instituteId', this.loggedInUser.instituteId);
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
-
-		//this.apiService.httpOptions.params = params;
 		
 		this.apiService.get(this.url, params)
 			.subscribe((response) => {

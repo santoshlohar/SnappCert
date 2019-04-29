@@ -1,11 +1,9 @@
 export interface AffInstitute {
-    Institution_ID: String;
-    department_ID: String;
-    AfflInstitution_ID: String;
-    afflInstitute_Name: String;
-    afflInstitute_loc: String;
+    instituteId: String;
+    departmentId: String;
+    name: String;
     status: String;
-    isActivated: Boolean;
-    activated: string;
+    isActive: Boolean;
+    address: String;
     _id: Number;
 }

@@ -5,6 +5,7 @@ import { AffInstitute } from '../../modals/aff-institute';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-aff-institute-list',
@@ -14,26 +15,22 @@ import { FormControl } from '@angular/forms';
 export class AffInstituteListComponent implements OnInit {
 
 	url;
-	
+	loggedInUser;
 	affInstData: AffInstitute[] = [];
-	displayedColumns = ['instituteId', 'deptId', 'affInstId', 'affInstName', 'affInsLocation', 'status', 'id'];
+	displayedColumns = ['deptId', 'affInstName', 'affInsLocation', 'status', 'id'];
 	activated;
 	dataSource = new MatTableDataSource<AffInstitute>(this.affInstData);
 	selection = new SelectionModel<AffInstitute>(true, []);
 
-	instituteIdFilter = new FormControl();
 	departmentIdFilter = new FormControl();
-	affInstIdFilter = new FormControl();
 	affInstNameFilter = new FormControl();
 	affInstLocFilter = new FormControl();
 	affInstStatusFilter = new FormControl();
 
 	filteredValues = {
-		Institution_ID: '',
-		department_ID: '',
-		AfflInstitution_ID: '',
-		afflInstitute_Name: '',
-		afflInstitute_loc: '',
+		departmentId: '',
+		name: '',
+		address: '',
 		status: ''
 	}
 
@@ -45,7 +42,8 @@ export class AffInstituteListComponent implements OnInit {
 	ngOnInit(): void {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-		//this.getAffInstitutes();
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.getAffInstitutes();
 		this.filterByColumn();
 	}
 
@@ -54,28 +52,18 @@ export class AffInstituteListComponent implements OnInit {
 	}
 
 	filterByColumn() {
-		this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
-			this.filteredValues['Institution_ID'] = instituteIdFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
-
 		this.departmentIdFilter.valueChanges.subscribe((departmentIdFilterValue) => {
-			this.filteredValues['department_ID'] = departmentIdFilterValue;
-			this.dataSource.filter = JSON.stringify(this.filteredValues);
-		});
-
-		this.affInstIdFilter.valueChanges.subscribe((affInstIdFilterValue) => {
-			this.filteredValues['AfflInstitution_ID'] = affInstIdFilterValue;
+			this.filteredValues['departmentId'] = departmentIdFilterValue;
 			this.dataSource.filter = JSON.stringify(this.filteredValues);
 		});
 
 		this.affInstNameFilter.valueChanges.subscribe((affInstNameFilterValue) => {
-			this.filteredValues['afflInstitute_Name'] = affInstNameFilterValue;
+			this.filteredValues['name'] = affInstNameFilterValue;
 			this.dataSource.filter = JSON.stringify(this.filteredValues);
 		});
 
 		this.affInstLocFilter.valueChanges.subscribe((affInstLocFilterValue) => {
-			this.filteredValues['afflInstitute_loc'] = affInstLocFilterValue;
+			this.filteredValues['address'] = affInstLocFilterValue;
 			this.dataSource.filter = JSON.stringify(this.filteredValues);
 		});
 
@@ -90,54 +78,55 @@ export class AffInstituteListComponent implements OnInit {
 	customFilterPredicate() {
 		const myFilterPredicate = function(data:AffInstitute, filter: string): boolean {
 			let searchString = JSON.parse(filter);
-			return data.Institution_ID.toString().trim().toLowerCase().indexOf(searchString.Institution_ID) !== -1
-			&& data.department_ID.toString().trim().toLowerCase().indexOf(searchString.department_ID) !== -1
-			&& data.AfflInstitution_ID.toString().trim().toLowerCase().indexOf(searchString.AfflInstitution_ID) !== -1
-			&& data.afflInstitute_Name.toString().trim().toLowerCase().indexOf(searchString.afflInstitute_Name) !== -1
-			&& data.afflInstitute_loc.toString().trim().toLowerCase().indexOf(searchString.afflInstitute_loc) !== -1
+			return data.departmentId.toString().trim().toLowerCase().indexOf(searchString.departmentId) !== -1
+			&& data.name.toString().trim().toLowerCase().indexOf(searchString.name) !== -1
+			&& data.address.toString().trim().toLowerCase().indexOf(searchString.address) !== -1
 			&& data.status.toString().trim().toLowerCase().indexOf(searchString.status) !== -1
 		}
 		return myFilterPredicate;
 	}
 
-	// getAffInstitutes() {
-	// 	this.url = '/afflInstitutes/';
-	// 	this.apiService.get(this.url)
-	// 		.subscribe((response:any) => {
-	// 			console.log(response);
-	// 			if(response.message == "success") {
-	// 				this.affInstData = response.data;
-	// 				for(var i = 0; i < this.affInstData.length; i++) {
-	// 					if(this.affInstData[i].status == "Active") {
-	// 						this.affInstData[i].activated = 'Inactive';
-	// 					}
-	// 					if(this.affInstData[i].status == "Inactive") {
-	// 						this.affInstData[i].activated = 'Active';
-	// 					}
-	// 					this.dataSource.data = this.affInstData;
-	// 				}
-	// 			} else {
-	// 				alert("");
-	// 			}
-	// 		});
-	// };
+	getAffInstitutes() {
+		this.url = '/affiliate/list';
+		var params = new HttpParams();
+		params = params.append('instituteId', this.loggedInUser.instituteId);
+		params = params.append('skip', '0');
+		params = params.append('limit', '10');
 
-	activate(data) {
-		var affInstId = data._id;
-		this.url = "/afflInstitutes/";
-		this.apiService.put(this.url + affInstId, data)
+		this.apiService.get(this.url, params)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					this.affInstData = response.data;
+					for(var i=0;i<this.affInstData.length;i++) {
+						if(this.affInstData[i].isActive == true) {
+							this.affInstData[i].status = "Active";
+						} else {
+							this.affInstData[i].status = "Inactive";
+						}
+					}
+					this.dataSource.data = this.affInstData;
+				}
+			});
+	};
+
+	changeStatus(row) {
+		var affInstId = row._id;
+		this.url = "/affiliate/"+ affInstId +"/changeStatus";
+		var data = {
+			isActive: row.isActive
+		};
+
+		if(row.isActive == true) {
+			data.isActive = false;
+		} else {
+			data.isActive = true;
+		}
+
+		this.apiService.put(this.url, data)
 			.subscribe((response) => {
-				//this.getAffInstitutes();
+				if(response.success == true) {
+					this.getAffInstitutes();
+				}
 			});
 	}
-
-	// updateAffIns(row) {
-	// 	console.log(row);
-	// 	this.url = '/afflInstitutes/';
-	// 	this.apiService.put(this.url+ row._id, row)
-	// 		.subscribe((response) => {
-	// 			console.log(response);
-	// 		});
-	// }
-
 }
