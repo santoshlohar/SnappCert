@@ -56,7 +56,6 @@ export class UserAddComponent implements OnInit {
 	}
 
 	addUser(userData: NgForm) {
-		console.log(userData.value);
 		if(userData.invalid) {
 			return false;
 		}
@@ -98,7 +97,6 @@ export class UserAddComponent implements OnInit {
 
 		this.apiService.get(this.url, params)
 			.subscribe((response) => {
-				console.log(response)
 				if(response.success == true) {
 					if(response.data) {
 						this.departments = response.data; 
@@ -108,7 +106,6 @@ export class UserAddComponent implements OnInit {
 	}
 
 	roleChange(role) {
-		console.log(role);
 		if(role = "institute_admin") {
 			this.admin = true;
 		} else {

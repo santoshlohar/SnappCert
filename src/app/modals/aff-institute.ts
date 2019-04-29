@@ -5,5 +5,6 @@ export interface AffInstitute {
     status: String;
     isActive: Boolean;
     address: String;
+    code: String;
     _id: Number;
 }
