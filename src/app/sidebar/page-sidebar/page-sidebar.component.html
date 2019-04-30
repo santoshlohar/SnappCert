@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidebar-container">
 	<mat-sidenav-content class="sidenav">
-		<div *ngIf='role == "KYC_AGENT"' >
+		<div *ngIf='role == "kyc_agent"' >
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>
@@ -61,7 +61,7 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div> 
-		<div *ngIf='role == "AFF_INS_DATA_MANAGER"'>
+		<div *ngIf='role == "affl_inst_data_manager"'>
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>
@@ -88,7 +88,7 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div>
-		<div *ngIf='role == "INST_REVIEWER"' >
+		<div *ngIf='role == "inst_reviewer"' >
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>
@@ -100,7 +100,7 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div>
-		<div *ngIf='role == "AFF_INST_REVIEWER"' >
+		<div *ngIf='role == "affl_inst_reviewer"' >
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>
@@ -112,7 +112,7 @@
 			</div>
 			<mat-divider></mat-divider>
 		</div>
-		<div *ngIf='role == "DATA_CERTIFIER"'>
+		<div *ngIf='role == "inst_certifier"'>
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>
@@ -123,7 +123,7 @@
 				<span class="link-btn"> Certificates </span>
 			</div>
 		</div>
-		<div *ngIf='role == "DATA_APPROVER"' >
+		<div *ngIf='role == "aff_inst_approver"' >
 			<div class="innerbar-content" routerLink="/dashboard">
 				<img class="sidebar-img" src="./assets/icons/dashboard.png"/><br />
 				<span class="link-btn"> Dashboard </span>

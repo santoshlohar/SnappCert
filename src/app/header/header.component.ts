@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { UserModel } from '../modals/user';
 import { SidebarService } from '../sidebar/sidebar/sidebar.service';
 import { MatSidenav } from '@angular/material';
+import { Role } from '../modals/role';
 
 @Component({
 	selector: 'app-header',
@@ -88,27 +89,27 @@ export class HeaderComponent implements OnInit {
 	}
 
 	roleName(type) {
-		if(type == 'SYSTEM_ADMIN') {
+		if(type == Role.Admin) {
 			this.role = 'System Admin';
-		} else if(type == 'REG_REQESTER') {
+		} else if(type == Role.Requester) {
 			this.role = 'Requester';
-		} else if(type == 'KYC_AGENT') {
+		} else if(type == Role.Agent) {
 			this.role = 'KYC Agent';
-		} else if(type == 'institute_admin') {
+		} else if(type == Role.InsAdmin) {
 			this.role = 'Institute Admin';
-		} else if(type == 'inst_data_manager') {
+		} else if(type == Role.InsDataMgr) {
 			this.role = 'Data Manager';
-		} else if(type == 'AFF_INS_DATA_MANAGER') {
+		} else if(type == Role.AffInsDataMgr) {
 			this.role = 'Data Manager';
-		} else if(type == 'INST_REVIEWER') {
+		} else if(type == Role.InsRev) {
 			this.role = 'Reviewer';
-		} else if(type == 'AFF_INST_REVIEWER') {
+		} else if(type == Role.AffInsRev) {
 			this.role = 'Reviewer';
-		} else if(type == 'DATA_CERTIFIER') {
+		} else if(type == Role.DataCert) {
 			this.role = 'Certifier';
-		} else if(type == 'DATA_APPROVER') {
+		} else if(type == Role.DataApp) {
 			this.role = 'Approver';
-		} else if(type == 'STUDENT') {
+		} else if(type == Role.Student) {
 			this.role = 'Student';
 		} 
 	}
