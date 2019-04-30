@@ -173,7 +173,7 @@ const routes: Routes =  [
         }
     },
     { 
-        path: 'courseEdit/:courseId', 
+        path: 'courseEdit/:id', 
         component: CourseEditComponent, 
         canActivate: [AuthGuard],
         data: { 

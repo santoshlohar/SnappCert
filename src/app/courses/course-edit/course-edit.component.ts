@@ -17,20 +17,20 @@ export class CourseEditComponent implements OnInit {
 	loginUser;
 	course;
 	courseData = {
-		department_ID: '',
-		Course_Type: '',
-		Course_ID: '',
-		Course_Name: '',
-		Specialization: '',
-		Certificate_Generate: '',
-		Certificate_Print: '',
-		GPA_Calculated: '',
-		Subject_Credits: '',
-		Course_Duration: '',
-		Duration_Unit: '',
-		Term_Type: '',
-		No_of_Terms: '',
-		instituteID: ''
+		instituteId: '',
+		departmentId: '',
+		courseType: '',
+		code: '',
+		courseName: '',
+		specialization: '',
+		certificateGenerate: '',
+		certificatePrint: '',
+		gpaCalculated: '',
+		subjectCredits: '',
+		courseDuration: '',
+		durationUnit: '',
+		termType: '',
+		noOfTerms: ''
 	};
 	insCourseForm: FormGroup;
 	constructor(private formBuilder: FormBuilder,
@@ -41,24 +41,24 @@ export class CourseEditComponent implements OnInit {
 				}
 
 	ngOnInit() {
-		this.id = this.route.snapshot.params['courseId'];
+		this.id = this.route.snapshot.params['id'];
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
 		this.inst_Id = this.loginUser.instituteID;
 		//this.getCourseById(this.id);
 		this.insCourseForm = this.formBuilder.group({
-			department_ID: ['', Validators.required],
-			Course_Type:  ['', Validators.required],
-			Course_ID: ['', Validators.required],
-			Course_Name: ['', Validators.required],
-			Specialization: ['', Validators.required],
-			Certificate_Generate: ['', Validators.required],
-			Certificate_Print: ['', Validators.required],
-			GPA_Calculated: ['', Validators.required],
-			Subject_Credits: ['', Validators.required],
-			Course_Duration: ['', Validators.required],
-			Duration_Unit: ['', Validators.required],
-			Term_Type: ['', Validators.required],
-			No_of_Terms: ['', Validators.required]
+			departmentId: ['', Validators.required],
+			courseType:  ['', Validators.required],
+			code: ['', Validators.required],
+			courseName: ['', Validators.required],
+			specialization: ['', Validators.required],
+			certificateGenerate: ['', Validators.required],
+			certificatePrint: ['', Validators.required],
+			gpaCalculated: ['', Validators.required],
+			subjectCredits: ['', Validators.required],
+			courseDuration: ['', Validators.required],
+			durationUnit: ['', Validators.required],
+			termType: ['', Validators.required],
+			noOfTerms: ['', Validators.required]
 		});
 	}
 
@@ -80,34 +80,34 @@ export class CourseEditComponent implements OnInit {
 
 	editCourse(data: NgForm) {
 		console.log(data);
-		this.url = "/course/";
-		this.courseData.department_ID =  data.value.department_ID;
-		this.courseData.Course_Type = data.value.Course_Type;
-		this.courseData.Course_ID = data.value.Course_ID;
-		this.courseData.Course_Name = data.value.Course_Name;
-		this.courseData.Specialization = data.value.Specialization;
-		this.courseData.Certificate_Generate = data.value.Certificate_Generate;
-		this.courseData.Certificate_Print = data.value.Certificate_Print;
-		this.courseData.GPA_Calculated = data.value.GPA_Calculated;
-		this.courseData.Subject_Credits = data.value.Subject_Credits;
-		this.courseData.Course_Duration = data.value.Course_Duration;
-		this.courseData.Duration_Unit = data.value.Duration_Unit;
-		this.courseData.Term_Type = data.value.Term_Type;
-		this.courseData.No_of_Terms = data.value.No_of_Terms;
-		this.courseData.instituteID = this.inst_Id;
+		this.url = "/course/" + this.id;
+		this.courseData.departmentId =  data.value.departmentId;
+		this.courseData.courseType = data.value.Course_Type;
+		this.courseData.code = data.value.Course_ID;
+		this.courseData.courseName = data.value.Course_Name;
+		this.courseData.specialization = data.value.specialization;
+		this.courseData.certificateGenerate = data.value.Certificate_Generate;
+		this.courseData.certificatePrint = data.value.Certificate_Print;
+		this.courseData.gpaCalculated = data.value.GPA_Calculated;
+		this.courseData.subjectCredits = data.value.Subject_Credits;
+		this.courseData.courseDuration = data.value.Course_Duration;
+		this.courseData.durationUnit = data.value.Duration_Unit;
+		this.courseData.termType = data.value.Term_Type;
+		this.courseData.noOfTerms = data.value.No_of_Terms;
+		this.courseData.instituteId = this.inst_Id;
 		
-		this.apiService.put(this.url+this.id, this.courseData)
-			.subscribe((response) => {
-				if(response.message == 'success') {
-					this.router.navigate(['/courses']);
-				} else {
-					var errmsg = response.error.msg;
-					alert(errmsg);
-				}
-			},
-			(error) => {
-				console.log(error);
-			});
+		// this.apiService.put(this.url+this.id, this.courseData)
+		// 	.subscribe((response) => {
+		// 		if(response.message == 'success') {
+		// 			this.router.navigate(['/courses']);
+		// 		} else {
+		// 			var errmsg = response.error.msg;
+		// 			alert(errmsg);
+		// 		}
+		// 	},
+		// 	(error) => {
+		// 		console.log(error);
+		// 	});
 	}
 
 	goBack() {
