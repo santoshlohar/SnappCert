@@ -17,7 +17,7 @@ export class CoursesListComponent implements OnInit {
 	url;
 	loginUser;
 	inst_Id;
-	userType;
+	role;
 	aff_inst_Id;
 	courses = [];
 	course= {};
@@ -80,7 +80,7 @@ export class CoursesListComponent implements OnInit {
 
 	ngOnInit() {
 		this.loginUser = JSON.parse(localStorage.getItem('user'));
-		this.userType = this.loginUser.UserType;
+		this.role = this.loginUser.role;
 		this.inst_Id = this.loginUser.instituteID;
 		if(this.loginUser.Affliated_Institute_ID) {
 			this.aff_inst_Id = this.loginUser.Affliated_Institute_ID;
@@ -102,6 +102,10 @@ export class CoursesListComponent implements OnInit {
 		this.isAllSelected() ? 
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
 	};
+
+	getCourses() {
+		
+	}
 
 	// getInsCourses() {
 	// 	this.url = '/coursedata';
