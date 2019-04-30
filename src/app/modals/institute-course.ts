@@ -1,16 +1,19 @@
 export interface InstituteCourse {
-    instituteID: string;
-    department_ID: string;
-    Course_Type: string;
-    Course_ID: string;
-    Course_Name: string;
-    Specialization: string;
-    Course_Duration: string;
-    Duration_Unit: string;
-    Term_Type: string;
-    No_of_Terms: Number;
+    instituteId: string;
+    departmentId: string;
+    courseType: string;
+    code: string;
+    courseName: string;
+    specialization: string;
+    certificateGenerate: string;
+    certificatePrint: string;
+    gpaCalculated: string;
+    subjectCredits: string;
+    courseDuration: string;
+    durationUnit: string;
+    termType: string;
+    noOfTerms: Number;
     status: string;
-    isActivated: Boolean;
-    activated: string;
+    isActive: Boolean;
     _id: Number;
 }

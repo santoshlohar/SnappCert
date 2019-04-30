@@ -17,14 +17,14 @@
 						fxLayoutGap="23px" 
 						fxLayout.lt-md="column" 
 						fxFlexAlign="center">
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Institute ID" formControlName="instituteID" required>
+						<!-- <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput placeholder="Institute ID" formControlName="instituteId" required>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Department ID" formControlName="department_ID" required>
-						</mat-form-field>
+							<input matInput placeholder="Department ID" formControlName="departmentId" required>
+						</mat-form-field> -->
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<mat-select formControlName="Course_Type" placeholder="Course Type" required>
+							<mat-select formControlName="courseType" placeholder="Course Type" required>
 								<mat-option value="school"> School Board </mat-option>
 								<mat-option value="graduation"> Graduation Degree </mat-option>
 								<mat-option value="Master"> Master Degree </mat-option>
@@ -34,49 +34,54 @@
 							</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Course ID" formControlName="Course_ID" required>
+							<input matInput placeholder="Course ID" formControlName="code" required>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Course Name" formControlName="Course_Name" required>
+							<input matInput placeholder="Course Name" formControlName="courseName" required>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Specialization" formControlName="Specialization">
+							<input matInput placeholder="Specialization" formControlName="specialization">
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Certificate Generate" formControlName="Certificate_Generate">
+							<input matInput placeholder="Certificate Generate" formControlName="certificateGenerate">
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<mat-select formControlName="Certificate_Print" placeholder="Certificate Print" required>
+							<mat-select placeholder="Certificate Print" formControlName="certificatePrint" required>
 								<mat-option value="yes">Yes</mat-option>
 								<mat-option value="no">No</mat-option>
 							</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<mat-select formControlName="GPA_Calculated" placeholder="GPA Calculated" required>
+							<mat-select placeholder="GPA Calculated" formControlName="gpaCalculated" required>
 								<mat-option value="yes">Yes</mat-option>
 								<mat-option value="no">No</mat-option>
 							</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<mat-select formControlName="Subject_Credits" placeholder="Subject Credits" required>
+							<mat-select placeholder="Subject Credits" formControlName="subjectCredits" required>
 								<mat-option value="yes">Yes</mat-option>
 								<mat-option value="no">No</mat-option>
 							</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Course Duration" formControlName="Course_Duration" required>
+							<input matInput placeholder="Course Duration" formControlName="courseDuration" required>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<mat-select formControlName="Duration_Unit" placeholder="Duration Unit" required>
+							<mat-select placeholder="Duration Unit" formControlName="durationUnit" required>
 								<mat-option value="month">Month</mat-option>
 								<mat-option value="year">Year</mat-option>
 							</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Term Type" formControlName="Term_Type">
+							<mat-select placeholder="Term Type" formControlName="termType" required>
+								<mat-option value="Semester">Semester</mat-option>
+								<mat-option value="Trisemester">Trisemester</mat-option>
+								<mat-option value="Annual">Annual</mat-option>
+								<mat-option value="None">None</mat-option>
+							</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="No. of Terms" formControlName="No_of_Terms">
+							<input matInput placeholder="No. of Terms" formControlName="noOfTerms">
 						</mat-form-field>
 					</div>
 					<div class="action-btns text-center">

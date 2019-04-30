@@ -13,59 +13,67 @@ export class CourseAddComponent implements OnInit {
 
 	affInsCourseForm: FormGroup;
     url;
+    loggedInUser;
     courseDetails = {
-        Institution_ID: '',
-        department_ID: '',
-        Course_Type: '',
-        Course_ID: '',
-        Course_Name: '',
-        Specialization: '',    
-        Certificate_Generate: '',     
-        Certificate_Print: '',      
-        GPA_Calculated: '', 
-        Subject_Credits: '',     
-        Course_Duration: '', 
-        Duration_Unit: '',     
-        Term_Type: '',      
-        No_of_Terms: ''
+        instituteId: '',
+        departmentId: '',
+        courseType: '',
+        code: '',
+        courseName: '',
+        specialization: '',    
+        certificateGenerate: '',     
+        certificatePrint: '',      
+        gpaCalculated: '', 
+        subjectCredits: '',     
+        courseDuration: '', 
+        durationUnit: '',     
+        termType: '',      
+        noOfTerms: ''
     };
+    course = {
+
+    };
+
     constructor(private _formBuilder: FormBuilder,
                 private apiService: ApiService,
                 private router: Router,
                 private location: Location) { }
 				
 	ngOnInit() {
+        this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.affInsCourseForm = this._formBuilder.group({
-            instituteID: ['', Validators.required],
-            department_ID: ['', Validators.required],
-            Course_Type: ['', Validators.required],
-            Course_ID: ['', Validators.required],
-            Course_Name: ['', Validators.required],
-            Specialization: '',    
-            Certificate_Generate: '',     
-            Certificate_Print: ['', Validators.required],      
-			GPA_Calculated: ['', Validators.required], 
-			Subject_Credits: ['', Validators.required],     
-            Course_Duration: ['', Validators.required], 
-            Duration_Unit: ['', Validators.required],     
-            Term_Type: '',      
-            No_of_Terms: ''    			
+            // instituteId: ['', Validators.required],
+            // departmentId: ['', Validators.required],
+            courseType: ['', Validators.required],
+            code: ['', Validators.required],
+            courseName: ['', Validators.required],
+            specialization: '',    
+            certificateGenerate: '',     
+            certificatePrint: ['', Validators.required],      
+			gpaCalculated: ['', Validators.required], 
+			subjectCredits: ['', Validators.required],     
+            courseDuration: ['', Validators.required], 
+            durationUnit: ['', Validators.required],     
+            termType: '',      
+            noOfTerms: ''    			
         });
 	}
 
 	addCourse(courseData: NgForm) {
-        console.log(courseData);
-
+        console.log(courseData)
         if(courseData.invalid) {
             return false;
         }
-        this.url = '/coursedata'
-        this.courseDetails = courseData.value
-        this.apiService.post(this.url, this.courseDetails)
-        .subscribe((response) => {
-            console.log(response);
-            this.router.navigate(['/courses']);
-        });
+        this.url = '/course/create'
+        this.courseDetails = courseData.value;
+        this.courseDetails.instituteId = this.loggedInUser.instituteId;
+        this.courseDetails.departmentId = this.loggedInUser.departmentId;
+        console.log(this.courseDetails)
+        // this.apiService.post(this.url, this.courseDetails)
+        //     .subscribe((response) => {
+        //         console.log(response);
+        //         this.router.navigate(['/courses']);
+        //     });
     }
 
     goBack() {
