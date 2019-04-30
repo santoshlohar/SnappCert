@@ -6,6 +6,7 @@ import { InstituteCourse } from '../../modals/institute-course';
 import { Router } from '@angular/router';
 import { Globals } from 'src/app/globals';
 import { FormControl } from '@angular/forms';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-courses-list',
@@ -15,7 +16,7 @@ import { FormControl } from '@angular/forms';
 export class CoursesListComponent implements OnInit {
 
 	url;
-	loginUser;
+	loggedInUser;
 	inst_Id;
 	role;
 	aff_inst_Id;
@@ -79,15 +80,16 @@ export class CoursesListComponent implements OnInit {
 				}
 
 	ngOnInit() {
-		this.loginUser = JSON.parse(localStorage.getItem('user'));
-		this.role = this.loginUser.role;
-		this.inst_Id = this.loginUser.instituteID;
-		if(this.loginUser.Affliated_Institute_ID) {
-			this.aff_inst_Id = this.loginUser.Affliated_Institute_ID;
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.role = this.loggedInUser.role;
+		this.inst_Id = this.loggedInUser.instituteId;
+		if(this.loggedInUser.Affliated_Institute_ID) {
+			this.aff_inst_Id = this.loggedInUser.Affliated_Institute_ID;
 		}
 		//this.getCoursesByInsId();
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
+		this.getCourses();
 		this.filterByColumn();
 		//this.getCoursesByAffIns();
 	}
@@ -104,7 +106,29 @@ export class CoursesListComponent implements OnInit {
 	};
 
 	getCourses() {
-		
+		this.url = "/course/list";
+		var params = new HttpParams();
+
+		params = params.append('instituteId', this.loggedInUser.instituteId);
+		params = params.append('departmentId', this.loggedInUser.departmentId);
+		params = params.append('skip', '0');
+		params = params.append('limit', '10');
+
+		this.apiService.get(this.url, params)
+			.subscribe((response) => {
+				if(response.success == true) {
+					console.log(response.data)
+					// this.courses = response.data;
+					// for(var i=0;i<this.courses.length;i++) {
+					// 	if(this.courses[i].isActive == true) {
+					// 		this.courses[i].status = "Active";
+					// 	} else {
+					// 		this.courses[i].status = "Inactive";
+					// 	}
+					// }
+					// this.dataSource.data = this.courses;
+				}
+			})
 	}
 
 	// getInsCourses() {
@@ -184,7 +208,7 @@ export class CoursesListComponent implements OnInit {
 		var selectedCourse = this.selection.selected;
 		if(selectedCourse.length) {
 			for(var i=0;i<selectedCourse.length;i++) {
-				selectedCourse[i].Affliated_Institute_ID = this.loginUser.Affliated_Institute_ID;
+				selectedCourse[i].Affliated_Institute_ID = this.loggedInUser.Affliated_Institute_ID;
 			};
 			this.url = "/afflinstitute/courses";		   
 			this.apiService.post(this.url, selectedCourse)
