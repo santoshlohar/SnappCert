@@ -3,7 +3,7 @@ export enum Role {
 	Requester = 'REG_REQESTER',
 	Agent = 'KYC_AGENT',
 	InsAdmin = 'institute_admin',
-	InsDataMgr = 'INS_DATA_MANAGER',
+	InsDataMgr = 'inst_data_manager',
 	AffInsDataMgr = 'AFF_INS_DATA_MANAGER',
 	InsRev = 'INST_REVIEWER',
 	AffInsRev = 'AFF_INST_REVIEWER',

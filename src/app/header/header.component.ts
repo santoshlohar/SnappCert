@@ -96,7 +96,7 @@ export class HeaderComponent implements OnInit {
 			this.role = 'KYC Agent';
 		} else if(type == 'institute_admin') {
 			this.role = 'Institute Admin';
-		} else if(type == 'INS_DATA_MANAGER') {
+		} else if(type == 'inst_data_manager') {
 			this.role = 'Data Manager';
 		} else if(type == 'AFF_INS_DATA_MANAGER') {
 			this.role = 'Data Manager';
