@@ -17,15 +17,15 @@ export class CourseAddComponent implements OnInit {
     courseDetails = {
         instituteId: '',
         departmentId: '',
-        courseType: '',
+        type: '',
         code: '',
-        courseName: '',
+        name: '',
         specialization: '',    
         certificateGenerate: '',     
         certificatePrint: '',      
         gpaCalculated: '', 
         subjectCredits: '',     
-        courseDuration: '', 
+        duration: '', 
         durationUnit: '',     
         termType: '',      
         noOfTerms: ''
