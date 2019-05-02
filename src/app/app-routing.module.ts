@@ -71,6 +71,10 @@ const routes: Routes =  [
                 roles: [
                     Role.Admin,
                     Role.Manager
+                ],
+                entity: [
+                    Entity.Institute,
+                    Entity.Affiliate
                 ] 
             } 
     },
@@ -82,6 +86,10 @@ const routes: Routes =  [
                 roles: [
                     Role.Admin,
                     Role.Manager
+                ],
+                entity: [
+                    Entity.Institute,
+                    Entity.Affiliate
                 ] 
         }
     },
