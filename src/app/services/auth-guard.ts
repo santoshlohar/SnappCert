@@ -13,7 +13,9 @@ export class AuthGuard implements CanActivate {
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean  {
 		const allowedRoles: any = route.data.roles;
-		const isAuthorized = this.authService.isAuthorized(allowedRoles);
+		const allowedEntity: any = route.data.entity;
+		
+		const isAuthorized = this.authService.isAuthorized(allowedRoles,allowedEntity);
 		
 		if (!isAuthorized) {
 			this.router.navigate(['/accessdenied'], { queryParams: { returnUrl: state.url }});

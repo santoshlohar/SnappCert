@@ -74,19 +74,20 @@ export class AuthService {
 		return false;
 	}
 
-	isAuthorized(allowedRoles: string): boolean {
+	isAuthorized(allowedRoles: string, allowedEntity: string): boolean {
 
-		if (allowedRoles == null || allowedRoles.length < 0) {
-			return true;
+		if (allowedRoles == null || allowedRoles.length < 0 || allowedEntity == null || allowedEntity.length < 0) {
+			return false;
 		}
 
 		const token = this.getAccessToken();
 		const decodeToken = this.jwtHelperService.decodeToken(token);
-		console.log(decodeToken);
+		
 		if (!decodeToken) {
 			return false;
 		}
-		return allowedRoles.includes(decodeToken['role']);
+		return  allowedRoles.includes(decodeToken['role']) &&
+				allowedEntity.includes(decodeToken['entity']);
 	}
 
 	forgotPassword(data: object) {
