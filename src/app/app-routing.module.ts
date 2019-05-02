@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './services/auth-guard';
+import { Role } from './modals/role';
+import { Entity } from './modals/entity';
 
 import { HomeComponent } from './home/home.component';
 
@@ -33,7 +35,6 @@ import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { StudentListComponent } from './batches/student-list/student-list.component';
 import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
-import { Role } from './modals/role';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
@@ -55,7 +56,11 @@ const routes: Routes =  [
                         Role.Certifier,
                         Role.Approver,
                         Role.Student
-                    ] 
+                    ],
+                entity: [
+                    Entity.Institute,
+                    Entity.Affiliate
+                ]
             } 
     },
     { 
@@ -108,7 +113,10 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Admin
-                ] 
+                ],
+                entity: [
+                    Entity.Institute
+                ]
         }
     },
     { 
@@ -118,7 +126,10 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Admin
-                ] 
+                ],
+                entity: [
+                    Entity.Institute
+                ]
         }
     },
 	{ 
@@ -128,7 +139,10 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Admin
-                ] 
+                ],
+                entity: [
+                    Entity.Institute
+                ]
         }
     },
 	{ 
@@ -138,7 +152,10 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Admin
-                ] 
+                ],
+                entity: [
+                    Entity.Institute
+                ]
         }
     },
 	{ 
@@ -148,7 +165,11 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Manager
-                ] 
+                ],
+                entity: [
+                    Entity.Institute,
+                    Entity.Affiliate
+                ]
         }
     },
     { 
@@ -158,6 +179,9 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Manager
+                ],
+                entity: [
+                    Entity.Institute
                 ] 
         }
     },
@@ -168,6 +192,9 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Manager
+                ],
+                entity: [
+                    Entity.Institute
                 ] 
         }
     },
@@ -178,6 +205,9 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Manager
+                ],
+                entity: [
+                    Entity.Institute
                 ] 
         }
     },
@@ -190,7 +220,10 @@ const routes: Routes =  [
                     Role.Manager,
                     Role.Reviewer,
                     Role.Certifier            
-                ] 
+                ],
+                entity: [
+                    Entity.Institute
+                ]
         }
     },
     { 
@@ -202,6 +235,9 @@ const routes: Routes =  [
                     Role.Manager,
                     Role.Reviewer,
                     Role.Certifier                 
+                ],
+                entity: [
+                    Entity.Institute
                 ] 
         }
     },
@@ -230,6 +266,10 @@ const routes: Routes =  [
                     Role.Manager,
                     Role.Reviewer,
                     Role.Approver                 
+                ],
+                entity: [
+                    Entity.Institute,
+                    Entity.Affiliate
                 ] 
         }
     },
@@ -242,6 +282,10 @@ const routes: Routes =  [
                     Role.Manager,
                     Role.Reviewer,
                     Role.Approver                 
+                ],
+                entity: [
+                    Entity.Institute,
+                    Entity.Affiliate
                 ] 
         }
     },
