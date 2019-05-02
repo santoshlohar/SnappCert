@@ -3,6 +3,7 @@ import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-course-add',
@@ -14,6 +15,7 @@ export class CourseAddComponent implements OnInit {
 	affInsCourseForm: FormGroup;
     url;
     loggedInUser;
+    departments = [];
     courseDetails = {
         instituteId: '',
         departmentId: '',
@@ -43,37 +45,55 @@ export class CourseAddComponent implements OnInit {
         this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.affInsCourseForm = this._formBuilder.group({
             // instituteId: ['', Validators.required],
-            // departmentId: ['', Validators.required],
-            courseType: ['', Validators.required],
+            departmentId: ['', Validators.required],
+            type: ['', Validators.required],
             code: ['', Validators.required],
-            courseName: ['', Validators.required],
+            name: ['', Validators.required],
             specialization: '',    
             certificateGenerate: '',     
             certificatePrint: ['', Validators.required],      
 			gpaCalculated: ['', Validators.required], 
 			subjectCredits: ['', Validators.required],     
-            courseDuration: ['', Validators.required], 
+            duration: ['', Validators.required], 
             durationUnit: ['', Validators.required],     
             termType: '',      
             noOfTerms: ''    			
         });
+        this.getDeptList();
+    }
+    
+    getDeptList() {
+		this.url = "/department/list";
+
+		var params = new HttpParams();
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
+		params = params.append('skip', '0');
+		params = params.append('limit', '10');
+
+		this.apiService.get(this.url, params)
+			.subscribe((response) => {
+				if(response.success == true) {
+					if(response.data) {
+						this.departments = response.data; 
+					}
+				}
+			})
 	}
 
 	addCourse(courseData: NgForm) {
-        console.log(courseData)
         if(courseData.invalid) {
             return false;
         }
         this.url = '/course/create'
         this.courseDetails = courseData.value;
-        this.courseDetails.instituteId = this.loggedInUser.instituteId;
-        this.courseDetails.departmentId = this.loggedInUser.departmentId;
-        console.log(this.courseDetails)
-        // this.apiService.post(this.url, this.courseDetails)
-        //     .subscribe((response) => {
-        //         console.log(response);
-        //         this.router.navigate(['/courses']);
-        //     });
+        this.courseDetails.instituteId = this.loggedInUser.reference.instituteId;
+        this.courseDetails.departmentId = this.loggedInUser.reference.departmentId;
+        this.apiService.post(this.url, this.courseDetails)
+            .subscribe((response: any) => {
+                if(response.success == true) {
+                    this.router.navigate(['/courses']);
+                }
+            });
     }
 
     goBack() {

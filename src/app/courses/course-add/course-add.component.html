@@ -19,31 +19,36 @@
 						fxFlexAlign="center">
 						<!-- <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<input matInput placeholder="Institute ID" formControlName="instituteId" required>
-						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Department ID" formControlName="departmentId" required>
 						</mat-form-field> -->
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<mat-select formControlName="courseType" placeholder="Course Type" required>
-								<mat-option value="school"> School Board </mat-option>
-								<mat-option value="graduation"> Graduation Degree </mat-option>
-								<mat-option value="Master"> Master Degree </mat-option>
-								<mat-option value="doctorate"> Doctorate </mat-option>
-								<mat-option value="diploma"> Diploma </mat-option>
-								<mat-option value="certificateProgram"> Certificate Program </mat-option>
+							<mat-select placeholder="Department" formControlName="departmentId" required>
+								<mat-option *ngFor="let department of departments;" [value]='department._id'>{{department.name}}</mat-option>
+							</mat-select>
+						</mat-form-field> 
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<mat-select formControlName="type" placeholder="Course Type" required>
+								<mat-option value="School Board"> School Board </mat-option>
+								<mat-option value="Graduation Degree"> Graduation Degree </mat-option>
+								<mat-option value="Masters Degree"> Master Degree </mat-option>
+								<mat-option value="Doctorate"> Doctorate </mat-option>
+								<mat-option value="Diploma"> Diploma </mat-option>
+								<mat-option value="Certification Program"> Certificate Program </mat-option>
 							</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<input matInput placeholder="Course ID" formControlName="code" required>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Course Name" formControlName="courseName" required>
+							<input matInput placeholder="Course Name" formControlName="name" required>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<input matInput placeholder="Specialization" formControlName="specialization">
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Certificate Generate" formControlName="certificateGenerate">
+							<mat-select formControlName="certificateGenerate" placeholder="Certificate Generate" required>
+									<mat-option value="Auto"> Auto </mat-option>
+									<mat-option value="Manual"> Manual </mat-option>
+								</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<mat-select placeholder="Certificate Print" formControlName="certificatePrint" required>
@@ -59,17 +64,17 @@
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<mat-select placeholder="Subject Credits" formControlName="subjectCredits" required>
-								<mat-option value="yes">Yes</mat-option>
-								<mat-option value="no">No</mat-option>
+								<mat-option value="Equal">Equal</mat-option>
+								<mat-option value="Defined">Defined</mat-option>
 							</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Course Duration" formControlName="courseDuration" required>
+							<input matInput placeholder="Course Duration" formControlName="duration" required>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<mat-select placeholder="Duration Unit" formControlName="durationUnit" required>
-								<mat-option value="month">Month</mat-option>
-								<mat-option value="year">Year</mat-option>
+								<mat-option value="Month">Month</mat-option>
+								<mat-option value="Year">Year</mat-option>
 							</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
