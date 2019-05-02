@@ -30,7 +30,7 @@ export class DepartmentAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
-		this.inst_id = this.loggedInUser.instituteId;
+		this.inst_id = this.loggedInUser.reference.instituteId;
 		this.insDeptForm = this._formBuilder.group({
 			instituteId: [{value: this.inst_id, disabled: true}, Validators.required],
 			code: ['', Validators.required],
@@ -59,7 +59,6 @@ export class DepartmentAddComponent implements OnInit {
 		this.dept.name = deptData.value.name;
 		this.apiService.post(this.url, this.dept)
 			.subscribe((response: any) => {
-				console.log(response);
 				if(response.success == true) {
 					this.openSnackBar('Your department added successfully.', "department" );
 					this.viewDepartments();

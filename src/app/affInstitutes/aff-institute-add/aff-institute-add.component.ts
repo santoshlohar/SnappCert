@@ -30,7 +30,6 @@ export class AffInstituteAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
-		console.log(this.loggedInUser)
 		this.affliatedInsForm = this._formBuilder.group({
 			departmentId: ['', Validators.required],
 			affInstituteId: [''],
@@ -45,7 +44,7 @@ export class AffInstituteAddComponent implements OnInit {
 		this.url = "/department/list";
 
 		var params = new HttpParams();
-		params = params.append('instituteId', this.loggedInUser.instituteId);
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
 
@@ -65,7 +64,7 @@ export class AffInstituteAddComponent implements OnInit {
 		} 
 		this.url = '/affiliate/create';
 		
-		this.affInst.instituteId = this.loggedInUser.instituteId;
+		this.affInst.instituteId = this.loggedInUser.reference.instituteId;
 		this.affInst.departmentId = affInstData.value.departmentId;
 		this.affInst.code = affInstData.value.affInstituteId;
 		this.affInst.name = affInstData.value.affInstituteName;

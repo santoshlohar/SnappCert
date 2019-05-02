@@ -89,7 +89,7 @@ export class AffInstituteListComponent implements OnInit {
 	getAffInstitutes() {
 		this.url = '/affiliate/list';
 		var params = new HttpParams();
-		params = params.append('instituteId', this.loggedInUser.instituteId);
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
 
