@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 	url: string;
 	user: any;
 	role: string;
+	entity: string;
 
 	constructor(public dialogRef: MatDialogRef<LoginComponent>,
 				private formBuilder: FormBuilder,
@@ -49,8 +50,9 @@ export class LoginComponent implements OnInit {
 			.subscribe((response: any) => {
 				if(response) {
 					this.user = response;
-					this.role = this.user.role;
-					this.roleService.renderScreen(this.role);
+					this.role = this.user.reference.role;
+					this.entity = this.user.reference.entity;
+					this.roleService.renderScreen(this.role, this.entity);
 
 					this.dialogRef.close();
 				}

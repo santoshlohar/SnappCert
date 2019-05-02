@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
 
 	ngOnInit() {	
 		this.user = JSON.parse(localStorage.getItem('user'));
-		this.roleName(this.user.role);
+		this.roleName(this.user.reference.role);
 	}
 
 	gotoLogin() {
@@ -88,30 +88,19 @@ export class HeaderComponent implements OnInit {
 		}
 	}
 
-	roleName(type) {
-		if(type == Role.Admin) {
-			this.role = 'System Admin';
-		} else if(type == Role.Requester) {
-			this.role = 'Requester';
-		} else if(type == Role.Agent) {
-			this.role = 'KYC Agent';
-		} else if(type == Role.InsAdmin) {
+	roleName(role) {
+
+		if(role == 'admin') {
 			this.role = 'Institute Admin';
-		} else if(type == Role.InsDataMgr) {
-			this.role = 'Data Manager';
-		} else if(type == Role.AffInsDataMgr) {
-			this.role = 'Data Manager';
-		} else if(type == Role.InsRev) {
+		} else if(role == 'manager') {
+			this.role = 'Manager';
+		} else if(role == 'reviewer') {
 			this.role = 'Reviewer';
-		} else if(type == Role.AffInsRev) {
-			this.role = 'Reviewer';
-		} else if(type == Role.DataCert) {
+		} else if(role == 'certifier') {
 			this.role = 'Certifier';
-		} else if(type == Role.DataApp) {
+		} else if(role == 'approver') {
 			this.role = 'Approver';
-		} else if(type == Role.Student) {
-			this.role = 'Student';
-		} 
+		}
 	}
 
 	openSidebar() {

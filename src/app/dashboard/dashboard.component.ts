@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
 	ngOnInit() {
 		this.user = JSON.parse(localStorage.getItem('user'));
-		this.role = this.user.role;
+		this.role = this.user.reference.role;
 	}
 
 }

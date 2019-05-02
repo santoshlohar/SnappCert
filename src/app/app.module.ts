@@ -34,8 +34,6 @@ import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/af
 import { CourseAddComponent } from './courses/course-add/course-add.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CertificateUploadListComponent } from './certificates/certificate-upload-list/certificate-upload-list.component';
-import { PwdGenerateComponent } from './pwd-generate/pwd-generate.component';
-import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { NotifyOtpComponent } from './dialog-boxes/notify-otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -76,8 +74,6 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
         CourseAddComponent,
         CoursesListComponent,
         CertificateUploadListComponent,
-        PwdGenerateComponent,
-        VerifyOtpComponent,
         NotifyOtpComponent,
         ForgotPasswordComponent,
         DashboardComponent,

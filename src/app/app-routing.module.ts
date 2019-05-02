@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 
 import { LoginComponent } from './login/login.component';
 import { InstituteRegistrationComponent } from './institute-registration/institute-registration.component';
-import { PwdGenerateComponent } from './pwd-generate/pwd-generate.component';
 import { InstitutesListComponent } from './institutes/institutes-list/institutes-list.component';
 import { InstituteUpdateComponent } from './institutes/institute-update/institute-update.component';
 import { DepartmentsListComponent } from './departments/departments-list/departments-list.component';
@@ -18,7 +17,6 @@ import { CoursesListComponent } from './courses/courses-list/courses-list.compon
 import { CourseAddComponent } from './courses/course-add/course-add.component';
 import { CertificateUploadListComponent } from './certificates/certificate-upload-list/certificate-upload-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
@@ -45,21 +43,17 @@ const routes: Routes =  [
     { path: 'forgotPassword', component: ForgotPasswordComponent},
     { path: 'registration', component: InstituteRegistrationComponent},
     { path: 'resetPassword', component: ResetPasswordComponent},
-    { path: 'generatePassword', component: PwdGenerateComponent},
-    { path: 'verifyOtp', component: VerifyOtpComponent},
     { 
         path: 'dashboard', 
         component: DashboardComponent, 
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                        Role.InsAdmin,
-                        Role.InsDataMgr,
-                        Role.AffInsDataMgr,
-                        Role.InsRev,
-                        Role.AffInsRev,
-                        Role.DataCert,
-                        Role.DataApp,
+                        Role.Admin,
+                        Role.Manager,
+                        Role.Reviewer,
+                        Role.Certifier,
+                        Role.Approver,
                         Role.Student
                     ] 
             } 
@@ -71,9 +65,7 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Admin,
-                    Role.InsAdmin,
-                    Role.InsDataMgr,
-                    Role.AffInsDataMgr
+                    Role.Manager
                 ] 
             } 
     },
@@ -84,9 +76,7 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Admin,
-                    Role.InsAdmin,
-                    Role.InsDataMgr,
-                    Role.AffInsDataMgr
+                    Role.Manager
                 ] 
         }
     },
@@ -117,7 +107,7 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsAdmin
+                    Role.Admin
                 ] 
         }
     },
@@ -127,7 +117,7 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsAdmin
+                    Role.Admin
                 ] 
         }
     },
@@ -137,7 +127,7 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsAdmin
+                    Role.Admin
                 ] 
         }
     },
@@ -147,7 +137,7 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsAdmin
+                    Role.Admin
                 ] 
         }
     },
@@ -157,8 +147,7 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsDataMgr,
-                    Role.AffInsDataMgr
+                    Role.Manager
                 ] 
         }
     },
@@ -168,7 +157,7 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsDataMgr
+                    Role.Manager
                 ] 
         }
     },
@@ -178,7 +167,7 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsDataMgr
+                    Role.Manager
                 ] 
         }
     },
@@ -188,7 +177,7 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsDataMgr
+                    Role.Manager
                 ] 
         }
     },
@@ -198,9 +187,9 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsDataMgr,
-                    Role.InsRev,
-                    Role.DataCert            
+                    Role.Manager,
+                    Role.Reviewer,
+                    Role.Certifier            
                 ] 
         }
     },
@@ -210,9 +199,9 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.InsDataMgr,
-                    Role.InsRev,
-                    Role.DataCert                 
+                    Role.Manager,
+                    Role.Reviewer,
+                    Role.Certifier                 
                 ] 
         }
     },
@@ -238,9 +227,9 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.AffInsDataMgr,
-                    Role.AffInsRev,
-                    Role.DataApp                 
+                    Role.Manager,
+                    Role.Reviewer,
+                    Role.Approver                 
                 ] 
         }
     },
@@ -250,9 +239,9 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.AffInsDataMgr,
-                    Role.AffInsRev,
-                    Role.DataApp                 
+                    Role.Manager,
+                    Role.Reviewer,
+                    Role.Approver                 
                 ] 
         }
     },

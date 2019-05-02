@@ -11,30 +11,27 @@ export class UserRolesService {
 	constructor(private http: HttpClient,
 				private router: Router) { }
 
-	renderScreen(role) {
-		console.log(role)
-		if(role == Role.Admin) {
-			this.router.navigate(['/home']);
-		} else if(role == Role.Requester) {
-			this.router.navigate(['/home']);
-		} else if(role == Role.Agent) {
-			this.router.navigate(['/institutes']);
-		} else if(role == Role.InsAdmin) {
-			this.router.navigate(['/dashboard']);
-		} else if(role == Role.InsDataMgr) {
-			this.router.navigate(['/dashboard']);
-		} else if(role == Role.AffInsDataMgr) {
-			this.router.navigate(['/dashboard']);
-		} else if(role == Role.InsRev) {
-			this.router.navigate(['/dashboard']);
-		} else if(role == Role.AffInsRev) {
-			this.router.navigate(['/dashboard']);
-		} else if(role == Role.DataCert) {
-			this.router.navigate(['/dashboard']);
-		} else if(role == Role.DataApp) {
-			this.router.navigate(['/dashboard']);
-		} else if(role == Role.Student) {
-			this.router.navigate(['/home']);
-		} 
+	renderScreen(role, entity) {
+		if(entity == 'institute') {
+			if(role == 'admin') {
+				this.router.navigate(['/dashboard']);
+			} else if(role == 'manager') {
+				this.router.navigate(['/dashboard']);
+			} else if(role == 'reviewer') {
+				this.router.navigate(['/dashboard']);
+			} else if(role == 'certifier') {
+				this.router.navigate(['/dashboard']);
+			}
+		} else if(entity == 'affiliate') {
+			if(role == 'admin') {
+				this.router.navigate(['/dashboard']);
+			} else if(role == 'manager') {
+				this.router.navigate(['/dashboard']);
+			} else if(role == 'reviewer') {
+				this.router.navigate(['/dashboard']);
+			} else if(role == 'approver') {
+				this.router.navigate(['/dashboard']);
+			}
+		}
 	}
 }

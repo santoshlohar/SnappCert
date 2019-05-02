@@ -82,7 +82,7 @@ export class AuthService {
 
 		const token = this.getAccessToken();
 		const decodeToken = this.jwtHelperService.decodeToken(token);
-
+		console.log(decodeToken);
 		if (!decodeToken) {
 			return false;
 		}
