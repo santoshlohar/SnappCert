@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="wrapper">
 		<div class="outer-div">
-			<div class="inner-div header-btns" *ngIf="role == 'inst_data_manager'">
+			<div class="inner-div header-btns" *ngIf="(role == 'manager' && entity == 'institute')">
 				<a mat-button class="add-btn" routerLink="/courseAdd">Add Institute Course</a>
 			</div>
 			<span class="spacer"></span>
@@ -29,12 +29,6 @@
 						</mat-checkbox>
 					</mat-cell>
 				</ng-container>
-				<ng-container matColumnDef="actions">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Actions</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.UserType}} </mat-cell>
-				</ng-container>
 				<ng-container matColumnDef="instituteId">
 					<mat-header-cell *matHeaderCellDef> 
 						<div>Institute ID</div>
@@ -45,7 +39,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.instituteID}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.instituteId}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="deptId">
 					<mat-header-cell *matHeaderCellDef>
@@ -57,7 +51,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Department_ID}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.departmentId}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="courseType">
 					<mat-header-cell *matHeaderCellDef>
@@ -69,7 +63,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Course_Type}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="courseId">
 					<mat-header-cell *matHeaderCellDef>
@@ -81,7 +75,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Course_ID}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="courseName">
 					<mat-header-cell *matHeaderCellDef>
@@ -93,7 +87,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Course_Name}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="specialization">
 					<mat-header-cell *matHeaderCellDef>
@@ -105,7 +99,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Specialization}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.specialization}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="courseDuration">
 					<mat-header-cell *matHeaderCellDef>
@@ -117,7 +111,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Course_Duration}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.duration}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="durationUnit">
 					<mat-header-cell *matHeaderCellDef>
@@ -129,7 +123,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Duration_Unit}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.durationUnit}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="termType">
 					<mat-header-cell *matHeaderCellDef>
@@ -141,7 +135,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Term_Type}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.termType}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="noOfTerms">
 					<mat-header-cell *matHeaderCellDef>
@@ -153,7 +147,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.No_of_Terms}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.noOfTerms}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="status">
 					<mat-header-cell *matHeaderCellDef>
@@ -174,7 +168,7 @@
 					<mat-cell *matCellDef="let row">
 						<mat-slide-toggle class="toggle" 
 						[checked]="row.status=='Active'" 
-						(change)="activate(row)"></mat-slide-toggle>
+						(change)="changeStatus(row)"></mat-slide-toggle>
 					</mat-cell>
 				</ng-container>
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

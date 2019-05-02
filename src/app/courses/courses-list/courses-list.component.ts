@@ -19,6 +19,7 @@ export class CoursesListComponent implements OnInit {
 	loggedInUser;
 	inst_Id;
 	role;
+	entity;
 	aff_inst_Id;
 	courses = [];
 	course= {};
@@ -29,7 +30,6 @@ export class CoursesListComponent implements OnInit {
 	affInstCourses: [] = [];
 	displayedColumns = [
 		'select',
-		'actions',
 		'instituteId',
 		'deptId', 
 		'courseType', 
@@ -81,12 +81,11 @@ export class CoursesListComponent implements OnInit {
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
-		this.role = this.loggedInUser.role;
-		this.inst_Id = this.loggedInUser.instituteId;
+		this.role = this.loggedInUser.reference.role;
+		this.entity = this.loggedInUser.reference.entity;
 		if(this.loggedInUser.Affliated_Institute_ID) {
 			this.aff_inst_Id = this.loggedInUser.Affliated_Institute_ID;
 		}
-		//this.getCoursesByInsId();
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.getCourses();
@@ -109,8 +108,8 @@ export class CoursesListComponent implements OnInit {
 		this.url = "/course/list";
 		var params = new HttpParams();
 
-		params = params.append('instituteId', this.loggedInUser.instituteId);
-		params = params.append('departmentId', this.loggedInUser.departmentId);
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
+		params = params.append('departmentId', this.loggedInUser.reference.departmentId);
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
 
@@ -118,6 +117,15 @@ export class CoursesListComponent implements OnInit {
 			.subscribe((response) => {
 				if(response.success == true) {
 					console.log(response.data)
+					this.courses = response.data;
+					for(var i=0;i<this.courses.length;i++) {
+						if(this.courses[i].isActive == true) {
+							this.courses[i].status = "Active";
+						} else {
+							this.courses[i].status = "Inactive";
+						}
+					}
+					this.dataSource.data = this.courses;
 					// this.courses = response.data;
 					// for(var i=0;i<this.courses.length;i++) {
 					// 	if(this.courses[i].isActive == true) {
@@ -129,6 +137,27 @@ export class CoursesListComponent implements OnInit {
 					// this.dataSource.data = this.courses;
 				}
 			})
+	}
+
+	changeStatus(row) {
+		var courseId = row._id;
+		this.url = "/course/"+ courseId +"/changeStatus";
+		var data = {
+			isActive: row.isActive
+		};
+
+		if(row.isActive == true) {
+			data.isActive = false;
+		} else {
+			data.isActive = true;
+		}
+
+		this.apiService.put(this.url, data)
+			.subscribe((response) => {
+				if(response.success == true) {
+					this.getCourses();
+				}
+			});
 	}
 
 	// getInsCourses() {
