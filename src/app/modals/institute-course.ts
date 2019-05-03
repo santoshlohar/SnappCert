@@ -1,15 +1,15 @@
 export interface InstituteCourse {
     instituteId: string;
     departmentId: string;
-    courseType: string;
+    type: string;
     code: string;
-    courseName: string;
+    name: string;
     specialization: string;
     certificateGenerate: string;
     certificatePrint: string;
     gpaCalculated: string;
     subjectCredits: string;
-    courseDuration: string;
+    duration: string;
     durationUnit: string;
     termType: string;
     noOfTerms: Number;

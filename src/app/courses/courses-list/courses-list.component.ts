@@ -44,8 +44,8 @@ export class CoursesListComponent implements OnInit {
 		'_id'
 	];
 
-	dataSource = new MatTableDataSource<any>();
-	selection = new SelectionModel<any>(true, []);
+	dataSource = new MatTableDataSource<InstituteCourse>();
+	selection = new SelectionModel<InstituteCourse>(true, []);
 
 	instituteIdFilter = new FormControl();
 	deptIdFilter = new FormControl();
@@ -60,16 +60,16 @@ export class CoursesListComponent implements OnInit {
 	statusFilter = new FormControl();
 
 	filteredValues = {
-		instituteID: '',
-		department_ID: '',
-		Course_Type: '',
-		Course_ID: '',
-		Course_Name: '',
-		Specialization: '',
-		Course_Duration: '',
-		Duration_Unit: '',
-		Term_Type: '',
-		No_of_Terms: '',
+		instituteId: '',
+		departmentId: '',
+		type: '',
+		code: '',
+		name: '',
+		specialization: '',
+		duration: '',
+		durationUnit: '',
+		termType: '',
+		noOfTerms: '',
 		status: ''
 	}
 
@@ -89,7 +89,7 @@ export class CoursesListComponent implements OnInit {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.getCourses();
-		//this.filterByColumn();
+		this.filterByColumn();
 		//this.getCoursesByAffIns();
 	}
 
@@ -116,8 +116,8 @@ export class CoursesListComponent implements OnInit {
 		this.apiService.get(this.url, params)
 			.subscribe((response) => {
 				if(response.success == true) {
-					console.log(response.data)
 					this.courses = response.data;
+					console.log(this.courses);
 					for(var i=0;i<this.courses.length;i++) {
 						if(this.courses[i].isActive == true) {
 							this.courses[i].status = "Active";
@@ -126,15 +126,6 @@ export class CoursesListComponent implements OnInit {
 						}
 					}
 					this.dataSource.data = this.courses;
-					// this.courses = response.data;
-					// for(var i=0;i<this.courses.length;i++) {
-					// 	if(this.courses[i].isActive == true) {
-					// 		this.courses[i].status = "Active";
-					// 	} else {
-					// 		this.courses[i].status = "Inactive";
-					// 	}
-					// }
-					// this.dataSource.data = this.courses;
 				}
 			})
 	}
@@ -160,22 +151,88 @@ export class CoursesListComponent implements OnInit {
 			});
 	}
 
-	// getInsCourses() {
-	// 	this.url = '/coursedata';
-	// 	this.apiService.get(this.url)
-	// 		.subscribe((response) => {
-	// 			this.courses = response;
-	// 			for(var i=0;i<this.courses.length;i++) {
-	// 				if(this.courses[i].isActivated) {
-	// 					this.courses[i].activated = "Inactivate"
-	// 				} else {
-	// 					this.courses[i].activated = "Activate"
-	// 				}
-	// 				this.dataSource.data = this.courses;
-	// 			}
-				
-	// 		});
-	// }
+	editCourse(row) {
+		this.router.navigate(['/courseEdit/'+ row._id]);
+	}
+
+	filterByColumn() {
+
+		this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
+			this.filteredValues['instituteId'] = instituteIdFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.deptIdFilter.valueChanges.subscribe((deptIdFilterValue) => {
+			this.filteredValues['departmentId'] = deptIdFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.courseTypeFilter.valueChanges.subscribe((courseTypeFilterValue) => {
+			this.filteredValues['type'] = courseTypeFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.courseIdFilter.valueChanges.subscribe((courseIdFilterValue) => {
+			this.filteredValues['code'] = courseIdFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+		
+		this.courseNameFilter.valueChanges.subscribe((courseNameFilterValue) => {
+			this.filteredValues['name'] = courseNameFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.specFilter.valueChanges.subscribe((specFilterValue) => {
+			this.filteredValues['specialization'] = specFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.durationFilter.valueChanges.subscribe((durationFilterValue) => {
+			this.filteredValues['duration'] = durationFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.unitFilter.valueChanges.subscribe((unitFilterValue) => {
+			this.filteredValues['durationUnit'] = unitFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.termTypeFilter.valueChanges.subscribe((termTypeFilterValue) => {
+			this.filteredValues['termType'] = termTypeFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.termNoFilter.valueChanges.subscribe((termNoFilterValue) => {
+			this.filteredValues['noOfTerms'] = termNoFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.statusFilter.valueChanges.subscribe((statusFilterValue) => {
+			this.filteredValues['status'] = statusFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
+		this.dataSource.filterPredicate = this.customFilterPredicate();
+	}
+
+	customFilterPredicate() {
+		const myFilterPredicate = function(data:InstituteCourse, filter: string): boolean {
+			let searchString = JSON.parse(filter);
+			return data.instituteId.toString().trim().toLowerCase().indexOf(searchString.instituteId) !== -1
+			&& data.departmentId.toString().trim().toLowerCase().indexOf(searchString.departmentId) !== -1
+			&& data.type.toString().trim().toLowerCase().indexOf(searchString.type) !== -1
+			&& data.code.toString().trim().toLowerCase().indexOf(searchString.code) !== -1
+			&& data.name.toString().trim().toLowerCase().indexOf(searchString.name) !== -1
+			&& data.specialization.toString().trim().toLowerCase().indexOf(searchString.specialization) !== -1
+			&& data.duration.toString().trim().toLowerCase().indexOf(searchString.duration) !== -1
+			&& data.durationUnit.toString().trim().toLowerCase().indexOf(searchString.durationUnit) !== -1
+			&& data.termType.toString().trim().toLowerCase().indexOf(searchString.termType) !== -1
+			&& data.noOfTerms.toString().trim().toLowerCase().indexOf(searchString.noOfTerms) !== -1
+			&& data.status.toString().trim().toLowerCase().indexOf(searchString.status) !== -1
+		}
+		return myFilterPredicate;
+	}
+
 
 	// getCoursesByInsId() {
 	// 	this.url = '/coursedatabyinstid/';
@@ -202,57 +259,28 @@ export class CoursesListComponent implements OnInit {
 	// 			console.log(error);
 	// 		})
 	// }
+	
 
-	editCourse(row) {
-		this.router.navigate(['/courseEdit/'+ row._id]);
-	}
-
-	activate(data) {
-		var affInstId = data._id;
-		this.url = '/course/';
-		this.apiService.put(this.url + affInstId, data)
-			.subscribe((response) => {
-				
-				//this.getCoursesByInsId();
-			});
-	}
-
-	// activate(row) {
-	// 	this.url = '/course/';
-	// 	if(row.isActivated == true) {
-	// 		row.isActivated = false;
-	// 		row.activated = "Activate";
-	// 	} else if(row.isActivated == false) {
-	// 		row.isActivated = true;
-	// 		row.activated = "Deactivate";
+	// selectCourses() {
+	// 	var selectedCourse = this.selection.selected;
+	// 	if(selectedCourse.length) {
+	// 		for(var i=0;i<selectedCourse.length;i++) {
+	// 			selectedCourse[i].Affliated_Institute_ID = this.loggedInUser.Affliated_Institute_ID;
+	// 		};
+	// 		this.url = "/afflinstitute/courses";		   
+	// 		this.apiService.post(this.url, selectedCourse)
+	// 			.subscribe((response: any) => {
+	// 				if(response.message == 'success') {
+	// 					alert("Selected courses link with your institute successfully!")
+	// 				}
+	// 			},
+	// 			(error) => {
+	// 				console.log(error);
+	// 			});
+	// 	} else {
+	// 		alert("Please select the courses you want to link with your Affiliated Institute.")
 	// 	}
-	// 	this.course = row;
-	// 	this.apiService.put(this.url+ row._id, this.course)
-	// 		.subscribe((response) => {
-	// 			this.getCoursesByInsId();
-	// 		});
 	// }
-
-	selectCourses() {
-		var selectedCourse = this.selection.selected;
-		if(selectedCourse.length) {
-			for(var i=0;i<selectedCourse.length;i++) {
-				selectedCourse[i].Affliated_Institute_ID = this.loggedInUser.Affliated_Institute_ID;
-			};
-			this.url = "/afflinstitute/courses";		   
-			this.apiService.post(this.url, selectedCourse)
-				.subscribe((response: any) => {
-					if(response.message == 'success') {
-						alert("Selected courses link with your institute successfully!")
-					}
-				},
-				(error) => {
-					console.log(error);
-				});
-		} else {
-			alert("Please select the courses you want to link with your Affiliated Institute.")
-		}
-	}
 
 	// getCoursesByAffIns() {
 	// 	this.url = "/coursesbyafflinstid/";
@@ -291,84 +319,5 @@ export class CoursesListComponent implements OnInit {
 	// 			console.log(error)
 	// 		})
 	// }
-
-	// filterByColumn() {
-
-	// 	this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
-	// 		this.filteredValues['instituteID'] = instituteIdFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-
-	// 	this.deptIdFilter.valueChanges.subscribe((deptIdFilterValue) => {
-	// 		this.filteredValues['department_ID'] = deptIdFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-
-	// 	this.courseTypeFilter.valueChanges.subscribe((courseTypeFilterValue) => {
-	// 		this.filteredValues['Course_Type'] = courseTypeFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-
-	// 	this.courseIdFilter.valueChanges.subscribe((courseIdFilterValue) => {
-	// 		this.filteredValues['Course_ID'] = courseIdFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-		
-	// 	this.courseNameFilter.valueChanges.subscribe((courseNameFilterValue) => {
-	// 		this.filteredValues['Course_Name'] = courseNameFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-
-	// 	this.specFilter.valueChanges.subscribe((specFilterValue) => {
-	// 		this.filteredValues['Specialization'] = specFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-
-	// 	this.durationFilter.valueChanges.subscribe((durationFilterValue) => {
-	// 		this.filteredValues['Course_Duration'] = durationFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-
-	// 	this.unitFilter.valueChanges.subscribe((unitFilterValue) => {
-	// 		this.filteredValues['Duration_Unit'] = unitFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-
-	// 	this.termTypeFilter.valueChanges.subscribe((termTypeFilterValue) => {
-	// 		this.filteredValues['Term_Type'] = termTypeFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-
-	// 	this.termNoFilter.valueChanges.subscribe((termNoFilterValue) => {
-	// 		this.filteredValues['No_of_Terms'] = termNoFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-
-	// 	this.statusFilter.valueChanges.subscribe((statusFilterValue) => {
-	// 		this.filteredValues['status'] = statusFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
-
-	// 	this.dataSource.filterPredicate = this.customFilterPredicate();
-	// }
-
-	// customFilterPredicate() {
-	// 	const myFilterPredicate = function(data:InstituteCourse, filter: string): boolean {
-	// 		let searchString = JSON.parse(filter);
-	// 		return data.instituteID.toString().trim().toLowerCase().indexOf(searchString.instituteID) !== -1
-	// 		&& data.department_ID.toString().trim().toLowerCase().indexOf(searchString.department_ID) !== -1
-	// 		&& data.Course_Type.toString().trim().toLowerCase().indexOf(searchString.Course_Type) !== -1
-	// 		&& data.Course_ID.toString().trim().toLowerCase().indexOf(searchString.Course_ID) !== -1
-	// 		&& data.Course_Name.toString().trim().toLowerCase().indexOf(searchString.Course_Name) !== -1
-	// 		&& data.Specialization.toString().trim().toLowerCase().indexOf(searchString.Specialization) !== -1
-	// 		&& data.Course_Duration.toString().trim().toLowerCase().indexOf(searchString.Course_Duration) !== -1
-	// 		&& data.Duration_Unit.toString().trim().toLowerCase().indexOf(searchString.Duration_Unit) !== -1
-	// 		&& data.Term_Type.toString().trim().toLowerCase().indexOf(searchString.Term_Type) !== -1
-	// 		&& data.No_of_Terms.toString().trim().toLowerCase().indexOf(searchString.No_of_Terms) !== -1
-	// 		&& data.status.toString().trim().toLowerCase().indexOf(searchString.status) !== -1
-	// 	}
-	// 	return myFilterPredicate;
-	// }
-
 
 }
