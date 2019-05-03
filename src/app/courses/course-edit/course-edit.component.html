@@ -14,55 +14,58 @@
 						</span>
 					</div>
 					<mat-form-field class="input-field">
-						<input matInput placeholder="Department ID" formControlName="departmentId" required>
+						<input matInput placeholder="Department" formControlName="departmentId" required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
-						<mat-select placeholder="Course Type" formControlName="courseType" required>
-							<mat-option value="school"> School Board </mat-option>
-							<mat-option value="graduation"> Graduation Degree </mat-option>
-							<mat-option value="Master"> Master Degree </mat-option>
-							<mat-option value="doctorate"> Doctorate </mat-option>
-							<mat-option value="diploma"> Diploma </mat-option>
-							<mat-option value="certificateProgram"> Certificate Program </mat-option>
+						<mat-select placeholder="Course Type" formControlName="type" required>
+							<mat-option value="School Board"> School Board </mat-option>
+							<mat-option value="Graduation Degree"> Graduation Degree </mat-option>
+							<mat-option value="Masters Degree"> Master Degree </mat-option>
+							<mat-option value="Doctorate"> Doctorate </mat-option>
+							<mat-option value="Diploma"> Diploma </mat-option>
+							<mat-option value="Certification Program"> Certificate Program </mat-option>
 						</mat-select>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput placeholder="Course ID" formControlName="code" required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
-						<input matInput placeholder="Course Name" formControlName="courseName" required>
+						<input matInput placeholder="Course Name" formControlName="name" required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput placeholder="Specialization" formControlName="specialization">
 					</mat-form-field>
 					<mat-form-field class="input-field">
-						<input matInput placeholder="Certificate Generate" formControlName="certificateGenerate">
+						<mat-select formControlName="certificateGenerate" placeholder="Certificate Generate" required>
+							<mat-option value="Auto"> Auto </mat-option>
+							<mat-option value="Manual"> Manual </mat-option>
+						</mat-select>					
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<mat-select placeholder="Certificate Print" formControlName="certificatePrint" required>
-							<mat-option value="yes">Yes</mat-option>
-							<mat-option value="no">No</mat-option>
+							<mat-option value="true">Yes</mat-option>
+							<mat-option value="false">No</mat-option>
 						</mat-select>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<mat-select placeholder="GPA Calculated" formControlName="gpaCalculated" required>
-							<mat-option value="yes">Yes</mat-option>
-							<mat-option value="no">No</mat-option>
+							<mat-option value="true">Yes</mat-option>
+							<mat-option value="false">No</mat-option>
 						</mat-select>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<mat-select placeholder="Subject Credits" formControlName="subjectCredits" required>
-							<mat-option value="yes">Yes</mat-option>
-							<mat-option value="no">No</mat-option>
+							<mat-option value="true">Yes</mat-option>
+							<mat-option value="false">No</mat-option>
 						</mat-select>
 					</mat-form-field>
 					<mat-form-field class="input-field">
-						<input matInput placeholder="Course Duration" formControlName="courseDuration" required>
+						<input matInput placeholder="Course Duration" formControlName="duration" required>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<mat-select placeholder="Duration Unit" formControlName="durationUnit" required>
-							<mat-option value="month">Month</mat-option>
-							<mat-option value="year">Year</mat-option>
+							<mat-option value="Month">Month</mat-option>
+							<mat-option value="Year">Year</mat-option>
 						</mat-select>
 					</mat-form-field>
 					<mat-form-field class="input-field">

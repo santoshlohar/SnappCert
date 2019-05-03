@@ -22,7 +22,8 @@ export class CoursesListComponent implements OnInit {
 	entity;
 	aff_inst_Id;
 	courses = [];
-	course= {};
+	course: any = {};
+	selectedCourses: any = [];
 	singleCourse= {
 		Course_ID : '',
 		afflInstituteID: ''
@@ -151,8 +152,15 @@ export class CoursesListComponent implements OnInit {
 			});
 	}
 
-	editCourse(row) {
-		this.router.navigate(['/courseEdit/'+ row._id]);
+	edit() {
+		this.selectedCourses = this.selection.selected;
+		
+		if(this.selectedCourses.length > 1) {
+
+		} else {
+			this.course = this.selectedCourses[0];
+			this.router.navigate(['/courseEdit/'+ this.course._id]);
+		}
 	}
 
 	filterByColumn() {

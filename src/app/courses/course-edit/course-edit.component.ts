@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
 	selector: 'app-course-edit',
@@ -14,20 +15,20 @@ export class CourseEditComponent implements OnInit {
 	url;
 	id;
 	inst_Id;
-	loginUser;
+	loggedInUser;
 	course;
 	courseData = {
 		instituteId: '',
 		departmentId: '',
-		courseType: '',
+		type: '',
 		code: '',
-		courseName: '',
+		name: '',
 		specialization: '',
 		certificateGenerate: '',
 		certificatePrint: '',
 		gpaCalculated: '',
 		subjectCredits: '',
-		courseDuration: '',
+		duration: '',
 		durationUnit: '',
 		termType: '',
 		noOfTerms: ''
@@ -42,72 +43,79 @@ export class CourseEditComponent implements OnInit {
 
 	ngOnInit() {
 		this.id = this.route.snapshot.params['id'];
-		this.loginUser = JSON.parse(localStorage.getItem('user'));
-		this.inst_Id = this.loginUser.instituteID;
-		//this.getCourseById(this.id);
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.getCourse(this.id);
 		this.insCourseForm = this.formBuilder.group({
 			departmentId: ['', Validators.required],
-			courseType:  ['', Validators.required],
+			type:  ['', Validators.required],
 			code: ['', Validators.required],
-			courseName: ['', Validators.required],
+			name: ['', Validators.required],
 			specialization: ['', Validators.required],
 			certificateGenerate: ['', Validators.required],
 			certificatePrint: ['', Validators.required],
 			gpaCalculated: ['', Validators.required],
 			subjectCredits: ['', Validators.required],
-			courseDuration: ['', Validators.required],
+			duration: ['', Validators.required],
 			durationUnit: ['', Validators.required],
 			termType: ['', Validators.required],
 			noOfTerms: ['', Validators.required]
 		});
 	}
 
-	// getCourseById(id) {
-	// 	this.url = "/course/";
-	// 	console.log(this.url)
-	// 	this.apiService.get(this.url+id)
-	// 		.subscribe((response) => {
-	// 			if(response.message == 'success' && response.data != '') {
-	// 				this.course = response.data;
-	// 				console.log('course: ' + JSON.stringify(this.course));
-	// 				this.insCourseForm.patchValue(this.course);
-	// 			}
-	// 		},
-	// 		(error) => {
-	// 			console.log(error)
-	// 		})
-	// }
+	getCourse(id) {
+		this.url = "/course/"+ id;
+		var params = new HttpParams();
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
+		params = params.append('departmentId', this.loggedInUser.reference.departmentId);
+
+		this.apiService.get(this.url, params)
+			.subscribe((response) => {
+				if(response.success == true) {
+					this.course = response.data;
+
+					// if(this.course.certificatePrint == true) {
+					// 	this.course.certificatePrint = true;
+					// } else {
+					// 	this.course.certificatePrint = false;
+					// }
+
+					// if(this.course.gpaCalculated == true) {
+					// 	this.course.gpaCalculated = true;
+					// } else {
+					// 	this.course.gpaCalculated = false;
+					// }
+
+					// if(this.course.subjectCredits == true) {
+					// 	this.course.subjectCredits = true;
+					// } else {
+					// 	this.course.subjectCredits = false;
+					// }
+					this.insCourseForm.patchValue(this.course);
+				}
+			})
+	}
 
 	editCourse(data: NgForm) {
-		console.log(data);
 		this.url = "/course/" + this.id;
 		this.courseData.departmentId =  data.value.departmentId;
-		this.courseData.courseType = data.value.Course_Type;
-		this.courseData.code = data.value.Course_ID;
-		this.courseData.courseName = data.value.Course_Name;
+		this.courseData.type = data.value.type;
+		this.courseData.code = data.value.code;
+		this.courseData.name = data.value.name;
 		this.courseData.specialization = data.value.specialization;
-		this.courseData.certificateGenerate = data.value.Certificate_Generate;
-		this.courseData.certificatePrint = data.value.Certificate_Print;
-		this.courseData.gpaCalculated = data.value.GPA_Calculated;
-		this.courseData.subjectCredits = data.value.Subject_Credits;
-		this.courseData.courseDuration = data.value.Course_Duration;
-		this.courseData.durationUnit = data.value.Duration_Unit;
-		this.courseData.termType = data.value.Term_Type;
-		this.courseData.noOfTerms = data.value.No_of_Terms;
-		this.courseData.instituteId = this.inst_Id;
-		
-		// this.apiService.put(this.url+this.id, this.courseData)
-		// 	.subscribe((response) => {
-		// 		if(response.message == 'success') {
-		// 			this.router.navigate(['/courses']);
-		// 		} else {
-		// 			var errmsg = response.error.msg;
-		// 			alert(errmsg);
-		// 		}
-		// 	},
-		// 	(error) => {
-		// 		console.log(error);
-		// 	});
+		this.courseData.certificateGenerate = data.value.certificateGenerate;
+		this.courseData.certificatePrint = data.value.certificatePrint;
+		this.courseData.gpaCalculated = data.value.gpaCalculated;
+		this.courseData.subjectCredits = data.value.subjectCredits;
+		this.courseData.duration = data.value.duration;
+		this.courseData.durationUnit = data.value.durationUnit;
+		this.courseData.termType = data.value.termType;
+		this.courseData.noOfTerms = data.value.noOfTerms;
+		this.courseData.instituteId = this.loggedInUser.reference.instituteId;
+		console.log(this.courseData);
+		this.apiService.put(this.url, this.courseData)
+			.subscribe((response) => {
+				console.log(response);
+			});
 	}
 
 	goBack() {
