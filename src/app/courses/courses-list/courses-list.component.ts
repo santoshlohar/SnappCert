@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
-import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatSort, MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
 import { ApiService } from '../../services/api.service';
 import { InstituteCourse } from '../../modals/institute-course';
 import { Router } from '@angular/router';
 import { Globals } from 'src/app/globals';
 import { FormControl } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
+import { ErrorDialogService } from '../../services/error-dialog.service';
 
 @Component({
   selector: 'app-courses-list',
@@ -77,7 +78,8 @@ export class CoursesListComponent implements OnInit {
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	constructor(private apiService: ApiService,
-				private router: Router) { 
+				private router: Router,
+				public errorDialogService: ErrorDialogService) { 
 				}
 
 	ngOnInit() {
@@ -155,8 +157,8 @@ export class CoursesListComponent implements OnInit {
 	edit() {
 		this.selectedCourses = this.selection.selected;
 		
-		if(this.selectedCourses.length > 1) {
-
+		if(this.selectedCourses.length !== 1) {
+			this.errorDialogService.openDialog("Please select one course to edit!");
 		} else {
 			this.course = this.selectedCourses[0];
 			this.router.navigate(['/courseEdit/'+ this.course._id]);

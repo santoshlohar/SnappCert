@@ -72,24 +72,17 @@ export class CourseEditComponent implements OnInit {
 			.subscribe((response) => {
 				if(response.success == true) {
 					this.course = response.data;
+					if(this.course.certificatePrint == true) {
+						this.course.certificatePrint = "true";
+					} else {
+						this.course.certificatePrint = "false";
+					}
 
-					// if(this.course.certificatePrint == true) {
-					// 	this.course.certificatePrint = true;
-					// } else {
-					// 	this.course.certificatePrint = false;
-					// }
-
-					// if(this.course.gpaCalculated == true) {
-					// 	this.course.gpaCalculated = true;
-					// } else {
-					// 	this.course.gpaCalculated = false;
-					// }
-
-					// if(this.course.subjectCredits == true) {
-					// 	this.course.subjectCredits = true;
-					// } else {
-					// 	this.course.subjectCredits = false;
-					// }
+					if(this.course.gpaCalculated == true) {
+						this.course.gpaCalculated = "true";
+					} else {
+						this.course.gpaCalculated = "false";
+					}
 					this.insCourseForm.patchValue(this.course);
 				}
 			})
@@ -111,10 +104,12 @@ export class CourseEditComponent implements OnInit {
 		this.courseData.termType = data.value.termType;
 		this.courseData.noOfTerms = data.value.noOfTerms;
 		this.courseData.instituteId = this.loggedInUser.reference.instituteId;
-		console.log(this.courseData);
+
 		this.apiService.put(this.url, this.courseData)
 			.subscribe((response) => {
-				console.log(response);
+				if(response.success == true) {
+					this.router.navigate(['/courses/']);
+				}
 			});
 	}
 
