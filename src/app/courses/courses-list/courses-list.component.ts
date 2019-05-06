@@ -158,7 +158,11 @@ export class CoursesListComponent implements OnInit {
 		this.selectedCourses = this.selection.selected;
 		
 		if(this.selectedCourses.length !== 1) {
-			this.errorDialogService.openDialog("Please select one course to edit!");
+			var data = {
+				reason: "Please select one course to edit!",
+				status: ''
+			};
+			this.errorDialogService.openDialog(data);
 		} else {
 			this.course = this.selectedCourses[0];
 			this.router.navigate(['/courseEdit/'+ this.course._id]);
