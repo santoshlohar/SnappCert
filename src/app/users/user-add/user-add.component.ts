@@ -25,6 +25,7 @@ export class UserAddComponent implements OnInit {
 	};
 	loggedInUser;
 	role;
+	entity;
 	admin: boolean;
 	inst_id;
 	affInst_Id;
@@ -37,14 +38,16 @@ export class UserAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
-		this.role = this.loggedInUser.role;
-		this.inst_id = this.loggedInUser.instituteId;
+		this.role = this.loggedInUser.reference.role;
+		this.entity = this.loggedInUser.reference.entity;
+		this.inst_id = this.loggedInUser.reference.instituteId;
 		if(this.loggedInUser.Affliated_Institute_ID != '') {
 			this.affInst_Id = this.loggedInUser.Affliated_Institute_ID;
 		}
 		this.getDeptList();
 		this.authUserForm = this._formBuilder.group({
 			userRole: ['', Validators.required],
+			instituteType: ['', Validators.required],
 			departmentId: [''],
 			firstName: ['', Validators.required],
 			lastName: ['', Validators.required],
@@ -67,6 +70,7 @@ export class UserAddComponent implements OnInit {
 		this.user.phoneNumber =  userData.value.phone;
 		this.user.referredBy =  this.loggedInUser.UserName;
 		this.user.instituteId = this.inst_id;
+		this.user.entity = userData.value.instituteType;
 
 		if(userData.value.departmentId != "") {
 			this.user.departmentId = userData.value.departmentId;
@@ -106,7 +110,8 @@ export class UserAddComponent implements OnInit {
 	}
 
 	roleChange(role) {
-		if(role = "institute_admin") {
+		console.log(role)
+		if(role == "admin") {
 			this.admin = true;
 		} else {
 			this.admin = false;

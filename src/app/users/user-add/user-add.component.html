@@ -29,59 +29,63 @@
 							formControlName="lastName"
 							required>
 						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+						<mat-form-field #id fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<mat-select #type formControlName="userRole" 
 							placeholder="User Role" 
-							(ngModelChange)="roleChange(role)"
+							(ngModelChange)="roleChange($event)"
 							required>
 								<mat-option 
-									value="SYSTEM_ADMIN"
-									*ngIf='role === "SYSTEM_ADMIN"'>
+									value="super_admin"
+									*ngIf='role === "super_admin"'>
 									System Admin
 								</mat-option>
 								<mat-option 
-									value="KYC_AGENT"
-									*ngIf='role === "SYSTEM_ADMIN"'>
+									value="agent"
+									*ngIf='role === "agent"'>
 									Kyc Agent
 								</mat-option>
 								<mat-option 
-									value="institute_admin"
-									*ngIf='role === "institute_admin"'>
+									value="admin"
+									*ngIf="(role == 'admin' && entity == 'institute')">
 									Institute Admin
 								</mat-option>
 								<mat-option 
-									value="INS_DATA_MANAGER"
-									*ngIf='role === "institute_admin"'>
-									Institute Data Manager
+									value="manager"
+									*ngIf="(role == 'admin' && entity == 'institute')
+									|| (role == 'manager' && entity == 'institute')
+									|| (role == 'manager' && entity == 'affiliate')">
+									Manager
 								</mat-option>
 								<mat-option 
-									value="AFF_INS_DATA_MANAGER"
-									*ngIf='role === "institute_admin"'>
-									Aff. Institute Data Manager
+									value="reviewer"
+									*ngIf="(role == 'manager' && entity == 'institute')
+									|| (role == 'manager' && entity == 'affiliate')">
+									Reviewer
 								</mat-option>
 								<mat-option 
-									value="INST_REVIEWER"
-									*ngIf='role == "INS_DATA_MANAGER"'>
-									Data Reviewer
+									value="certifier"
+									*ngIf="(role == 'manager' && entity == 'institute')">
+									Certifier
 								</mat-option>
 								<mat-option 
-									value="AFF_INST_REVIEWER"
-									*ngIf='role == "AFF_INS_DATA_MANAGER"'>
-									Data Reviewer
-								</mat-option>
-								<mat-option 
-									value="DATA_APPROVER"
-									*ngIf='role == "AFF_INS_DATA_MANAGER"'>
-									Data Approver
-								</mat-option>
-								<mat-option 
-									value="DATA_CERTIFIER"
-									*ngIf='role == "INS_DATA_MANAGER"'>
-									Data Certifier
+									value="approver"
+									*ngIf="(role == 'manager' && entity == 'affiliate')">
+									Approver
 								</mat-option>
 							</mat-select>
 						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" ngShow="!admin">
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<mat-select #type formControlName="instituteType" 
+							placeholder="Institute Type" 
+							required>
+								<mat-option value="institute">Institute
+								</mat-option>
+								<mat-option *ngIf="!(role == 'admin' && entity == 'institute') && !(admin)"
+								 value="affiliate">Affiliate Institute
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!admin">
 							<mat-select placeholder="Department" 
 							formControlName="departmentId"
 							required>
