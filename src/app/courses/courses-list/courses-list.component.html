@@ -9,7 +9,8 @@
 				<div class="mat-header-btns">
 					<a mat-button class="add-btn" hidden (click)="viewSelectCourses()">Selected Courses View</a>
 					<a mat-button class="add-btn" hidden (click)="selectCourses()">Aff. Institute Course</a>
-					<a mat-button class="add-btn" (click)="edit()">Edit</a>
+					<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'institute')" (click)="edit()">Edit</a>
+					<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'affiliate')" (click)="saveAffiliateCourse()">Save</a>
 				</div>
 			</div>
 		</div>

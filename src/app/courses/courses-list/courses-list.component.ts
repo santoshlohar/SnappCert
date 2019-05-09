@@ -21,7 +21,7 @@ export class CoursesListComponent implements OnInit {
 	inst_Id;
 	role;
 	entity;
-	aff_inst_Id;
+	affiliateId;
 	courses = [];
 	course: any = {};
 	selectedCourses: any = [];
@@ -86,8 +86,8 @@ export class CoursesListComponent implements OnInit {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.role = this.loggedInUser.reference.role;
 		this.entity = this.loggedInUser.reference.entity;
-		if(this.loggedInUser.Affliated_Institute_ID) {
-			this.aff_inst_Id = this.loggedInUser.Affliated_Institute_ID;
+		if(this.loggedInUser.reference.affiliateId) {
+			this.affiliateId = this.loggedInUser.reference.affiliateId;
 		}
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
@@ -166,6 +166,45 @@ export class CoursesListComponent implements OnInit {
 			this.course = this.selectedCourses[0];
 			this.router.navigate(['/courseEdit/'+ this.course._id]);
 		}
+	}
+
+	saveAffiliateCourse() {
+		this.selectedCourses = this.selection.selected;
+		this.url = '/course/'+ this.affiliateId + '/courses';
+
+		if(this.selectedCourses.length < 1) {
+			var data = {
+				reason: "Please select one course to save!",
+				status: ''
+			};
+			this.errorDialogService.openDialog(data);
+		} else {
+			this.apiService.post(this.url, this.selectedCourses) 
+				.subscribe((response: any) => {
+					if(response.success == true) {
+						this.getCourses();
+					}
+				});	
+		}
+	}
+
+	myCourses() {
+		this.url = "";
+
+		var params = new HttpParams();
+
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
+		params = params.append('departmentId', this.loggedInUser.reference.departmentId);
+		params = params.append('affiliateId', this.affiliateId);
+		params = params.append('skip', '0');
+		params = params.append('limit', '10');
+
+		this.apiService.get(this.url, params)
+			.subscribe((response) => {
+				if(response.success == true) {
+					
+				}
+			});
 	}
 
 	filterByColumn() {
