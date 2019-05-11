@@ -55,6 +55,7 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { SidebarComponent } from './sidebar/sidebar/sidebar.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CoursesMyComponent } from './courses/courses-my/courses-my.component';
 
 @NgModule({
     declarations: [
@@ -94,7 +95,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
         UserEditComponent,
         ErrorDialogComponent,
         SidebarComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        CoursesMyComponent
     ],
     entryComponents: [ErrorDialogComponent],
     imports: [

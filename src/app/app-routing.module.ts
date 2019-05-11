@@ -37,6 +37,7 @@ import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { StudentViewComponent } from './batches/student-view/student-view.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CoursesMyComponent } from './courses/courses-my/courses-my.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -203,6 +204,19 @@ const routes: Routes =  [
                 ],
                 entity: [
                     Entity.Institute
+                ] 
+        }
+    },
+    { 
+        path: 'affiliateCourse/:affiliateId', 
+        component: CoursesMyComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.Manager
+                ],
+                entity: [
+                    Entity.Affiliate
                 ] 
         }
     },

@@ -170,16 +170,20 @@ export class CoursesListComponent implements OnInit {
 
 	saveAffiliateCourse() {
 		this.selectedCourses = this.selection.selected;
-		this.url = '/course/'+ this.affiliateId + '/courses';
+		this.url = '/course/link/affiliates';
 
 		if(this.selectedCourses.length < 1) {
-			var data = {
+			var obj = {
 				reason: "Please select one course to save!",
 				status: ''
 			};
-			this.errorDialogService.openDialog(data);
+			this.errorDialogService.openDialog(obj);
 		} else {
-			this.apiService.post(this.url, this.selectedCourses) 
+			var data = {
+				courses: this.selectedCourses,
+				affiliateId: this.affiliateId
+			};
+			this.apiService.post(this.url, data) 
 				.subscribe((response: any) => {
 					if(response.success == true) {
 						this.getCourses();
