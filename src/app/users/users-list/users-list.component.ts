@@ -18,7 +18,7 @@ export class UsersListComponent implements OnInit {
 	url;
 	activated;
 	loginUser;
-	authUsers: [] = [];
+	users: any[] = [];
 	displayedColumns = [ 'userType', 'instituteId', 'departmentId', 'affInstituteId', 'username', 'emailId', 'phone', 'status', '_id'];
 
 	dataSource = new MatTableDataSource<UserModel>();
@@ -58,13 +58,45 @@ export class UsersListComponent implements OnInit {
 		this.loginUser = JSON.parse(localStorage.getItem("user"));
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-		if(this.loginUser.role === 'institute_admin' || this.loginUser.role === 'INS_DATA_MANAGER') {
-			this.getInstituteUsers();
-		} else if(this.loginUser.UserType === 'AFF_INS_DATA_MANAGER') {
-			//this.getAffInstituteUsers();
-		}
+		this.getUser();
+		// if(this.loginUser.role === 'institute_admin' || this.loginUser.role === 'INS_DATA_MANAGER') {
+		// 	this.getInstituteUsers();
+		// } else if(this.loginUser.UserType === 'AFF_INS_DATA_MANAGER') {
+		// 	this.getAffInstituteUsers();
+		// }
 		//this.filterByColumn();
 	}
+
+	getUser() {
+		this.url = "/user/list";
+
+		var params = new HttpParams();
+		params = params.append('instituteId', this.loginUser.reference.instituteId);
+		if(this.loginUser.reference.departmentId !== "111111111111111111111111") {
+			params = params.append('departmentId', this.loginUser.reference.departmentId);
+		}
+		if(this.loginUser.reference.affiliateId !== "111111111111111111111111") {
+			params = params.append('affiliateId', this.loginUser.reference.affiliateId);
+		}
+		
+		this.apiService.get(this.url, params)
+			.subscribe((response) => {
+				if(response.success == true ) {
+					if(response.data.users ) {
+						this.users = response.data.users;
+						console.log(this.users);
+						for(var i=0;i<this.users.length;i++) {
+							if(this.users[i].isActive == true) {
+								this.users[i].status = "Active";
+							} else {
+								this.users[i].status = "Inactive";
+							}
+						}
+						this.dataSource.data = this.users;
+					}
+				} 
+			});
+	};
 
 	getInstituteUsers() {
 		var instituteId = this.loginUser.instituteId;

@@ -20,7 +20,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.UserType}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.reference.role | uppercase}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="instituteId">
 					<mat-header-cell *matHeaderCellDef> 
@@ -32,7 +32,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.instituteID}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.reference.instituteId}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="departmentId">
 					<mat-header-cell *matHeaderCellDef>
@@ -44,7 +44,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Department_ID}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.department.code}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="affInstituteId">
 					<mat-header-cell *matHeaderCellDef>
@@ -56,7 +56,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.Affliated_Institute_ID}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.affiliate.code}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="username">
 					<mat-header-cell *matHeaderCellDef>
@@ -68,7 +68,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.UserName}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="emailId">
 					<mat-header-cell *matHeaderCellDef>
@@ -80,7 +80,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.emailId}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="phone">
 					<mat-header-cell *matHeaderCellDef>
