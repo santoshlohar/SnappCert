@@ -93,7 +93,6 @@ export class CoursesListComponent implements OnInit {
 		this.dataSource.paginator = this.paginator;
 		this.getCourses();
 		this.filterByColumn();
-		//this.getCoursesByAffIns();
 	}
 
 	isAllSelected() {
@@ -288,92 +287,5 @@ export class CoursesListComponent implements OnInit {
 		}
 		return myFilterPredicate;
 	}
-
-
-	// getCoursesByInsId() {
-	// 	this.url = '/coursedatabyinstid/';
-	// 	this.apiService.get(this.url + this.inst_Id)
-	// 		.subscribe((response) => {
- 	// 			if(response.message == 'success') {
-	// 				if(response.data.length) {
-	// 					this.courses = response.data;
-	// 					for(var i=0;i<this.courses.length;i++) {
-	// 						this.course = this.courses[i];
-	// 						if(this.courses[i].isActivated) {
-	// 							this.courses[i].activated = "Deactivate";
-	// 						} else if(!this.courses[i].isActivated) {
-	// 							this.courses[i].activated = "Activate";
-	// 						}
-	// 					}
-	// 					this.dataSource.data = this.courses;
-	// 				} else {
-	// 					console.log("NO RECORD");
-	// 				}
-	// 			}
-	// 		},
-	// 		(error) => {
-	// 			console.log(error);
-	// 		})
-	// }
-	
-
-	// selectCourses() {
-	// 	var selectedCourse = this.selection.selected;
-	// 	if(selectedCourse.length) {
-	// 		for(var i=0;i<selectedCourse.length;i++) {
-	// 			selectedCourse[i].Affliated_Institute_ID = this.loggedInUser.Affliated_Institute_ID;
-	// 		};
-	// 		this.url = "/afflinstitute/courses";		   
-	// 		this.apiService.post(this.url, selectedCourse)
-	// 			.subscribe((response: any) => {
-	// 				if(response.message == 'success') {
-	// 					alert("Selected courses link with your institute successfully!")
-	// 				}
-	// 			},
-	// 			(error) => {
-	// 				console.log(error);
-	// 			});
-	// 	} else {
-	// 		alert("Please select the courses you want to link with your Affiliated Institute.")
-	// 	}
-	// }
-
-	// getCoursesByAffIns() {
-	// 	this.url = "/coursesbyafflinstid/";
-	// 	this.apiService.get(this.url + this.aff_inst_Id)
-	// 		.subscribe((response) => {
-	// 			console.log(response);
-	// 			//this.dataSource.data = response.data;
-	// 		},
-	// 		(error) => {
-	// 			console.log(error);
-	// 		})
-	// }
-
-	// viewSelectCourses() {
-	// 	this.url = "/coursesbyafflinstid/";
-	// 	this.apiService.get(this.url+ this.aff_inst_Id)
-	// 		.subscribe((response) => {
-	// 			if(response.message == 'success') {
-	// 				if(response.data){
-	// 					this.courses = response.data.afflCourses;
-	// 					for(var i=0;i<this.courses.length;i++) {
-	// 						this.course = this.courses[i];
-	// 						if(this.courses[i].isActivated) {
-	// 							this.courses[i].activated = "Deactivate";
-	// 						} else if(!this.courses[i].isActivated) {
-	// 							this.courses[i].activated = "Activate";
-	// 						}
-	// 					}
-	// 					this.dataSource.data = this.courses;
-	// 				} else {
-	// 					alert("No courses found for your Affiliated Institute!")
-	// 				}
-	// 			}
-	// 		},
-	// 		(error) => {
-	// 			console.log(error)
-	// 		})
-	// }
 
 }
