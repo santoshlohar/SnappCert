@@ -119,6 +119,7 @@ export class CoursesListComponent implements OnInit {
 			.subscribe((response) => {
 				if(response.success == true) {
 					this.courses = response.data;
+					console.log(this.courses);
 					for(var i=0;i<this.courses.length;i++) {
 						if(this.courses[i].isActive == true) {
 							this.courses[i].status = "Active";
