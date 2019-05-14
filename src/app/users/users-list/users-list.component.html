@@ -32,7 +32,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.reference.instituteId}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.institute.code}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="departmentId">
 					<mat-header-cell *matHeaderCellDef>
@@ -112,8 +112,8 @@
 					</mat-header-cell>
 					<mat-cell *matCellDef="let row">
 						<mat-slide-toggle class="toggle" 
-						[checked]="row.activated=='true'" 
-						(change)="activate(row)"></mat-slide-toggle>
+						[checked]="row.status=='Active'" 
+						(change)="changeStatus(row)"></mat-slide-toggle>
 					</mat-cell>
 				</ng-container>
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

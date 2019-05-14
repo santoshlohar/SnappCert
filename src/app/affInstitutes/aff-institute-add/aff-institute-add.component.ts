@@ -32,7 +32,7 @@ export class AffInstituteAddComponent implements OnInit {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.affliatedInsForm = this._formBuilder.group({
 			departmentId: ['', Validators.required],
-			affInstituteId: [''],
+			affInstituteId: ['', Validators.required],
 			affInstituteName: ['', Validators.required],
 			affInstituteLoc: ['', Validators.required]
 		});

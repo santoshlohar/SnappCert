@@ -14,22 +14,26 @@ export class UserAddComponent implements OnInit {
 
 	url: String;
 	user: any = {
-		userName: '',
-		type: '',
-		emailId: '',
-		phone: '',
-		referredBy: '',
+		firstName: '',
+		lastName: '',
+		role: '',
+		entity: '',
+		email: '',
+		phoneNumber: '',
 		instituteId: '',
-		Affliated_Institute_ID: '',
+		affiliateId: '',
 		departmentId: ''
 	};
 	loggedInUser;
 	role;
 	entity;
-	admin: boolean;
+	admin: boolean = false;
+	affiliate: boolean;
+	superManager: boolean = false;
 	inst_id;
 	affInst_Id;
 	departments:[]=[];
+	affiliates:[]=[];
 	authUserForm: FormGroup;
 	constructor(private _formBuilder: FormBuilder,
 				private apiService: ApiService,
@@ -38,23 +42,25 @@ export class UserAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
-		this.role = this.loggedInUser.reference.role;
+		this.role = this.loggedInUser.reference.role;		
 		this.entity = this.loggedInUser.reference.entity;
+		console.log(this.admin);
+		if(this.role == 'manager' && this.entity == 'institute') {
+			this.superManager = true;
+			console.log(this.superManager);
+		} 
 		this.inst_id = this.loggedInUser.reference.instituteId;
-		if(this.loggedInUser.Affliated_Institute_ID != '') {
-			this.affInst_Id = this.loggedInUser.Affliated_Institute_ID;
-		}
-		this.getDeptList();
+		this.getDepartments();
+		this.getAffiliates();
 		this.authUserForm = this._formBuilder.group({
-			userRole: ['', Validators.required],
-			instituteType: ['', Validators.required],
+			role: ['', Validators.required],
+			entity: ['', Validators.required],
 			departmentId: [''],
+			affiliateId: [''],
 			firstName: ['', Validators.required],
 			lastName: ['', Validators.required],
-			emailId: ['', Validators.required],
-			phone: ['', Validators.required],
-			countryName: [''],
-			referredBy: [''],
+			email: ['', Validators.required],
+			phoneNumber: ['', Validators.required]
 		});
 	}
 
@@ -62,36 +68,34 @@ export class UserAddComponent implements OnInit {
 		if(userData.invalid) {
 			return false;
 		}
+		console.log(userData);
 		this.url = '/user/create';
 		this.user.firstName = userData.value.firstName;
 		this.user.lastName = userData.value.lastName;
-		this.user.role =  userData.value.userRole;
-		this.user.email =  userData.value.emailId;
-		this.user.phoneNumber =  userData.value.phone;
-		this.user.referredBy =  this.loggedInUser.UserName;
+		this.user.role =  userData.value.role;
+		this.user.email =  userData.value.email;
+		this.user.phoneNumber =  userData.value.phoneNumber;
 		this.user.instituteId = this.inst_id;
-		this.user.entity = userData.value.instituteType;
+		this.user.entity = userData.value.entity;
 
-		if(userData.value.departmentId != "") {
-			this.user.departmentId = userData.value.departmentId;
-		} else {
-			this.user.departmentId = "";
-		}
-		if(this.role == "AFF_INS_DATA_MANAGER") {
-			this.user.Affliated_Institute_ID = this.affInst_Id;
-		} else {
-			this.user.Affliated_Institute_ID =  '';
-		}
-
-		this.apiService.post(this.url, this.user)
-			.subscribe((response: any) => {
-				if(response.success == true) {
-					this.router.navigate(['/users']);
-				}
-			})
+		if(userData.value.departmentId == "" && this.superManager) {
+			this.user.departmentId = this.loggedInUser.reference.departmentId;
+		} 
+		// if(userData.value.affiliateId != "") {
+		// 	this.user.affiliateId = this.affInst_Id;
+		// } else {
+		// 	this.user.affiliateId =  '';
+		// }
+		console.log(this.user);
+		// this.apiService.post(this.url, this.user)
+		// 	.subscribe((response: any) => {
+		// 		if(response.success == true) {
+		// 			this.router.navigate(['/users']);
+		// 		}
+		// 	})
 	}
 
-	getDeptList() {
+	getDepartments() {
 		this.url = "/department/list";
 
 		var params = new HttpParams();
@@ -106,11 +110,29 @@ export class UserAddComponent implements OnInit {
 						this.departments = response.data; 
 					}
 				}
-			})
+			});
+	}
+
+	getAffiliates() {
+		this.url = "/affiliate/list";
+
+		var params = new HttpParams();
+		params = params.append('instituteId', this.inst_id);
+		params = params.append('skip', '0');
+		params = params.append('limit', '50');
+
+		this.apiService.get(this.url, params)
+			.subscribe((response) => {
+				if(response.success == true) {
+					if(response.data) {
+						this.affiliates = response.data; 
+						console.log(this.affiliates);
+					}
+				}
+			});
 	}
 
 	roleChange(role) {
-		console.log(role)
 		if(role == "admin") {
 			this.admin = true;
 		} else {
@@ -118,17 +140,13 @@ export class UserAddComponent implements OnInit {
 		}
 	}
 
-	// checkType(type) {
-	// 	console.log(type.value)
-	// 	console.log("1")
-	// 	if(type.value == 'INS_DATA_MANAGER') {
-	// 		this.noDept = false;
-	// 		console.log(this.noDept)
-	// 	} else {
-	// 		this.noDept = true;
-	// 		console.log(this.noDept)
-	// 	}
-	// }
+	typeChange(type) {
+		if(type == "institute") {
+			this.affiliate = false;
+		} else {
+			this.affiliate = true;
+		}
+	}
 
 	goBack() {
 		this.location.back();

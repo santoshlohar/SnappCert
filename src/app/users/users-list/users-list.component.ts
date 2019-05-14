@@ -35,12 +35,12 @@ export class UsersListComponent implements OnInit {
 
 
 	filteredValues = {
-		UserType: '',
-		instituteID: '',
-		Department_ID: '',
-		Affliated_Institute_ID: '',
-		UserName: '',
-		emailId: '',
+		role: '',
+		instituteId: '',
+		departmentId: '',
+		affiliateId: '',
+		firstName: '',
+		email: '',
 		phoneNumber: '',
 		status: ''
 	}
@@ -58,16 +58,11 @@ export class UsersListComponent implements OnInit {
 		this.loginUser = JSON.parse(localStorage.getItem("user"));
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
-		this.getUser();
-		// if(this.loginUser.role === 'institute_admin' || this.loginUser.role === 'INS_DATA_MANAGER') {
-		// 	this.getInstituteUsers();
-		// } else if(this.loginUser.UserType === 'AFF_INS_DATA_MANAGER') {
-		// 	this.getAffInstituteUsers();
-		// }
-		//this.filterByColumn();
+		this.getUsers();
+		this.filterByColumn();
 	}
 
-	getUser() {
+	getUsers() {
 		this.url = "/user/list";
 
 		var params = new HttpParams();
@@ -84,7 +79,6 @@ export class UsersListComponent implements OnInit {
 				if(response.success == true ) {
 					if(response.data.users ) {
 						this.users = response.data.users;
-						console.log(this.users);
 						for(var i=0;i<this.users.length;i++) {
 							if(this.users[i].isActive == true) {
 								this.users[i].status = "Active";
@@ -98,135 +92,88 @@ export class UsersListComponent implements OnInit {
 			});
 	};
 
-	getInstituteUsers() {
-		var instituteId = this.loginUser.instituteId;
-		this.url = "/user/list/";
-		var params = new HttpParams();
+	changeStatus(row) {
+		var userId = row._id;
+		this.url = '/user/'+ userId +'/changeStatus';
+		var data = {
+			isActive: row.isActive
+		};
 
-		params = params.append('instituteId', instituteId);
-		params = params.append('skip', '0');
-		params = params.append('limit', '10');
-
-		this.apiService.get(this.url, params)
-		 	.subscribe((response) => {
-				 console.log(response)
-				// if(response.message == "success") {
-				// 	this.authUsers = response.data;
-				// 	for (var i = 0; i < response.data.length; i++) {
-				// 		var status = response.data[i].status;
-				// 		if (status == "Active") {
-				// 			response.data[i].activated = "Inactive"; 
-				// 		} else if (status == "Inactive") {
-				// 			response.data[i].activated = "Active";
-				// 		}
-				// 		this.dataSource.data = this.authUsers;
-				// 	}
-				// } else {
-				// 	alert("");
-				// }
-			})
-	};
-
-	activate(data) {
-		var userId = data._id;
-		this.url = '/usesrbyinstitute/';
-		this.apiService.put(this.url + userId, data)
+		if(row.isActive == true) {
+			data.isActive = false;
+		} else {
+			data.isActive = true;
+		}
+		this.apiService.put(this.url, data)
 			.subscribe((response) => {
-				if (this.loginUser.UserType === "INST_ADMIN" || this.loginUser.UserType === "INS_DATA_MANAGER") {
-					this.getInstituteUsers();
-				} else if (this.loginUser.UserType === "AFF_INS_DATA_MANAGER") {
-					//this.getAffInstituteUsers();
+				if(response.success == true) {
+					this.getUsers();
 				}
 			});
 	}
-
-	// getAffInstituteUsers() {
-	// 	var affInstituteId = this.loginUser.Affliated_Institute_ID;
-	// 	this.url = '/usesrbyafflinstitute/' + affInstituteId;
-	// 	var params = {};
-	// 	this.apiService.get(this.url, params)
-	// 		.subscribe((response) => {
-	// 			if(response.message == 'success') {
-	// 				this.authUsers = response.data;
-	// 				for (var i = 0; i < response.data.length; i++) {
-	// 					var status = response.data[i].status;
-	// 					if (status == "Active") {
-	// 						response.data[i].activated = "Inactive";
-	// 					} else if (status == "Inactive") {
-	// 						response.data[i].activated = "Active";
-	// 					}
-	// 					this.dataSource.data = this.authUsers;
-	// 				}
-	// 			}
-	// 		},
-	// 		(error) => {
-	// 			alert(error.error.message);
-	// 			return false;
-	// 		})
-	// }
 
 	editUser(row) {
 		this.router.navigate(['/userEdit/'+ row._id]);
 	}
 
-	// filterByColumn() {
-	// 	this.roleFilter.valueChanges.subscribe((roleFilterValue) => {
-	// 		this.filteredValues['UserType'] = roleFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
+	filterByColumn() {
+		this.roleFilter.valueChanges.subscribe((roleFilterValue) => {
+			this.filteredValues['role'] = roleFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
 
-	// 	this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
-	// 		this.filteredValues['instituteID'] = instituteIdFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
+		this.instituteIdFilter.valueChanges.subscribe((instituteIdFilterValue) => {
+			this.filteredValues['instituteId'] = instituteIdFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
 
-	// 	this.deptIdFilter.valueChanges.subscribe((deptIdFilterValue) => {
-	// 		this.filteredValues['Department_ID'] = deptIdFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
+		this.deptIdFilter.valueChanges.subscribe((deptIdFilterValue) => {
+			this.filteredValues['departmentId'] = deptIdFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
 
-	// 	this.affInstIdFilter.valueChanges.subscribe((affInstIdFilterValue) => {
-	// 		this.filteredValues['Affliated_Institute_ID'] = affInstIdFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
+		this.affInstIdFilter.valueChanges.subscribe((affInstIdFilterValue) => {
+			this.filteredValues['affiliateId'] = affInstIdFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
 
-	// 	this.nameFilter.valueChanges.subscribe((nameFilterValue) => {
-	// 		this.filteredValues['UserName'] = nameFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
+		this.nameFilter.valueChanges.subscribe((nameFilterValue) => {
+			this.filteredValues['firstName'] = nameFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
 		
-	// 	this.emailFilter.valueChanges.subscribe((emailFilterValue) => {
-	// 		this.filteredValues['emailId'] = emailFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
+		this.emailFilter.valueChanges.subscribe((emailFilterValue) => {
+			this.filteredValues['email'] = emailFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
 
-	// 	this.phoneFilter.valueChanges.subscribe((phoneFilterValue) => {
-	// 		this.filteredValues['phoneNumber'] = phoneFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
+		this.phoneFilter.valueChanges.subscribe((phoneFilterValue) => {
+			this.filteredValues['phoneNumber'] = phoneFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
 
-	// 	this.statusFilter.valueChanges.subscribe((statusFilterValue) => {
-	// 		this.filteredValues['status'] = statusFilterValue;
-	// 		this.dataSource.filter = JSON.stringify(this.filteredValues);
-	// 	});
+		this.statusFilter.valueChanges.subscribe((statusFilterValue) => {
+			this.filteredValues['status'] = statusFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
 
-	// 	this.dataSource.filterPredicate = this.customFilterPredicate();
-	// }
+		this.dataSource.filterPredicate = this.customFilterPredicate();
+	}
 
-	// customFilterPredicate() {
-	// 	const myFilterPredicate = function(data:UserModel, filter: string): boolean {
-	// 		let searchString = JSON.parse(filter);
-	// 		return data.UserType.toString().trim().toLowerCase().indexOf(searchString.UserType) !== -1
-	// 		&& data.instituteID.toString().trim().toLowerCase().indexOf(searchString.instituteID) !== -1
-	// 		&& data.Department_ID.toString().trim().toLowerCase().indexOf(searchString.Department_ID) !== -1
-	// 		&& data.Affliated_Institute_ID.toString().trim().toLowerCase().indexOf(searchString.Affliated_Institute_ID) !== -1
-	// 		&& data.UserName.toString().trim().toLowerCase().indexOf(searchString.UserName) !== -1
-	// 		&& data.emailId.toString().trim().toLowerCase().indexOf(searchString.emailId) !== -1
-	// 		&& data.phoneNumber.toString().trim().toLowerCase().indexOf(searchString.phoneNumber) !== -1
-	// 		// && data.status.toString().trim().toLowerCase().indexOf(searchString.status) !== -1
-	// 	}
-	// 	return myFilterPredicate;
-	// }
+	customFilterPredicate() {
+		const myFilterPredicate = function(data:UserModel, filter: string): boolean {
+			let searchString = JSON.parse(filter);
+			return data.reference.role.toString().trim().toLowerCase().indexOf(searchString.role) !== -1
+			&& data.institute.code.toString().trim().toLowerCase().indexOf(searchString.instituteId) !== -1
+			&& data.department.code.toString().trim().toLowerCase().indexOf(searchString.departmentId) !== -1
+			&& data.affiliate.code.toString().trim().toLowerCase().indexOf(searchString.affiliateId) !== -1
+			&& data.firstName.toString().trim().toLowerCase().indexOf(searchString.firstName) !== -1
+			&& data.email.toString().trim().toLowerCase().indexOf(searchString.email) !== -1
+			&& data.phoneNumber.toString().trim().toLowerCase().indexOf(searchString.phoneNumber) !== -1
+			&& data.status.toString().trim().toLowerCase().indexOf(searchString.status) !== -1
+		}
+		return myFilterPredicate;
+	}
 
 }
 

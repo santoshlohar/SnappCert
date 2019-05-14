@@ -29,8 +29,20 @@
 							formControlName="lastName"
 							required>
 						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Email ID" 
+							formControlName="email"
+							required>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Phone No." 
+							formControlName="phoneNumber"
+							required>
+						</mat-form-field>
 						<mat-form-field #id fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<mat-select #type formControlName="userRole" 
+							<mat-select #type formControlName="role" 
 							placeholder="User Role" 
 							(ngModelChange)="roleChange($event)"
 							required>
@@ -74,18 +86,7 @@
 								</mat-option>
 							</mat-select>
 						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<mat-select #type formControlName="instituteType" 
-							placeholder="Institute Type" 
-							required>
-								<mat-option value="institute">Institute
-								</mat-option>
-								<mat-option *ngIf="!(role == 'admin' && entity == 'institute') && !(admin)"
-								 value="affiliate">Affiliate Institute
-								</mat-option>
-							</mat-select>
-						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!admin">
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!(admin || superManager)">
 							<mat-select placeholder="Department" 
 							formControlName="departmentId"
 							required>
@@ -93,16 +94,25 @@
 							</mat-select>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput 
-							placeholder="Email ID" 
-							formControlName="emailId"
+							<mat-select #type formControlName="entity" 
+							placeholder="Institute Type" 
+							(ngModelChange)="typeChange($event)"
 							required>
+								<mat-option	
+								value="institute">Institute
+								</mat-option>
+								<mat-option 
+								*ngIf="!(superManager || admin)"
+								 value="affiliate">Affiliate Institute
+								</mat-option>
+							</mat-select>
 						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput 
-							placeholder="Phone No." 
-							formControlName="phone"
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!(admin || superManager)">
+							<mat-select placeholder="Affiliate Institute" 
+							formControlName="affiliateId"
 							required>
+								<mat-option *ngFor="let affiliate of affiliates;" [value]='affiliate._id'>{{affiliate.name}}</mat-option>
+							</mat-select>
 						</mat-form-field>
 					</div>
 				</div>
