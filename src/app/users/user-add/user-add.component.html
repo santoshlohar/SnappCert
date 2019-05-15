@@ -22,29 +22,34 @@
 							placeholder="First Name" 
 							formControlName="firstName"
 							required>
+							<mat-error *ngIf="hasError('firstName', 'required')">FirstName is required!</mat-error>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<input matInput 
 							placeholder="Last Name" 
 							formControlName="lastName"
 							required>
+							<mat-error *ngIf="hasError('lastName', 'required')">LastName is required!</mat-error>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<input matInput 
 							placeholder="Email ID" 
 							formControlName="email"
 							required>
+							<mat-error *ngIf="hasError('email', 'required')">Email ID is required!</mat-error>
+							<mat-error *ngIf="hasError('email', 'email')">Please enter valid email ID!</mat-error>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<input matInput 
 							placeholder="Phone No." 
 							formControlName="phoneNumber"
 							required>
+							<mat-error *ngIf="hasError('email', 'required')">Email ID is required!</mat-error>
 						</mat-form-field>
 						<mat-form-field #id fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<mat-select #type formControlName="role" 
 							placeholder="User Role" 
-							(ngModelChange)="roleChange($event)"
+							(ngModelChange)="roleChange($event,userForm)"
 							required>
 								<mat-option 
 									value="super_admin"
@@ -85,18 +90,21 @@
 									Approver
 								</mat-option>
 							</mat-select>
+							<mat-error *ngIf="hasError('role', 'required')">User role is required!</mat-error>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!(admin || superManager)">
 							<mat-select placeholder="Department" 
 							formControlName="departmentId"
-							required>
+							(ngModelChange)="departmentChange($event)"
+							>
 								<mat-option *ngFor="let department of departments;" [value]='department._id'>{{department.name}}</mat-option>
 							</mat-select>
+							<mat-error *ngIf="departmentError">Please select department!</mat-error>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<mat-select #type formControlName="entity" 
 							placeholder="Institute Type" 
-							(ngModelChange)="typeChange($event)"
+							(ngModelChange)="typeChange($event,userForm)"
 							required>
 								<mat-option	
 								value="institute">Institute
@@ -106,11 +114,12 @@
 								 value="affiliate">Affiliate Institute
 								</mat-option>
 							</mat-select>
+							<mat-error *ngIf="hasError('entity', 'required')">Institute type is required!</mat-error>
 						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!(admin || superManager)">
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!(admin || superManager || institute)">
 							<mat-select placeholder="Affiliate Institute" 
 							formControlName="affiliateId"
-							required>
+							>
 								<mat-option *ngFor="let affiliate of affiliates;" [value]='affiliate._id'>{{affiliate.name}}</mat-option>
 							</mat-select>
 						</mat-form-field>

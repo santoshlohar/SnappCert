@@ -28,10 +28,11 @@ export class UserAddComponent implements OnInit {
 	role;
 	entity;
 	admin: boolean = false;
-	affiliate: boolean;
+	institute: boolean = false;
 	superManager: boolean = false;
+	affiliateManager: boolean = false;
+	departmentError: boolean = true;
 	inst_id;
-	affInst_Id;
 	departments:[]=[];
 	affiliates:[]=[];
 	authUserForm: FormGroup;
@@ -44,14 +45,15 @@ export class UserAddComponent implements OnInit {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.role = this.loggedInUser.reference.role;		
 		this.entity = this.loggedInUser.reference.entity;
-		console.log(this.admin);
 		if(this.role == 'manager' && this.entity == 'institute') {
 			this.superManager = true;
-			console.log(this.superManager);
+		}
+		if(this.role == 'manager' && this.entity == 'affiliate') {
+			this.affiliateManager = true;
 		} 
 		this.inst_id = this.loggedInUser.reference.instituteId;
 		this.getDepartments();
-		this.getAffiliates();
+		this.getAffiliates(this.loggedInUser.reference.departmentId);
 		this.authUserForm = this._formBuilder.group({
 			role: ['', Validators.required],
 			entity: ['', Validators.required],
@@ -64,11 +66,16 @@ export class UserAddComponent implements OnInit {
 		});
 	}
 
+	public hasError = (controlName: string, errorName: string) =>{		
+		return  this.authUserForm.controls[controlName].hasError(errorName);		
+	}
+
 	addUser(userData: NgForm) {
+
 		if(userData.invalid) {
 			return false;
 		}
-		console.log(userData);
+
 		this.url = '/user/create';
 		this.user.firstName = userData.value.firstName;
 		this.user.lastName = userData.value.lastName;
@@ -80,19 +87,37 @@ export class UserAddComponent implements OnInit {
 
 		if(userData.value.departmentId == "" && this.superManager) {
 			this.user.departmentId = this.loggedInUser.reference.departmentId;
-		} 
-		// if(userData.value.affiliateId != "") {
-		// 	this.user.affiliateId = this.affInst_Id;
-		// } else {
-		// 	this.user.affiliateId =  '';
+		} else {
+			this.user.departmentId = userData.value.departmentId;
+		};
+
+		if(userData.value.affiliateId == "" && this.affiliateManager) {
+			this.user.affiliateId = this.loggedInUser.reference.affiliateId;
+		} else {
+			this.user.affiliateId = userData.value.affiliateId;
+		};
+
+		// var errors = this.userValidation(userData);
+		// if(errors) {
+		// 	return false;
 		// }
 		console.log(this.user);
-		// this.apiService.post(this.url, this.user)
-		// 	.subscribe((response: any) => {
-		// 		if(response.success == true) {
-		// 			this.router.navigate(['/users']);
-		// 		}
-		// 	})
+		this.apiService.post(this.url, this.user)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					this.router.navigate(['/users']);
+				}
+			});
+	}
+
+	userValidation(user) {
+		console.log(user);
+		// if(user.value.role == 'manager' && !(user.value.departmentId)) {
+		// 	console.log("error", this.authUserForm);
+		// 	this.departmentError = true;
+		// 	this.hasError('departmentId', 'required');
+		// }
+		// return this.departmentError;
 	}
 
 	getDepartments() {
@@ -101,7 +126,7 @@ export class UserAddComponent implements OnInit {
 		var params = new HttpParams();
 		params = params.append('instituteId', this.inst_id);
 		params = params.append('skip', '0');
-		params = params.append('limit', '10');
+		params = params.append('limit', '50');
 
 		this.apiService.get(this.url, params)
 			.subscribe((response) => {
@@ -113,7 +138,7 @@ export class UserAddComponent implements OnInit {
 			});
 	}
 
-	getAffiliates() {
+	getAffiliates(departmentId) {
 		this.url = "/affiliate/list";
 
 		var params = new HttpParams();
@@ -121,31 +146,45 @@ export class UserAddComponent implements OnInit {
 		params = params.append('skip', '0');
 		params = params.append('limit', '50');
 
+		if(departmentId !== "111111111111111111111111") {
+			params = params.append('departmentId', departmentId);
+		}
+
 		this.apiService.get(this.url, params)
 			.subscribe((response) => {
 				if(response.success == true) {
 					if(response.data) {
 						this.affiliates = response.data; 
-						console.log(this.affiliates);
 					}
 				}
 			});
 	}
 
-	roleChange(role) {
+	roleChange(role, form: NgForm) {
 		if(role == "admin") {
 			this.admin = true;
+			if(form.value.role == 'admin') {
+				form.value.departmentId = "";
+				form.value.affiliateId = "";
+			}
 		} else {
 			this.admin = false;
 		}
 	}
 
-	typeChange(type) {
+	typeChange(type, form: NgForm) {
 		if(type == "institute") {
-			this.affiliate = false;
+			this.institute = true;
+			if(form.value.entity == 'institute') {
+				form.value.affiliateId = "";
+			}
 		} else {
-			this.affiliate = true;
+			this.institute = false;
 		}
+	}
+
+	departmentChange(departmentId) {
+		this.getAffiliates(departmentId);
 	}
 
 	goBack() {
