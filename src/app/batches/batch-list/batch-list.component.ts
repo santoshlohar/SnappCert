@@ -118,7 +118,7 @@ export class BatchListComponent implements OnInit {
 
 		if(this.selectedBatches.length !== 1) {
 			var data = {
-				reason: "Please select one course to edit!",
+				reason: "Please select one batch to edit!",
 				status: ''
 			};
 			this.errorDialogService.openDialog(data);

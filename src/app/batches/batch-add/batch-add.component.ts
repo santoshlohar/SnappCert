@@ -14,7 +14,6 @@ export class BatchAddComponent implements OnInit {
 
 
 	url;
-	departments = [];
 	loggedInUser;
 	affBatchForm: FormGroup;
 
@@ -63,6 +62,7 @@ export class BatchAddComponent implements OnInit {
 
 	myCourses() {
 		this.url = "/course/affiliateCourses";
+		
 		var params = new HttpParams();
 		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
 		params = params.append('departmentId', this.loggedInUser.reference.departmentId);
