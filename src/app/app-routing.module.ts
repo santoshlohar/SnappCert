@@ -35,6 +35,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { CoursesMyComponent } from './courses/courses-my/courses-my.component';
 import { BatchAddComponent } from './batches/batch-add/batch-add.component';
 import { BatchListComponent } from './batches/batch-list/batch-list.component';
+import { BatchEditComponent } from './batches/batch-edit/batch-edit.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -220,6 +221,19 @@ const routes: Routes =  [
     { 
         path: 'batchAdd', 
         component: BatchAddComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.Manager
+                ],
+                entity: [
+                    Entity.Affiliate
+                ] 
+        }
+    },
+    { 
+        path: 'batchEdit/:id', 
+        component: BatchEditComponent, 
         canActivate: [AuthGuard],
         data: { 
                 roles: [

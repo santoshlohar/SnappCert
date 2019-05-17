@@ -54,6 +54,7 @@ import { CoursesMyComponent } from './courses/courses-my/courses-my.component';
 import { BatchAddComponent } from './batches/batch-add/batch-add.component';
 import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { BatchViewComponent } from './batches/batch-view/batch-view.component';
+import { BatchEditComponent } from './batches/batch-edit/batch-edit.component';
 
 @NgModule({
     declarations: [
@@ -92,7 +93,8 @@ import { BatchViewComponent } from './batches/batch-view/batch-view.component';
         CoursesMyComponent,
         BatchAddComponent,
         BatchListComponent,
-        BatchViewComponent
+        BatchViewComponent,
+        BatchEditComponent
     ],
     entryComponents: [ErrorDialogComponent],
     imports: [
