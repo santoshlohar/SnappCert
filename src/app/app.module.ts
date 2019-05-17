@@ -45,17 +45,15 @@ import { StudentUploadListComponent } from './uploaded-batches/student-upload-li
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
 import { CertificatesListComponent } from './certificates/certificates-list/certificates-list.component';
-import { BatchesComponent } from './batches/batches.component';
-import { BatchListComponent } from './batches/batch-list/batch-list.component';
-import { StudentListComponent } from './batches/student-list/student-list.component';
-import { BatchViewComponent } from './batches/batch-view/batch-view.component';
-import { StudentViewComponent } from './batches/student-view/student-view.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { SidebarComponent } from './sidebar/sidebar/sidebar.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CoursesMyComponent } from './courses/courses-my/courses-my.component';
+import { BatchAddComponent } from './batches/batch-add/batch-add.component';
+import { BatchListComponent } from './batches/batch-list/batch-list.component';
+import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 
 @NgModule({
     declarations: [
@@ -86,17 +84,15 @@ import { CoursesMyComponent } from './courses/courses-my/courses-my.component';
         CourseEditComponent,
         CertificateViewComponent,
         CertificatesListComponent,
-        BatchesComponent,
-        BatchListComponent,
-        StudentListComponent,
-        BatchViewComponent,
-        StudentViewComponent,
         AccessDeniedComponent,
         UserEditComponent,
         ErrorDialogComponent,
         SidebarComponent,
         ResetPasswordComponent,
-        CoursesMyComponent
+        CoursesMyComponent,
+        BatchAddComponent,
+        BatchListComponent,
+        BatchViewComponent
     ],
     entryComponents: [ErrorDialogComponent],
     imports: [

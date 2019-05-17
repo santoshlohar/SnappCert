@@ -1,0 +1,94 @@
+<div class="container">
+	<div class="panel panel-primary heading-wrapper">
+		<div class="panel panel-heading">
+			<span class="panel-title" id="heading"> Add Batch </span>
+		</div>
+	</div>
+	<div class="addInst-wrapper">
+		<div class="example-container" linear>
+			<form [formGroup]="affBatchForm" #batchForm="ngForm" (ngSubmit)="addBatch(batchForm)">
+				<div>
+					<div id="affDiv">
+						<span id="addSpan">
+							Batch
+						</span>
+					</div>
+					<div fxLayout="row wrap" 
+						fxLayoutGap="23px" 
+						fxLayout.lt-md="column" 
+						fxFlexAlign="center">
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<mat-select placeholder="Affiliate Courses" 
+							formControlName="courseId"
+							required>
+								<mat-option *ngFor="let course of courses;" [value]='course._id'>{{course.name}}</mat-option>
+							</mat-select>
+							<mat-error *ngIf="hasError('courseId', 'required')">Course is required!</mat-error>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Batch ID"
+							formControlName="code" 
+							required>
+							<mat-error *ngIf="hasError('code', 'required')">Batch ID is required!</mat-error>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Batch Year"
+							formControlName="year" 
+							required>
+							<mat-error *ngIf="hasError('year', 'required')">Batch Year is required!</mat-error>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Batch Start"
+							formControlName="start" 
+							required>
+							<mat-error *ngIf="hasError('start', 'required')">Batch Start Year is required!</mat-error>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Batch End"
+							formControlName="end" 
+							required>
+							<mat-error *ngIf="hasError('end', 'required')">Batch End Year is required!</mat-error>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Min Credits"
+							formControlName="minCredits">
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Min CGPA"
+							formControlName="minCgpa">
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Total CGPA"
+							formControlName="totalCgpa">
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Min Score"
+							formControlName="minScore" 
+							required>
+							<mat-error *ngIf="hasError('minScore', 'required')">Min score is required!</mat-error>
+						</mat-form-field>
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+							<input matInput 
+							placeholder="Max Score"
+							formControlName="totalScore" 
+							required>
+							<mat-error *ngIf="hasError('totalScore', 'required')">Total score is required!</mat-error>
+						</mat-form-field>
+					</div>
+				</div>
+				<div class="action-btns text-center">
+					<button mat-raised-button class="action-btn">Save</button>
+					<button mat-raised-button class="action-btn" (click)="goBack()">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

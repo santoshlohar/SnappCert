@@ -30,14 +30,11 @@ import { StudentUploadListComponent } from './uploaded-batches/student-upload-li
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
 import { CertificatesListComponent } from './certificates/certificates-list/certificates-list.component';
-import { BatchesComponent } from './batches/batches.component';
-import { BatchListComponent } from './batches/batch-list/batch-list.component';
-import { StudentListComponent } from './batches/student-list/student-list.component';
-import { BatchViewComponent } from './batches/batch-view/batch-view.component';
-import { StudentViewComponent } from './batches/student-view/student-view.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CoursesMyComponent } from './courses/courses-my/courses-my.component';
+import { BatchAddComponent } from './batches/batch-add/batch-add.component';
+import { BatchListComponent } from './batches/batch-list/batch-list.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -221,6 +218,33 @@ const routes: Routes =  [
         }
     },
     { 
+        path: 'batchAdd', 
+        component: BatchAddComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.Manager
+                ],
+                entity: [
+                    Entity.Affiliate
+                ] 
+        }
+    },
+    { 
+        path: 'batches', 
+        component: BatchListComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.Manager,
+                    Role.Reviewer
+                ],
+                entity: [
+                    Entity.Affiliate
+                ] 
+        }
+    },
+    { 
         path: 'certificateUploadList', 
         component: CertificateUploadListComponent, 
         canActivate: [AuthGuard],
@@ -263,54 +287,6 @@ const routes: Routes =  [
                 ] 
         }
     },
-    { path: 'uploadedBatches', 
-        component: UploadedBatchesComponent, 
-        canActivate: [AuthGuard],
-        children: [
-            { path: 'batchUploadList', component: BatchUploadListComponent},
-            { path: 'studentUploadList', component: StudentUploadListComponent}
-        ]
-    },
-    { path: 'batches', 
-        component: BatchesComponent, 
-        canActivate: [AuthGuard],
-        children: [
-            { path: 'batchList', component: BatchListComponent},
-            { path: 'studentList', component: StudentListComponent}
-        ]
-    },
-    { 
-        path: 'batchView/:batchId', 
-        component: BatchViewComponent, 
-        canActivate: [AuthGuard],
-        data: { 
-                roles: [
-                    Role.Manager,
-                    Role.Reviewer,
-                    Role.Approver                 
-                ],
-                entity: [
-                    Entity.Institute,
-                    Entity.Affiliate
-                ] 
-        }
-    },
-    { 
-        path: 'studentView/:studentId', 
-        component: StudentViewComponent, 
-        canActivate: [AuthGuard],
-        data: { 
-                roles: [
-                    Role.Manager,
-                    Role.Reviewer,
-                    Role.Approver                 
-                ],
-                entity: [
-                    Entity.Institute,
-                    Entity.Affiliate
-                ] 
-        }
-    },
     { path: 'accessDenied', component: AccessDeniedComponent},
     { path: '**', component: PageNotFoundComponent}
 ];
@@ -321,5 +297,6 @@ const routes: Routes =  [
         RouterModule.forRoot(routes)
     ],
     exports: [RouterModule]
-  })
-  export class AppRoutingModule { }
+})
+
+export class AppRoutingModule { }
