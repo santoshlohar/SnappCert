@@ -183,4 +183,25 @@ export class CoursesMyComponent implements OnInit {
 		return myFilterPredicate;
 	}
 
+	changeStatus(row) {
+		console.log("row", row)
+		var courseId = row._id;
+		this.url = "/course/affiliate/"+ courseId +"/changeStatus";
+		var data = {
+			isActive: row.isActive
+		};
+
+		if(row.isActive == true) {
+			data.isActive = false;
+		} else {
+			data.isActive = true;
+		}
+
+		this.apiService.put(this.url, data)
+			.subscribe((response) => {
+				if(response.success == true) {
+					this.myCourses();
+				}
+			});
+	}
 }
