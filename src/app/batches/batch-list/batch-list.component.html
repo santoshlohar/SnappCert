@@ -172,6 +172,28 @@
 					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> {{element.totalScore}} </mat-cell>
 				</ng-container>
+				<ng-container matColumnDef="status">
+					<mat-header-cell *matHeaderCellDef>
+						<div> Status </div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="batchStatusFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="id">
+					<mat-header-cell *matHeaderCellDef> 
+						<div>Actions </div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let row">
+						<mat-slide-toggle class="toggle" 
+						[checked]="row.status=='Active'" 
+						(change)="changeStatus(row)"></mat-slide-toggle>
+					</mat-cell>
+				</ng-container>
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 			</mat-table>

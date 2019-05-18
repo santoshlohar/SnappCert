@@ -36,7 +36,9 @@ export class BatchListComponent implements OnInit {
 		'minCgpa',
 		'totalCgpa',
 		'minScore',
-		'totalScore'
+		'totalScore',
+		'status', 
+		'id'
 	];
 
 	instituteIdFilter = new FormControl();
@@ -51,6 +53,7 @@ export class BatchListComponent implements OnInit {
 	totalCgpaFilter = new FormControl();
 	minScoreFilter = new FormControl();
 	totalScoreFilter = new FormControl();
+	batchStatusFilter = new FormControl();
 
 	filteredValues = {
 		instituteId: '',
@@ -64,7 +67,8 @@ export class BatchListComponent implements OnInit {
 		minCgpa: '',
 		totalCgpa: '',
 		minScore: '',
-		totalScore: ''
+		totalScore: '',
+		status: ''
 	}
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
@@ -108,6 +112,13 @@ export class BatchListComponent implements OnInit {
 				if(response.success == true) {
 					this.batches = response.data.batches;
 					console.log(this.batches);
+					for(var i=0;i<this.batches.length;i++) {
+						if(this.batches[i].isDeleted == false) {
+							this.batches[i].status = "Active";
+						} else {
+							this.batches[i].status = "Inactive";
+						}
+					}
 					this.dataSource.data = this.batches;
 				}
 			})
@@ -126,6 +137,27 @@ export class BatchListComponent implements OnInit {
 			this.batch = this.selectedBatches[0];
 			this.router.navigate(['/batchEdit/'+ this.batch._id]);
 		}
+	}
+
+	changeStatus(row) {
+		var batchId = row._id;
+		this.url = "/batch/"+ batchId +"/changeStatus";
+		var data = {
+			isDeleted: row.isDeleted
+		};
+
+		if(row.isDeleted == false) {
+			data.isDeleted = true;
+		} else {
+			data.isDeleted = false;
+		}
+
+		this.apiService.put(this.url, data)
+			.subscribe((response) => {
+				if(response.success == true) {
+					this.getBatches();
+				}
+			});
 	}
 	
 }
