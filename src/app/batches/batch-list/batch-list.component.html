@@ -7,6 +7,8 @@
 			<span class="spacer"></span>
 			<div class="inner-div header-btns">
 				<div class="mat-header-btns">
+						<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'affiliate')" (click)="students()"> Students </a>
+						<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'affiliate')" (click)="uploadStudents()"> Upload Students </a>
 					<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'affiliate')" (click)="edit()"> Edit </a>
 				</div>
 			</div>

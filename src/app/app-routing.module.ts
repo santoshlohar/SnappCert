@@ -24,9 +24,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
-import { UploadedBatchesComponent } from './uploaded-batches/uploaded-batches.component';
-import { BatchUploadListComponent } from './uploaded-batches/batch-upload-list/batch-upload-list.component';
-import { StudentUploadListComponent } from './uploaded-batches/student-upload-list/student-upload-list.component';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
 import { CertificatesListComponent } from './certificates/certificates-list/certificates-list.component';
@@ -36,6 +33,8 @@ import { CoursesMyComponent } from './courses/courses-my/courses-my.component';
 import { BatchAddComponent } from './batches/batch-add/batch-add.component';
 import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { BatchEditComponent } from './batches/batch-edit/batch-edit.component';
+import { StudentsUploadedComponent } from './students/students-uploaded/students-uploaded.component';
+import { StudentsFinalComponent } from './students/students-final/students-final.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -260,7 +259,7 @@ const routes: Routes =  [
     },
     { 
         path: ':batchId/uploadedStudents', 
-        component: StudentUploadListComponent, 
+        component: StudentsUploadedComponent, 
         canActivate: [AuthGuard],
         data: { 
                 roles: [
@@ -274,7 +273,7 @@ const routes: Routes =  [
     },
     { 
         path: ':batchId/students', 
-        component: StudentUploadListComponent, 
+        component: StudentsFinalComponent, 
         canActivate: [AuthGuard],
         data: { 
                 roles: [

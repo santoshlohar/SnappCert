@@ -55,8 +55,6 @@ import { BatchAddComponent } from './batches/batch-add/batch-add.component';
 import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { BatchEditComponent } from './batches/batch-edit/batch-edit.component';
-import { StudentListComponent } from './students/student-list/student-list.component';
-import { StudentsListComponent } from './students/students-list/students-list.component';
 import { StudentsFinalComponent } from './students/students-final/students-final.component';
 import { StudentsUploadedComponent } from './students/students-uploaded/students-uploaded.component';
 
@@ -99,8 +97,6 @@ import { StudentsUploadedComponent } from './students/students-uploaded/students
         BatchListComponent,
         BatchViewComponent,
         BatchEditComponent,
-        StudentListComponent,
-        StudentsListComponent,
         StudentsFinalComponent,
         StudentsUploadedComponent
     ],
