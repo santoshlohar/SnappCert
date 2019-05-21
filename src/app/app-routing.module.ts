@@ -259,6 +259,34 @@ const routes: Routes =  [
         }
     },
     { 
+        path: ':batchId/uploadedStudents', 
+        component: StudentUploadListComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.Manager,
+                    Role.Reviewer
+                ],
+                entity: [
+                    Entity.Affiliate
+                ] 
+        }
+    },
+    { 
+        path: ':batchId/students', 
+        component: StudentUploadListComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+                roles: [
+                    Role.Manager,
+                    Role.Reviewer
+                ],
+                entity: [
+                    Entity.Affiliate
+                ] 
+        }
+    },
+    { 
         path: 'certificateUploadList', 
         component: CertificateUploadListComponent, 
         canActivate: [AuthGuard],
