@@ -1,3 +1,172 @@
-<p>
-  students-uploaded works!
-</p>
+<div class="container">
+	<div class="wrapper">
+		<div class="outer-div">
+			<div class="inner-div header-btns upload-btn-wrapper" *ngIf="(role == 'manager' && entity == 'affiliate')">
+				<button mat-button class="add-btn" fxFlex-lt.md="100">Upload Student Data
+					<input class="file-upload" type="file" name="excel" (change)="uploadstudent($event.target.files, $event.target.name)"/>
+				</button>
+			</div>
+			<span class="spacer"></span>
+			<div class="inner-div header-btns">
+				<div class="mat-header-btns">
+					<a mat-button class="add-btn" hidden fxFlex="100" fxFlex-lt.md="100" (click)="deleteBatches()">Delete Batches</a>
+					<a mat-button class="add-btn" fxFlex="100" fxFlex-lt.md="100" (click)="goToFinal()">Process</a>
+				</div>
+			</div>
+		</div>
+		<div class="list-container">
+			<mat-table [dataSource]="dataSource" 
+			class="mat-table-item mat-elevation-z8">
+				<ng-container matColumnDef="select" sticky>
+					<mat-header-cell *matHeaderCellDef>
+						<mat-checkbox (change)="$event ? masterToggle() : null"
+						[checked]="selection.hasValue() && isAllSelected() == true"
+						[indeterminate]="selection.hasValue() && !isAllSelected()">
+						</mat-checkbox>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let row"> 
+						<mat-checkbox (click)="$event.stopPropagation()"
+						(change)="$event ? selection.toggle(row) : null"
+						[checked]="selection.isSelected(row) == true">
+						</mat-checkbox>
+					</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="batchId">
+					<mat-header-cell *matHeaderCellDef> 
+						<div>Batch ID</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="batchIdFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.batch.code}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="code">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Student ID</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="studentIdFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="name">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Student Name</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="nameFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="father">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Father's Name</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="fatherNameFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.father}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="dob">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Date Of Birth</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="dobFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.dob}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="aadhar">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Aadhar No.</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="aadharFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.aadhar}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="email">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Email ID</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="emailFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="phoneNumber">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Phone Number</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="phoneNumberFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.phoneNumber}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="date">
+						<mat-header-cell *matHeaderCellDef>
+							<div>Date</div>
+							<div>
+								<mat-form-field class="search-input">
+									<input matInput class="form-field filters" [formControl]="dateFilter">
+									<fa name="search" matPrefix class="fa-icon"></fa>
+								</mat-form-field>
+							</div>
+						</mat-header-cell>
+						<mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+					</ng-container>
+				<ng-container matColumnDef="status">
+					<mat-header-cell *matHeaderCellDef>
+						<div>Status</div>
+						<div>
+							<mat-form-field class="search-input">
+								<input matInput class="form-field filters" [formControl]="statusFilter">
+								<fa name="search" matPrefix class="fa-icon"></fa>
+							</mat-form-field>
+						</div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="_id">
+					<mat-header-cell *matHeaderCellDef> 
+						<div>Actions </div>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let row">
+						<mat-slide-toggle class="toggle" 
+						[checked]="row.status=='Active'" 
+						(change)="changeStatus(row)"></mat-slide-toggle>
+					</mat-cell>
+				</ng-container>
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+			</mat-table>
+		</div>
+		<div>
+			<mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
+		</div>
+	</div>
+</div>
