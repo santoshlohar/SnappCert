@@ -18,7 +18,7 @@ export class AffInstituteListComponent implements OnInit {
 	loggedInUser;
 	departmentId;
 	affInstData: AffInstitute[] = [];
-	displayedColumns = ['deptId', 'affInstName', 'affInsLocation', 'status', 'id'];
+	displayedColumns = ['select', 'deptId', 'affInstId', 'affInstName', 'affInsLocation', 'status', 'id'];
 	activated;
 	dataSource = new MatTableDataSource<AffInstitute>(this.affInstData);
 	selection = new SelectionModel<AffInstitute>(true, []);
@@ -46,6 +46,17 @@ export class AffInstituteListComponent implements OnInit {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.getAffInstitutes(this.loggedInUser.reference.departmentId);
 		this.filterByColumn();
+	}
+
+	isAllSelected() {
+		const numSelected = this.selection.selected.length;
+		const numRows = this.dataSource.data.length;
+		return numSelected === numRows;
+	}
+
+	masterToggle() {
+		this.isAllSelected() ? 
+			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
 	}
 
 	applyFilter(filterValue: string) {
