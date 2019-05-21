@@ -2,21 +2,35 @@
     <div class="wrapper">
 		<div class="outer-div">
 			<div class="inner-div header-btns upload-btn-wrapper" *ngIf="(role == 'manager' && entity == 'affiliate')">
-				<!-- <button mat-button class="add-btn" fxFlex-lt.md="100">Upload Student Data
-					<input class="file-upload" type="file" name="excel" (change)="uploadstudent($event.target.files, $event.target.name)"/>
+				<!-- <button mat-button class="add-btn" fxFlex-lt.md="100">Upload Certificates
+					<input class="file-upload" type="file" name="excel" (change)="uploadCertificates($event.target.files, $event.target.name)"/>
 				</button> -->
 			</div>
 			<span class="spacer"></span>
 			<div class="inner-div header-btns">
 				<div class="mat-header-btns">
-					<a mat-button class="add-btn" hidden fxFlex="100" fxFlex-lt.md="100" (click)="deleteBatches()">Delete Batches</a>
-					<a mat-button class="add-btn" hidden fxFlex="100" fxFlex-lt.md="100" (click)="goToFinal()">Process</a>
+						<a mat-button class="add-btn" fxFlex="100" fxFlex-lt.md="100" (click)="goToFinal()">Certificates</a>
+					<a mat-button class="add-btn" fxFlex="100" fxFlex-lt.md="100" (click)="uploadCertificates()">Upload Certificates</a>
 				</div>
 			</div>
 		</div>
 		<div class="list-container">
 			<mat-table [dataSource]="dataSource" 
 			class="mat-table-item mat-elevation-z8">
+				<ng-container matColumnDef="select" sticky>
+					<mat-header-cell *matHeaderCellDef>
+						<mat-checkbox (change)="$event ? masterToggle() : null"
+						[checked]="selection.hasValue() && isAllSelected() == true"
+						[indeterminate]="selection.hasValue() && !isAllSelected()">
+						</mat-checkbox>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let row"> 
+						<mat-checkbox (click)="$event.stopPropagation()"
+						(change)="$event ? selection.toggle(row) : null"
+						[checked]="selection.isSelected(row) == true">
+						</mat-checkbox>
+					</mat-cell>
+				</ng-container>
 				<ng-container matColumnDef="batchId">
 					<mat-header-cell *matHeaderCellDef> 
 						<div>Batch ID</div>

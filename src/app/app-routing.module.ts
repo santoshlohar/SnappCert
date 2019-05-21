@@ -35,6 +35,8 @@ import { BatchListComponent } from './batches/batch-list/batch-list.component';
 import { BatchEditComponent } from './batches/batch-edit/batch-edit.component';
 import { StudentsUploadedComponent } from './students/students-uploaded/students-uploaded.component';
 import { StudentsFinalComponent } from './students/students-final/students-final.component';
+import { CertificatesUploadedComponent } from './certificates/certificates-uploaded/certificates-uploaded.component';
+import { CertificatesFinalComponent } from './certificates/certificates-final/certificates-final.component';
 
 const routes: Routes =  [
     { path: '', component: HomeComponent},
@@ -288,8 +290,8 @@ const routes: Routes =  [
         }
     },
     { 
-        path: 'certificateUploadList', 
-        component: CertificateUploadListComponent, 
+        path: ':studentId/uploadedCertificates', 
+        component: CertificatesUploadedComponent, 
         canActivate: [AuthGuard],
         data: { 
                 roles: [
@@ -301,8 +303,8 @@ const routes: Routes =  [
         }
     },
     { 
-        path: 'certificates', 
-        component: CertificatesListComponent, 
+        path: ':studentId/certificates', 
+        component: CertificatesFinalComponent, 
         canActivate: [AuthGuard],
         data: { 
                 roles: [

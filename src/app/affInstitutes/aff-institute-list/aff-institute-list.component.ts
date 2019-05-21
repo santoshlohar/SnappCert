@@ -165,7 +165,7 @@ export class AffInstituteListComponent implements OnInit {
 	getStudents() {
 		this.selectedAffiliates = this.selection.selected;
 
-		if(this.selectedAffiliates.length < 1) {
+		if(this.selectedAffiliates.length !== 1) {
 			var data = {
 				reason: "Please select one affiliate institute!",
 				status: ''

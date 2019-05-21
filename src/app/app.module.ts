@@ -57,6 +57,8 @@ import { BatchViewComponent } from './batches/batch-view/batch-view.component';
 import { BatchEditComponent } from './batches/batch-edit/batch-edit.component';
 import { StudentsFinalComponent } from './students/students-final/students-final.component';
 import { StudentsUploadedComponent } from './students/students-uploaded/students-uploaded.component';
+import { CertificatesUploadedComponent } from './certificates/certificates-uploaded/certificates-uploaded.component';
+import { CertificatesFinalComponent } from './certificates/certificates-final/certificates-final.component';
 
 @NgModule({
     declarations: [
@@ -98,7 +100,9 @@ import { StudentsUploadedComponent } from './students/students-uploaded/students
         BatchViewComponent,
         BatchEditComponent,
         StudentsFinalComponent,
-        StudentsUploadedComponent
+        StudentsUploadedComponent,
+        CertificatesUploadedComponent,
+        CertificatesFinalComponent
     ],
     entryComponents: [ErrorDialogComponent],
     imports: [

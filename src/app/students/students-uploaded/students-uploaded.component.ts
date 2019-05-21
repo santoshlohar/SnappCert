@@ -3,6 +3,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FormControl } from '@angular/forms';
 import { ErrorDialogService } from 'src/app/services/error-dialog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-students-uploaded',
@@ -60,7 +61,8 @@ export class StudentsUploadedComponent implements OnInit {
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
-	constructor(public errorDialogService: ErrorDialogService) { }
+	constructor(private router: Router,
+				public errorDialogService: ErrorDialogService) { }
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
@@ -92,7 +94,7 @@ export class StudentsUploadedComponent implements OnInit {
 			this.errorDialogService.openDialog(data);
 		} else {
 			this.student = this.selectedStudents[0];
-			//this.router.navigate(['/courseEdit/'+ this.course._id]);
+			this.router.navigate(['/'+ this.student._id + '/uploadedCertificates']);
 		}
 	}
 }
@@ -109,5 +111,6 @@ const data = [{
 	email: "sush@gmail.com",
 	phoneNumber: "8433892503",
 	date: "21/05/2019",
-	status: "Active"
+	status: "Active",
+	_id: "5ce29b10123b421338930a45"
 }]
