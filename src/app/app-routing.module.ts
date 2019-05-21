@@ -259,7 +259,7 @@ const routes: Routes =  [
         }
     },
     { 
-        path: ':batchId/uploadedStudents', 
+        path: ':id/uploadedStudents', 
         component: StudentsUploadedComponent, 
         canActivate: [AuthGuard],
         data: { 
@@ -273,7 +273,7 @@ const routes: Routes =  [
         }
     },
     { 
-        path: ':batchId/students', 
+        path: ':id/students', 
         component: StudentsFinalComponent, 
         canActivate: [AuthGuard],
         data: { 
@@ -282,6 +282,7 @@ const routes: Routes =  [
                     Role.Reviewer
                 ],
                 entity: [
+                    Entity.Institute,
                     Entity.Affiliate
                 ] 
         }

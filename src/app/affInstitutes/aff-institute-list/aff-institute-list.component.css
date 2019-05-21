@@ -15,6 +15,10 @@
     flex-direction: row;
 } 
 
+.spacer {
+    flex: 1 1 auto;
+}
+
 .inner-div {
     display: flex;
     flex-direction: column;

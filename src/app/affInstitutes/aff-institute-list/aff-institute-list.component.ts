@@ -6,6 +6,7 @@ import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
+import { ErrorDialogService } from 'src/app/services/error-dialog.service';
 
 @Component({
   selector: 'app-aff-institute-list',
@@ -16,7 +17,11 @@ export class AffInstituteListComponent implements OnInit {
 
 	url;
 	loggedInUser;
+	role;
+	entity;
 	departmentId;
+	affiliate;
+	selectedAffiliates: any = [];
 	affInstData: AffInstitute[] = [];
 	displayedColumns = ['select', 'deptId', 'affInstId', 'affInstName', 'affInsLocation', 'status', 'id'];
 	activated;
@@ -24,12 +29,14 @@ export class AffInstituteListComponent implements OnInit {
 	selection = new SelectionModel<AffInstitute>(true, []);
 
 	departmentIdFilter = new FormControl();
+	affInstIdFilter = new FormControl();
 	affInstNameFilter = new FormControl();
 	affInstLocFilter = new FormControl();
 	affInstStatusFilter = new FormControl();
 
 	filteredValues = {
 		departmentId: '',
+		affiliateId: '',
 		name: '',
 		address: '',
 		status: ''
@@ -38,12 +45,15 @@ export class AffInstituteListComponent implements OnInit {
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	constructor(private apiService: ApiService,
-				private router: Router) { }
+				private router: Router,
+				public errorDialogService: ErrorDialogService) { }
 
 	ngOnInit(): void {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.role = this.loggedInUser.reference.role;
+		this.entity = this.loggedInUser.reference.entity;
 		this.getAffInstitutes(this.loggedInUser.reference.departmentId);
 		this.filterByColumn();
 	}
@@ -69,6 +79,11 @@ export class AffInstituteListComponent implements OnInit {
 			this.dataSource.filter = JSON.stringify(this.filteredValues);
 		});
 
+		this.affInstIdFilter.valueChanges.subscribe((affInstIdFilterValue) => {
+			this.filteredValues['affiliateId'] = affInstIdFilterValue;
+			this.dataSource.filter = JSON.stringify(this.filteredValues);
+		});
+
 		this.affInstNameFilter.valueChanges.subscribe((affInstNameFilterValue) => {
 			this.filteredValues['name'] = affInstNameFilterValue;
 			this.dataSource.filter = JSON.stringify(this.filteredValues);
@@ -91,6 +106,7 @@ export class AffInstituteListComponent implements OnInit {
 		const myFilterPredicate = function(data:AffInstitute, filter: string): boolean {
 			let searchString = JSON.parse(filter);
 			return data.departmentId.toString().trim().toLowerCase().indexOf(searchString.departmentId) !== -1
+			&& data.code.toString().trim().toLowerCase().indexOf(searchString.affiliateId) !== -1
 			&& data.name.toString().trim().toLowerCase().indexOf(searchString.name) !== -1
 			&& data.address.toString().trim().toLowerCase().indexOf(searchString.address) !== -1
 			&& data.status.toString().trim().toLowerCase().indexOf(searchString.status) !== -1
@@ -107,8 +123,6 @@ export class AffInstituteListComponent implements OnInit {
 
 		if(departmentId !== "111111111111111111111111") {
 			params = params.append('departmentId', departmentId);
-		} else {
-			params = params.append('departmentId', "");
 		}
 
 		this.apiService.get(this.url, params)
@@ -125,7 +139,7 @@ export class AffInstituteListComponent implements OnInit {
 					this.dataSource.data = this.affInstData;
 				}
 			});
-	};
+	}
 
 	changeStatus(row) {
 		var affInstId = row._id;
@@ -146,5 +160,20 @@ export class AffInstituteListComponent implements OnInit {
 					this.getAffInstitutes(this.loggedInUser.reference.departmentId);
 				}
 			});
+	}
+
+	getStudents() {
+		this.selectedAffiliates = this.selection.selected;
+
+		if(this.selectedAffiliates.length < 1) {
+			var data = {
+				reason: "Please select one affiliate institute!",
+				status: ''
+			};
+			this.errorDialogService.openDialog(data);
+		} else {
+			this.affiliate = this.selectedAffiliates[0];
+			this.router.navigate(['/' + this.affiliate._id + '/students']);
+		}
 	}
 }

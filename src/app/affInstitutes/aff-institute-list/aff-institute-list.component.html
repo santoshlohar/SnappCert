@@ -6,6 +6,12 @@
 					<a mat-button class="add-btn" routerLink="/affInstituteAdd">Add Affl. Institute</a>
 				</div>
 			</div>
+			<span class="spacer"></span>
+			<div class="inner-div header-btns">
+				<div class="mat-header-btns">
+					<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'institute')" (click)="getStudents()"> View Students </a>
+				</div>
+			</div>
 		</div>
 		<div class="list-container">
 			<mat-table [dataSource]="dataSource" 
