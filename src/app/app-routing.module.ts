@@ -144,7 +144,8 @@ const routes: Routes =  [
         canActivate: [AuthGuard],
         data: { 
                 roles: [
-                    Role.Admin
+                    Role.Admin,
+                    Role.Manager
                 ],
                 entity: [
                     Entity.Institute

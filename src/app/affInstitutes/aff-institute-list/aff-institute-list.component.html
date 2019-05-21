@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<div class="outer-div">
 			<div class="inner-div header-btns">
-				<div class="mat-header-btns">
+				<div class="mat-header-btns" *ngIf="(role == 'admin' && entity == 'institute')">
 					<a mat-button class="add-btn" routerLink="/affInstituteAdd">Add Affl. Institute</a>
 				</div>
 			</div>

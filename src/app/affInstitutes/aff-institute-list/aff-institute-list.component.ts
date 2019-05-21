@@ -16,6 +16,7 @@ export class AffInstituteListComponent implements OnInit {
 
 	url;
 	loggedInUser;
+	departmentId;
 	affInstData: AffInstitute[] = [];
 	displayedColumns = ['deptId', 'affInstName', 'affInsLocation', 'status', 'id'];
 	activated;
@@ -43,7 +44,7 @@ export class AffInstituteListComponent implements OnInit {
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
-		this.getAffInstitutes();
+		this.getAffInstitutes(this.loggedInUser.reference.departmentId);
 		this.filterByColumn();
 	}
 
@@ -86,12 +87,18 @@ export class AffInstituteListComponent implements OnInit {
 		return myFilterPredicate;
 	}
 
-	getAffInstitutes() {
+	getAffInstitutes(departmentId) {
 		this.url = '/affiliate/list';
 		var params = new HttpParams();
 		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
+
+		if(departmentId !== "111111111111111111111111") {
+			params = params.append('departmentId', departmentId);
+		} else {
+			params = params.append('departmentId', "");
+		}
 
 		this.apiService.get(this.url, params)
 			.subscribe((response: any) => {
@@ -125,7 +132,7 @@ export class AffInstituteListComponent implements OnInit {
 		this.apiService.put(this.url, data)
 			.subscribe((response) => {
 				if(response.success == true) {
-					this.getAffInstitutes();
+					this.getAffInstitutes(this.loggedInUser.reference.departmentId);
 				}
 			});
 	}
