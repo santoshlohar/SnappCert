@@ -55,7 +55,8 @@ export class HeaderComponent implements OnInit {
 	}
 
 	subHeading(url) {
-		var id = url.split('/')[2];
+		var startId = url.split('/')[1];
+		var endId = url.split('/')[2];
 		if(url === '/dashboard') {
 			this.heading = 'My Dashboard';
 		} else if(url === '/users') {
@@ -80,13 +81,16 @@ export class HeaderComponent implements OnInit {
 			this.heading = 'Batches';
 		} else if(url === '/batchAdd') {
 			this.heading = 'Add Batch';
-		} else if(id) {
-			if(url == '/courseEdit/'+id) {
-				this.heading = 'Course Edit';
-			}
-			if(url == '/certificateView/'+id) {
-				this.heading = 'Certificate Data';
-			}
+		} else if(endId && (url == '/courseEdit/'+endId)) {
+			this.heading = 'Course Edit';
+		} else if(endId && (url == '/certificateView/'+endId)) {
+			this.heading = 'Certificate Data';
+		} else if(startId && (url == '/'+ startId +'/uploadedStudents')) {
+			this.heading = 'Uploaded Students';
+		} else if(startId && (url == '/'+ startId +'/students')) {
+			this.heading = 'Students';
+		} else if(startId && (url == '/'+ startId +'/certificates')) {
+			this.heading = 'Certificates';
 		}
 	}
 
