@@ -3,7 +3,7 @@
 		<div class="outer-div">
 			<div class="inner-div header-btns upload-btn-wrapper" *ngIf="(role == 'manager' && entity == 'affiliate')">
 				<button mat-button class="add-btn" fxFlex-lt.md="100">Upload Student Data
-					<input class="file-upload" type="file" name="excel" (change)="uploadstudent($event.target.files, $event.target.name)"/>
+					<input class="file-upload" type="file" name="file" (change)="uploadstudent($event.target.files, $event.target.name)"/>
 				</button>
 			</div>
 			<span class="spacer"></span>

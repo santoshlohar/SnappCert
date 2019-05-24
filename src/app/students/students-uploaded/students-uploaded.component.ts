@@ -3,7 +3,9 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FormControl } from '@angular/forms';
 import { ErrorDialogService } from 'src/app/services/error-dialog.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-students-uploaded',
@@ -16,6 +18,8 @@ export class StudentsUploadedComponent implements OnInit {
 	role;
 	entity;
 	student;
+	url;
+	batchId;
 	selectedStudents: any = [];
 	displayedColumns = [
 		'select',
@@ -61,15 +65,20 @@ export class StudentsUploadedComponent implements OnInit {
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
-	constructor(private router: Router,
+	constructor(private apiService: ApiService,
+				private router: Router,
+				private route: ActivatedRoute,
 				public errorDialogService: ErrorDialogService) { }
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.role = this.loggedInUser.reference.role;
 		this.entity = this.loggedInUser.reference.entity;
+		this.batchId = this.route.snapshot.params['batchId'];
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
+
+		this.getUploadedStudents();
 	}
 
 	isAllSelected() {
@@ -81,6 +90,38 @@ export class StudentsUploadedComponent implements OnInit {
 	masterToggle() {
 		this.isAllSelected() ? 
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+	}
+
+	getUploadedStudents() {
+		this.url = "/student/uploadedList";
+
+		var params = new HttpParams();
+		params = params.append('affiliateId', this.loggedInUser.reference.instituteId);
+		params = params.append('batchId', this.batchId);
+		params = params.append('skip', '0');
+		params = params.append('limit', '10');
+
+		this.apiService.get(this.url, params)
+			.subscribe((response: any) => {
+				console.log(response);
+			});
+	};
+
+	uploadstudent(files, name) {
+		console.log("files", files);
+		console.log("name", name);
+
+		var form = new FormData();
+		form.append(name, files[0]);
+		form.append('affiliateId', JSON.stringify(this.loggedInUser.reference.affiliateId));
+		form.append('batchId', JSON.stringify(this.batchId));
+
+		this.url = "/student/upload";
+		console.log(form);
+		this.apiService.post(this.url, form)
+			.subscribe((response: any) => {
+				console.log(response);
+			})
 	}
 
 	goToFinal() {

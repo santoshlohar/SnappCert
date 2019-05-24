@@ -261,7 +261,7 @@ const routes: Routes =  [
         }
     },
     { 
-        path: ':id/uploadedStudents', 
+        path: ':batchId/uploadedStudents', 
         component: StudentsUploadedComponent, 
         canActivate: [AuthGuard],
         data: { 
@@ -275,7 +275,7 @@ const routes: Routes =  [
         }
     },
     { 
-        path: ':id/students', 
+        path: ':batchId/students', 
         component: StudentsFinalComponent, 
         canActivate: [AuthGuard],
         data: { 
