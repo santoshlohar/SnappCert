@@ -13,6 +13,7 @@ export class ApiService {
 	user;
 	getData;
 	putData;
+	data;
 
 	constructor(private http: HttpClient,
 				private authService: AuthService) {
@@ -41,7 +42,6 @@ export class ApiService {
 
 	upload(url, data) {
 		let header = new HttpHeaders({
-			//'Content-Type': 'multipart/form-data',
 			'x-api-token': this.authService.getAccessToken()
 		})
 

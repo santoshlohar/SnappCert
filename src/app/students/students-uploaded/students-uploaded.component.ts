@@ -6,6 +6,7 @@ import { ErrorDialogService } from 'src/app/services/error-dialog.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { HttpParams } from '@angular/common/http';
+import { Student } from 'src/app/modals/student';
 
 @Component({
   selector: 'app-students-uploaded',
@@ -20,10 +21,12 @@ export class StudentsUploadedComponent implements OnInit {
 	student;
 	url;
 	batchId;
-	students;
+	students: Student[] = [];
+	newStudents: Student[] = [];
 	selectedStudents: any = [];
 	displayedColumns = [
 		'select',
+		'actions',
 		'batchId', 
 		'code', 
 		'name', 
@@ -94,22 +97,26 @@ export class StudentsUploadedComponent implements OnInit {
 	}
 
 	getUploadedStudents() {
-		this.url = "/student/drafts";
+		this.url = "/student/draft/list";
 
 		var params = new HttpParams();
 		params = params.append('affiliateId', this.loggedInUser.reference.affiliateId);
 		params = params.append('batchId', this.batchId);
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
-
+		
 		this.apiService.get(this.url, params)
 			.subscribe((response: any) => {
-				console.log(response);
 				if(response.success == true) {
-					if(response.data.drafts) {
+					if(response.data.drafts.length) {
 						this.students = response.data.drafts;
-						console.log(this.students);
-						this.dataSource.data = this.students;
+						this.newStudents = [];
+						for(var i=0; i<this.students.length; i++) {
+							this.students[i].isEditing = false;
+							this.students[i].index = i;
+							this.newStudents.push(this.students[i]);
+							this.dataSource.data = this.newStudents;
+						}
 					}
 				}
 			});
@@ -121,11 +128,71 @@ export class StudentsUploadedComponent implements OnInit {
 		form.append('affiliateId', this.loggedInUser.reference.affiliateId);
 		form.append('batchId', this.batchId);
 
-		this.url = "/student/upload";
+		this.url = "/student/draft/upload";
 		this.apiService.upload(this.url, form)
 			.subscribe((response: any) => {
 				console.log(response);
 			})
+	}
+
+	edit(row) {
+		var i = row.index;
+		var tableData = this.dataSource.data;
+		if(tableData[i].isEditing == false) {
+			tableData[i].isEditing = true;
+		} else {
+			tableData[i].isEditing = false;
+		}
+		this.dataSource.data = tableData;
+	}
+
+	save(row) {
+		this.url = "/student/draft/"+ row._id;
+		var i = row.index;
+
+		this.apiService.put(this.url, row)
+			.subscribe((response: any) => {
+				console.log(response);
+				if(response.success == true) {
+					console.log(response.data);
+					var tableData = this.dataSource.data;
+					tableData[i].isEditing = false;
+					setTimeout(() => {
+						this.getUploadedStudents();
+					}, 3000);
+				}
+			})
+	}
+
+	deleteDrafts() {
+		this.selectedStudents = this.selection.selected;
+
+		if(this.selectedStudents.length < 1) {
+			var data = {
+				reason: "Please select atleast one student to delete!",
+				status: ''
+			};
+			this.errorDialogService.openDialog(data);
+		} else {
+			//var draftIds = [];
+			var obj = {
+				draftIds: [],
+				affiliateId: this.loggedInUser.reference.affiliateId
+			};
+
+			for(var i=0; i<this.selectedStudents.length; i++){
+				obj.draftIds.push(this.selectedStudents[i]._id);
+			}
+			this.url = "/student/draft/delete";
+			console.log(obj);
+			this.apiService.post(this.url, obj)
+				.subscribe((response: any) => {
+					console.log(response);
+					this.getUploadedStudents();
+				})
+
+		}
+		
 	}
 
 	goToFinal() {
@@ -138,8 +205,19 @@ export class StudentsUploadedComponent implements OnInit {
 			};
 			this.errorDialogService.openDialog(data);
 		} else {
-			this.student = this.selectedStudents[0];
-			//this.router.navigate(['/'+ this.student._id + '/uploadedCertificates']);
+			var obj = {
+				drafts: this.selectedStudents
+			}
+
+			this.url = "/student/draft/process";
+			console.log(obj);
+			this.apiService.put(this.url, obj)
+				.subscribe((response: any) => {
+					console.log(response);
+					this.getUploadedStudents();
+				})
+
+
 		}
 	}
 }

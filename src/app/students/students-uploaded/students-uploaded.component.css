@@ -183,3 +183,21 @@ mat-column-position, mat-column-position {
 	top: 0;
 	opacity: 0;
 }
+
+.clr-blue {
+    color: #3666f5;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.highlight {
+    border: 1px solid red;
+    height: inherit;
+}
+
+.material-icons {
+    font-size: 18px !important;
+    font-weight: 600;
+}
