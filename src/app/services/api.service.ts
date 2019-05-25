@@ -38,5 +38,15 @@ export class ApiService {
 		this.putData = this.http.put(this.baseURL + url, data, this.httpOptions);
 		return this.putData;
 	}
+
+	upload(url, data) {
+		let header = new HttpHeaders({
+			//'Content-Type': 'multipart/form-data',
+			'x-api-token': this.authService.getAccessToken()
+		})
+
+		this.getData = this.http.post(this.baseURL + url, data, { headers: header});
+		return this.getData;
+	}
 	
 }

@@ -53,7 +53,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.code.value}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="name">
 					<mat-header-cell *matHeaderCellDef>
@@ -65,7 +65,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.name.value}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="father">
 					<mat-header-cell *matHeaderCellDef>
@@ -77,7 +77,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.father}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.father.value}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="dob">
 					<mat-header-cell *matHeaderCellDef>
@@ -89,7 +89,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.dob}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.dob.value}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="aadhar">
 					<mat-header-cell *matHeaderCellDef>
@@ -101,7 +101,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.aadhar}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.aadhar.value}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="email">
 					<mat-header-cell *matHeaderCellDef>
@@ -113,7 +113,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.email.value}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="phoneNumber">
 					<mat-header-cell *matHeaderCellDef>
@@ -125,7 +125,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.phoneNumber}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.phoneNumber.value}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="date">
 						<mat-header-cell *matHeaderCellDef>
@@ -137,7 +137,7 @@
 								</mat-form-field>
 							</div>
 						</mat-header-cell>
-						<mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+						<mat-cell *matCellDef="let element"> {{element.date | date }} </mat-cell>
 					</ng-container>
 				<ng-container matColumnDef="status">
 					<mat-header-cell *matHeaderCellDef>

@@ -20,6 +20,7 @@ export class StudentsUploadedComponent implements OnInit {
 	student;
 	url;
 	batchId;
+	students;
 	selectedStudents: any = [];
 	displayedColumns = [
 		'select',
@@ -60,7 +61,7 @@ export class StudentsUploadedComponent implements OnInit {
 		status: ''
 	}
 
-	dataSource = new MatTableDataSource<any>(data);
+	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
 
 	@ViewChild(MatSort) sort: MatSort;
@@ -93,10 +94,10 @@ export class StudentsUploadedComponent implements OnInit {
 	}
 
 	getUploadedStudents() {
-		this.url = "/student/uploadedList";
+		this.url = "/student/drafts";
 
 		var params = new HttpParams();
-		params = params.append('affiliateId', this.loggedInUser.reference.instituteId);
+		params = params.append('affiliateId', this.loggedInUser.reference.affiliateId);
 		params = params.append('batchId', this.batchId);
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
@@ -104,21 +105,24 @@ export class StudentsUploadedComponent implements OnInit {
 		this.apiService.get(this.url, params)
 			.subscribe((response: any) => {
 				console.log(response);
+				if(response.success == true) {
+					if(response.data.drafts) {
+						this.students = response.data.drafts;
+						console.log(this.students);
+						this.dataSource.data = this.students;
+					}
+				}
 			});
 	};
 
 	uploadstudent(files, name) {
-		console.log("files", files);
-		console.log("name", name);
-
 		var form = new FormData();
-		form.append(name, files[0]);
-		form.append('affiliateId', JSON.stringify(this.loggedInUser.reference.affiliateId));
-		form.append('batchId', JSON.stringify(this.batchId));
+		form.append('file', files[0], files[0].filename);
+		form.append('affiliateId', this.loggedInUser.reference.affiliateId);
+		form.append('batchId', this.batchId);
 
 		this.url = "/student/upload";
-		console.log(form);
-		this.apiService.post(this.url, form)
+		this.apiService.upload(this.url, form)
 			.subscribe((response: any) => {
 				console.log(response);
 			})
@@ -135,7 +139,7 @@ export class StudentsUploadedComponent implements OnInit {
 			this.errorDialogService.openDialog(data);
 		} else {
 			this.student = this.selectedStudents[0];
-			this.router.navigate(['/'+ this.student._id + '/uploadedCertificates']);
+			//this.router.navigate(['/'+ this.student._id + '/uploadedCertificates']);
 		}
 	}
 }
