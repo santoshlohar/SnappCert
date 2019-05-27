@@ -37,6 +37,15 @@
     height: 100%;
 }
 
+.clr-blue {
+    color: #3666f5;
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 17px;
+}
+
 .add-btn {
     color: #333 !important;
     background-color: #e2be40;

@@ -21,6 +21,20 @@ export class StudentsFinalComponent implements OnInit {
 	students;
 	id;
 	selectedStudents: any = [];
+
+	reviewerColumns = [
+		'actions',
+		'batchId', 
+		'code', 
+		'name', 
+		'father',
+		'dob',
+		'aadhar',
+		'email',
+		'phoneNumber',
+		'date',
+		'status'
+	];
 	displayedColumns = [
 		'batchId', 
 		'code', 
