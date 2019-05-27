@@ -152,9 +152,7 @@ export class StudentsUploadedComponent implements OnInit {
 
 		this.apiService.put(this.url, row)
 			.subscribe((response: any) => {
-				console.log(response);
 				if(response.success == true) {
-					console.log(response.data);
 					var tableData = this.dataSource.data;
 					tableData[i].isEditing = false;
 					setTimeout(() => {
@@ -174,7 +172,6 @@ export class StudentsUploadedComponent implements OnInit {
 			};
 			this.errorDialogService.openDialog(data);
 		} else {
-			//var draftIds = [];
 			var obj = {
 				draftIds: [],
 				affiliateId: this.loggedInUser.reference.affiliateId
@@ -184,7 +181,6 @@ export class StudentsUploadedComponent implements OnInit {
 				obj.draftIds.push(this.selectedStudents[i]._id);
 			}
 			this.url = "/student/draft/delete";
-			console.log(obj);
 			this.apiService.post(this.url, obj)
 				.subscribe((response: any) => {
 					console.log(response);
