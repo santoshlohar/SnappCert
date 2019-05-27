@@ -198,3 +198,22 @@ mat-column-position, mat-column-position {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.data:hover{
+    overflow: visible; 
+    text-overflow: inherit;
+    background: #fff;
+    position: absolute;
+    left:auto;
+    top:auto;
+    width: auto;
+    max-width: 20rem;
+    border: 1px solid #eaebec;
+    padding: 0 .5rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.28);
+    white-space: normal;
+    word-wrap: break-word;
+    display:block;
+    color:black;
+
+}
