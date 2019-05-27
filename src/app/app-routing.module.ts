@@ -247,7 +247,7 @@ const routes: Routes =  [
         }
     },
     { 
-        path: 'batches', 
+        path: ':affiliateId/batches', 
         component: BatchListComponent, 
         canActivate: [AuthGuard],
         data: { 
@@ -256,7 +256,8 @@ const routes: Routes =  [
                     Role.Reviewer
                 ],
                 entity: [
-                    Entity.Affiliate
+                    Entity.Affiliate,
+                    Entity.Institute
                 ] 
         }
     },

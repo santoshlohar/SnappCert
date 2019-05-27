@@ -9,7 +9,8 @@
 			<span class="spacer"></span>
 			<div class="inner-div header-btns">
 				<div class="mat-header-btns">
-					<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'institute')" (click)="getStudents()"> View Students </a>
+					<!-- <a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'institute')" (click)="getStudents()"> View Students </a> -->
+					<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'institute')" (click)="getBatches()"> View Batches </a>
 				</div>
 			</div>
 		</div>

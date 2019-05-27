@@ -19,7 +19,7 @@ export class StudentsFinalComponent implements OnInit {
 	entity;
 	url;
 	students;
-	batchId;
+	id;
 	selectedStudents: any = [];
 	displayedColumns = [
 		'batchId', 
@@ -72,7 +72,7 @@ export class StudentsFinalComponent implements OnInit {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.role = this.loggedInUser.reference.role;
 		this.entity = this.loggedInUser.reference.entity;
-		this.batchId = this.route.snapshot.params['batchId'];
+		this.id = this.route.snapshot.params['batchId'];
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 
@@ -94,15 +94,21 @@ export class StudentsFinalComponent implements OnInit {
 		this.url = "/student/list";
 
 		var params = new HttpParams();
-		params = params.append('affiliateId', this.loggedInUser.reference.affiliateId);
-		params = params.append('batchId', this.batchId);
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
+
+		if(this.loggedInUser.reference.affiliateId === '111111111111111111111111') {
+			params = params.append('affiliateId', this.id);
+		} else {
+			params = params.append('affiliateId', this.loggedInUser.reference.affiliateId);
+			params = params.append('batchId', this.id);
+		}
 
 		this.apiService.get(this.url, params)
 			.subscribe((response: any) => {
 				if(response.success == true) {
 					if(response.data.students.length) {
+						console.log(response.data.students)
 						this.students = response.data.students;
 						this.dataSource.data = this.students;
 					}

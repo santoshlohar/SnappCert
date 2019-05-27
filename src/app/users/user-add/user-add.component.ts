@@ -102,12 +102,12 @@ export class UserAddComponent implements OnInit {
 		// 	return false;
 		// }
 		console.log(this.user);
-		// this.apiService.post(this.url, this.user)
-		// 	.subscribe((response: any) => {
-		// 		if(response.success == true) {
-		// 			this.router.navigate(['/users']);
-		// 		}
-		// 	});
+		this.apiService.post(this.url, this.user)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					this.router.navigate(['/users']);
+				}
+			});
 	}
 
 	userValidation(user) {

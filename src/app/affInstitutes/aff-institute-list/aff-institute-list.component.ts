@@ -176,4 +176,19 @@ export class AffInstituteListComponent implements OnInit {
 			this.router.navigate(['/' + this.affiliate._id + '/students']);
 		}
 	}
+
+	getBatches() {
+		this.selectedAffiliates = this.selection.selected;
+
+		if(this.selectedAffiliates.length !== 1) {
+			var data = {
+				reason: "Please select one affiliate institute!",
+				status: ''
+			};
+			this.errorDialogService.openDialog(data);
+		} else {
+			this.affiliate = this.selectedAffiliates[0];
+			this.router.navigate(['/' + this.affiliate._id + '/batches']);
+		}
+	}
 }

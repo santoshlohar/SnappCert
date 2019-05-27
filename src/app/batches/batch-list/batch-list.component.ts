@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { HttpParams } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import { ErrorDialogService } from 'src/app/services/error-dialog.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-batch-list',
@@ -18,6 +18,7 @@ export class BatchListComponent implements OnInit {
 	role;
 	entity;
 	url;
+	affiliateId;
 	batch;
 	batches = [];
 	selectedBatches;
@@ -74,6 +75,7 @@ export class BatchListComponent implements OnInit {
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 
 	constructor(private apiService: ApiService,
+				private route: ActivatedRoute,
 				private router: Router,
 				public errorDialogService: ErrorDialogService) { }
 
@@ -81,6 +83,7 @@ export class BatchListComponent implements OnInit {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.role = this.loggedInUser.reference.role;
 		this.entity = this.loggedInUser.reference.entity;
+		this.affiliateId = this.route.snapshot.params['affiliateId'];
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.getBatches();
@@ -99,10 +102,9 @@ export class BatchListComponent implements OnInit {
 
 	getBatches() {
 		this.url = "/batch/list";
-
+		
 		var params = new HttpParams();
-
-		params = params.append('affiliateId', this.loggedInUser.reference.affiliateId);
+		params = params.append('affiliateId', this.affiliateId);
 		// params = params.append('skip', this.loggedInUser.reference.affiliateId);
 		// params = params.append('limit', this.loggedInUser.reference.affiliateId);
 		
@@ -111,7 +113,6 @@ export class BatchListComponent implements OnInit {
 			.subscribe((response: any) => {
 				if(response.success == true) {
 					this.batches = response.data.batches;
-					console.log(this.batches);
 					for(var i=0;i<this.batches.length;i++) {
 						if(this.batches[i].isDeleted == false) {
 							this.batches[i].status = "Active";
