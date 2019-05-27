@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="wrapper">
+	<div class="wrapper">
 		<div class="outer-div">
 			<div class="inner-div header-btns upload-btn-wrapper" *ngIf="(role == 'manager' && entity == 'affiliate')">
 				<!-- <button mat-button class="add-btn" fxFlex-lt.md="100">Upload Certificates
@@ -9,28 +9,14 @@
 			<span class="spacer"></span>
 			<div class="inner-div header-btns">
 				<div class="mat-header-btns">
-						<a mat-button class="add-btn" fxFlex="100" fxFlex-lt.md="100" (click)="goToFinal()">Certificates</a>
-					<a mat-button class="add-btn" fxFlex="100" fxFlex-lt.md="100" (click)="uploadCertificates()">Upload Certificates</a>
+                    <!-- <a mat-button class="add-btn" fxFlex="100" fxFlex-lt.md="100" (click)="goToFinal()">Certificates</a>
+					<a mat-button class="add-btn" fxFlex="100" fxFlex-lt.md="100" (click)="uploadCertificates()">Upload Certificates</a> -->
 				</div>
 			</div>
 		</div>
 		<div class="list-container">
 			<mat-table [dataSource]="dataSource" 
 			class="mat-table-item mat-elevation-z8">
-				<ng-container matColumnDef="select" sticky>
-					<mat-header-cell *matHeaderCellDef>
-						<mat-checkbox (change)="$event ? masterToggle() : null"
-						[checked]="selection.hasValue() && isAllSelected() == true"
-						[indeterminate]="selection.hasValue() && !isAllSelected()">
-						</mat-checkbox>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let row"> 
-						<mat-checkbox (click)="$event.stopPropagation()"
-						(change)="$event ? selection.toggle(row) : null"
-						[checked]="selection.isSelected(row) == true">
-						</mat-checkbox>
-					</mat-cell>
-				</ng-container>
 				<ng-container matColumnDef="batchId">
 					<mat-header-cell *matHeaderCellDef> 
 						<div>Batch ID</div>
@@ -41,7 +27,9 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.batch.code}} </mat-cell>
+					<mat-cell *matCellDef="let element"> 
+                       <span class="data"> {{element.batchId}} </span> 
+                    </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="code">
 					<mat-header-cell *matHeaderCellDef>
@@ -53,7 +41,9 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+					<mat-cell *matCellDef="let element"> 
+                        <span class="data"> {{element.code}} </span>
+                    </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="name">
 					<mat-header-cell *matHeaderCellDef>
@@ -65,7 +55,9 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+					<mat-cell *matCellDef="let element"> 
+                        <span class="data"> {{element.name}} </span>
+                    </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="father">
 					<mat-header-cell *matHeaderCellDef>
@@ -77,7 +69,9 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.father}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+                        <span class="data"> {{element.father}} </span>
+                    </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="dob">
 					<mat-header-cell *matHeaderCellDef>
@@ -89,7 +83,9 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.dob}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+                        <span class="data"> {{element.dob | date}} </span>
+                    </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="aadhar">
 					<mat-header-cell *matHeaderCellDef>
@@ -101,7 +97,9 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.aadhar}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+                        <span class="data"> {{element.aadhar}} </span>
+                    </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="email">
 					<mat-header-cell *matHeaderCellDef>
@@ -113,7 +111,9 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+                        <span class="data"> {{element.email}} </span>
+                    </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="phoneNumber">
 					<mat-header-cell *matHeaderCellDef>
@@ -125,7 +125,9 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.phoneNumber}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+                        <span class="data"> {{element.phoneNumber}} </span>
+                    </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="date">
 					<mat-header-cell *matHeaderCellDef>
@@ -137,7 +139,9 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+					<mat-cell *matCellDef="let element">
+                        <span class="data"> {{element.date | date}} </span>
+                    </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="status">
 					<mat-header-cell *matHeaderCellDef>
@@ -149,14 +153,16 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+					<mat-cell *matCellDef="let element"> 
+                        <span class="data"> {{element.status | uppercase}} </span>
+                    </mat-cell>
 				</ng-container>
 				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 			</mat-table>
 		</div>
-      <div>
-        <mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
-      </div>
-    </div>
-  </div>
+		<div>
+			<mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
+		</div>
+	</div>
+</div>

@@ -65,7 +65,7 @@
 
 .mat-table {
     width: 100%;
-    min-width: 1950px;
+    min-width: 1150px;
 }
 
 .mat-header-cell {
@@ -182,4 +182,10 @@ mat-column-position, mat-column-position {
 	left: 0;
 	top: 0;
 	opacity: 0;
+}
+
+.data {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

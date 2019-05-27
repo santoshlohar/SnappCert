@@ -3,7 +3,9 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ErrorDialogService } from 'src/app/services/error-dialog.service';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
 	selector: 'app-students-final',
@@ -15,10 +17,11 @@ export class StudentsFinalComponent implements OnInit {
 	loggedInUser;
 	role;
 	entity;
-	student;
+	url;
+	students;
+	batchId;
 	selectedStudents: any = [];
 	displayedColumns = [
-		'select',
 		'batchId', 
 		'code', 
 		'name', 
@@ -55,15 +58,25 @@ export class StudentsFinalComponent implements OnInit {
 		status: ''
 	}
 
-	dataSource = new MatTableDataSource<any>(data);
+	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
-	constructor(private router: Router,
+	constructor(private apiService: ApiService,
+				private route: ActivatedRoute,
+				private router: Router,
 				public errorDialogService: ErrorDialogService) { }
 
 	ngOnInit() {
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.role = this.loggedInUser.reference.role;
+		this.entity = this.loggedInUser.reference.entity;
+		this.batchId = this.route.snapshot.params['batchId'];
+		this.dataSource.sort = this.sort;
+		this.dataSource.paginator = this.paginator;
+
+		this.getStudents();
 	}
 
 	isAllSelected() {
@@ -77,35 +90,40 @@ export class StudentsFinalComponent implements OnInit {
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
 	}
 
-	goToFinal() {
-		this.selectedStudents = this.selection.selected;
+	getStudents() {
+		this.url = "/student/list";
 
-		if(this.selectedStudents.length !== 1) {
-			var data = {
-				reason: "Please select one student!",
-				status: ''
-			};
-			this.errorDialogService.openDialog(data);
-		} else {
-			this.student = this.selectedStudents[0];
-			this.router.navigate(['/'+ this.student._id + '/certificates']);
-		}
+		var params = new HttpParams();
+		params = params.append('affiliateId', this.loggedInUser.reference.affiliateId);
+		params = params.append('batchId', this.batchId);
+		params = params.append('skip', '0');
+		params = params.append('limit', '10');
+
+		this.apiService.get(this.url, params)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					if(response.data.students.length) {
+						this.students = response.data.students;
+						this.dataSource.data = this.students;
+					}
+				}
+			});
 	}
 
-	uploadCertificates() {
-		this.selectedStudents = this.selection.selected;
+	// uploadCertificates() {
+	// 	this.selectedStudents = this.selection.selected;
 
-		if(this.selectedStudents.length !== 1) {
-			var data = {
-				reason: "Please select one student!",
-				status: ''
-			};
-			this.errorDialogService.openDialog(data);
-		} else {
-			this.student = this.selectedStudents[0];
-			this.router.navigate(['/'+ this.student._id + '/uploadedCertificates']);
-		}
-	}
+	// 	if(this.selectedStudents.length !== 1) {
+	// 		var data = {
+	// 			reason: "Please select one student!",
+	// 			status: ''
+	// 		};
+	// 		this.errorDialogService.openDialog(data);
+	// 	} else {
+	// 		this.student = this.selectedStudents[0];
+	// 		this.router.navigate(['/'+ this.student._id + '/uploadedCertificates']);
+	// 	}
+	// }
 
 }
 
