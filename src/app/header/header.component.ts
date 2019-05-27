@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit {
 			this.heading = 'Add Course';
 		} else if(url === '/certificateUploadList') {
 			this.heading = 'Certificates';
-		} else if(url === '/batches') {
+		} else if(startId && (url == '/'+ startId +'/batches')) {
 			this.heading = 'Batches';
 		} else if(url === '/batchAdd') {
 			this.heading = 'Add Batch';
