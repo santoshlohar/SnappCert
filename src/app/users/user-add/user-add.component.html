@@ -92,7 +92,7 @@
 							</mat-select>
 							<mat-error *ngIf="hasError('role', 'required')">User role is required!</mat-error>
 						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!(admin || superManager)">
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!(admin || superManager || affiliateManager)">
 							<mat-select placeholder="Department" 
 							formControlName="departmentId"
 							(ngModelChange)="departmentChange($event)"
@@ -107,6 +107,7 @@
 							(ngModelChange)="typeChange($event,userForm)"
 							required>
 								<mat-option	
+								*ngIf="!affiliateManager"
 								value="institute">Institute
 								</mat-option>
 								<mat-option 
@@ -116,7 +117,7 @@
 							</mat-select>
 							<mat-error *ngIf="hasError('entity', 'required')">Institute type is required!</mat-error>
 						</mat-form-field>
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!(admin || superManager || institute)">
+						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%" *ngIf="!(admin || superManager || institute || affiliateManager)">
 							<mat-select placeholder="Affiliate Institute" 
 							formControlName="affiliateId"
 							>

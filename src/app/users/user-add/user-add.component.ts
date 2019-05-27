@@ -85,7 +85,7 @@ export class UserAddComponent implements OnInit {
 		this.user.instituteId = this.inst_id;
 		this.user.entity = userData.value.entity;
 
-		if(userData.value.departmentId == "" && this.superManager) {
+		if(userData.value.affiliateId == "" && (this.superManager || this.affiliateManager)) {
 			this.user.departmentId = this.loggedInUser.reference.departmentId;
 		} else {
 			this.user.departmentId = userData.value.departmentId;
@@ -102,12 +102,12 @@ export class UserAddComponent implements OnInit {
 		// 	return false;
 		// }
 		console.log(this.user);
-		this.apiService.post(this.url, this.user)
-			.subscribe((response: any) => {
-				if(response.success == true) {
-					this.router.navigate(['/users']);
-				}
-			});
+		// this.apiService.post(this.url, this.user)
+		// 	.subscribe((response: any) => {
+		// 		if(response.success == true) {
+		// 			this.router.navigate(['/users']);
+		// 		}
+		// 	});
 	}
 
 	userValidation(user) {
