@@ -1,494 +1,290 @@
 <div class="container">
     <div class="wrapper">
-		<div class="outer-div">
-			<div class="inner-div header-btns upload-btn-wrapper">
-				<a mat-button class="add-btn">Upload Certificate 
-					<input class="file-upload" type="file" name="excel" (change)="uploadCertificate($event.target.files, $event.target.name)"/>
-				</a>
-			</div>
-			<span class="spacer"></span>
-			<div class="inner-div header-btns">
-				<div class="mat-header-btns">
-					<a mat-button class="add-btn" (click)="deleteCertificates()">Delete Certificate </a>
-					<a mat-button class="add-btn" (click)="processData()"> Process </a>
-				</div>
-			</div>
-		</div>
-		<div class="list-container">
-			<mat-table [dataSource]="dataSource" 
-			class="mat-table-item mat-elevation-z8">
-				<ng-container matColumnDef="select" sticky>
-					<mat-header-cell *matHeaderCellDef>
-						<mat-checkbox (change)="$event ? masterToggle() : null"
-						[checked]="selection.hasValue() && isAllSelected() == true"
-						[indeterminate]="selection.hasValue() && !isAllSelected()">
-						</mat-checkbox>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let row"> 
-						<mat-checkbox (click)="$event.stopPropagation()"
-						(change)="$event ? selection.toggle(row) : null"
-						[checked]="selection.isSelected(row) == true">
-						</mat-checkbox>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="actions" sticky>
-					<mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-icon 
-						class="clr-blue icon"  
-						(click)="edit(element)"
-						*ngIf="!element.editing"
-						matTooltip="Edit">edit</mat-icon>
-						<mat-icon
-						class="clr-blue icon"
-						(click)="edit(element)" 
-						*ngIf="element.editing"
-						matTooltip="Check">check</mat-icon>
-						<mat-icon class="clr-blue icon"
-						(click)="delete(element._id)"
-						matTooltip="Delete">delete_outline</mat-icon>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="instituteId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Institute ID</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="instituteIdFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element" 
-					[ngClass]="{'highlight': !(element.instituteId) || element.instError}">
-						<span *ngIf="!element.editing"> {{element.instituteId}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.instituteId" [(ngModel)]="element.instituteId">
-							<mat-error>Required</mat-error>
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="affiliateId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Affiliated Institute ID</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="affiliatedIdFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.affiliateId)}">
-						<span *ngIf="!element.editing"> {{element.affiliateId}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.affiliateId" [(ngModel)]="element.affiliateId">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="courseId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Course ID</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="courseIdFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.courseId)}">
-						<span *ngIf="!element.editing"> {{element.courseId}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.courseId" [(ngModel)]="element.courseId">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="batchId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Batch ID</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="batchIdFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.batchId)}">
-						<span *ngIf="!element.editing"> {{element.batchId}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.batchId" [(ngModel)]="element.batchId">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="studentId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Student ID</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="studentIdFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.studentId)}">
-						<span *ngIf="!element.editing"> {{element.studentId}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.studentId" [(ngModel)]="element.studentId">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="certificateId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Certificate ID</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="certificateIdFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.code)}">
-						<span *ngIf="!element.editing"> {{element.code}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.code" [(ngModel)]="element.code">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="specialization">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Specialization</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="specializationFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<span *ngIf="!element.editing"> {{element.specialization}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.specialization" [(ngModel)]="element.specialization">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="scoreEarned">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Score Earned</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="scoreEarnedFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': (element.scrErnErr)}">
-						<span *ngIf="!element.editing"> {{element.scoreEarned}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.scoreEarned" [(ngModel)]="element.scoreEarned">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="totalScore">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Total Score</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="totalScoreFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': element.totalScrErr}">
-						<span *ngIf="!element.editing"> {{element.totalScore}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.totalScore" [(ngModel)]="element.totalScore">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="cgpa">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>CGPA</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="cgpaFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<span *ngIf="!element.editing"> {{element.cgpa}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.cgpa" [(ngModel)]="element.cgpa">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="creditsEarned">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Creadits Earned</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="creditsEarnedFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': (element.creditsError)}">
-						<span *ngIf="!element.editing"> {{element.creditsEarned}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.creditsEarned" [(ngModel)]="element.creditsEarned">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="completionDate">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Completion Date</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="completionDateFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.completionDate) ||  (element.completionDate == null),
-						'has-error': (element._id)}">
-						<span *ngIf="!element.editing"> {{element.completionDate}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.completionDate" [(ngModel)]="element.completionDate">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="status">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Status</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="statusFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<span> {{element.status}} </span>
-					</mat-cell>
-				</ng-container>
-				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-			</mat-table>
-			<!-- <mat-table [dataSource]="dataSource" 
-			class="mat-table-item mat-elevation-z8">
-				<ng-container matColumnDef="select" sticky>
-					<mat-header-cell *matHeaderCellDef>
-						<mat-checkbox (change)="$event ? masterToggle() : null"
-						[checked]="selection.hasValue() && isAllSelected() == true"
-						[indeterminate]="selection.hasValue() && !isAllSelected()">
-						</mat-checkbox>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let row"> 
-						<mat-checkbox (click)="$event.stopPropagation()"
-						(change)="$event ? selection.toggle(row) : null"
-						[checked]="selection.isSelected(row) == true">
-						</mat-checkbox>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="actions" sticky>
-					<mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<mat-icon 
-						class="clr-blue icon"  
-						(click)="edit(element)"
-						*ngIf="!element.editing"
-						matTooltip="Edit">edit</mat-icon>
-						<mat-icon
-						class="clr-blue icon"
-						(click)="edit(element)" 
-						*ngIf="element.editing"
-						matTooltip="Check">check</mat-icon>
-						<mat-icon class="clr-blue icon"
-						(click)="delete(element._id)"
-						matTooltip="Delete">delete_outline</mat-icon>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="instituteId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Institute ID</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="roleFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element" 
-					[ngClass]="{'highlight': !(element.instituteID) || element.instError}">
-						<span *ngIf="!element.editing"> {{element.instituteID}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.instituteID" [(ngModel)]="element.instituteID">
-							<mat-error>Required</mat-error>
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="affiliatedInstituteId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Affiliated Institute ID</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="roleFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.afflInstituteID)}">
-						<span *ngIf="!element.editing"> {{element.afflInstituteID}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.afflInstituteID" [(ngModel)]="element.afflInstituteID">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="courseId">
-					<mat-header-cell *matHeaderCellDef> Course ID</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.courseID)}">
-						<span *ngIf="!element.editing"> {{element.courseID}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.courseID" [(ngModel)]="element.courseID">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="batchId">
-					<mat-header-cell *matHeaderCellDef> Batch ID</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.batchID)}">
-						<span *ngIf="!element.editing"> {{element.batchID}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.batchID" [(ngModel)]="element.batchID">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="studentId">
-					<mat-header-cell *matHeaderCellDef> Student ID</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.studentID)}">
-						<span *ngIf="!element.editing"> {{element.studentID}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.studentID" [(ngModel)]="element.studentID">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="certificateId">
-					<mat-header-cell *matHeaderCellDef> Certificate ID</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.certificateID)}">
-						<span *ngIf="!element.editing"> {{element.certificateID}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.certificateID" [(ngModel)]="element.certificateID">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="specialization">
-					<mat-header-cell *matHeaderCellDef> Specialization</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<span *ngIf="!element.editing"> {{element.Specialization}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.Specialization" [(ngModel)]="element.Specialization">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="scoreEarned">
-					<mat-header-cell *matHeaderCellDef> Score Earned</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': (element.scrErnErr)}">
-						<span *ngIf="!element.editing"> {{element.scoreEarned}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.scoreEarned" [(ngModel)]="element.scoreEarned">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="totalScore">
-					<mat-header-cell *matHeaderCellDef> Total Score</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': element.totalScrErr}">
-						<span *ngIf="!element.editing"> {{element.totalScore}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.totalScore" [(ngModel)]="element.totalScore">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="cgpa">
-					<mat-header-cell *matHeaderCellDef> CGPA </mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<span *ngIf="!element.editing"> {{element.CGPA}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.CGPA" [(ngModel)]="element.CGPA">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="creditsEarned">
-					<mat-header-cell *matHeaderCellDef> creditsEarned</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': (element.creditsError)}">
-						<span *ngIf="!element.editing"> {{element.creditsEarned}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.creditsEarned" [(ngModel)]="element.creditsEarned">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="completionDate">
-					<mat-header-cell *matHeaderCellDef> Completion Date</mat-header-cell>
-					<mat-cell *matCellDef="let element"
-					[ngClass]="{'highlight': !(element.completionDate) ||  (element.completionDate == null),
-						'has-error': (element._id)}">
-						<span *ngIf="!element.editing"> {{element.completionDate}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.completionDate" [(ngModel)]="element.completionDate">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="transactionStatus">
-					<mat-header-cell *matHeaderCellDef> Transaction Status</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<span> {{element.transactionStatus}} </span>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="failureReason">
-					<mat-header-cell *matHeaderCellDef> Failure Reason</mat-header-cell>
-					<mat-cell *matCellDef="let element">
-						<span *ngIf="!element.editing"> {{element.failureReason}} </span>
-						<mat-form-field floatLabel="never" *ngIf="element.editing">
-							<input matInput [value]="element.failureReason" [(ngModel)]="element.failureReason">
-						</mat-form-field>
-					</mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="transactionMachine">
-					<mat-header-cell *matHeaderCellDef> Transaction Machine</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.transactionMachine}} </mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="transactionDate">
-					<mat-header-cell *matHeaderCellDef> Transaction Date</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.transactionDate}} </mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="transactionTime">
-					<mat-header-cell *matHeaderCellDef> Transaction Time</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.transactionTime}} </mat-cell>
-				</ng-container>
-				<ng-container matColumnDef="transactionUser">
-					<mat-header-cell *matHeaderCellDef> Transaction User</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.transactionUser}} </mat-cell>
-				</ng-container>
-				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-			</mat-table> -->
-		</div>
-		<div>
-			<mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
-		</div>
+        <div class="outer-div">
+            <div class="inner-div header-btns upload-btn-wrapper">
+                <a mat-button class="add-btn">Upload Certificate 
+                <input class="file-upload" type="file" name="excel" (change)="uploadCertificate($event.target.files)"/>
+                </a>
+            </div>
+            <span class="spacer"></span>
+            <div class="inner-div header-btns">
+                <div class="mat-header-btns">
+                <a mat-button class="add-btn" (click)="deleteCertificates()">Delete Certificate </a>
+                <a mat-button class="add-btn" (click)="processData()"> Process </a>
+                </div>
+            </div>
+        </div>
+        <div class="list-container">
+            <mat-table [dataSource]="dataSource" 
+            class="mat-table-item mat-elevation-z8">
+                <ng-container matColumnDef="select" sticky>
+                    <mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected() == true"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                        </mat-checkbox>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> 
+                        <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row) == true">
+                        </mat-checkbox>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="actions" sticky>
+                    <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-icon 
+                        class="clr-blue icon"  
+                        (click)="edit(element)"
+                        *ngIf="!element.editing"
+                        matTooltip="Edit">edit</mat-icon>
+                        <mat-icon
+                        class="clr-blue icon"
+                        (click)="edit(element)" 
+                        *ngIf="element.editing"
+                        matTooltip="Check">check</mat-icon>
+                        <mat-icon class="clr-blue icon"
+                        (click)="delete(element._id)"
+                        matTooltip="Delete">delete_outline</mat-icon>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="instituteId">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Institute ID</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="instituteIdFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element" 
+                    [ngClass]="{'highlight': !(element.instituteId) || element.instError}">
+                        <span *ngIf="!element.editing"> {{element.instituteId}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.instituteId" [(ngModel)]="element.instituteId">
+                            <mat-error>Required</mat-error>
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="affiliateId">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Affiliated Institute ID</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="affiliatedIdFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                    [ngClass]="{'highlight': !(element.affiliateId)}">
+                        <span *ngIf="!element.editing"> {{element.affiliateId}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.affiliateId" [(ngModel)]="element.affiliateId">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="courseId">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Course ID</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="courseIdFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                    [ngClass]="{'highlight': !(element.courseId)}">
+                        <span *ngIf="!element.editing"> {{element.courseId}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.courseId" [(ngModel)]="element.courseId">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="batchId">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Batch ID</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="batchIdFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                    [ngClass]="{'highlight': !(element.batchId)}">
+                        <span *ngIf="!element.editing"> {{element.batchId}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.batchId" [(ngModel)]="element.batchId">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="studentId">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Student ID</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="studentIdFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                    [ngClass]="{'highlight': !(element.studentId)}">
+                        <span *ngIf="!element.editing"> {{element.studentId}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.studentId" [(ngModel)]="element.studentId">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="certificateId">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Certificate ID</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="certificateIdFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                    [ngClass]="{'highlight': !(element.code)}">
+                        <span *ngIf="!element.editing"> {{element.code}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.code" [(ngModel)]="element.code">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="specialization">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Specialization</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="specializationFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <span *ngIf="!element.editing"> {{element.specialization}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.specialization" [(ngModel)]="element.specialization">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="scoreEarned">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Score Earned</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="scoreEarnedFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                    [ngClass]="{'highlight': (element.scrErnErr)}">
+                        <span *ngIf="!element.editing"> {{element.scoreEarned}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.scoreEarned" [(ngModel)]="element.scoreEarned">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="totalScore">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Total Score</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="totalScoreFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                    [ngClass]="{'highlight': element.totalScrErr}">
+                        <span *ngIf="!element.editing"> {{element.totalScore}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.totalScore" [(ngModel)]="element.totalScore">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="cgpa">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>CGPA</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="cgpaFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <span *ngIf="!element.editing"> {{element.cgpa}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.cgpa" [(ngModel)]="element.cgpa">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="creditsEarned">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Creadits Earned</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="creditsEarnedFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                    [ngClass]="{'highlight': (element.creditsError)}">
+                        <span *ngIf="!element.editing"> {{element.creditsEarned}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.creditsEarned" [(ngModel)]="element.creditsEarned">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="completionDate">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Completion Date</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="completionDateFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element"
+                    [ngClass]="{'highlight': !(element.completionDate) ||  (element.completionDate == null),
+                        'has-error': (element._id)}">
+                        <span *ngIf="!element.editing"> {{element.completionDate}} </span>
+                        <mat-form-field floatLabel="never" *ngIf="element.editing">
+                            <input matInput [value]="element.completionDate" [(ngModel)]="element.completionDate">
+                        </mat-form-field>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                    <mat-header-cell *matHeaderCellDef> 
+                        <div>Status</div>
+                        <div>
+                            <mat-form-field class="search-input">
+                                <input matInput class="form-field filters" [formControl]="statusFilter">
+                                <fa name="search" matPrefix class="fa-icon"></fa>
+                            </mat-form-field>
+                        </div>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <span> {{element.status}} </span>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
+        <div>
+            <mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
+        </div>
     </div>
 </div>

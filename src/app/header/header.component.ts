@@ -75,8 +75,6 @@ export class HeaderComponent implements OnInit {
 			this.heading = 'Courses';
 		} else if(url === '/courseAdd') {
 			this.heading = 'Add Course';
-		} else if(url === '/certificateUploadList') {
-			this.heading = 'Certificates';
 		} else if(startId && (url == '/'+ startId +'/batches')) {
 			this.heading = 'Batches';
 		} else if(url === '/batchAdd') {
@@ -89,6 +87,8 @@ export class HeaderComponent implements OnInit {
 			this.heading = 'Uploaded Students';
 		} else if(startId && (url == '/'+ startId +'/students')) {
 			this.heading = 'Students';
+		} else if(startId && (url == '/'+ startId +'/uploadedCertificates')) {
+			this.heading = 'Certificates';
 		} else if(startId && (url == '/'+ startId +'/certificates')) {
 			this.heading = 'Certificates';
 		}

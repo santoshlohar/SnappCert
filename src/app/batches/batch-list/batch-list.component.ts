@@ -190,5 +190,35 @@ export class BatchListComponent implements OnInit {
 			this.router.navigate(['/'+ this.batch._id + '/students']);
 		}
 	}
+
+	uploadCertificates() {
+		this.selectedBatches = this.selection.selected;
+
+		if(this.selectedBatches.length !== 1) {
+			var data = {
+				reason: "Please select one batch!",
+				status: ''
+			};
+			this.errorDialogService.openDialog(data);
+		} else {
+			this.batch = this.selectedBatches[0];
+			this.router.navigate(['/'+ this.batch._id + '/uploadedCertificates']);
+		}
+	}
+
+	certificates() {
+		this.selectedBatches = this.selection.selected;
+
+		if(this.selectedBatches.length !== 1) {
+			var data = {
+				reason: "Please select one batch!",
+				status: ''
+			};
+			this.errorDialogService.openDialog(data);
+		} else {
+			this.batch = this.selectedBatches[0];
+			this.router.navigate(['/'+ this.batch._id + '/certificates']);
+		}
+	}
 	
 }

@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FormControl } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ErrorDialogService } from 'src/app/services/error-dialog.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
 	selector: 'app-certificates-uploaded',
@@ -13,6 +17,8 @@ export class CertificatesUploadedComponent implements OnInit {
 	loggedInUser;
 	role;
 	entity;
+	url;
+	batchId;
 	displayedColumns = [
 		'select',
 		'actions',
@@ -61,18 +67,22 @@ export class CertificatesUploadedComponent implements OnInit {
 		status: ''
 	}
 
-	dataSource = new MatTableDataSource<any>(data);
+	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 
-	constructor() { }
+	constructor(private apiService: ApiService,
+				private router: Router,
+				private route: ActivatedRoute,
+				public errorDialogService: ErrorDialogService) { }
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.role = this.loggedInUser.reference.role;
 		this.entity = this.loggedInUser.reference.entity;
+		this.batchId = this.route.snapshot.params['batchId'];
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 	}
@@ -86,6 +96,33 @@ export class CertificatesUploadedComponent implements OnInit {
 	masterToggle() {
 		this.isAllSelected() ? 
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+	}
+
+	getUploadedtCertificates() {
+		this.url = "/certificate/draft/list";
+		
+		var params = new HttpParams();
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
+		params = params.append('affiliateId', this.loggedInUser.reference.affiliateId);
+		params = params.append('batchId', this.batchId);
+		params = params.append('skip', '0');
+		params = params.append('limit', '10');
+
+	}
+
+	uploadCertificate(files) {
+		var form = new FormData();
+		form.append('file', files[0], files[0].filename);
+		form.append('instituteId', this.loggedInUser.reference.instituteId);
+		//form.append('affiliateId', this.loggedInUser.reference.affiliateId);
+		//form.append('courseId', this.loggedInUser.reference.courseId);
+		form.append('batchId', this.batchId);
+
+		this.url = "/certificate/draft/upload";
+		this.apiService.upload(this.url, form)
+			.subscribe((response: any) => {
+				console.log(response);
+			})
 	}
 
 }
