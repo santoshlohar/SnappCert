@@ -39,9 +39,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
-import { UploadedBatchesComponent } from './uploaded-batches/uploaded-batches.component';
-import { BatchUploadListComponent } from './uploaded-batches/batch-upload-list/batch-upload-list.component';
-import { StudentUploadListComponent } from './uploaded-batches/student-upload-list/student-upload-list.component';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
 import { CertificatesListComponent } from './certificates/certificates-list/certificates-list.component';
@@ -83,9 +80,6 @@ import { CertificatesFinalComponent } from './certificates/certificates-final/ce
         DashboardComponent,
         UsersListComponent,
         UserAddComponent,
-        UploadedBatchesComponent,
-        BatchUploadListComponent,
-        StudentUploadListComponent,
         CourseEditComponent,
         CertificateViewComponent,
         CertificatesListComponent,
