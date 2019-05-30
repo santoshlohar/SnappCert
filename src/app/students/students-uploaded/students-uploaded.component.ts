@@ -157,7 +157,7 @@ export class StudentsUploadedComponent implements OnInit {
 					tableData[i].isEditing = false;
 					setTimeout(() => {
 						this.getUploadedStudents();
-					}, 3000);
+					}, 500);
 				}
 			})
 	}

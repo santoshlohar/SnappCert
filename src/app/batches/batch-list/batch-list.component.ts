@@ -6,6 +6,7 @@ import { HttpParams } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import { ErrorDialogService } from 'src/app/services/error-dialog.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
 	selector: 'app-batch-list',
@@ -77,16 +78,22 @@ export class BatchListComponent implements OnInit {
 	constructor(private apiService: ApiService,
 				private route: ActivatedRoute,
 				private router: Router,
-				public errorDialogService: ErrorDialogService) { }
+				public errorDialogService: ErrorDialogService,
+				public dataService: DataService) { }
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.role = this.loggedInUser.reference.role;
 		this.entity = this.loggedInUser.reference.entity;
 		this.affiliateId = this.route.snapshot.params['affiliateId'];
+
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 		this.getBatches();
+		var affiliate = {
+			affiliateId: this.affiliateId
+		}
+		this.dataService.setIds(affiliate);
 	}
 
 	isAllSelected() {

@@ -9,7 +9,15 @@ export class DataService {
 
 	constructor() { }
 
-	public setAffiliateId(id) {
-		this.affiliateId = id;
+	setIds(data) {
+		localStorage.setItem("ids", JSON.stringify(data));
+	};
+
+	getIds() {
+		return JSON.parse(localStorage.getItem('ids'));
+	};
+
+	public removeIds() {
+		localStorage.removeItem('ids');
 	}
 }

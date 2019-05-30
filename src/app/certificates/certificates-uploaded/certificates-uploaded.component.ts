@@ -6,6 +6,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ErrorDialogService } from 'src/app/services/error-dialog.service';
 import { HttpParams } from '@angular/common/http';
+import { DataService } from 'src/app/services/data.service';
+import { Certificate } from 'src/app/modals/certificate';
 
 @Component({
 	selector: 'app-certificates-uploaded',
@@ -19,6 +21,10 @@ export class CertificatesUploadedComponent implements OnInit {
 	entity;
 	url;
 	batchId;
+	affiliateId;
+	certificates: Certificate[] = [];
+	newCertificates: Certificate[] = [];
+	selectedCertificates: any = [];
 	displayedColumns = [
 		'select',
 		'actions',
@@ -76,15 +82,19 @@ export class CertificatesUploadedComponent implements OnInit {
 	constructor(private apiService: ApiService,
 				private router: Router,
 				private route: ActivatedRoute,
-				public errorDialogService: ErrorDialogService) { }
+				public errorDialogService: ErrorDialogService,
+				public dataService: DataService) { }
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.role = this.loggedInUser.reference.role;
 		this.entity = this.loggedInUser.reference.entity;
 		this.batchId = this.route.snapshot.params['batchId'];
+		var ids = this.dataService.getIds();
+		this.affiliateId = ids.affiliateId;
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
+		this.getUploadedCertificates();
 	}
 
 	isAllSelected() {
@@ -98,23 +108,39 @@ export class CertificatesUploadedComponent implements OnInit {
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
 	}
 
-	getUploadedtCertificates() {
+	getUploadedCertificates() {
 		this.url = "/certificate/draft/list";
 		
 		var params = new HttpParams();
 		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
-		params = params.append('affiliateId', this.loggedInUser.reference.affiliateId);
+		params = params.append('affiliateId', this.affiliateId);
 		params = params.append('batchId', this.batchId);
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
 
+		this.apiService.get(this.url, params) 
+			.subscribe((response: any) => {
+				console.log(response.data);
+				if(response.success == true) {
+					if(response.data && response.data.drafts.length) {
+						this.certificates = response.data.drafts;
+						this.newCertificates = [];
+						for(var i=0; i<this.certificates.length; i++) {
+							this.certificates[i].isEditing = false;
+							this.certificates[i].index = i;
+							this.newCertificates.push(this.certificates[i]);
+							this.dataSource.data = this.newCertificates;
+						}
+					}
+				}
+			});
 	}
 
 	uploadCertificate(files) {
 		var form = new FormData();
 		form.append('file', files[0], files[0].filename);
 		form.append('instituteId', this.loggedInUser.reference.instituteId);
-		//form.append('affiliateId', this.loggedInUser.reference.affiliateId);
+		form.append('affiliateId', this.affiliateId);
 		//form.append('courseId', this.loggedInUser.reference.courseId);
 		form.append('batchId', this.batchId);
 
@@ -123,6 +149,59 @@ export class CertificatesUploadedComponent implements OnInit {
 			.subscribe((response: any) => {
 				console.log(response);
 			})
+	}
+
+	edit(row) {
+		var i = row.index;
+		var tableData = this.dataSource.data;
+		if(tableData[i].isEditing == false) {
+			tableData[i].isEditing = true;
+		} else {
+			tableData[i].isEditing = false;
+		}
+		this.dataSource.data = tableData;
+	}
+
+	save(row) {
+		this.url = "/certificate/draft/"+ row._id;
+		var i = row.index;
+
+		this.apiService.put(this.url, row)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					var tableData = this.dataSource.data;
+					tableData[i].isEditing = false;
+					setTimeout(() => {
+						this.getUploadedCertificates();
+					}, 500);
+				}
+			})
+	}
+
+	goToFinal() {
+		this.selectedCertificates = this.selection.selected;
+		
+		if(this.selectedCertificates.length < 1) {
+			var data = {
+				reason: "Please select atleast one certificate to process!",
+				status: ''
+			};
+			this.errorDialogService.openDialog(data);
+		} else {
+			var obj = {
+				drafts: this.selectedCertificates
+			}
+
+			this.url = "/certificate/draft/process";
+			console.log(obj);
+			this.apiService.put(this.url, obj)
+				.subscribe((response: any) => {
+					console.log(response);
+					this.getUploadedCertificates();
+				})
+
+
+		}
 	}
 
 }
