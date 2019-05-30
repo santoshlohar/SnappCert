@@ -204,6 +204,36 @@ export class CertificatesUploadedComponent implements OnInit {
 		}
 	}
 
+	deleteCertificates() {
+		this.selectedCertificates = this.selection.selected;
+		
+		if(this.selectedCertificates.length < 1) {
+			var data = {
+				reason: "Please select atleast one certificate to delete!",
+				status: ''
+			};
+			this.errorDialogService.openDialog(data);
+		} else {
+			var obj = {
+				draftIds: [],
+				batchId: this.batchId
+			};
+
+			for(var i=0; i<this.selectedCertificates.length; i++){
+				obj.draftIds.push(this.selectedCertificates[i]._id);
+			}
+
+			this.url = "/certificate/draft/delete";
+			this.apiService.post(this.url, obj)
+				.subscribe((response: any) => {
+					console.log(response);
+					this.getUploadedCertificates();
+				})
+
+
+		}
+	}
+
 }
 
 const data = [{
