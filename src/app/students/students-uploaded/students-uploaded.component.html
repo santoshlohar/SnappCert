@@ -130,7 +130,7 @@
 					</mat-header-cell>
 					<mat-cell *matCellDef="let element" 
 						[ngClass]="{'highlight': (element.dob.error)}">
-						<span *ngIf="!element.isEditing"> {{element.dob.value}} </span>
+						<span *ngIf="!element.isEditing"> {{element.dob.value  | date }} </span>
 						<mat-form-field floatLabel="never" *ngIf="element.isEditing">
 							<input matInput [value]="element.dob.value" [(ngModel)]="element.dob.value">
 							<mat-error>Required</mat-error>
