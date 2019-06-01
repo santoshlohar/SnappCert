@@ -147,7 +147,9 @@ export class CertificatesUploadedComponent implements OnInit {
 		this.url = "/certificate/draft/upload";
 		this.apiService.upload(this.url, form)
 			.subscribe((response: any) => {
-				console.log(response);
+				if(response.success == true) {
+					this.getUploadedCertificates();
+				}
 			})
 	}
 
