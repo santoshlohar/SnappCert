@@ -16,10 +16,11 @@ export class BatchAddComponent implements OnInit {
 	url;
 	loggedInUser;
 	affBatchForm: FormGroup;
-
+	affiliateId;
 	courses:[] = [];
 	batch= {
 		instituteId: '',
+		departmentId: '',
 		affiliateId: '',
 		courseId: '',
 		code: '',
@@ -41,6 +42,7 @@ export class BatchAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.affiliateId = this.loggedInUser.reference.affiliateId;
 		this.affBatchForm = this._formBuilder.group({
 			courseId: ['', Validators.required],
 			code: ['', Validators.required],
@@ -84,6 +86,7 @@ export class BatchAddComponent implements OnInit {
 		this.url = "/batch/create";
 
 		this.batch.instituteId = this.loggedInUser.reference.instituteId;
+		this.batch.departmentId = this.loggedInUser.reference.departmentId;
 		this.batch.affiliateId = this.loggedInUser.reference.affiliateId;
 		this.batch.courseId = batchData.value.courseId;
 		this.batch.code = batchData.value.code;
@@ -99,7 +102,7 @@ export class BatchAddComponent implements OnInit {
 		this.apiService.post(this.url, this.batch) 
 			.subscribe((response: any) => {
 				if(response.success == true) {
-					this.router.navigate(['/batches']);
+					this.router.navigate(['/' + this.affiliateId +'/batches']);
 				}
 			})
 

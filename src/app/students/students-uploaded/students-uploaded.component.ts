@@ -134,6 +134,7 @@ export class StudentsUploadedComponent implements OnInit {
 		this.apiService.upload(this.url, form)
 			.subscribe((response: any) => {
 				console.log(response);
+				this.getUploadedStudents();
 			})
 	}
 

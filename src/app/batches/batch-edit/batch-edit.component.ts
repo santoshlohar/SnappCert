@@ -20,6 +20,7 @@ export class BatchEditComponent implements OnInit {
 	batchEditForm: FormGroup;
 	batchData = {
 		instituteId: '',
+		departmentId: '',
 		affiliateId: '',
 		courseId: '',
 		code: '',
@@ -98,6 +99,7 @@ export class BatchEditComponent implements OnInit {
 		this.url = "/batch/" + this.id;
 		
 		this.batchData.instituteId = this.loggedInUser.reference.instituteId;
+		this.batchData.departmentId = this.loggedInUser.reference.departmentId;
 		this.batchData.affiliateId = this.loggedInUser.reference.affiliateId;
 		this.batchData.courseId = this.batch.courseId;
 		this.batchData.code = batchData.value.code;
