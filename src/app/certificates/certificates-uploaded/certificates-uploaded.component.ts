@@ -115,8 +115,6 @@ export class CertificatesUploadedComponent implements OnInit {
 		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
 		params = params.append('affiliateId', this.affiliateId);
 		params = params.append('batchId', this.batchId);
-		params = params.append('skip', '0');
-		params = params.append('limit', '10');
 
 		this.apiService.get(this.url, params) 
 			.subscribe((response: any) => {
@@ -140,8 +138,8 @@ export class CertificatesUploadedComponent implements OnInit {
 		var form = new FormData();
 		form.append('file', files[0], files[0].filename);
 		form.append('instituteId', this.loggedInUser.reference.instituteId);
+		form.append('departmentId', this.loggedInUser.reference.departmentId);
 		form.append('affiliateId', this.affiliateId);
-		//form.append('courseId', this.loggedInUser.reference.courseId);
 		form.append('batchId', this.batchId);
 
 		this.url = "/certificate/draft/upload";
