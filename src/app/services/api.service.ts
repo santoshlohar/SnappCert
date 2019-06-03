@@ -45,7 +45,7 @@ export class ApiService {
 			'x-api-token': this.authService.getAccessToken()
 		})
 
-		this.getData = this.http.post(this.baseURL + url, data, { headers: header});
+		this.getData = this.http.post(this.baseURL + url, data, { headers: header });
 		return this.getData;
 	}
 	

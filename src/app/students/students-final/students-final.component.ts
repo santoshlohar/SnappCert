@@ -110,6 +110,7 @@ export class StudentsFinalComponent implements OnInit {
 		var params = new HttpParams();
 		params = params.append('skip', '0');
 		params = params.append('limit', '10');
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
 
 		if(this.loggedInUser.reference.affiliateId === '111111111111111111111111') {
 			params = params.append('affiliateId', this.id);
@@ -128,6 +129,19 @@ export class StudentsFinalComponent implements OnInit {
 					}
 				}
 			});
+	}
+
+	changeStatus(row, status) {
+		this.url = "/student/" + row._id +"/changeStatus";
+
+		var obj = {
+			status: status
+		};
+		console.log(obj)
+		this.apiService.put(this.url, obj)
+			.subscribe((response: any) => {
+				console.log(response);
+			})
 	}
 
 	// uploadCertificates() {

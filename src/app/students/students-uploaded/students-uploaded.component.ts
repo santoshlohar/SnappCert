@@ -100,6 +100,7 @@ export class StudentsUploadedComponent implements OnInit {
 		this.url = "/student/draft/list";
 
 		var params = new HttpParams();
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
 		params = params.append('affiliateId', this.loggedInUser.reference.affiliateId);
 		params = params.append('batchId', this.batchId);
 		params = params.append('skip', '0');
@@ -125,6 +126,7 @@ export class StudentsUploadedComponent implements OnInit {
 	uploadstudent(files, name) {
 		var form = new FormData();
 		form.append('file', files[0], files[0].filename);
+		form.append('instituteId', this.loggedInUser.reference.instituteId);
 		form.append('affiliateId', this.loggedInUser.reference.affiliateId);
 		form.append('batchId', this.batchId);
 
@@ -174,6 +176,7 @@ export class StudentsUploadedComponent implements OnInit {
 		} else {
 			var obj = {
 				draftIds: [],
+				instituteId: this.loggedInUser.reference.instituteId,
 				affiliateId: this.loggedInUser.reference.affiliateId
 			};
 
