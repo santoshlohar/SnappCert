@@ -49,16 +49,15 @@ export class AuthService {
 	}
 
 	logout() {
-		localStorage.removeItem('user');
-		localStorage.removeItem('access_token');
+		localStorage.clear();
 		this.currentUserSubject.next(null);
 		this.router.navigate(['/login']);
 	}
 
 	getAccessToken() {
-		this.user = JSON.parse(localStorage.getItem('user'));
-		if(this.user.accessToken){
-			var accessToken = this.user.accessToken;
+		var user = JSON.parse(localStorage.getItem('user'));
+		if( user && user.accessToken){
+			var accessToken = user.accessToken;
 			return accessToken;
 		}
 		return false;

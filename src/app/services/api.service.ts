@@ -18,33 +18,37 @@ export class ApiService {
 	constructor(private http: HttpClient,
 				private authService: AuthService) {
 				}
-	
-	public httpOptions = {
-		headers: new HttpHeaders({
-			'Content-Type': 'application/json',
-			'x-api-token': this.authService.getAccessToken()
-		})
-	};
 
 	post(url, data) {
-		return this.http.post(this.baseURL + url, data, this.httpOptions);
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'x-api-token': this.authService.getAccessToken()
+		});
+		return this.http.post(this.baseURL + url, data, { headers: headers });
 	};
 
 	get(url, params) {
-		this.getData = this.http.get(this.baseURL + url, { headers: this.httpOptions.headers, params: params});
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'x-api-token': this.authService.getAccessToken()
+		});
+		this.getData = this.http.get(this.baseURL + url, { headers: headers, params: params});
 		return this.getData;		
 	}
 
 	put(url, data) {
-		this.putData = this.http.put(this.baseURL + url, data, this.httpOptions);
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'x-api-token': this.authService.getAccessToken()
+		});
+		this.putData = this.http.put(this.baseURL + url, data, { headers: headers });
 		return this.putData;
 	}
 
 	upload(url, data) {
 		let header = new HttpHeaders({
 			'x-api-token': this.authService.getAccessToken()
-		})
-
+		});
 		this.getData = this.http.post(this.baseURL + url, data, { headers: header });
 		return this.getData;
 	}
