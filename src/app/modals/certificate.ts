@@ -1,5 +1,6 @@
 export interface Certificate {
 	instituteId: String;
+	departmentId: String;
 	affiliateId: String;
     batchId: String;
     studentId: String;

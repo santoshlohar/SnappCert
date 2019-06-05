@@ -127,7 +127,7 @@
                     </mat-header-cell>
                     <mat-cell *matCellDef="let element"
                     [ngClass]="{'highlight': element.certificateId.error}">
-                        <span *ngIf="!element.isEditing"> {{element.certificateId.value}} </span>
+                        <span *ngIf="!element.isEditing"> {{element.certificateId}} </span>
                         <mat-form-field floatLabel="never" *ngIf="element.isEditing">
                             <input matInput [value]="element.certificateId.value" [(ngModel)]="element.certificateId.value">
                         </mat-form-field>

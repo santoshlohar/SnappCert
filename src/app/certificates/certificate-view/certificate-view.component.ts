@@ -11,8 +11,9 @@ import { Location } from '@angular/common';
 })
 export class CertificateViewComponent implements OnInit {
 	id = '';
-	loginUser;
-	userType;
+	loggedInUser;
+	role;
+	entity;
 	certificateId;
 	instituteId;
 	certificate = {
@@ -58,8 +59,9 @@ export class CertificateViewComponent implements OnInit {
 				}
 
 	ngOnInit() {
-		this.loginUser = JSON.parse(localStorage.getItem('user'));
-		this.userType = this.loginUser.UserType;
+		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
+		this.role = this.loggedInUser.reference.role;
+		this.entity = this.loggedInUser.reference.entity;
 		//this.getCertificate();	
 	}
 
@@ -84,29 +86,29 @@ export class CertificateViewComponent implements OnInit {
 	// 		})		
 	// }
 
-	reviewed() {
-		console.log(this.certificate);
-		this.url = "/certificate/";
-		this.reviewers = JSON.parse(localStorage.getItem('reviewers'));
-		if(this.reviewers.length > 1) {
-			for(var i=0;i<this.reviewers.length;i++) {
-				if(this.loginUser._id == this.reviewers[i]._id) {
-					console.log(this.loginUser._id)
-					this.certificate.reviewer1ID = this.loginUser._id;
-					this.certificate.reviewer1Name = this.loginUser.UserName;
-					this.certificate.transactionStatus = "Reviewed";
-					console.log(this.certificate)
-				}
-			}
-		}
-		this.apiService.put(this.url+this.certificateId, this.certificate)
-			.subscribe((response) => {
-				console.log(response)
-			},
-			(error) => {
-				console.log(error);
-			})
-	}
+	// reviewed() {
+	// 	console.log(this.certificate);
+	// 	this.url = "/certificate/";
+	// 	this.reviewers = JSON.parse(localStorage.getItem('reviewers'));
+	// 	if(this.reviewers.length > 1) {
+	// 		for(var i=0;i<this.reviewers.length;i++) {
+	// 			if(this.loginUser._id == this.reviewers[i]._id) {
+	// 				console.log(this.loginUser._id)
+	// 				this.certificate.reviewer1ID = this.loginUser._id;
+	// 				this.certificate.reviewer1Name = this.loginUser.UserName;
+	// 				this.certificate.transactionStatus = "Reviewed";
+	// 				console.log(this.certificate)
+	// 			}
+	// 		}
+	// 	}
+	// 	this.apiService.put(this.url+this.certificateId, this.certificate)
+	// 		.subscribe((response) => {
+	// 			console.log(response)
+	// 		},
+	// 		(error) => {
+	// 			console.log(error);
+	// 		})
+	// }
 
 	goBack() {
 		this.location.back();

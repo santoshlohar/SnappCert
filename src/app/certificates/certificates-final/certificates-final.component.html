@@ -64,7 +64,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.courseId}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.batch.courseId}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="batchId">
 					<mat-header-cell *matHeaderCellDef> 
@@ -76,7 +76,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.batchId}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.batch.code}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="studentId">
 					<mat-header-cell *matHeaderCellDef> 
@@ -100,7 +100,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.certificateId}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="specialization">
 					<mat-header-cell *matHeaderCellDef> 

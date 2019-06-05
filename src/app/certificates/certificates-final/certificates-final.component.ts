@@ -4,7 +4,10 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { FormControl } from '@angular/forms';
 import { ErrorCollector } from '@angular/compiler';
 import { ErrorDialogService } from 'src/app/services/error-dialog.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { HttpParams } from '@angular/common/http';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
 	selector: 'app-certificates-final',
@@ -16,8 +19,12 @@ export class CertificatesFinalComponent implements OnInit {
 	loggedInUser;
 	role;
 	entity;
+	url;
+	batchId;
+	affiliateId;
 	selectedCertificates: any = [];
 	certificate;
+	certificates = [];
 	displayedColumns = [
 		'select',
 		'instituteId', 
@@ -65,21 +72,29 @@ export class CertificatesFinalComponent implements OnInit {
 		status: ''
 	}
 
-	dataSource = new MatTableDataSource<any>(data);
+	dataSource = new MatTableDataSource<any>();
 	selection = new SelectionModel<any>(true, []);
 
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 
 	constructor(private router: Router,
+				private apiService: ApiService,
+				private route: ActivatedRoute,
+				private dataService: DataService,
 				private errorDialogService: ErrorDialogService) { }
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.role = this.loggedInUser.reference.role;
 		this.entity = this.loggedInUser.reference.entity;
+		this.batchId = this.route.snapshot.params['batchId'];
+		var ids = this.dataService.getIds();
+		this.affiliateId = ids.affiliateId;
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
+
+		this.getCertificates();
 	}
 
 	isAllSelected() {
@@ -91,6 +106,26 @@ export class CertificatesFinalComponent implements OnInit {
 	masterToggle() {
 		this.isAllSelected() ? 
 			this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+	}
+
+	getCertificates() {
+		this.url = "/certificate/list";
+
+		var params = new HttpParams();
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
+		params = params.append('departmentId', this.loggedInUser.reference.departmentId);
+		params = params.append('affiliateId', this.affiliateId);
+		params = params.append('batchId', this.batchId);
+
+		this.apiService.get(this.url, params)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					if(response.data.certificates) {
+						this.certificates = response.data.certificates;
+						this.dataSource.data = this.certificates;
+					}
+				}
+			});
 	}
 
 	viewCertificate() {
