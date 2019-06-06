@@ -17,7 +17,6 @@ import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/af
 import { AffInstituteAddComponent } from './affInstitutes/aff-institute-add/aff-institute-add.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CourseAddComponent } from './courses/course-add/course-add.component';
-import { CertificateUploadListComponent } from './certificates/certificate-upload-list/certificate-upload-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -26,7 +25,6 @@ import { UserAddComponent } from './users/user-add/user-add.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
-import { CertificatesListComponent } from './certificates/certificates-list/certificates-list.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CoursesMyComponent } from './courses/courses-my/courses-my.component';

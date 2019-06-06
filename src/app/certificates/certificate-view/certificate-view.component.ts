@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
-import { CertificateService } from '../certificate.service';
 import { Location } from '@angular/common';
 import { DataService } from 'src/app/services/data.service';
 import { HttpParams } from '@angular/common/http';
@@ -40,7 +39,6 @@ export class CertificateViewComponent implements OnInit {
 	reviewers;
 	constructor(private apiService: ApiService,
 				private route: ActivatedRoute,
-				private service: CertificateService,
 				private location: Location,
 				public dataService: DataService) { 
 					this.certificateId = this.route.snapshot.params['certificateId'];

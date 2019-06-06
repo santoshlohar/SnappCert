@@ -33,7 +33,6 @@ import { AffInstituteAddComponent } from './affInstitutes/aff-institute-add/aff-
 import { AffInstituteListComponent } from './affInstitutes/aff-institute-list/aff-institute-list.component';
 import { CourseAddComponent } from './courses/course-add/course-add.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
-import { CertificateUploadListComponent } from './certificates/certificate-upload-list/certificate-upload-list.component';
 import { NotifyOtpComponent } from './dialog-boxes/notify-otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -41,7 +40,6 @@ import { UsersListComponent } from './users/users-list/users-list.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
 import { CourseEditComponent } from './courses/course-edit/course-edit.component';
 import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
-import { CertificatesListComponent } from './certificates/certificates-list/certificates-list.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
@@ -74,7 +72,6 @@ import { CertificatesFinalComponent } from './certificates/certificates-final/ce
         AffInstituteListComponent,
         CourseAddComponent,
         CoursesListComponent,
-        CertificateUploadListComponent,
         NotifyOtpComponent,
         ForgotPasswordComponent,
         DashboardComponent,
@@ -82,7 +79,6 @@ import { CertificatesFinalComponent } from './certificates/certificates-final/ce
         UserAddComponent,
         CourseEditComponent,
         CertificateViewComponent,
-        CertificatesListComponent,
         AccessDeniedComponent,
         UserEditComponent,
         ErrorDialogComponent,
