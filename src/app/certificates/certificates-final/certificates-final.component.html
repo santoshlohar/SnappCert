@@ -2,7 +2,7 @@
     <div class="wrapper">
 		<div class="outer-div">
 			<div class="inner-div header-btns upload-btn-wrapper">
-				<a mat-button class="add-btn">Upload Certificate 
+				<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'institute')">Upload Certificate 
 					<input class="file-upload" type="file" name="excel" (change)="uploadCertificate($event.target.files, $event.target.name)"/>
 				</a>
 			</div>

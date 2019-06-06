@@ -145,7 +145,9 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Admin,
-                    Role.Manager
+                    Role.Manager,
+                    Role.Reviewer,
+                    Role.Certifier
                 ],
                 entity: [
                     Entity.Institute

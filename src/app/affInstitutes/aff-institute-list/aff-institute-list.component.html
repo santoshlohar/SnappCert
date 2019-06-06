@@ -10,7 +10,8 @@
 			<div class="inner-div header-btns">
 				<div class="mat-header-btns">
 					<!-- <a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'institute')" (click)="getStudents()"> View Students </a> -->
-					<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'institute')" (click)="getBatches()"> View Batches </a>
+					<a mat-button class="add-btn" *ngIf="(role == 'manager' && entity == 'institute') 
+					|| (role == 'reviewer' && entity == 'institute') || (role == 'certifier' && entity == 'institute')" (click)="getBatches()"> View Batches </a>
 				</div>
 			</div>
 		</div>
