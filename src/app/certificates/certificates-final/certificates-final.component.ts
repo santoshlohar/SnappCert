@@ -89,8 +89,9 @@ export class CertificatesFinalComponent implements OnInit {
 		this.role = this.loggedInUser.reference.role;
 		this.entity = this.loggedInUser.reference.entity;
 		this.batchId = this.route.snapshot.params['batchId'];
-		var ids = this.dataService.getIds();
-		this.affiliateId = ids.affiliateId;
+		var affiliate = this.dataService.getAffiliate();
+		this.affiliateId = affiliate;
+		this.dataService.setBatch(this.batchId);
 		this.dataSource.sort = this.sort;
 		this.dataSource.paginator = this.paginator;
 

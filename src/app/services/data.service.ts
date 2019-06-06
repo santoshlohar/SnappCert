@@ -9,12 +9,20 @@ export class DataService {
 
 	constructor() { }
 
-	setIds(data) {
-		localStorage.setItem("ids", JSON.stringify(data));
+	setAffiliate(affiliateId) {
+		localStorage.setItem("affiliateId", JSON.stringify(affiliateId));
+	}
+
+	setBatch(batchId) {
+		localStorage.setItem("batchId", JSON.stringify(batchId));
+	}
+
+	getAffiliate() {
+		return JSON.parse(localStorage.getItem('affiliateId'));
 	};
 
-	getIds() {
-		return JSON.parse(localStorage.getItem('ids'));
+	getBatch() {
+		return JSON.parse(localStorage.getItem('batchId'));
 	};
 
 	public removeIds() {

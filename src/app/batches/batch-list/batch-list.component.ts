@@ -93,7 +93,7 @@ export class BatchListComponent implements OnInit {
 		var affiliate = {
 			affiliateId: this.affiliateId
 		}
-		this.dataService.setIds(affiliate);
+		this.dataService.setAffiliate(this.affiliateId);
 	}
 
 	isAllSelected() {

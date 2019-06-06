@@ -19,56 +19,56 @@
 					<div class="sec-sub-heading"><span>Institute Type </span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{institute.instituteType}} </span>
+						<span> {{certificate.institute.type}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Institute ID</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{institute.instituteId}} </span>
+						<span> {{certificate.institute.code}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Institute Name</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{institute.instituteName}} </span>
+						<span> {{certificate.institute.name}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Location</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{institute.location}} </span>
+						<span> {{certificate.institute.location}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Website</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{institute.website}} </span>
+						<span> {{certificate.institute.website}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Affilited To Institute</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{institute.affiliatedTo}} </span>
+						<span> {{certificate.institute.name}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Affilited To Institute Type</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{institute.affiliatedInstituteType}} </span>
+						<span> {{certificate.institute.type}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Recognized/Approved By</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{institute.recognizedBy}} </span>
+						<span> {{certificate.institute.affiliateInstitute.approvedBy}} </span>
 					</div>
 				</div>
 			</div>
@@ -92,7 +92,7 @@
 					<div class="sec-sub-heading"><span>Certificate ID</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{certificate.certificateID}} </span>
+						<span> {{certificate.certificateId}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
@@ -120,21 +120,21 @@
 					<div class="sec-sub-heading"><span>Batch Year</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{course.certificateID}} </span>
+						<span> {{certificate.batch.start}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Student ID</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{certificate.studentID}} </span>
+						<span> {{certificate.studentId}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Specialization</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{certificate.Specialization}} </span>
+						<span> {{certificate.specialization}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
@@ -155,7 +155,7 @@
 					<div class="sec-sub-heading"><span>CGPA</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{certificate.CGPA}} </span>
+						<span> {{certificate.cgpa}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
@@ -169,7 +169,7 @@
 					<div class="sec-sub-heading"><span>Completion Date</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{certificate.completionDate}} </span>
+						<span> {{certificate.completionDate | date }} </span>
 					</div>
 				</div>
 			</div>
@@ -328,16 +328,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="action-btns text-center" *ngIf="userType == 'INS_DATA_MANAGER'">
+		<div class="action-btns text-center" *ngIf="(role == 'manager' && entity == 'institute')">
 			<button mat-raised-button class="action-btn" (click)="reviewed()" fxFlex.xs="100">Hold</button>
 			<button mat-raised-button class="action-btn" (click)="reviewed()" fxFlex.xs="100">Reassess</button>
 			<button mat-raised-button class="action-btn" (click)="goBack()" fxFlex.xs="100">Cancel</button>
 		</div>
-		<div class="action-btns text-center" *ngIf="userType == 'INST_REVIEWER'">
+		<div class="action-btns text-center" *ngIf="(role == 'reviewer' && entity == 'institute')">
 			<button mat-raised-button class="action-btn" (click)="reviewed()" fxFlex.xs="100">Reviewed</button>
 			<button mat-raised-button class="action-btn" fxFlex.xs="100">Reject</button>
 		</div>
-		<div class="action-btns text-center" *ngIf="userType == 'DATA_CERTIFIER'">
+		<div class="action-btns text-center" *ngIf="(role == 'certifier' && entity == 'institute')">
 			<button mat-raised-button class="action-btn" (click)="reviewed()" fxFlex.xs="100">Certify</button>
 			<button mat-raised-button class="action-btn" fxFlex.xs="100">Reject</button>
 		</div>

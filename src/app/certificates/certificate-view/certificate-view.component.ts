@@ -3,6 +3,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { CertificateService } from '../certificate.service';
 import { Location } from '@angular/common';
+import { DataService } from 'src/app/services/data.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
 	selector: 'app-certificate-view',
@@ -10,51 +12,37 @@ import { Location } from '@angular/common';
 	styleUrls: ['./certificate-view.component.css']
 })
 export class CertificateViewComponent implements OnInit {
-	id = '';
+
 	loggedInUser;
 	role;
 	entity;
 	certificateId;
-	instituteId;
+	affiliateId;
+	batchId;
 	certificate = {
-		certificateID: '',
-		instituteID: '',
-		studentID: '',
-		courseID: '',
-		Specialization: '',
-		scoreEarned: '',
-		totalScore: '',
-		CGPA: '',
-		creditsEarned: '',
-		completionDate: '',
-		reviewer1ID: '',
-		reviewer1Name: '',
-		transactionStatus: '',
-		instituteIdRef: {
-			instituteType: '',
+		institute : {
+			type: '',
 			instituteId: '',
-			instituteName: '',
+			name: '',
 			location: '',
 			website: '',
-			affiliatedTo: '',
-			affiliatedInstituteType: '',
-			recognizedBy: ''
+			affiliateInstitute: {
+				approvedBy: ''
+			}
 		},
-		courseIDRef: {
-			Course_Name: '',
-			Course_Duration: '',
-			Duration_Unit: '',
-			certificateID: ''
+		certificateId: '',
+		batch: {
+			start: ''
 		}
 	};
-	institute = {};
 	url;
 	course = {};
 	reviewers;
 	constructor(private apiService: ApiService,
 				private route: ActivatedRoute,
 				private service: CertificateService,
-				private location: Location) { 
+				private location: Location,
+				public dataService: DataService) { 
 					this.certificateId = this.route.snapshot.params['certificateId'];
 				}
 
@@ -62,53 +50,29 @@ export class CertificateViewComponent implements OnInit {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.role = this.loggedInUser.reference.role;
 		this.entity = this.loggedInUser.reference.entity;
-		//this.getCertificate();	
+		this.affiliateId = this.dataService.getAffiliate();
+		this.batchId = this.dataService.getBatch();
+		this.certificateId = this.route.snapshot.params['certificateId'];
+		this.getCertificate();	
 	}
 
-	// getCertificate() {
-	// 	this.url = "/certificates/";
-	// 	this.apiService.get(this.url+ this.certificateId)
-	// 		.subscribe((response) => {
-	// 			if(response.message == 'success') {
-	// 				if(response.data) {
-	// 					this.certificate = response.data[0];
-	// 					this.institute = this.certificate.instituteIdRef;
-	// 					this.course = this.certificate.courseIDRef;
-	// 				} else {
-	// 					alert("This certificate ID is not Available in our database.");
-	// 				}
-	// 			} else {
-	// 				alert(response.error);
-	// 			}
-	// 		},
-	// 		(error) => {
-	// 			console.log(error);
-	// 		})		
-	// }
+	getCertificate() {
+		this.url = "/certificate/" + this.certificateId;
 
-	// reviewed() {
-	// 	console.log(this.certificate);
-	// 	this.url = "/certificate/";
-	// 	this.reviewers = JSON.parse(localStorage.getItem('reviewers'));
-	// 	if(this.reviewers.length > 1) {
-	// 		for(var i=0;i<this.reviewers.length;i++) {
-	// 			if(this.loginUser._id == this.reviewers[i]._id) {
-	// 				console.log(this.loginUser._id)
-	// 				this.certificate.reviewer1ID = this.loginUser._id;
-	// 				this.certificate.reviewer1Name = this.loginUser.UserName;
-	// 				this.certificate.transactionStatus = "Reviewed";
-	// 				console.log(this.certificate)
-	// 			}
-	// 		}
-	// 	}
-	// 	this.apiService.put(this.url+this.certificateId, this.certificate)
-	// 		.subscribe((response) => {
-	// 			console.log(response)
-	// 		},
-	// 		(error) => {
-	// 			console.log(error);
-	// 		})
-	// }
+		var params = new HttpParams();
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
+		params = params.append('departmentId', this.loggedInUser.reference.departmentId);
+		params = params.append('affiliateId', this.affiliateId);
+		params = params.append('batchId', this.batchId);
+
+		this.apiService.get(this.url, params)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					this.certificate = response.data.certificate;
+					console.log(this.certificate);
+				}
+			});
+	}
 
 	goBack() {
 		this.location.back();
