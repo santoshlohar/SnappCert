@@ -137,10 +137,13 @@ export class StudentsFinalComponent implements OnInit {
 		var obj = {
 			status: status
 		};
-		console.log(obj)
+		
 		this.apiService.put(this.url, obj)
 			.subscribe((response: any) => {
-				console.log(response);
+				if(response.success == true) {
+					console.log(response.data);
+					this.getStudents();
+				}
 			})
 	}
 

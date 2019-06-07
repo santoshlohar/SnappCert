@@ -253,7 +253,8 @@ const routes: Routes =  [
         data: { 
                 roles: [
                     Role.Manager,
-                    Role.Reviewer
+                    Role.Reviewer,
+                    Role.Certifier
                 ],
                 entity: [
                     Entity.Affiliate,

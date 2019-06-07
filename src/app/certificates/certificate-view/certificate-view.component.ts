@@ -72,6 +72,21 @@ export class CertificateViewComponent implements OnInit {
 			});
 	}
 
+	certify(status) {
+		this.url = "/certificate/"+ this.certificateId + "/certifier/status";
+		var data = {
+			status: status
+		}
+
+		this.apiService.put(this.url, data)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					console.log(response.data);
+					this.getCertificate();
+				}
+			})
+	};
+
 	goBack() {
 		this.location.back();
 	}

@@ -306,6 +306,13 @@
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
+					<div class="sec-sub-heading"><span>Status</span></div>
+					<div class="colon"> : </div>
+					<div class="sub-value">
+						<span>{{certificate.status | uppercase}}</span>
+					</div>
+				</div>
+				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Data Manager Status</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
@@ -338,8 +345,8 @@
 			<button mat-raised-button class="action-btn" fxFlex.xs="100">Reject</button>
 		</div>
 		<div class="action-btns text-center" *ngIf="(role == 'certifier' && entity == 'institute')">
-			<button mat-raised-button class="action-btn" (click)="reviewed()" fxFlex.xs="100">Certify</button>
-			<button mat-raised-button class="action-btn" fxFlex.xs="100">Reject</button>
+			<button mat-raised-button class="action-btn" (click)="certify('certified')" fxFlex.xs="100">Certify</button>
+			<button mat-raised-button class="action-btn" (click)="certify('rejected')" fxFlex.xs="100">Reject</button>
 		</div>
 	</div>
 </div>
