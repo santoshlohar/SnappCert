@@ -210,11 +210,11 @@ export class StudentsUploadedComponent implements OnInit {
 			}
 
 			this.url = "/student/draft/process";
-			console.log(obj);
-			this.apiService.put(this.url, obj)
+   			this.apiService.put(this.url, obj)
 				.subscribe((response: any) => {
-					console.log(response);
-					this.getUploadedStudents();
+					if(response.success == true) {
+						this.getUploadedStudents();
+					}
 				})
 
 

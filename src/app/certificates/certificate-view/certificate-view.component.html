@@ -36,7 +36,7 @@
 						<span> {{certificate.institute.name}} </span>
 					</div>
 				</div>
-				<div class="sub-detail" fxFlex.xs="100">
+				<div class="sub-detail" fxFlex.xs="100" >
 					<div class="sec-sub-heading"><span>Location</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
@@ -54,14 +54,14 @@
 					<div class="sec-sub-heading"><span>Affilited To Institute</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{certificate.institute.name}} </span>
+						<span> {{certificate.institute.affiliateInstitute.name}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Affilited To Institute Type</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{certificate.institute.type}} </span>
+						<span> {{certificate.institute.affiliateInstitute.type}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
@@ -89,31 +89,24 @@
 			</div>
 			<div class="sec-body">
 				<div class="sub-detail" fxFlex.xs="100">
-					<div class="sec-sub-heading"><span>Certificate ID</span></div>
-					<div class="colon"> : </div>
-					<div class="sub-value">
-						<span> {{certificate.certificateId}} </span>
-					</div>
-				</div>
-				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Course Name</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{course.Course_Name}} </span>
+						<span> {{certificate.course.name}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Course Duration</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{course.Course_Duration}} </span>
+						<span> {{certificate.course.duration}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">
 					<div class="sec-sub-heading"><span>Duration Unit</span></div>
 					<div class="colon"> : </div>
 					<div class="sub-value">
-						<span> {{course.Duration_Unit}} </span>
+						<span> {{certificate.course.durationUnit}} </span>
 					</div>
 				</div>
 				<div class="sub-detail" fxFlex.xs="100">

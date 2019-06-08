@@ -119,13 +119,15 @@ export class StudentsFinalComponent implements OnInit {
 			params = params.append('batchId', this.id);
 		}
 
+		let that = this;
+
 		this.apiService.get(this.url, params)
 			.subscribe((response: any) => {
 				if(response.success == true) {
 					if(response.data.students.length) {
 						console.log(response.data.students)
-						this.students = response.data.students;
-						this.dataSource.data = this.students;
+						that.students = response.data.students;
+						this.dataSource.data = response.data.students;
 					}
 				}
 			});

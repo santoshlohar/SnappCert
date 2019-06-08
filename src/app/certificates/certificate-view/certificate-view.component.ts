@@ -18,20 +18,25 @@ export class CertificateViewComponent implements OnInit {
 	certificateId;
 	affiliateId;
 	batchId;
+	isUniversity: Boolean = false;
 	certificate = {
 		institute : {
 			type: '',
 			instituteId: '',
 			name: '',
-			location: '',
+			location: "",
 			website: '',
 			affiliateInstitute: {
-				approvedBy: ''
+				approvedBy: '',
+				type: ''
 			}
 		},
 		certificateId: '',
 		batch: {
 			start: ''
+		},
+		course: {
+			name: ''
 		}
 	};
 	url;
@@ -66,6 +71,12 @@ export class CertificateViewComponent implements OnInit {
 		this.apiService.get(this.url, params)
 			.subscribe((response: any) => {
 				if(response.success == true) {
+
+					// if(this.certificate.institute.type == 'Central University' || this.certificate.institute.type == 'State University' 
+					// || this.certificate.institute.type == 'Deemed University' || this.certificate.institute.type == 'Private University') {
+					// 	this.isUniversity = true;
+					// }
+
 					this.certificate = response.data.certificate;
 					console.log(this.certificate);
 				}

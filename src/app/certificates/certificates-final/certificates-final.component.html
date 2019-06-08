@@ -40,7 +40,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.instituteId}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.institute.code}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="affiliateId">
 					<mat-header-cell *matHeaderCellDef> 
@@ -52,7 +52,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.affiliateId}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.affiliate.code}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="courseId">
 					<mat-header-cell *matHeaderCellDef> 
@@ -64,7 +64,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.batch.courseId}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.course.code}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="batchId">
 					<mat-header-cell *matHeaderCellDef> 
