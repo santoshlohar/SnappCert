@@ -45,7 +45,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.course.type}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="courseId">
 					<mat-header-cell *matHeaderCellDef>
@@ -57,7 +57,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.course.code}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="courseName">
 					<mat-header-cell *matHeaderCellDef>
@@ -69,7 +69,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.course.name}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="specialization">
 					<mat-header-cell *matHeaderCellDef>
@@ -81,7 +81,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.course.specialization}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.specialization}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="courseDuration">
 					<mat-header-cell *matHeaderCellDef>
@@ -93,7 +93,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.course.duration}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.duration}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="durationUnit">
 					<mat-header-cell *matHeaderCellDef>
@@ -105,7 +105,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.course.durationUnit}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.durationUnit}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="termType">
 					<mat-header-cell *matHeaderCellDef>
@@ -117,7 +117,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.course.termType}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.termType}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="noOfTerms">
 					<mat-header-cell *matHeaderCellDef>
@@ -129,7 +129,7 @@
 							</mat-form-field>
 						</div>
 					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.course.noOfTerms}} </mat-cell>
+					<mat-cell *matCellDef="let element"> {{element.noOfTerms}} </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="status">
 					<mat-header-cell *matHeaderCellDef>

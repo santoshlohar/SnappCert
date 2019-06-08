@@ -94,7 +94,7 @@ export class CoursesMyComponent implements OnInit {
 				if(response.success == true) {
 					this.courses = response.data;
 					for(var i=0;i<this.courses.length;i++) {
-						if(this.courses[i].isActive == true) {
+						if(this.courses[i].affiliateReferenceIsActive == true) {
 							this.courses[i].status = "Active";
 						} else {
 							this.courses[i].status = "Inactive";
@@ -185,16 +185,16 @@ export class CoursesMyComponent implements OnInit {
 
 	changeStatus(row) {
 		console.log("row", row)
-		var courseId = row._id;
+		var courseId = row.affiliateReferenceId;
 		this.url = "/course/affiliate/"+ courseId +"/changeStatus";
 		var data = {
-			isActive: row.isActive
+			affiliateReferenceIsActive: row.affiliateReferenceIsActive
 		};
 
 		if(row.isActive == true) {
-			data.isActive = false;
+			data.affiliateReferenceIsActive = false;
 		} else {
-			data.isActive = true;
+			data.affiliateReferenceIsActive = true;
 		}
 
 		this.apiService.put(this.url, data)

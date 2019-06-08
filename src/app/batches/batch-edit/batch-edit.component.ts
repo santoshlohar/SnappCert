@@ -75,10 +75,9 @@ export class BatchEditComponent implements OnInit {
 			.subscribe((response) => {
 				if(response.success == true) {
 					this.courses = response.data;
-
 				}
-			})
-	}
+			});
+	};
 
 	getBatch(id) {
 
@@ -91,9 +90,8 @@ export class BatchEditComponent implements OnInit {
 					this.batch = response.data;
 					this.batchEditForm.patchValue(this.batch);
 				}
-			})
-
-	}
+			});
+	};
 
 	editBatch(batchData: NgForm) {
 		this.url = "/batch/" + this.id;
@@ -118,6 +116,6 @@ export class BatchEditComponent implements OnInit {
 					this.router.navigate(['/batches']);
 				}
 			})
-	}	
+	};	
 
 }
