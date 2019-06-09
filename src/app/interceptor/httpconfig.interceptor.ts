@@ -7,50 +7,94 @@ import {
     HttpResponse,
     HttpHandler,
     HttpEvent,
-    HttpErrorResponse
+    HttpErrorResponse,
+	HttpClient,
+	HttpHeaders
 } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+
+import { Observable, Subject, throwError } from 'rxjs';
+import { map, switchMap, catchError } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
+import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable() 
 export class HttpConfigInterceptor implements HttpInterceptor { 
 
 	constructor(public errorDialogService: ErrorDialogService,
-				public dialog: MatDialog) { }
+				public dialog: MatDialog,
+				public http: HttpClient,
+				public authService: AuthService) { }
+
+
+	private _refreshSubject: Subject<any> = new Subject<any>();
+
+	private _ifTokenExpired() {
+		this._refreshSubject.subscribe({
+			complete: () => {
+				this._refreshSubject = new Subject<any>();
+			}
+		});
+		if (this._refreshSubject.observers.length === 1) {
+			// Hit refresh-token API passing the refresh token stored into the request
+			// to get new access token and refresh token pair
+			this.authService.token().subscribe(this._refreshSubject);
+		}
+		return this._refreshSubject;
+	}
 
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-		const token: string = localStorage.getItem('token');
-
-		if(token) {
-            request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
-		}
-		
-		// if(!request.headers.has('Content-Type')) {
-        //     request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
-		// }
-		
-		request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
 
 		return next.handle(request).pipe(
-            map((event: HttpEvent<any>) => {
-                if (event instanceof HttpResponse) {
-                    console.log('event--->>>', event);
-                }
-                return event;
-			}),
-			catchError((error: HttpErrorResponse) => {
+			catchError((response: HttpErrorResponse) => {
 				let data = {};
-				console.log(error.error.errors[0].msg);
-                data = {
-                    reason: error.error.errors[0].msg,
-                    status: error.status
-				};
-				this.dialog.closeAll();
-                this.errorDialogService.openDialog(data);
-                return throwError(error);
+				
+				let status = response.status;
+				let url = response.url;
+				
+				let showDialog = false;
+
+				if(status == 500) {	
+					showDialog = true;
+
+					if( url.indexOf('/user/token') !== -1) {
+						this.authService.logout(); // GO TO LOGIN PAGE
+					}
+				} else if(status == 401) {
+					if( url.indexOf('/user/token') !== -1) {
+						this.authService.logout(); // GO TO LOGIN PAGE
+					} else {
+						return this._ifTokenExpired().pipe(
+							switchMap(() => {
+								return next.handle(this.updateHeader(request));
+							})
+						);
+						
+					}
+				}
+
+				if(showDialog) {
+					data = {
+						reason: response.error.errors[0].msg,
+						status: response.status
+					};
+					this.dialog.closeAll();
+					this.errorDialogService.openDialog(data);
+				}
+				
+                return throwError(response);
+               
 			})
 		);
+	}
+
+	updateHeader(req) {
+		console.log("--- update header --- ");
+		let xApiToken = this.authService.getAccessToken();
+		req = req.clone({
+			headers: req.headers.set("x-api-token", xApiToken)
+		});
+		return req;
 	}
 }

@@ -39,8 +39,7 @@ export class AuthService {
 							if(result.success == true) {
 								this.user = result.data;
 								localStorage.setItem('user', JSON.stringify(this.user));
-								localStorage.setItem('access_token', this.user.accessToken);
-
+								
 								this.currentUserSubject.next(this.user);
 							}
 							return this.user;	
@@ -48,10 +47,32 @@ export class AuthService {
 					)
 	}
 
+	token() {
+
+		let headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+			'refreshtoken' : this.getRefreshToken()
+		})
+
+		return this.http.post(this.baseURL+'/user/token', {}, { headers: headers })
+							.pipe(
+								map((result: any) => {
+									if(result.success == true) {
+										this.user = result.data;
+										localStorage.setItem('user', JSON.stringify(this.user));
+										
+										this.currentUserSubject.next(this.user);
+									}
+									return this.user;	
+								})
+							)
+
+	}
+
 	logout() {
 		localStorage.clear();
 		this.currentUserSubject.next(null);
-		this.router.navigate(['/login']);
+		this.router.navigate(['/']);
 	}
 
 	getAccessToken() {
@@ -59,6 +80,15 @@ export class AuthService {
 		if( user && user.accessToken){
 			var accessToken = user.accessToken;
 			return accessToken;
+		}
+		return false;
+	}
+
+	getRefreshToken() {
+		var user = JSON.parse(localStorage.getItem('user'));
+		if( user && user.refreshToken){
+			var refreshToken = user.refreshToken;
+			return refreshToken;
 		}
 		return false;
 	}
