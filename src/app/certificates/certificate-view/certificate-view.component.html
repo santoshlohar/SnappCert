@@ -291,41 +291,30 @@
 				</span>
 			</div>
 			<div class="sec-body">
-				<div class="sub-detail" fxFlex.xs="100">
-					<div class="sec-sub-heading"><span>Comments</span></div>
+				<div class="sub-detail" fxFlex.xs="100" *ngFor="let comment of certificate.comments; let i = index;">
+					<div class="comment-sub-heading"><span>{{i + 1}}</span></div>
 					<div class="colon"> : </div>
-					<div class="sub-value">
-						<span>University</span>
+					<div class="comment-value">
+						<span>{{comment.text}}</span>
+						<span> By - {{comment.user.firstName}} {{comment.user.lastName}}</span>
 					</div>
 				</div>
+			</div>
+			<div class="sec-body">
 				<div class="sub-detail" fxFlex.xs="100">
-					<div class="sec-sub-heading"><span>Status</span></div>
+					<div class="sec-sub-heading"><span>Add Comment</span></div>
 					<div class="colon"> : </div>
-					<div class="sub-value">
-						<span>{{certificate.status | uppercase}}</span>
+					<div class="comment-value">
+						<mat-form-field class="full-width">
+							<textarea matInput placeholder="Add a comment" [(ngModel)]="comment">
+							</textarea>
+						</mat-form-field>
+					</div>
+					<div class="comment-add">
+						<fa name="plus-circle" matPrefix class="fa-icon" (click)="addComment()"></fa>
 					</div>
 				</div>
-				<div class="sub-detail" fxFlex.xs="100">
-					<div class="sec-sub-heading"><span>Data Manager Status</span></div>
-					<div class="colon"> : </div>
-					<div class="sub-value">
-						<span>University</span>
-					</div>
-				</div>
-				<div class="sub-detail" fxFlex.xs="100">
-					<div class="sec-sub-heading"><span>Reviewer Status</span></div>
-					<div class="colon"> : </div>
-					<div class="sub-value">
-						<span>{{certificate.transactionStatus}}</span>
-					</div>
-				</div>
-				<div class="sub-detail" fxFlex.xs="100">
-					<div class="sec-sub-heading"><span>Certifier Status</span></div>
-					<div class="colon"> : </div>
-					<div class="sub-value">
-						<span>University</span>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 		<div class="action-btns text-center" *ngIf="(role == 'manager' && entity == 'institute')">
@@ -334,8 +323,8 @@
 			<button mat-raised-button class="action-btn" (click)="goBack()" fxFlex.xs="100">Cancel</button>
 		</div>
 		<div class="action-btns text-center" *ngIf="(role == 'reviewer' && entity == 'institute')">
-			<button mat-raised-button class="action-btn" (click)="reviewed()" fxFlex.xs="100">Reviewed</button>
-			<button mat-raised-button class="action-btn" fxFlex.xs="100">Reject</button>
+			<button mat-raised-button class="action-btn" (click)="reviewed('reviewed')" fxFlex.xs="100">Reviewed</button>
+			<button mat-raised-button class="action-btn" (click)="reviewed('rejected')" fxFlex.xs="100">Reject</button>
 		</div>
 		<div class="action-btns text-center" *ngIf="(role == 'certifier' && entity == 'institute')">
 			<button mat-raised-button class="action-btn" (click)="certify('certified')" fxFlex.xs="100">Certify</button>

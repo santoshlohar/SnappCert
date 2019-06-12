@@ -17,6 +17,7 @@ export class BatchEditComponent implements OnInit {
 	id;
 	courses:[] = [];
 	batch;
+	affiliateId;
 	batchEditForm: FormGroup;
 	batchData = {
 		instituteId: '',
@@ -43,6 +44,7 @@ export class BatchEditComponent implements OnInit {
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.id = this.route.snapshot.params['id'];
+		this.affiliateId = this.loggedInUser.reference.affiliateId;
 		this.batchEditForm = this._formBuilder.group({
 			courseId: [{value: '', disabled: true}, Validators.required],
 			code: ['', Validators.required],
@@ -88,6 +90,7 @@ export class BatchEditComponent implements OnInit {
 			.subscribe((response: any) => {
 				if(response.success == true) {
 					this.batch = response.data;
+					console.log(this.batch);
 					this.batchEditForm.patchValue(this.batch);
 				}
 			});
@@ -113,7 +116,7 @@ export class BatchEditComponent implements OnInit {
 		this.apiService.put(this.url, this.batchData)
 			.subscribe((response: any) => {
 				if(response.success == true) {
-					this.router.navigate(['/batches']);
+					this.router.navigate(['/'+ this.affiliateId +'/batches']);
 				}
 			})
 	};	

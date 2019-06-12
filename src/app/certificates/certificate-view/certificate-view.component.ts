@@ -18,6 +18,7 @@ export class CertificateViewComponent implements OnInit {
 	certificateId;
 	affiliateId;
 	batchId;
+	comment: "";
 	isUniversity: Boolean = false;
 	certificate = {
 		institute : {
@@ -37,7 +38,8 @@ export class CertificateViewComponent implements OnInit {
 		},
 		course: {
 			name: ''
-		}
+		},
+		comments: []
 	};
 	url;
 	course = {};
@@ -81,6 +83,21 @@ export class CertificateViewComponent implements OnInit {
 					console.log(this.certificate);
 				}
 			});
+	};
+
+	reviewed(status) {
+		this.url = "/certificate/"+ this.certificateId + "/reviewer/status";
+		var data = {
+			status: status
+		}
+
+		this.apiService.put(this.url, data)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					console.log(response.data);
+					this.getCertificate();
+				}
+			})
 	}
 
 	certify(status) {
@@ -94,6 +111,20 @@ export class CertificateViewComponent implements OnInit {
 				if(response.success == true) {
 					console.log(response.data);
 					this.getCertificate();
+				}
+			})
+	};
+
+	addComment() {
+		this.url = "/certificate/"+ this.certificateId +"/comment";
+		var data = {
+			"text": this.comment
+		}
+
+		this.apiService.post(this.url, data)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					this.certificate.comments.push(response.data.comment);
 				}
 			})
 	};

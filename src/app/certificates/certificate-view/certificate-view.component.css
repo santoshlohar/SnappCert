@@ -173,6 +173,19 @@
     font-size: 14px;
 }
 
+.comment-value {
+    margin: 2px 6px;
+    width: 400px;
+    font-size: 14px;
+}
+
+.comment-add {
+    padding-left: 8px;
+    margin-left: 10px;
+    font-size: 32px;
+    color: #e2be40;
+}
+
 .action-btns {
     padding: 18px 1px;
     display: flex;
@@ -189,4 +202,8 @@
     font-weight: 500;
     border-radius: 10px;
     width: 9%;
+}
+
+.full-width {
+    width: 400px;
 }
