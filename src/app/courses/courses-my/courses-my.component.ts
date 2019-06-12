@@ -184,14 +184,12 @@ export class CoursesMyComponent implements OnInit {
 	}
 
 	changeStatus(row) {
-		console.log("row", row)
 		var courseId = row.affiliateReferenceId;
 		this.url = "/course/affiliate/"+ courseId +"/changeStatus";
 		var data = {
 			affiliateReferenceIsActive: row.affiliateReferenceIsActive
 		};
-
-		if(row.isActive == true) {
+		if(row.affiliateReferenceIsActive == true) {
 			data.affiliateReferenceIsActive = false;
 		} else {
 			data.affiliateReferenceIsActive = true;
