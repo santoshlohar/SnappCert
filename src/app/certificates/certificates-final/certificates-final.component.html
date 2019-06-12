@@ -90,18 +90,6 @@
 					</mat-header-cell>
 					<mat-cell *matCellDef="let element"> {{element.studentId}} </mat-cell>
 				</ng-container>
-				<ng-container matColumnDef="certificateId">
-					<mat-header-cell *matHeaderCellDef> 
-						<div>Certificate ID</div>
-						<div>
-							<mat-form-field class="search-input">
-							<input matInput class="form-field filters" [formControl]="certificateIdFilter">
-							<fa name="search" matPrefix class="fa-icon"></fa>
-							</mat-form-field>
-						</div>
-					</mat-header-cell>
-					<mat-cell *matCellDef="let element"> {{element.certificateId}} </mat-cell>
-				</ng-container>
 				<ng-container matColumnDef="specialization">
 					<mat-header-cell *matHeaderCellDef> 
 						<div>Specialization</div>

@@ -32,7 +32,6 @@ export class CertificatesFinalComponent implements OnInit {
 		'courseId', 
 		'batchId',
 		'studentId',
-		'certificateId',
 		'specialization',
 		'scoreEarned',
 		'totalScore',
@@ -47,7 +46,6 @@ export class CertificatesFinalComponent implements OnInit {
 	courseIdFilter = new FormControl();
 	batchIdFilter = new FormControl();
 	studentIdFilter = new FormControl();
-	certificateIdFilter = new FormControl();
 	specializationFilter = new FormControl();
 	scoreEarnedFilter = new FormControl();
 	totalScoreFilter = new FormControl();
