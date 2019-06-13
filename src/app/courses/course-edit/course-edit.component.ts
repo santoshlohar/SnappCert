@@ -46,7 +46,7 @@ export class CourseEditComponent implements OnInit {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.getCourse(this.id);
 		this.insCourseForm = this.formBuilder.group({
-			departmentId: ['', Validators.required],
+			//departmentId: ['', Validators.required],
 			type:  ['', Validators.required],
 			code: ['', Validators.required],
 			name: ['', Validators.required],
