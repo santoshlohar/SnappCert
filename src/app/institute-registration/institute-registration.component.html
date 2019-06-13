@@ -69,7 +69,9 @@
                                     <mat-error *ngIf="hasError('instituteName', 'required')">Institute Name is required!</mat-error>
                                 </mat-form-field>
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-                                    <input matInput type="text" placeholder="Date of Establishment(DD-MM-YYYY)" formControlName="establishDate" required>
+                                    <input matInput type="text" placeholder="Date of Establishment(DD-MM-YYYY)" formControlName="establishDate" [matDatepicker]="picker" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
                                     <mat-error *ngIf="hasError('establishDate', 'required')">Date of Establishment is required!</mat-error>
                                 </mat-form-field>
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
