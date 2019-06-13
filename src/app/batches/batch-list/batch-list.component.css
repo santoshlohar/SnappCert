@@ -189,3 +189,8 @@ mat-column-position, mat-column-position {
     height: 16px;
     width: 55px;
 }
+
+.mat-column-select {
+    flex: 0 0 1% !important;
+    min-width: 35px !important;
+}
