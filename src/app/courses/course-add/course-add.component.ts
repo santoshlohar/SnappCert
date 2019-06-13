@@ -45,7 +45,7 @@ export class CourseAddComponent implements OnInit {
         this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.affInsCourseForm = this._formBuilder.group({
             // instituteId: ['', Validators.required],
-            departmentId: ['', Validators.required],
+            // departmentId: ['', Validators.required],
             type: ['', Validators.required],
             code: ['', Validators.required],
             name: ['', Validators.required],

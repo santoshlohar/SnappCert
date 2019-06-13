@@ -18,13 +18,10 @@
 						fxLayout.lt-md="column" 
 						fxFlexAlign="center">
 						<!-- <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-							<input matInput placeholder="Institute ID" formControlName="instituteId" required>
-						</mat-form-field> -->
-						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<mat-select placeholder="Department" formControlName="departmentId" required>
 								<mat-option *ngFor="let department of departments;" [value]='department._id'>{{department.name}}</mat-option>
 							</mat-select>
-						</mat-form-field> 
+						</mat-form-field>  -->
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<mat-select formControlName="type" placeholder="Course Type" required>
 								<mat-option value="School Board"> School Board </mat-option>
