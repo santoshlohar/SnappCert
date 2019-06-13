@@ -44,7 +44,7 @@
 							placeholder="Phone No." 
 							formControlName="phoneNumber"
 							required>
-							<mat-error *ngIf="hasError('email', 'required')">Email ID is required!</mat-error>
+							<mat-error *ngIf="hasError('phoneNumber', 'required')">Phone Number is required!</mat-error>
 						</mat-form-field>
 						<mat-form-field #id fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<mat-select #type formControlName="role" 
@@ -71,7 +71,7 @@
 									*ngIf="(role == 'admin' && entity == 'institute')
 									|| (role == 'manager' && entity == 'institute')
 									|| (role == 'manager' && entity == 'affiliate')">
-									Manager
+									Data Manager
 								</mat-option>
 								<mat-option 
 									value="reviewer"
