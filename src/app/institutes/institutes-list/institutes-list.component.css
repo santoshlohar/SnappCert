@@ -269,7 +269,7 @@ mat-column-position, mat-column-position {
 }
 
 .mat-row:nth-child(even) {
-    background-color: #dcdcdcab;
+    background-color: #dcdcdc;
 }
 
 .mat-header-row, .mat-row, .mat-footer-row {
