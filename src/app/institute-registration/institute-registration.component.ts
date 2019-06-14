@@ -29,8 +29,8 @@ export class InstituteRegistrationComponent implements OnInit {
 
 		this.reqesterFormGroup = this._formBuilder.group({
 			requesterName: ['', Validators.required],
-			requesterEmail: ['', Validators.required],
-			requesterPhone: ['', Validators.required]
+			requesterEmail: ['', [Validators.required, Validators.email]],
+			requesterPhone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]]
 		});
 		this.instituteFormGroup = this._formBuilder.group({
 			instType: ['', Validators.required],
@@ -57,8 +57,8 @@ export class InstituteRegistrationComponent implements OnInit {
 		});
 		this.adminFormGroup = this._formBuilder.group({
 			name: ['', Validators.required],
-			email: ['', Validators.required],
-			phone: ['', Validators.required]
+			email: ['', [Validators.required, Validators.email]],
+			phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]]
 		});
     }
 
@@ -111,8 +111,6 @@ export class InstituteRegistrationComponent implements OnInit {
 				phoneNumber: admin.value.phone
 			}
 		}
-
-		console.log(data);
 		
 		this.url = 'http://localhost:3000/api/v1/institute/register';
 

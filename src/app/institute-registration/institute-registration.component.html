@@ -11,24 +11,29 @@
                     <form [formGroup]="reqesterFormGroup" #requester="ngForm">
                         <div>
                             <div>
-                                <ng-template matStepLabel>Requested Details</ng-template>
+                                <ng-template matStepLabel>
+                                    <b><span class="label">Requester Details</span></b>
+                                </ng-template>
                             </div>
                             <div fxLayout="row wrap" 
                                 fxLayoutGap="23px" 
                                 fxLayout.lt-md="column" 
                                 fxFlexAlign="center">
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-                                    <input matInput type="text" placeholder="Requester Name" formControlName="requesterName" required>
-                                    <!-- <mat-error *ngIf="requesterName.hasError('required')">Requester Name is required!</mat-error> -->
+                                    <input matInput type="text" placeholder="Name" formControlName="requesterName" required>
+                                    <mat-error *ngIf="reqesterFormGroup.controls['requesterName'].hasError('required')">Requester Name is required!</mat-error>
                                 </mat-form-field>
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-                                    <input matInput type="email" placeholder="Requester Email" formControlName="requesterEmail" required email>
-                                    <!-- <mat-error *ngIf="hasError('requesterEmail', 'required')">Requester Name is required!</mat-error>
-                                    <mat-error *ngIf="hasError('requesterEmail', 'email')">Please enter valid email!</mat-error> -->
+                                    <input matInput type="email" placeholder="Email" formControlName="requesterEmail" required email>
+                                    <mat-error *ngIf="reqesterFormGroup.controls['requesterEmail'].hasError('required')">Requester Email is required!</mat-error>
+                                    <mat-error *ngIf="reqesterFormGroup.controls['requesterEmail'].hasError('email')">Please enter valid email!</mat-error>
                                 </mat-form-field>
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-                                    <input matInput type="number" placeholder="Requester Phone" formControlName="requesterPhone" required>
-                                    <!-- <mat-error *ngIf="hasError('requesterPhone', 'required')">Phone Number is required!</mat-error> -->
+                                    <input matInput type="phone" placeholder="Phone" formControlName="requesterPhone" required>
+                                    <mat-error *ngIf="reqesterFormGroup.controls['requesterPhone'].hasError('required')">Phone Number is required!</mat-error>
+                                    <mat-error *ngIf="reqesterFormGroup.controls['requesterPhone'].hasError('minlength')">Phone Number Not less than 10 digit!</mat-error>
+                                    <mat-error *ngIf="reqesterFormGroup.controls['requesterPhone'].hasError('maxlength')">Phone Number Not greater than 10 digit!</mat-error>
+                                    <mat-error *ngIf="reqesterFormGroup.controls['requesterPhone'].hasError('pattern')">Phone Number should be numeric!</mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -41,7 +46,9 @@
                     <form [formGroup]="instituteFormGroup" #institute="ngForm">
                         <div>
                             <div>
-                                <ng-template matStepLabel>Institute Details</ng-template>
+                                <ng-template matStepLabel>
+                                    <b><span class="label">Institute Details</span></b>
+                                </ng-template>
                             </div>
                             <div fxLayout="row wrap" 
                                 fxLayoutGap="23px" 
@@ -69,7 +76,7 @@
                                     <mat-error *ngIf="hasError('instituteName', 'required')">Institute Name is required!</mat-error>
                                 </mat-form-field>
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-                                    <input matInput type="text" placeholder="Date of Establishment(DD-MM-YYYY)" formControlName="establishDate" [matDatepicker]="picker" required>
+                                    <input matInput type="text" placeholder="Date of Establishment(DD-MM-YYYY)" formControlName="establishDate"                       [matDatepicker]="picker" required>
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
                                     <mat-error *ngIf="hasError('establishDate', 'required')">Date of Establishment is required!</mat-error>
@@ -150,7 +157,9 @@
                     <form [formGroup]="adminFormGroup" #admin="ngForm">
                         <div>
                             <div>
-                                <ng-template matStepLabel>Admin Details</ng-template>
+                                <ng-template matStepLabel>
+                                    <b><span class="label">Admin Details</span></b>
+                                </ng-template>
                             </div>
                             <div fxLayout="row wrap" 
                                 fxLayoutGap="23px" 
@@ -158,16 +167,18 @@
                                 fxFlexAlign="center">
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
                                         <input matInput type="text" placeholder="Name" formControlName="name" required>
-                                        <!-- <mat-error *ngIf="hasError('name', 'required')">Name is required!</mat-error> -->
+                                        <mat-error *ngIf="adminFormGroup.controls['name'].hasError('required')">Admin Name is required!</mat-error>                                </mat-form-field>
+                                <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
+                                    <input matInput type="text" placeholder="Email" formControlName="email" required>
+                                    <mat-error *ngIf="adminFormGroup.controls['email'].hasError('required')">Admin Email is required!</mat-error>
+                                    <mat-error *ngIf="adminFormGroup.controls['email'].hasError('email')">Please enter valid email!</mat-error>
                                 </mat-form-field>
                                 <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-                                        <input matInput type="text" placeholder="Email" formControlName="email" required>
-                                        <!-- <mat-error *ngIf="hasError('email', 'required')">Email is required!</mat-error>
-                                        <mat-error *ngIf="hasError('email', 'email')">Please enter valid email!</mat-error> -->
-                                </mat-form-field>
-                                <mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
-                                        <input matInput type="text" placeholder="Phone" formControlName="phone" required>
-                                        <!-- <mat-error *ngIf="hasError('phone', 'required')">Phone is required!</mat-error> -->
+                                    <input matInput type="number" placeholder="Phone" formControlName="phone" required>
+                                    <mat-error *ngIf="adminFormGroup.controls['phone'].hasError('required')">Phone Number is required!</mat-error>
+                                    <mat-error *ngIf="adminFormGroup.controls['phone'].hasError('minlength')">Phone Number Not less than 10 digit!</mat-error>
+                                    <mat-error *ngIf="adminFormGroup.controls['phone'].hasError('maxlength')">Phone Number Not greater than 10 digit!</mat-error>
+                                    <mat-error *ngIf="adminFormGroup.controls['phone'].hasError('pattern')">Phone Number should be numeric!</mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
