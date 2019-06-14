@@ -217,3 +217,8 @@ mat-column-position, mat-column-position {
     color:black;
 
 }
+
+.mat-column-actions {
+    flex: 0 0 6% !important;
+    min-width: 35px !important;
+}

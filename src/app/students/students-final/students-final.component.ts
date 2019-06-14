@@ -125,7 +125,6 @@ export class StudentsFinalComponent implements OnInit {
 			.subscribe((response: any) => {
 				if(response.success == true) {
 					if(response.data.students.length) {
-						console.log(response.data.students)
 						that.students = response.data.students;
 						this.dataSource.data = response.data.students;
 					}
@@ -148,21 +147,6 @@ export class StudentsFinalComponent implements OnInit {
 				}
 			})
 	}
-
-	// uploadCertificates() {
-	// 	this.selectedStudents = this.selection.selected;
-
-	// 	if(this.selectedStudents.length !== 1) {
-	// 		var data = {
-	// 			reason: "Please select one student!",
-	// 			status: ''
-	// 		};
-	// 		this.errorDialogService.openDialog(data);
-	// 	} else {
-	// 		this.student = this.selectedStudents[0];
-	// 		this.router.navigate(['/'+ this.student._id + '/uploadedCertificates']);
-	// 	}
-	// }
 
 }
 

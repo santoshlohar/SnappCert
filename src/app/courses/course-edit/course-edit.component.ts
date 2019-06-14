@@ -48,7 +48,7 @@ export class CourseEditComponent implements OnInit {
 		this.insCourseForm = this.formBuilder.group({
 			//departmentId: ['', Validators.required],
 			type:  ['', Validators.required],
-			code: ['', Validators.required],
+			code: [{value: '', disabled: true}, Validators.required],
 			name: ['', Validators.required],
 			specialization: ['', Validators.required],
 			certificateGenerate: ['', Validators.required],
