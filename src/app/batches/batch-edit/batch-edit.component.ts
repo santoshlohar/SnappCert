@@ -103,7 +103,7 @@ export class BatchEditComponent implements OnInit {
 		this.batchData.departmentId = this.loggedInUser.reference.departmentId;
 		this.batchData.affiliateId = this.loggedInUser.reference.affiliateId;
 		this.batchData.courseId = this.batch.courseId;
-		this.batchData.code = batchData.value.code;
+		this.batchData.code = this.batch.code;
 		this.batchData.year = batchData.value.year;
 		this.batchData.start = batchData.value.start;
 		this.batchData.end = batchData.value.end;
@@ -119,6 +119,10 @@ export class BatchEditComponent implements OnInit {
 					this.router.navigate(['/'+ this.affiliateId +'/batches']);
 				}
 			})
-	};	
+	};
+	
+	goBack() {
+		this.location.back();
+	}
 
 }

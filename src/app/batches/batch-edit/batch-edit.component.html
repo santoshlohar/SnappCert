@@ -6,7 +6,7 @@
     </div>
     <div class="addInst-wrapper">
 		<div class="example-container" linear>
-			<form [formGroup]="batchEditForm" #editForm="ngForm" (ngSubmit)="editBatch(editForm)">
+			<form [formGroup]="batchEditForm" #editForm="ngForm" >
 				<div>
 					<div id="affDiv">
 						<span id="addSpan">
@@ -85,7 +85,7 @@
 				</div>
 				</div>
 				<div class="action-btns text-center">
-					<button mat-raised-button class="action-btn">Update</button>
+					<button mat-raised-button class="action-btn" (click)="editBatch(editForm)">Update</button>
 					<button mat-raised-button class="action-btn" (click)="goBack()">Cancel</button>
 				</div>
 			</form>
