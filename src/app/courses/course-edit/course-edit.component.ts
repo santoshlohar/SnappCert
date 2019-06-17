@@ -90,8 +90,8 @@ export class CourseEditComponent implements OnInit {
 
 	editCourse(data: NgForm) {
 		this.url = "/course/" + this.id;
-		this.courseData.departmentId =  data.value.departmentId;
-		this.courseData.code = data.value.code;
+		this.courseData.departmentId =  this.loggedInUser.reference.departmentId;
+		this.courseData.code = this.course.code;
 		this.courseData.type = data.value.type;
 		this.courseData.name = data.value.name;
 		this.courseData.specialization = data.value.specialization;
@@ -104,7 +104,7 @@ export class CourseEditComponent implements OnInit {
 		this.courseData.termType = data.value.termType;
 		this.courseData.noOfTerms = data.value.noOfTerms;
 		this.courseData.instituteId = this.loggedInUser.reference.instituteId;
-
+		console.log("course", this.courseData)
 		this.apiService.put(this.url, this.courseData)
 			.subscribe((response) => {
 				if(response.success == true) {
