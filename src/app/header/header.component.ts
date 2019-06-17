@@ -67,10 +67,12 @@ export class HeaderComponent implements OnInit {
 			this.heading = 'Institutes List';
 		} else if(url === '/departments') {
 			this.heading = 'My Departments';
+		} else if(url === '/departmentAdd') {
+			this.heading = 'Add Department';
 		} else if(url === '/affInstitutes') {
 			this.heading = 'Aff. Institutes';
 		} else if(url === '/affInstituteAdd') {
-			this.heading = 'Aff. Institute';
+			this.heading = 'Add Affiliate';
 		} else if(url === '/courses') {
 			this.heading = 'Courses';
 		} else if(url === '/courseAdd') {
