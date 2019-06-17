@@ -47,7 +47,7 @@ export class BatchEditComponent implements OnInit {
 		this.affiliateId = this.loggedInUser.reference.affiliateId;
 		this.batchEditForm = this._formBuilder.group({
 			courseId: [{value: '', disabled: true}, Validators.required],
-			code: ['', Validators.required],
+			code: [{value: '', disabled: true}, Validators.required],
 			year: ['', Validators.required],
 			start: ['', Validators.required],
 			end: ['', Validators.required],

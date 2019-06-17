@@ -20,8 +20,8 @@ export class CourseEditComponent implements OnInit {
 	courseData = {
 		instituteId: '',
 		departmentId: '',
-		type: '',
 		code: '',
+		type: '',
 		name: '',
 		specialization: '',
 		certificateGenerate: '',
@@ -47,8 +47,8 @@ export class CourseEditComponent implements OnInit {
 		this.getCourse(this.id);
 		this.insCourseForm = this.formBuilder.group({
 			//departmentId: ['', Validators.required],
-			type:  ['', Validators.required],
 			code: [{value: '', disabled: true}, Validators.required],
+			type:  ['', Validators.required],
 			name: ['', Validators.required],
 			specialization: ['', Validators.required],
 			certificateGenerate: ['', Validators.required],
@@ -91,8 +91,8 @@ export class CourseEditComponent implements OnInit {
 	editCourse(data: NgForm) {
 		this.url = "/course/" + this.id;
 		this.courseData.departmentId =  data.value.departmentId;
-		this.courseData.type = data.value.type;
 		this.courseData.code = data.value.code;
+		this.courseData.type = data.value.type;
 		this.courseData.name = data.value.name;
 		this.courseData.specialization = data.value.specialization;
 		this.courseData.certificateGenerate = data.value.certificateGenerate;

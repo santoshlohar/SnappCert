@@ -198,8 +198,6 @@ export class CertificatesUploadedComponent implements OnInit {
 					console.log(response);
 					this.getUploadedCertificates();
 				})
-
-
 		}
 	}
 

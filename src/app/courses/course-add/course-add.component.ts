@@ -19,8 +19,8 @@ export class CourseAddComponent implements OnInit {
     courseDetails = {
         instituteId: '',
         departmentId: '',
-        type: '',
         code: '',
+        type: '',
         name: '',
         specialization: '',    
         certificateGenerate: '',     
@@ -46,8 +46,8 @@ export class CourseAddComponent implements OnInit {
 		this.affInsCourseForm = this._formBuilder.group({
             // instituteId: ['', Validators.required],
             // departmentId: ['', Validators.required],
-            type: ['', Validators.required],
             code: ['', Validators.required],
+            type: ['', Validators.required],
             name: ['', Validators.required],
             specialization: '',    
             certificateGenerate: '',     
@@ -59,27 +59,8 @@ export class CourseAddComponent implements OnInit {
             termType: '',      
             noOfTerms: ''    			
         });
-        this.getDeptList();
     }
     
-    getDeptList() {
-		this.url = "/department/list";
-
-		var params = new HttpParams();
-		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
-		params = params.append('skip', '0');
-		params = params.append('limit', '10');
-
-		this.apiService.get(this.url, params)
-			.subscribe((response) => {
-				if(response.success == true) {
-					if(response.data) {
-						this.departments = response.data; 
-					}
-				}
-			})
-	}
-
 	addCourse(courseData: NgForm) {
         if(courseData.invalid) {
             return false;
