@@ -42,7 +42,7 @@ import { CourseEditComponent } from './courses/course-edit/course-edit.component
 import { CertificateViewComponent } from './certificates/certificate-view/certificate-view.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
-import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.component';
 import { SidebarComponent } from './sidebar/sidebar/sidebar.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CoursesMyComponent } from './courses/courses-my/courses-my.component';
@@ -54,6 +54,7 @@ import { StudentsFinalComponent } from './students/students-final/students-final
 import { StudentsUploadedComponent } from './students/students-uploaded/students-uploaded.component';
 import { CertificatesUploadedComponent } from './certificates/certificates-uploaded/certificates-uploaded.component';
 import { CertificatesFinalComponent } from './certificates/certificates-final/certificates-final.component';
+import { ConfimationDialogComponent } from './dialogs/confimation-dialog/confimation-dialog.component';
 
 @NgModule({
     declarations: [
@@ -92,9 +93,10 @@ import { CertificatesFinalComponent } from './certificates/certificates-final/ce
         StudentsFinalComponent,
         StudentsUploadedComponent,
         CertificatesUploadedComponent,
-        CertificatesFinalComponent
+        CertificatesFinalComponent,
+        ConfimationDialogComponent
     ],
-    entryComponents: [ErrorDialogComponent],
+    entryComponents: [ErrorDialogComponent,ConfimationDialogComponent],
     imports: [
         BrowserModule,
 		AppRoutingModule,
