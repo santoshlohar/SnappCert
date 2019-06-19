@@ -151,8 +151,7 @@ export class StudentsFinalComponent implements OnInit {
 		this.confirmDialogService.openDialog(data);
 	};
 
-}
-
+};
 
 const data = [{
 	batch: {
