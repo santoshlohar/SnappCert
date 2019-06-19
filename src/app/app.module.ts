@@ -100,7 +100,7 @@ import { AddCommentComponent } from './dialogs/add-comment/add-comment.component
         ConfimationDialogComponent,
         AddCommentComponent
     ],
-    entryComponents: [ErrorDialogComponent,ConfimationDialogComponent],
+    entryComponents: [ErrorDialogComponent, ConfimationDialogComponent, AddCommentComponent],
     imports: [
         BrowserModule,
 		AppRoutingModule,

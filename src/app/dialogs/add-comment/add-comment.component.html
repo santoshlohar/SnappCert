@@ -1,3 +1,24 @@
-<p>
-  add-comment works!
-</p>
+<div mat-dialog-title class="logo-color">
+	<b> Add Comment </b>
+</div>
+
+<mat-dialog-content class="content-wrapper">
+	<div class="detail">
+		<div class="comment-value">
+			<mat-form-field>
+				<textarea matInput placeholder="Add a comment" [(ngModel)]="comment" required>
+				</textarea>
+				<mat-error *ngIf="hasError('comment', 'required')">Comment is required!</mat-error>
+			</mat-form-field>
+		</div>
+		<div class="comment-add">
+			<fa name="plus-circle" matPrefix class="fa-icon" (click)="addComment()"></fa>
+		</div>
+	</div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions text-center">
+	<div class="action-btns ">
+		<button mat-raised-button class="close-btn text-center">Close</button>
+	</div>
+</mat-dialog-actions>
