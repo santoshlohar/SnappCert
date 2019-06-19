@@ -21,8 +21,8 @@
 				<ng-container matColumnDef="actions" sticky>
 					<mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<fa name="check" matPrefix matTooltip="Reviewed" class="fa-icon icon clr-blue" (click)="changeStatus(element, 'reviewed')"></fa>
-						<fa name="times" matPrefix matTooltip="Reject" class="fa-icon icon clr-blue" (click)="changeStatus(element, 'rejected')"></fa>
+						<fa name="check" matPrefix matTooltip="Reviewed" class="fa-icon icon clr-blue" (click)="openDialog(element, 'reviewed')"></fa>
+						<fa name="times" matPrefix matTooltip="Reject" class="fa-icon icon clr-blue" (click)="openDialog(element, 'rejected')"></fa>
 					</mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="batchId">

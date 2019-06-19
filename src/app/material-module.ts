@@ -85,6 +85,9 @@ import {
 		ScrollingModule,
 		MatFormFieldModule,
 		MatInputModule 
-    ]
+	],
+	providers: [
+		MatDialogModule 
+	]
 })
 export class MaterialModule {}

@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
+import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
+import { StudentDataService } from 'src/app/students/student-data.service';
 
 @Component({
     selector: 'app-confimation-dialog',
@@ -9,13 +11,25 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class ConfimationDialogComponent implements OnInit {
 
     constructor(@Inject(MAT_DIALOG_DATA) public message: string,
-                public dialogRef: MatDialogRef<ConfimationDialogComponent>) { }
+                public dialogRef: MatDialogRef<ConfimationDialogComponent>,
+                public studentDataService: StudentDataService) { }
 
     ngOnInit() {
-        //this.message = "Do you really want to delete this?"
     }
 
-    close(): void {
+    afterClose() {
+        this.dialogRef.afterClosed().subscribe((result) => {
+            if(result == true) {
+                var dialogData = this.dialogRef._containerInstance._config.data;
+                var obj = {
+                    status: dialogData.status
+                };
+                this.studentDataService.changeStatus(dialogData.url, obj);
+            }
+        })
+    };
+
+    close() {
         this.dialogRef.close();
     }
 

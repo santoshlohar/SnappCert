@@ -55,6 +55,8 @@ import { StudentsUploadedComponent } from './students/students-uploaded/students
 import { CertificatesUploadedComponent } from './certificates/certificates-uploaded/certificates-uploaded.component';
 import { CertificatesFinalComponent } from './certificates/certificates-final/certificates-final.component';
 import { ConfimationDialogComponent } from './dialogs/confimation-dialog/confimation-dialog.component';
+import { MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import { ConfirmDialogService } from './services/confirm-dialog.service';
 
 @NgModule({
     declarations: [
@@ -120,6 +122,7 @@ import { ConfimationDialogComponent } from './dialogs/confimation-dialog/confima
     providers: [
         AuthService,
         ApiService,
+        ConfirmDialogService,
         { 
             provide: HTTP_INTERCEPTORS, 
             useClass: HttpConfigInterceptor, 
@@ -129,7 +132,13 @@ import { ConfimationDialogComponent } from './dialogs/confimation-dialog/confima
         {   
             provide: STEPPER_GLOBAL_OPTIONS, 
             useValue: { showError: true } 
-        }
+        },
+        {provide: MatDialogRef, useValue: {}},
+        // {
+        //     provide: MatDialogTitle, useValue: {} 
+        // },
+        // { provide: MatDialogRef, useValue: {} },
+        // { provide: MAT_DIALOG_DATA, useValue: [] } 
     ],
 	bootstrap: [AppComponent]
 })

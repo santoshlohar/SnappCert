@@ -6,6 +6,9 @@ import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { HttpParams } from '@angular/common/http';
+import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
+import { map } from 'rxjs/operators';
+import { StudentDataService } from '../student-data.service';
 
 @Component({
 	selector: 'app-students-final',
@@ -80,7 +83,8 @@ export class StudentsFinalComponent implements OnInit {
 	constructor(private apiService: ApiService,
 				private route: ActivatedRoute,
 				private router: Router,
-				public errorDialogService: ErrorDialogService) { }
+				public confirmDialogService: ConfirmDialogService,
+				public studentdataService: StudentDataService) { }
 
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
@@ -130,23 +134,22 @@ export class StudentsFinalComponent implements OnInit {
 					}
 				}
 			});
-	}
+	};
 
-	changeStatus(row, status) {
-		this.url = "/student/" + row._id +"/changeStatus";
-
-		var obj = {
-			status: status
+	openDialog(row, status) {
+		var data = {
+			url: this.url = "/student/" + row._id +"/changeStatus",
+			status: status,
+			message: ''
 		};
-		
-		this.apiService.put(this.url, obj)
-			.subscribe((response: any) => {
-				if(response.success == true) {
-					console.log(response.data);
-					this.getStudents();
-				}
-			})
-	}
+		if(status == 'reviewed') {
+			data.message = "Are you sure you want to change status to reviewed?";
+		} else if(status == 'rejected') {
+			data.message = "Are you sure you want to change status to rejected?";
+		}
+
+		this.confirmDialogService.openDialog(data);
+	};
 
 }
 
