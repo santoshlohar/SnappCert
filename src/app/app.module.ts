@@ -57,6 +57,7 @@ import { CertificatesFinalComponent } from './certificates/certificates-final/ce
 import { ConfimationDialogComponent } from './dialogs/confimation-dialog/confimation-dialog.component';
 import { MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { ConfirmDialogService } from './services/confirm-dialog.service';
+import { AddCommentComponent } from './dialogs/add-comment/add-comment.component';
 
 @NgModule({
     declarations: [
@@ -96,7 +97,8 @@ import { ConfirmDialogService } from './services/confirm-dialog.service';
         StudentsUploadedComponent,
         CertificatesUploadedComponent,
         CertificatesFinalComponent,
-        ConfimationDialogComponent
+        ConfimationDialogComponent,
+        AddCommentComponent
     ],
     entryComponents: [ErrorDialogComponent,ConfimationDialogComponent],
     imports: [
