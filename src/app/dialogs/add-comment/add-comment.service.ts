@@ -30,10 +30,9 @@ export class AddCommentService {
 			).subscribe(result => {
 				dialogConfig.data.data = result;
 			});
-        
-        console.log(dialogConfig.data)
+		
 		return dialogConfig.data;
-
+		
     };
     
 }

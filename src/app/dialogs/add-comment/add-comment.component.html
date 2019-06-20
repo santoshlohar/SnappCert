@@ -12,13 +12,13 @@
 			</mat-form-field>
 		</div>
 		<div class="comment-add">
-			<fa name="plus-circle" matPrefix class="fa-icon" (click)="addComment()"></fa>
+			<fa name="plus-circle" matPrefix class="fa-icon" (click)="add()"></fa>
 		</div>
 	</div>
 </mat-dialog-content>
 
 <mat-dialog-actions class="actions text-center">
 	<div class="action-btns ">
-		<button mat-raised-button class="close-btn text-center">Close</button>
+		<button mat-raised-button class="close-btn text-center" (click)="close()">Close</button>
 	</div>
 </mat-dialog-actions>

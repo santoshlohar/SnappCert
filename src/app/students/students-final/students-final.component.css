@@ -41,6 +41,14 @@
     color: #3666f5;
 }
 
+.clr-green {
+    color: #148606;
+}
+
+.clr-red {
+    color: #d02020;
+}
+
 .icon {
     cursor: pointer;
     font-size: 17px;

@@ -13,8 +13,7 @@ export class ConfimationDialogComponent implements OnInit {
 
     constructor(@Inject(MAT_DIALOG_DATA) public message: string,
                 public dialogRef: MatDialogRef<ConfimationDialogComponent>,
-                public studentDataService: StudentDataService,
-                public addCommentService: AddCommentService) { }
+                public studentDataService: StudentDataService) { }
 
     ngOnInit() {
     }
@@ -27,11 +26,8 @@ export class ConfimationDialogComponent implements OnInit {
                     status: dialogData.status
                 };
 
-                if(dialogData.status == "rejected") {
-                    this.addCommentService.openDialog(dialogData);
-                } else {
-                    this.studentDataService.changeStatus(dialogData.url, obj);
-                }
+                this.studentDataService.changeStatus(dialogData, obj);
+
             }
         })
     };
