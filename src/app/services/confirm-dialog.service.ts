@@ -24,7 +24,8 @@ export class ConfirmDialogService {
 			url: obj.url,
 			message: obj.message,
 			status: obj.status,
-			data: ''
+			data: '',
+			batchId: obj.batchId
 		};
 		const dialogRef = this.dialog.open(ConfimationDialogComponent, dialogConfig);
 		dialogRef.afterClosed()

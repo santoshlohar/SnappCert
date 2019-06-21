@@ -125,8 +125,9 @@ export class StudentsFinalComponent implements OnInit {
 
 		let that = this;
 
-		this.apiService.get(this.url, params)
+		this.studentdataService.getStudents(this.url, params)
 			.subscribe((response: any) => {
+				console.log(response);
 				if(response.success == true) {
 					if(response.data.students.length) {
 						that.students = response.data.students;
@@ -134,13 +135,24 @@ export class StudentsFinalComponent implements OnInit {
 					}
 				}
 			});
+
+		// this.apiService.get(this.url, params)
+		// 	.subscribe((response: any) => {
+		// 		if(response.success == true) {
+		// 			if(response.data.students.length) {
+		// 				that.students = response.data.students;
+		// 				this.dataSource.data = response.data.students;
+		// 			}
+		// 		}
+		// 	});
 	};
 
 	openDialog(row, status) {
 		var data = {
 			url: this.url = "/student/" + row._id +"/changeStatus",
 			status: status,
-			message: ''
+			message: '',
+			batchId: this.id
 		};
 		if(status == 'reviewed') {
 			data.message = "Are you sure you want to change status to reviewed?";
