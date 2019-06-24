@@ -27,7 +27,6 @@ export class StudentDataService {
 
 
 					this.id = this.route.snapshot.params['batchId'];
-					console.log(this.id);
 				}
 
 	changeStatus(dialogData, data) {
@@ -45,7 +44,6 @@ export class StudentDataService {
 			params = params.append('affiliateId', this.user.reference.affiliateId);
 			params = params.append('batchId', this.id);
 		}
-		console.log(dialogData);
 		this.apiService.put(dialogData.url, data)
 			.subscribe((response: any) => {
 				if(response.success == true) {
@@ -66,7 +64,7 @@ export class StudentDataService {
 							if(response.success == true) {
 								if(response.data.students.length) {
 									students = response.data.students;
-									this.dataSource.data = response.data.students;
+									//this.dataSource.data = response.data.students;
 								}
 							}
 						});
