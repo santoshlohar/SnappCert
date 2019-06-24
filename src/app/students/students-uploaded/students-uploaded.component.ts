@@ -220,6 +220,23 @@ export class StudentsUploadedComponent implements OnInit {
 
 		}
 	}
+
+	downloadFile() {
+		console.log("File");
+
+		this.url = "/student/draft/download";
+
+		var params = new HttpParams();
+		params = params.append('instituteId', this.loggedInUser.reference.instituteId);
+		params = params.append('affiliateId', this.loggedInUser.reference.affiliateId);
+
+		this.apiService.get(this.url, params)
+			.subscribe((response: any) => {
+				if(response.success == true) {
+					// console.log(response.data);
+				}
+			})
+	}
 }
 
 const data = [{
