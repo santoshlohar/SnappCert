@@ -46,4 +46,9 @@ export class ForgotPasswordComponent implements OnInit {
 				}
 			})         
 	}
+
+	
+	goBack() {
+		this.dialogRef.close();
+	}
 }

@@ -233,7 +233,7 @@ export class StudentsUploadedComponent implements OnInit {
 		this.apiService.get(this.url, params)
 			.subscribe((response: any) => {
 				if(response.success == true) {
-					// console.log(response.data);
+					console.log(response.data);
 				}
 			})
 	}
