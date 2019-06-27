@@ -69,7 +69,12 @@
 						</mat-select>
 					</mat-form-field>
 					<mat-form-field class="input-field">
-						<input matInput placeholder="Term Type" formControlName="termType">
+						<mat-select placeholder="Term Type" formControlName="termType" required>
+							<mat-option value="Semester">Semester</mat-option>
+							<mat-option value="Trisemester">Trisemester</mat-option>
+							<mat-option value="Annual">Annual</mat-option>
+							<mat-option value="None">None</mat-option>
+						</mat-select>
 					</mat-form-field>
 					<mat-form-field class="input-field">
 						<input matInput placeholder="No. of Terms" formControlName="noOfTerms">
