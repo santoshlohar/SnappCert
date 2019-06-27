@@ -15,7 +15,7 @@ export class ResetPasswordComponent implements OnInit {
 	constructor(private formBuilder: FormBuilder,
 				public authService: AuthService,
 				private router: Router) { }
-
+	
 	ngOnInit() {
 		this.resetPwd = this.formBuilder.group({
 			otp: ['', Validators.required],

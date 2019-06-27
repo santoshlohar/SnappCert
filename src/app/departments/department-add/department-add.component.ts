@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -28,14 +28,24 @@ export class DepartmentAddComponent implements OnInit {
 				private location: Location,
 				private snackBar: MatSnackBar) { }
 
+	public noWhitespaceValidator(control: FormControl) {
+		const isWhitespace = (control.value || '').trim().length === 0;
+		const isValid = !isWhitespace;
+		return isValid ? null : { 'whitespace': true };
+	}
+
 	ngOnInit() {
 		this.loggedInUser = JSON.parse(localStorage.getItem('user'));
 		this.inst_id = this.loggedInUser.reference.instituteId;
 		this.insDeptForm = this._formBuilder.group({
 			instituteId: [{value: this.inst_id, disabled: true}, Validators.required],
 			code: ['', Validators.required],
-			name: ['', Validators.required]
+			name: ['', [Validators.required, this.noWhitespaceValidator]]
 		});
+	}
+
+	public hasError = (controlName: string, errorName: string) =>{		
+		return  this.insDeptForm.controls[controlName].hasError(errorName);		
 	}
 
 	openSnackBar(message: string, action: string) {

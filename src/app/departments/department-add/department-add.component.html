@@ -22,12 +22,15 @@
 							placeholder="Department ID" 
 							formControlName="code"
 							required>
+							<mat-error *ngIf="hasError('code', 'required')">Department ID is required!</mat-error>
 						</mat-form-field>
 						<mat-form-field fxFlex.gt-md="31%" fxFlex.lt-md="100%" fxFlex.md="40%">
 							<input matInput 
 							placeholder="Department Name" 
 							formControlName="name"
 							required>
+							<!-- <mat-error *ngIf="hasError('name', 'required')">Department name is required!</mat-error> -->
+							<mat-error *ngIf="hasError('name', 'whitespace')">Department name can not be blank!</mat-error>
 						</mat-form-field>
 					</div>
 				</div>
